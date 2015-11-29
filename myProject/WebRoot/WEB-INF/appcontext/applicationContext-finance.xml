@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<bean id="financeDAO" class="com.sgepit.pmis.finance.dao.FinanceDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	
+	<!-- 资产稽查 -->
+	<bean id="finAuditMgm"
+		class="com.sgepit.pmis.finance.service.FinAuditMgmImpl">
+		<property name="financeDAO" ref="financeDAO" />
+	</bean>
+	
+	<!-- 初始化定义及费用分摊-->
+	<bean id="finDefineAppMgm"
+		class="com.sgepit.pmis.finance.service.FinDefineAppMgmImpl">
+		<property name="financeDAO" ref="financeDAO" />
+	</bean>
+	
+	<bean id="finMgm"
+		class="com.sgepit.pmis.finance.service.FinMgmImpl">
+		<property name="finAuditMgm" ref="finAuditMgm" /> 
+		<property name="finDefineAppMgm" ref="finDefineAppMgm" />
+	</bean>
+	
+	
+</beans>

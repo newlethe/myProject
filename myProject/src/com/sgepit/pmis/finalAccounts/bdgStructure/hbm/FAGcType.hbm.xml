@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sgepit.pmis.finalAccounts.bdgStructure.hbm.FAGcType"
+		table="fa_gc_type">
+		<id name="uids" type="java.lang.String">
+			<column name="UIDS" length="32" />
+			<generator class="uuid"></generator>
+		</id>
+		<property name="pid" type="java.lang.String">
+			<column name="PID" length="32"  />
+		</property>
+		<property name="gcTypeName" type="java.lang.String">
+			<column name="GC_TYPE_NAME" length="20"  />
+		</property>
+		<property name="bdgLevel" type="java.lang.Integer">
+			<column name="BDG_LEVEL" length="2"  />
+		</property>
+		<property name="faBdgLevel" type="java.lang.Integer">
+			<column name="FA_BDG_LEVEL" length="2"  />
+		</property>
+		<property name="parent" type="java.lang.String">
+			<column name="PARENT" length="32"  />
+		</property>
+		<property name="isLeaf" type="java.lang.Boolean">
+			<column name="IS_LEAF" length="1"  />
+		</property>
+		
+	</class>
+
+</hibernate-mapping>

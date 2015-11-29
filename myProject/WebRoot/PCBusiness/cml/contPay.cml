@@ -1,0 +1,383 @@
+<Carton width="1060" height="575">
+  <variable>
+    <param name="pname" initValue=""/>
+  </variable>
+  <Chart type="TEXTAREA" width="635" height="295" text="文本域" UID="64KB1IEF" x="5" y="5">
+    <param name="dataProvider" mode="sql"><![CDATA[select '' text from dual]]></param>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="editable" mode="prop" value="false"/>
+  </Chart>
+  <Chart type="LABEL" width="450" height="19" text="标签" UID="652UQ001" x="200" y="14">
+    <param name="text" mode="prop" value="[pname]合同分布"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="fontSize" mode="style" value="14"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="enabled" mode="prop" value="true"/>
+  </Chart>
+  <Chart type="AMCOLUMNCHART" width="540" height="260" text="柱状图" UID="64VA0BTI" x="5" y="40">
+    <param name="dataProvider" mode="sql" across="true"><![CDATA[SELECT a.y,b.contype,nvl(c.CONMONEY,0) FROM (
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*5),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*4),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*3),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*2),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*1),'YYYY') Y FROM DUAL 
+UNION
+SELECT to_char(SYSDATE,'YYYY') Y FROM DUAL 
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,12),'YYYY') Y FROM DUAL 
+) a
+LEFT JOIN (SELECT C.PROPERTY_NAME CONTYPE,C.PROPERTY_CODE CODE,C.ITEM_ID OID FROM PROPERTY_TYPE T, PROPERTY_CODE C
+     WHERE t.TYPE_NAME = '合同划分类型'  AND T.UIDS = C.TYPE_NAME) b ON 1=1
+LEFT JOIN 
+(SELECT ROUND(SUM(p.paymoney) / 10000, 4) CONMONEY,V.CONDIVNO,to_char(p.PAYDATE,'YYYY') ALLYEAR,v.pid
+ FROM V_CON V , con_pay p WHERE v.CONID = p.conid and p.billstate='1' GROUP BY v.CONDIVNO, v.pid,to_char(p.PAYDATE,'YYYY')) c
+ON a.y = c.allyear AND b.code = c.CONDIVNO
+ORDER BY a.y,b.oid]]></param>
+    <param name="categoryField" mode="prop" value="COL"/>
+    <param name="fields" mode="prop" value="设备合同|施工合同|材料合同|服务合同|其他合同"/>
+    <param name="wrapLabel" mode="prop" value="true"/>
+    <param name="depth3D" mode="style" value="10"/>
+    <param name="angle" mode="style" value="40"/>
+    <param name="marginLeft" mode="style" value="60"/>
+    <param name="graphs.balloonText" mode="prop" value="设备合同:[[value]]|施工合同:[[value]]|材料合同:[[value]]|服务合同:[[value]]|其他合同:[[value]]"/>
+    <param name="graphs.lineColor" mode="style" value="1386458|8950101|2839103|15674841|13339726"/>
+    <param name="graphs.title" mode="prop" value="设备合同|施工合同|材料合同|服务合同|其他合同"/>
+    <param name="marginRight" mode="style" value="0"/>
+    <param name="marginTop" mode="style" value="0"/>
+    <param name="marginBottom" mode="style" value="25"/>
+    <param name="columnSpacing" mode="style" value="0"/>
+    <param name="ygridCount" mode="prop" value="10"/>
+  </Chart>
+  <Chart type="LABEL" width="105" height="20" text="标签" UID="652AA9LF" x="550" y="70">
+  <param name="text" mode="prop" value="单位：万元"/>
+    <param name="fontSize" mode="style" value="13"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+  </Chart>
+  <Chart type="AMLEGEND" width="80" height="140" text="图例" UID="652AMBOR" x="555" y="135">
+    <param name="chartProvider" mode="prop" value="64VA0BTI"/>
+    <param name="marginLeft" mode="style" value="0"/>
+    <param name="marginRight" mode="style" value="0"/>
+    <param name="textClickEnabled" mode="prop" value="false"/>
+    <param name="marginTop" mode="style" value="0"/>
+    <param name="marginBottom" mode="style" value="0"/>
+    <param name="horizontalGap" mode="style" value="0"/>
+    <param name="verticalGap" mode="style" value="5"/>
+    <param name="valueWidth" mode="style" value="0"/>
+  </Chart>
+  <Chart type="HTMLDATAGRID" width="635" height="178" text="html表格" UID="655C129P" x="5" y="397">
+    <param name="dataProvider" mode="sql" across="true"><![CDATA[SELECT '<b>'||b.contype||'</b>' contype,a.y,NVL(c.CONNUM,0) CONNUM
+FROM (
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*5),'YYYY')||'年' Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*4),'YYYY')||'年' Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*3),'YYYY')||'年' Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*2),'YYYY')||'年' Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*1),'YYYY')||'年' Y FROM DUAL 
+UNION
+SELECT to_char(SYSDATE,'YYYY')||'年' Y FROM DUAL 
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,12),'YYYY')||'年' Y FROM DUAL 
+) a
+LEFT JOIN 
+(
+ SELECT C.PROPERTY_NAME CONTYPE,C.PROPERTY_CODE CODE,C.ITEM_ID OID FROM PROPERTY_TYPE T, PROPERTY_CODE C
+ WHERE t.TYPE_NAME = '合同划分类型'  AND T.UIDS = C.TYPE_NAME
+ UNION 
+ SELECT '合同类别' contype, 'AA' CODE , -99999 OID FROM DUAL
+ UNION 
+ SELECT '累计' contype ,'LJ' CODE , 99999 OID FROM DUAL
+) b ON 1=1
+LEFT JOIN 
+(
+SELECT '<a href="event:clickFlexPayFun('''||v.CONDIVNO||''','''||to_char(p.paydate,'YYYY')||''')"><u><font color="#000ff">'||COUNT(p.paymoney)||'</font></u></a>' CONNUM,V.CONDIVNO,to_char(p.paydate,'YYYY')||'年' ALLYEAR,v.pid
+FROM V_CON V, CON_PAY P WHERE V.CONID = P.CONID AND p.billstate='1' GROUP BY v.CONDIVNO, v.pid,to_char(p.paydate,'YYYY')
+UNION
+(SELECT '<a href="event:clickFlexPayFun(''-1'','''||to_char(p.paydate,'YYYY')||''')"><u><font color="#000ff">'||COUNT(p.paymoney)||'</font></u></a>' CONNUM_a, 'LJ' CONDIVNO, to_char(p.paydate,'YYYY')||'年' ALLYEAR,v.pid
+FROM V_CON V, CON_PAY P WHERE V.CONID = P.CONID AND p.billstate='1' GROUP BY v.pid,to_char(p.paydate,'YYYY'))
+UNION
+ (
+      SELECT '<b>'||to_char(ADD_MONTHS(SYSDATE,-12*5),'YYYY')||'年</b>' CONNUM, 'AA' CONDIVNO, to_char(ADD_MONTHS(SYSDATE,-12*5),'YYYY')||'年' ALLYEAR, '' PID FROM DUAL  
+      UNION
+      SELECT '<b>'||to_char(ADD_MONTHS(SYSDATE,-12*4),'YYYY')||'年</b>' CONNUM, 'AA' CONDIVNO, to_char(ADD_MONTHS(SYSDATE,-12*4),'YYYY')||'年' ALLYEAR, '' PID FROM DUAL  
+      UNION
+      SELECT '<b>'||to_char(ADD_MONTHS(SYSDATE,-12*3),'YYYY')||'年</b>' CONNUM, 'AA' CONDIVNO, to_char(ADD_MONTHS(SYSDATE,-12*3),'YYYY')||'年' ALLYEAR, '' PID FROM DUAL   
+      UNION
+      SELECT '<b>'||to_char(ADD_MONTHS(SYSDATE,-12*2),'YYYY')||'年</b>' CONNUM, 'AA' CONDIVNO, to_char(ADD_MONTHS(SYSDATE,-12*2),'YYYY')||'年' ALLYEAR, '' PID FROM DUAL  
+      UNION
+      SELECT '<b>'||to_char(ADD_MONTHS(SYSDATE,-12*1),'YYYY')||'年</b>' CONNUM, 'AA' CONDIVNO, to_char(ADD_MONTHS(SYSDATE,-12*1),'YYYY')||'年' ALLYEAR, '' PID FROM DUAL  
+      UNION
+      SELECT '<b>'||to_char(SYSDATE,'YYYY')||'年</b>' CONNUM, 'AA' CONDIVNO, to_char(SYSDATE,'YYYY')||'年' ALLYEAR, '' PID FROM DUAL  
+      UNION
+      SELECT '<b>'||to_char(ADD_MONTHS(SYSDATE,12),'YYYY')||'年</b>' CONNUM, 'AA' CONDIVNO, to_char(ADD_MONTHS(SYSDATE,12*1),'YYYY')||'年' ALLYEAR, '' PID FROM DUAL  
+ )
+ ) c
+ON a.y = c.allyear AND b.code = c.CONDIVNO
+ORDER BY a.y,b.oid]]></param>
+    <param name="fields" mode="prop" value="COL|2008年|2009年|2010年|2011年|2012年|2013年|2014年"/>
+    <param name="columns.textAlign" mode="style" value="center|center|center|center|center|center|center|center"/>
+    <param name="enabled" mode="prop" value="false"/>
+    <param name="draggableColumns" mode="prop" value="false"/>
+    <param name="columns.headerText" mode="prop" value="|||||||"/>
+  </Chart>
+  <Chart type="TEXTAREA" width="635" height="42" text="文本域" UID="JN0HIPH" x="5" y="364">
+    <param name="dataProvider" mode="sql"><![CDATA[select '<br>合同付款份数' text from dual]]></param>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="fontSize" mode="style" value="12"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="textAlign" mode="style" value="center"/>
+    <param name="editable" mode="prop" value="false"/>
+  </Chart>
+  <Chart type="TEXTAREA" width="635" height="71" text="文本域" UID="655MGC65" x="5" y="305">
+    <param name="dataProvider" mode="sql"><![CDATA[select '<br>[pname]<br>合同年度付款信息一览表' text from dual]]></param>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="fontSize" mode="style" value="16"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="textAlign" mode="style" value="center"/>
+    <param name="editable" mode="prop" value="false"/>
+    <param name="verticalScrollPolicy" mode="prop" value="off"/>
+  </Chart>
+  <Chart type="TEXTAREA" width="415" height="110" text="文本域" UID="JMCJVVE" x="645" y="5">
+    <param name="dataProvider" mode="sql"><![CDATA[select '' text from dual]]></param>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="editable" mode="prop" value="false"/>
+  </Chart>
+  <Chart type="AMCOLUMNCHART" width="360" height="110" text="柱状图" UID="64VD59BU" x="690" y="3">
+    <param name="dataProvider" mode="sql"><![CDATA[SELECT a.y,nvl(c.CONMONEY,0) CONMONEY FROM (
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*5),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*4),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*3),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*2),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*1),'YYYY') Y FROM DUAL 
+UNION
+SELECT to_char(SYSDATE,'YYYY') Y FROM DUAL 
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,12),'YYYY') Y FROM DUAL 
+) a
+LEFT JOIN 
+(SELECT ROUND(SUM(P.PAYMONEY) / 10000, 4) CONMONEY,V.CONDIVNO,to_char(P.PAYDATE,'YYYY') ALLYEAR,v.pid
+ FROM V_CON V,CON_PAY P WHERE P.CONID = V.CONID AND P.BILLSTATE='1' GROUP BY v.CONDIVNO, v.pid,to_char(P.PAYDATE,'YYYY')) c
+ON a.y = c.allyear AND c.CONDIVNO = 'SB'
+ORDER BY a.y]]></param>
+    <param name="categoryField" mode="prop" value="Y"/>
+    <param name="fields" mode="prop" value="CONMONEY"/>
+    <param name="marginLeft" mode="style" value="60"/>
+    <param name="marginRight" mode="style" value="0"/>
+    <param name="marginTop" mode="style" value="10"/>
+    <param name="marginBottom" mode="style" value="25"/>
+    <param name="enabled" mode="prop" value="true"/>
+    <param name="depth3D" mode="style" value="10"/>
+    <param name="angle" mode="style" value="50"/>
+    <param name="ygridCount" mode="prop" value="5"/>
+    <param name="graphs.lineColor" mode="style" value="1386458"/>
+  </Chart>
+  <Chart type="TEXTAREA" width="36" height="72" text="文本域" UID="64VT16DU" x="655" y="25">
+    <param name="dataProvider" mode="sql"><![CDATA[select '设备<br>合同<br>付款<br>情况' text from dual
+]]></param>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="fontSize" mode="style" value="14"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="editable" mode="prop" value="false"/>
+    <param name="borderThickness" mode="style" value="0"/>
+  </Chart>
+  <Chart type="TEXTAREA" width="415" height="110" text="文本域" UID="650G5QS4" x="645" y="120">
+    <param name="dataProvider" mode="sql"><![CDATA[select '' text from dual]]></param>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="editable" mode="prop" value="false"/>
+  </Chart>
+  <Chart type="AMCOLUMNCHART" width="360" height="110" text="柱状图" UID="658CU7LU" x="690" y="118">
+    <param name="dataProvider" mode="sql"><![CDATA[SELECT a.y,nvl(c.CONMONEY,0) CONMONEY FROM (
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*5),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*4),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*3),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*2),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*1),'YYYY') Y FROM DUAL 
+UNION
+SELECT to_char(SYSDATE,'YYYY') Y FROM DUAL 
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,12),'YYYY') Y FROM DUAL 
+) a
+LEFT JOIN 
+(SELECT ROUND(SUM(P.PAYMONEY) / 10000, 4) CONMONEY,V.CONDIVNO,to_char(P.PAYDATE,'YYYY') ALLYEAR,v.pid
+ FROM V_CON V,CON_PAY P WHERE P.CONID = V.CONID AND P.BILLSTATE='1' GROUP BY v.CONDIVNO, v.pid,to_char(P.PAYDATE,'YYYY')) c
+ON a.y = c.allyear AND c.CONDIVNO = 'SG'
+ORDER BY a.y]]></param>
+    <param name="categoryField" mode="prop" value="Y"/>
+    <param name="fields" mode="prop" value="CONMONEY"/>
+    <param name="marginLeft" mode="style" value="60"/>
+    <param name="marginRight" mode="style" value="0"/>
+    <param name="marginTop" mode="style" value="10"/>
+    <param name="marginBottom" mode="style" value="25"/>
+    <param name="depth3D" mode="style" value="10"/>
+    <param name="angle" mode="style" value="50"/>
+    <param name="ygridCount" mode="prop" value="5"/>
+    <param name="graphs.lineColor" mode="style" value="8950101"/>
+  </Chart>
+  <Chart type="TEXTAREA" width="36" height="72" text="文本域" UID="JN8572O" x="655" y="140">
+    <param name="dataProvider" mode="sql"><![CDATA[select '施工<br>合同<br>付款<br>情况' text from dual]]></param>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="fontSize" mode="style" value="14"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="editable" mode="prop" value="false"/>
+    <param name="borderThickness" mode="style" value="0"/>
+  </Chart>
+  <Chart type="TEXTAREA" width="415" height="110" text="文本域" UID="650GBH6I" x="645" y="235">
+    <param name="dataProvider" mode="sql"><![CDATA[select '' text from dual]]></param>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="editable" mode="prop" value="false"/>
+  </Chart>
+  <Chart type="AMCOLUMNCHART" width="360" height="110" text="柱状图" UID="KIC08VD" x="690" y="233">
+    <param name="dataProvider" mode="sql"><![CDATA[SELECT a.y,nvl(c.CONMONEY,0) CONMONEY FROM (
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*5),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*4),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*3),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*2),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*1),'YYYY') Y FROM DUAL 
+UNION
+SELECT to_char(SYSDATE,'YYYY') Y FROM DUAL 
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,12),'YYYY') Y FROM DUAL 
+) a
+LEFT JOIN 
+(SELECT ROUND(SUM(P.PAYMONEY) / 10000, 4) CONMONEY,V.CONDIVNO,to_char(P.PAYDATE,'YYYY') ALLYEAR,v.pid
+ FROM V_CON V,CON_PAY P WHERE P.CONID = V.CONID AND P.BILLSTATE='1' GROUP BY v.CONDIVNO, v.pid,to_char(P.PAYDATE,'YYYY')) c
+ON a.y = c.allyear AND c.CONDIVNO = 'CL'
+ORDER BY a.y]]></param>
+    <param name="categoryField" mode="prop" value="Y"/>
+    <param name="categoryField" mode="prop" value="Y"/>
+    <param name="fields" mode="prop" value="CONMONEY"/>
+    <param name="marginLeft" mode="style" value="60"/>
+    <param name="marginRight" mode="style" value="0"/>
+    <param name="marginTop" mode="style" value="10"/>
+    <param name="marginBottom" mode="style" value="25"/>
+    <param name="depth3D" mode="style" value="10"/>
+    <param name="angle" mode="style" value="50"/>
+    <param name="graphs.lineColor" mode="style" value="2839103"/>
+    <param name="ygridCount" mode="prop" value="5"/>
+  </Chart>
+  <Chart type="TEXTAREA" width="36" height="72" text="文本域" UID="6E47QTLT" x="655" y="255">
+    <param name="dataProvider" mode="sql"><![CDATA[select '材料<br>合同<br>付款<br>情况' text from dual]]></param>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="fontSize" mode="style" value="14"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="editable" mode="prop" value="false"/>
+    <param name="borderThickness" mode="style" value="0"/>
+  </Chart>
+  <Chart type="TEXTAREA" width="415" height="110" text="文本域" UID="650GDMNQ" x="645" y="350">
+    <param name="dataProvider" mode="sql"><![CDATA[select '' text from dual]]></param>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="editable" mode="prop" value="false"/>
+  </Chart>
+  <Chart type="TEXTAREA" width="36" height="72" text="文本域" UID="6E69GC8G" x="655" y="370">
+    <param name="dataProvider" mode="sql"><![CDATA[select '服务<br>合同<br>付款<br>情况' text from dual]]></param>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="fontSize" mode="style" value="14"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="editable" mode="prop" value="false"/>
+    <param name="borderThickness" mode="style" value="0"/>
+  </Chart>
+  <Chart type="AMCOLUMNCHART" width="360" height="110" text="柱状图" UID="6E6AHVAD" x="690" y="348">
+    <param name="dataProvider" mode="sql"><![CDATA[SELECT a.y,nvl(c.CONMONEY,0) CONMONEY FROM (
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*5),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*4),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*3),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*2),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*1),'YYYY') Y FROM DUAL 
+UNION
+SELECT to_char(SYSDATE,'YYYY') Y FROM DUAL 
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,12),'YYYY') Y FROM DUAL 
+) a
+LEFT JOIN 
+(SELECT ROUND(SUM(P.PAYMONEY) / 10000, 4) CONMONEY,V.CONDIVNO,to_char(P.PAYDATE,'YYYY') ALLYEAR,v.pid
+ FROM V_CON V,CON_PAY P WHERE P.CONID = V.CONID AND P.BILLSTATE='1' GROUP BY v.CONDIVNO, v.pid,to_char(P.PAYDATE,'YYYY')) c
+ON a.y = c.allyear AND c.CONDIVNO = 'FW'
+ORDER BY a.y]]></param>
+    <param name="categoryField" mode="prop" value="Y"/>
+    <param name="categoryField" mode="prop" value="Y"/>
+    <param name="fields" mode="prop" value="CONMONEY"/>
+    <param name="marginLeft" mode="style" value="60"/>
+    <param name="marginRight" mode="style" value="0"/>
+    <param name="marginTop" mode="style" value="10"/>
+    <param name="marginBottom" mode="style" value="25"/>
+    <param name="depth3D" mode="style" value="10"/>
+    <param name="angle" mode="style" value="50"/>
+    <param name="graphs.lineColor" mode="style" value="15674841"/>
+    <param name="ygridCount" mode="prop" value="5"/>
+  </Chart>
+  <Chart type="TEXTAREA" width="415" height="110" text="文本域" UID="650GH7M0" x="645" y="465">
+    <param name="dataProvider" mode="sql"><![CDATA[select '' text from dual]]></param>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="editable" mode="prop" value="false"/>
+  </Chart>
+  <Chart type="TEXTAREA" width="36" height="72" text="文本域" UID="6E6GFMGT" x="655" y="485">
+    <param name="dataProvider" mode="sql"><![CDATA[select '其他<br>合同<br>付款<br>情况' text from dual]]></param>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="fontSize" mode="style" value="14"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="editable" mode="prop" value="false"/>
+    <param name="borderThickness" mode="style" value="0"/>
+  </Chart>
+  <Chart type="AMCOLUMNCHART" width="360" height="110" text="柱状图" UID="6E6GJR37" x="690" y="463">
+    <param name="dataProvider" mode="sql"><![CDATA[SELECT a.y,nvl(c.CONMONEY,0) CONMONEY FROM (
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*5),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*4),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*3),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*2),'YYYY') Y FROM DUAL  
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*1),'YYYY') Y FROM DUAL 
+UNION
+SELECT to_char(SYSDATE,'YYYY') Y FROM DUAL 
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,12),'YYYY') Y FROM DUAL 
+) a
+LEFT JOIN 
+(SELECT ROUND(SUM(P.PAYMONEY) / 10000, 4) CONMONEY,V.CONDIVNO,to_char(P.PAYDATE,'YYYY') ALLYEAR,v.pid
+ FROM V_CON V,CON_PAY P WHERE P.CONID = V.CONID AND P.BILLSTATE='1' GROUP BY v.CONDIVNO, v.pid,to_char(P.PAYDATE,'YYYY')) c
+ON a.y = c.allyear AND c.CONDIVNO = 'QT'
+ORDER BY a.y]]></param>
+    <param name="categoryField" mode="prop" value="Y"/>
+    <param name="categoryField" mode="prop" value="Y"/>
+    <param name="fields" mode="prop" value="CONMONEY"/>
+    <param name="marginLeft" mode="style" value="60"/>
+    <param name="marginRight" mode="style" value="0"/>
+    <param name="marginTop" mode="style" value="10"/>
+    <param name="marginBottom" mode="style" value="25"/>
+    <param name="depth3D" mode="style" value="10"/>
+    <param name="angle" mode="style" value="50"/>
+    <param name="graphs.lineColor" mode="style" value="13339726"/>
+    <param name="ygridCount" mode="prop" value="5"/>
+  </Chart>
+</Carton>

@@ -1,0 +1,76 @@
+<Carton width="1410" height="290">
+  <variable/>
+  <Chart type="AMPIECHART" width="305" height="207" UID="3QGJQD8N" x="4" y="27">
+    <param name="dataProvider" mode="sql"><![CDATA[select * from (select t1.unitname A,       (select round(sum(t2.invest_scale)/10000,2) from pc_zhxx_prj_info t2  where t2.pid like t1.unitid||'%') Bfrom sgcc_ini_unit t1 where t1.unit_type_id='2') where b<>0]]></param>
+    <param name="titleField" mode="prop" value="A"/>
+    <param name="valueField" mode="prop" value="B"/>
+    <param name="innerRadius" mode="style" value="0"/>
+    <param name="labelRadius" mode="style" value="-7"/>
+    <param name="slicesColors" mode="prop" value="16763955|10079334|16764108"/>
+    <param name="fontSize" mode="style" value="20"/>
+    <param name="fontFamily" mode="style" value="华文楷体"/>
+    <param name="labelText" mode="style" value="[[value]]"/>
+  </Chart>
+  <Chart type="AMPIECHART" width="418" height="240" UID="3QKUV3KS" x="797" y="31">
+    <param name="dataProvider" mode="sql"><![CDATA[select count(*) B,t2.PRJ_STAGE_NAME A from v_Pc_Zhxx_Prj_Info t2 where t2.PRJ_STAGE_NAME is not null group by t2.PRJ_STAGE_NAME]]></param>
+    <param name="titleField" mode="prop" value="A"/>
+    <param name="valueField" mode="prop" value="B"/>
+    <param name="labelRadius" mode="style" value="-2"/>
+    <param name="slicesColors" mode="prop" value="16764006|16764108|13408767|13421670"/>
+    <param name="fontSize" mode="style" value="18"/>
+    <param name="fontFamily" mode="style" value="华文细黑"/>
+    <param name="fields" mode="prop" value="B"/>
+  </Chart>
+  <Chart type="AMLEGEND" width="200" height="177" UID="3QL5Q5AE" x="1210" y="76">
+    <param name="chartProvider" mode="prop" value="3QKUV3KS"/>
+    <param name="horizontalGap" mode="style" value="0"/>
+    <param name="fontSize" mode="style" value="16"/>
+    <param name="marginLeft" mode="style" value="10"/>
+    <param name="marginRight" mode="style" value="10"/>
+    <param name="valueWidth" mode="style" value="50"/>
+    <param name="fontFamily" mode="style" value="华文细黑"/>
+  </Chart>
+  <Chart type="AMLEGEND" width="451" height="194" UID="3QL9Q4PN" x="293" y="43">
+    <param name="chartProvider" mode="prop" value="3QGJQD8N"/>
+    <param name="valueWidth" mode="style" value="150"/>
+    <param name="marginLeft" mode="style" value="10"/>
+    <param name="marginRight" mode="style" value="10"/>
+    <param name="fontSize" mode="style" value="16"/>
+    <param name="fontFamily" mode="style" value="华文细黑"/>
+  </Chart>
+  <Chart type="LABEL" width="547" height="31" text="标签" UID="591U6041" x="1" y="0">
+    <param name="text" mode="prop" value="工程项目投资规模分布（按产业）"/>
+    <param name="fontSize" mode="style" value="22"/>
+    <param name="fontFamily" mode="style" value="华文细黑"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="textAlign" mode="style" value="center"/>
+  </Chart>
+  <Chart type="LABEL" width="607" height="33" text="标签" UID="591VIH9I" x="786" y="0">
+    <param name="text" mode="prop" value="工程进度分布（按阶段）"/>
+    <param name="fontSize" mode="style" value="22"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="textAlign" mode="style" value="center"/>
+    <param name="fontFamily" mode="style" value="华文细黑"/>
+  </Chart>
+  <Chart type="LABEL" width="95" height="21" text="标签" UID="2BE0MLSL" x="454" y="22">
+    <param name="text" mode="prop" value="单位：万元"/>
+    <param name="fontSize" mode="style" value="14"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="textAlign" mode="style" value="center"/>
+    <param name="fontFamily" mode="style" value="华文细黑"/>
+  </Chart>
+  <Chart type="LABEL" width="72" height="22" text="标签" UID="2BE104TT" x="1326" y="22">
+    <param name="text" mode="prop" value="单位：个"/>
+    <param name="fontSize" mode="style" value="12"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="textAlign" mode="style" value="center"/>
+    <param name="fontFamily" mode="style" value="华文细黑"/>
+  </Chart>
+  <Chart type="LABEL" width="1385" height="26" text="标签" UID="2C331239" x="2" y="264">
+    <param name="text" mode="prop" value="说明：目前已接入新兴能源产业集团基建工程数据，其它二级公司正在建设中。"/>
+    <param name="fontSize" mode="style" value="16"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="fontFamily" mode="style" value="华文细黑"/>
+    <param name="textAlign" mode="style" value="center"/>
+  </Chart>
+</Carton>

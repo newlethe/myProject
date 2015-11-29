@@ -1,0 +1,13 @@
+
+检验项目维护：gczl.jyxm.frame.edit.jsp
+
+工程质量检验记录：gczl.jyjl.jsp
+
+工程质量问题:gczl.gcwt.jsp
+
+工程质量经济技术指标:gczl.gczljjzb.zbContent.jsp(GCZLJJZBZB,GCZLJJZBXB)
+
+工程质量停机记录：gczl.tjzb.content.jsp(GCZLTJZB,GCZLTJXB)
+
+工程质量运行性能指标：gczl.xnzb.content.jsp(GCZL_XNZB,GCZL_XNXB)
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+
+	<allow>
+		<!--  安装设备稽查 -->
+		<create creator="spring" javascript="finAuditMgm" scope="page">
+			<param name="beanName" value="finAuditMgm" />
+			<include method="findContract"></include> 
+			<include method="deleteChildNodeSort"></include> 
+			<include method="addOrUpdateSort"></include> 
+			<include method="addOrUpdateSubject"></include> 
+			<include method="deleteChildNodeSubject"></include>    
+			<include method="SaveGetSubjectSortTree"></include> 
+			<include method="assetConfirm"></include>  
+			<include method="setAssetno"></include>  
+			<include method="removeAssetno"></include> 
+			<include method="assetConfirmOut"></include>  
+			<include method="setAssetnoOut"></include>  
+			<include method="removeAssetnoOut"></include> 
+			<include method="assetConfirmBuild"></include>  
+			<include method="setAssetnoBuild"></include>  
+			<include method="removeAssetnoBuild"></include> 
+			<include method="delContrast"></include>   
+			<include method="setAudit"></include> 
+		</create> 
+		<create creator="spring" javascript="financeDAO" scope="page">
+			<param name="beanName" value="financeDAO" />					
+		</create>
+		<!-- 初始化定义及费用分摊-->
+		<create creator="spring" javascript="finDefineAppMgm" scope="page">
+			<param name="beanName" value="finDefineAppMgm" />  
+			<include method="saveCoBdgid"></include> 
+			<include method="setFinish"></include> 
+			<include method="cancelFinish"></include>  
+			<include method="SaveGetSubjectSortTree"></include>  
+			<include method="delContrast"></include>  
+			<include method="SaveGetSubjectSortTree2"></include>  
+			<include method="delContrast2"></include>  
+			<include method="SaveGetBdgTree"></include>  
+			<include method="delBdgFin"></include>  
+		</create> 
+		
+		 
+	</allow>
+</dwr>

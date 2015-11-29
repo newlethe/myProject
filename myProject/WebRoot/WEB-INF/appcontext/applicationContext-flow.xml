@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<bean id="flowDAO" class="com.sgepit.frame.flow.dao.FlowDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	<!-- 流程业务处理 -->
+	<bean id="flwBizMgm"
+		class="com.sgepit.frame.flow.service.FlwBizMgmImpl">
+		<property name="flowDAO" ref="flowDAO" />
+		<property name="flwFrameMgm" ref="flwFrameMgm" />
+	</bean>
+	
+	<!-- 流程定义 -->
+	<bean id="flwDefinitionMgm"
+		class="com.sgepit.frame.flow.service.FlwDefinitionMgmImpl">
+		<property name="flowDAO" ref="flowDAO" />
+	</bean>
+	
+	<!-- 流程实例 -->
+	<bean id="flwInstanceMgm"
+		class="com.sgepit.frame.flow.service.FlwInstanceMgmImpl">
+		<property name="flwBizMgm" ref="flwBizMgm" />
+		<property name="flowDAO" ref="flowDAO" />
+	</bean>
+	
+	<!-- 流转日志 -->
+	<bean id="flwLogMgm"
+		class="com.sgepit.frame.flow.service.FlwLogMgmImpl">
+		<property name="flwBizMgm" ref="flwBizMgm" />
+		<property name="flowDAO" ref="flowDAO" />
+		<property name="smsCommonSer" ref="smsCommonService" />
+	</bean>
+	
+	
+	<!-- 流程结构 -->
+	<bean id="flwFrameMgm"
+		class="com.sgepit.frame.flow.service.FlwFrameMgmImpl">
+		<property name="flowDAO" ref="flowDAO" />
+	</bean>
+	
+	<!-- 流程文件 -->
+	<bean id="flwFileMgm"
+		class="com.sgepit.frame.flow.service.FlwFileMgmImpl">
+		<property name="flowDAO" ref="flowDAO" />
+	</bean>
+	
+	<!-- 质量验评-->
+	<bean id="flwZlypMgm"
+		class="com.sgepit.frame.flow.service.FlwZlypMgmImpl">
+		<property name="flowDAO" ref="flowDAO" />
+	</bean>
+	
+	<!-- 流程统计 -->
+	<bean id="flwStatisticsMgm"
+		class="com.sgepit.frame.flow.service.FlwStatisticsMgmImpl">
+		<property name="flowDAO" ref="flowDAO" />
+	</bean>
+</beans>

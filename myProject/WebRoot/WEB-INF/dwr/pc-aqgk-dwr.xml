@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<convert converter="bean" match="com.sgepit.pcmis.aqgk.hbm.*" />		
+		 <create creator="spring" javascript="pcAqgkService" scope="page">
+			<param name="beanName" value="PCAqgkServiceImpl" />
+			<include method="report"></include>
+			<include method="excDataAqsg"></include>
+			<include method="excDataAqpx"></include>
+			<include method="excDataAqyb"></include>
+			<include method="excDataOpinionForSaveOrUpdate"></include>
+			<include method="excDataOpinionForDel"></include>
+			<include method="InspectionsInfoUpdate"></include>
+			<include method="deleteInspectionInfo"></include>
+			
+				<!--新增 安全隐患检验批次和安全隐患的数据交换方法  -->
+			<include method="excDataInspectionForSaveOrUpdate"></include>
+			<include method="excDataInspectionForDelete"></include>
+			<include method="excDataHDForSaveOrUpdate"></include>
+			<include method="excDataHDForDelete"></include>	
+			<include method="updateInspectionSingle"></include>		
+			<include method="exchangeDateForImport"></include>
+			<include method="getAttachNumberForPrj"></include>
+			
+								
+			<include method="getUuidAndRecordCount"></include>					
+		</create>
+		
+	</allow>
+</dwr>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+
+<beans>
+
+
+
+	<bean id="budgetNkDAO"
+		class="com.sgepit.pmis.budgetNk.dao.BudgetNkDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+	<bean id="budgetMoneyAppNkDAO"
+		class="com.sgepit.pmis.budgetNk.dao.BudgetMoneyAppNkDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+	<bean id="budgetChangeAppNkDAO"
+		class="com.sgepit.pmis.budgetNk.dao.BudgetChangeAppNkDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+	<bean id="budgetPayAppNkDAO"
+		class="com.sgepit.pmis.budgetNk.dao.BudgetPayAppNkDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+	<bean id="budgetClaAppNkDAO"
+		class="com.sgepit.pmis.budgetNk.dao.BudgetClaAppNkDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+	<bean id="budgetBreakAppNkDAO"
+		class="com.sgepit.pmis.budgetNk.dao.BudgetBreakAppNkDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+	<bean id="budgetStructureService" parent="txProxyTemplate">
+		<property name="target">
+			<bean
+				class="com.sgepit.pmis.budgetNk.service.BudgetStructureServiceImpl">
+				<property name="budgetNkDAO" ref="budgetNkDAO" />
+				<property name="budgetMoneyAppNkDAO"
+					ref="budgetMoneyAppNkDAO" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="budgetMoneyAppNkService" parent="txProxyTemplate">
+		<property name="target">
+			<bean
+				class="com.sgepit.pmis.budgetNk.service.BudgetMoneyAppNkServiceImpl">
+				<property name="budgetMoneyAppNkDAO"
+					ref="budgetMoneyAppNkDAO" />
+				<property name="budgetNkDAO" ref="budgetNkDAO" />
+				<property name="budgetChangeAppNkDAO"
+					ref="budgetChangeAppNkDAO" />
+				<property name="budgetPayAppNkDAO"
+					ref="budgetPayAppNkDAO" />
+				<property name="budgetClaAppNkDAO"
+					ref="budgetClaAppNkDAO" />
+				<property name="budgetBreakAppNkDAO"
+					ref="budgetBreakAppNkDAO" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="budgetChangeAppNkService" parent="txProxyTemplate">
+		<property name="target">
+			<bean
+				class="com.sgepit.pmis.budgetNk.service.BudgetChangeAppNkServiceImpl">
+				<property name="budgetChangeAppNkDAO"
+					ref="budgetChangeAppNkDAO" />
+				<property name="budgetNkDAO" ref="budgetNkDAO" />
+				<property name="budgetMoneyAppNkDAO"
+					ref="budgetMoneyAppNkDAO" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="budgetPayAppNkService" parent="txProxyTemplate">
+		<property name="target">
+			<bean
+				class="com.sgepit.pmis.budgetNk.service.BudgetPayAppNkServiceImpl">
+				<property name="budgetPayAppNkDAO"
+					ref="budgetPayAppNkDAO" />
+				<property name="budgetNkDAO" ref="budgetNkDAO" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="budgetClaAppNkService" parent="txProxyTemplate">
+		<property name="target">
+			<bean
+				class="com.sgepit.pmis.budgetNk.service.BudgetClaAppNkServiceImpl">
+				<property name="budgetClaAppNkDAO"
+					ref="budgetClaAppNkDAO" />
+				<property name="budgetNkDAO" ref="budgetNkDAO" />
+				<property name="budgetMoneyAppNkDAO"
+					ref="budgetMoneyAppNkDAO" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="budgetBreakAppNkService" parent="txProxyTemplate">
+		<property name="target">
+			<bean
+				class="com.sgepit.pmis.budgetNk.service.BudgetBreakAppNkServiceImpl">
+				<property name="budgetBreakAppNkDAO"
+					ref="budgetBreakAppNkDAO" />
+				<property name="budgetNkDAO" ref="budgetNkDAO" />
+				<property name="budgetMoneyAppNkDAO"
+					ref="budgetMoneyAppNkDAO" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="budgetNkService" parent="txProxyTemplate">
+		<property name="target">
+			<bean
+				class="com.sgepit.pmis.budgetNk.service.BudgetNkServiceImpl">
+				<property name="budgetStructureService"
+					ref="budgetStructureService" />
+				<property name="budgetMoneyAppNkService"
+					ref="budgetMoneyAppNkService" />
+				<property name="budgetChangeAppNkService"
+					ref="budgetChangeAppNkService" />
+				<property name="budgetPayAppNkService"
+					ref="budgetPayAppNkService" />
+				<property name="budgetClaAppNkService"
+					ref="budgetClaAppNkService" />
+				<property name="budgetBreakAppNkService"
+					ref="budgetBreakAppNkService" />
+			</bean>
+		</property>
+	</bean>
+
+
+
+</beans>

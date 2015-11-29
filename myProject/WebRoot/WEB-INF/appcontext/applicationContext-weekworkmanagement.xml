@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+
+	<!-- ========================= BUSINESS OBJECT DEFINITIONS ======================== -->
+	
+	<bean id="weekWorkManagementDAO" class="com.sgepit.pmis.weekworkmanagement.dao.WeekWorkManagementDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	
+	<!-- 周工作事项管理 -->
+	<bean id="weekWorkManagementService"
+		class="com.sgepit.pmis.weekworkmanagement.service.WeekWorkManagementServiceImpl">
+		<property name="weekWorkManagementDAO" ref="weekWorkManagementDAO" />
+	</bean>
+    
+</beans>

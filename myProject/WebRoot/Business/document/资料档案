@@ -1,0 +1,18 @@
+档案管理：
+	单位、部门档案组卷：da.dept.input.jsp
+	档案组卷管理：      da.zj.jsp
+	档案查询：          file.book.query.jsp
+	档案分类维护:      Da.tree.jsp
+	档案借阅管理：      da.zj.jy.jsp
+	档案销毁管理：      da.zj.xh.jsp
+	
+资料管理：
+	部门资料管理：      zl.dept.input.jsp
+	资料录入归档：      zl.zhgl.jsp
+	资料综合查询：      zl.query.jsp
+	资料分类维护：      zl.tree.jsp
+	资料移交确认：      zl.yjok.jsp
+	部门资料查询：      zl.dept.query.jsp
+	资料借阅管理：      zl.dept.input.jh.jsp
+	资料销毁管理：      zl.dept.input.xh.jsp
+	部门资料录入：      zl.mydept.input.jsp

@@ -1,0 +1,32 @@
+.bea-portal-body
+{
+    margin: 0px;
+    padding: 0px;
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#d0ebe2);
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+.middle-portlet-table-list
+{  
+   padding-left:2px; 
+
+	height:25px;
+}
+
+.middle-portlet-table-list-swap
+{  
+   padding-left:2px; 
+		
+		height:25px;
+}
+.bea-portal-body a
+{
+    display: inline;
+    text-decoration: none;
+      font-size:12px;
+}
+
+.bea-portal-body a:hover
+{
+    text-decoration: underline;
+      font-size:12px;
+}

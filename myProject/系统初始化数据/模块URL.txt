@@ -1,0 +1,13 @@
+01、组织机构URL:		jsp/system/sys.orgs.setting.jsp
+02、用户管理URL:		jsp/system/sys.user.setting.jsp
+03、功能管理URL:		jsp/system/sys.modules.setting.jsp
+04、角色管理URL:		jsp/system/sys.role.setting.jsp
+05、属性代码URL:		jsp/system/sys.property.setting.jsp
+06、Office模板URL:	jsp/system/sys.office.template.setting.jsp
+07、报表管理URL:		jsp/system/sys.template.setting.jsp
+08、起草流程URL:		jsp/flow/flw.ins.manager.jsp
+09、待办事项URL:		jsp/flow/flw.main.frame.jsp
+11、流程综合查询URL:jsp/flow/flw.query.view.jsp
+12、流程设置URL:		jsp/flow/flw.set.info.jsp
+13、任务接口配置URL:jsp/flow/flw.task.face.jsp
+14、打印角色配置URL:jsp/flow/flw.user.setting.jsp

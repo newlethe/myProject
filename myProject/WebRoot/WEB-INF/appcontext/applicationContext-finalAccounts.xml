@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<!-- 基础数据维护-->
+	<bean id="FAAssetsSortDAO"
+		class="com.sgepit.pmis.finalAccounts.basicData.dao.FAAssetsSortDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+	<bean id="faAssetsService"
+		class="com.sgepit.pmis.finalAccounts.basicData.service.FAAssetsServiceImpl">
+		<property name="faAssetsSortDAO" ref="FAAssetsSortDAO" />
+	</bean>
+
+	<!-- 财务稽核 -->
+	<bean id="FaAuditMasterDAO"
+		class="com.sgepit.pmis.finalAccounts.financialAudit.dao.FaAuditMasterDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	<bean id="FaBuildingAuditReportDAO"
+		class="com.sgepit.pmis.finalAccounts.financialAudit.dao.FaBuildingAuditReportDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	<bean id="FaEquAuditReportDAO"
+		class="com.sgepit.pmis.finalAccounts.financialAudit.dao.FaEquAuditReportDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	<bean id="FaMatAuditReportDAO"
+		class="com.sgepit.pmis.finalAccounts.financialAudit.dao.FaMatAuditReportDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+	<!-- 物资出库的接口 -->
+	<bean id="matStockOutMgm"
+		class="com.sgepit.pmis.wzgl.service.MatStockOutFaImpl">
+	</bean>
+	<!-- 国锦项目 -->
+	<bean id="matStockOutMgm_guoj"
+		class="com.sgepit.pmis.wzgl.service.MatStockOutFaImpl_guoj">
+	</bean>
+	<!-- 设备的接口 -->
+	<bean id="equStockOutMgm"
+		class="com.sgepit.pmis.equipment.service.EquStockOutFaImpl">
+	</bean>
+
+	<bean id="financialAuditService"
+		class="com.sgepit.pmis.finalAccounts.financialAudit.service.FinancialAuditServiceImpl">
+		<property name="faAuditMasterDAO" ref="FaAuditMasterDAO" />
+		<property name="faBuildingAuditReportDAO"
+			ref="FaBuildingAuditReportDAO" />
+		<property name="faEquAuditReportDAO" ref="FaEquAuditReportDAO" />
+		<property name="faMatAuditReportDAO" ref="FaMatAuditReportDAO" />
+		<!-- 设备模块需要提供的具体实现 -->
+		<property name="matStockOutMgm" ref="matStockOutMgm" />
+		<property name="matStockOutMgm_guoj" ref="matStockOutMgm_guoj" />
+		<!-- 物资模块需要提供的具体实现 -->
+		<property name="equStockOutMgm" ref="equStockOutMgm" />
+	</bean>
+
+	<!-- 工程基本信息 -->
+	<bean id="generalInfoDAO"
+		class="com.sgepit.pmis.finalAccounts.prjGeneralInfo.dao.PrjGeneralInfoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+	<bean id="prjInfoOveService"
+		class="com.sgepit.pmis.finalAccounts.prjGeneralInfo.service.FAPrjInfoOveServiceImpl">
+		<property name="generalInfoDAO" ref="generalInfoDAO" />
+	</bean>
+
+	<!-- 竣工决算概算结构 -->
+	<bean id="bdgStructureDAO"
+		class="com.sgepit.pmis.finalAccounts.bdgStructure.dao.FABdgStructureDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+	<bean id="gcTypeService"
+		class="com.sgepit.pmis.finalAccounts.bdgStructure.service.FAGcTypeServiceImpl">
+		<property name="bdgStructureDAO" ref="bdgStructureDAO" />
+
+	</bean>
+
+	<bean id="faBdgStructureService"
+		class="com.sgepit.pmis.finalAccounts.bdgStructure.service.FABdgStructureServiceImpl">
+		<property name="bdgStructureDAO" ref="bdgStructureDAO" />
+	</bean>
+
+	<!-- 财务 -->
+	<bean id="faFinanceDAO"
+		class="com.sgepit.pmis.finalAccounts.finance.dao.FAFinanceDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+	<bean id="financeSortService"
+		class="com.sgepit.pmis.finalAccounts.finance.service.FAFinanceSortServiceImpl">
+		<property name="faFinanceDAO" ref="faFinanceDAO" />
+	</bean>
+
+	<!-- 其它费用分摊 -->
+	<bean id="faOtherAppService"
+		class="com.sgepit.pmis.finalAccounts.finance.service.FAOtherAppServiceImpl">
+		<property name="faFinanceDAO" ref="faFinanceDAO" />
+	</bean>
+
+
+	<!-- 报表设置（数据源,数据交换等） -->
+	<bean id="faReportDAO"
+		class="com.sgepit.pmis.finalAccounts.report.dao.FAReportDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	<bean id="faReportConfigService"
+		class="com.sgepit.pmis.finalAccounts.report.service.FAReportConfigServiceImpl">
+		<property name="faReportDAO" ref="faReportDAO" />
+		<property name="faBdgStructureService" ref="faBdgStructureService" />
+		<property name="faOtherAppService" ref="faOtherAppService" />
+	</bean>
+	
+	<!-- 新版竣工决算，使用finalAccounts下complete目录 -->
+	<!-- zhangh 2013-7-30 从津能移植 -->
+	<!-- DAO -->
+	<bean id="faCompleteDAO"
+		class="com.sgepit.pmis.finalAccounts.complete.dao.FACompleteDAO">
+		<property name="sessionFactory" ref="sessionFactory1"></property>
+	</bean>
+	<!-- SERVICE -->
+	<bean id="faBaseInfoService"
+		class="com.sgepit.pmis.finalAccounts.complete.service.FABaseInfoServiceImpl">
+		<property name="faCompleteDAO" ref="faCompleteDAO"></property>
+	</bean>
+	<bean id="faCostManageService"
+		class="com.sgepit.pmis.finalAccounts.complete.service.FACostManageServiceImpl">
+		<property name="faCompleteDAO" ref="faCompleteDAO"></property>
+	</bean>
+	<bean id="faFixedAssetService"
+		class="com.sgepit.pmis.finalAccounts.complete.service.FAFixedAssetServiceImpl">
+		<property name="faCompleteDAO" ref="faCompleteDAO"></property>
+	</bean>
+	<bean id="faReportService"
+		class="com.sgepit.pmis.finalAccounts.complete.service.FAReportServiceImpl">
+		<property name="faCompleteDAO" ref="faCompleteDAO"></property>
+	</bean>
+</beans>

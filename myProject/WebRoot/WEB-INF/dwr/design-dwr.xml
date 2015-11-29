@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		
+		<convert converter="bean" match="com.sgepit.pmis.design.hbm.*" />		
+		<!-- 设计资料 -->
+        <create creator="spring" javascript="designMgm" scope="page">
+			<param name="beanName" value="designMgm" />
+			<include method="deleteDesignInfoChildNode"></include>
+			<include method="SaveDesignInfotree"></include>
+			<include method="addOrUpdateDesignInfo"></include>
+			<include method="checkinfobh"></include>
+			<include method="getinfobh"></include>
+			<include method="savedesigninfogl"></include>
+			<include method="updatedesigninfogl"></include>
+			<include method="getdesinfoindexid"></include>
+			<include method="UpdateDesignInfotree"></include>
+			<include method="getRowCount"></include>
+			<include method="ZlHandoverDesInfozlOk"></include>
+		</create>
+	</allow>
+</dwr>

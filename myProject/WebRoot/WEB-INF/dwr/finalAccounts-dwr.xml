@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+
+	<allow>
+		<convert converter="bean" match="com.sgepit.pmis.finalAccounts.basicData.hbm.*" />
+		<convert converter="bean" match="com.sgepit.pmis.finalAccounts.bdgStructure.hbm.*" />
+		<convert converter="bean" match="com.sgepit.pmis.finalAccounts.finance.hbm.*" />
+		<convert converter="bean" match="com.sgepit.pmis.finalAccounts.financialAudit.hbm.*" />
+		<convert converter="bean" match="com.sgepit.pmis.finalAccounts.interfaces.vo.*" />
+		<convert converter="bean" match="com.sgepit.pmis.finalAccounts.prjGeneralInfo.hbm.*" />
+		<convert converter="bean" match="com.sgepit.pmis.finalAccounts.report.hbm.FAUnitReport" />
+		
+		<!--  资产分类 -->
+		<create creator="spring" javascript="faAssetsService" scope="page">
+			<param name="beanName" value="faAssetsService" />
+		</create>
+		
+		<!-- 财务稽核 -->
+		<create creator="spring" javascript="financialAuditService" scope="page">
+			<param name="beanName" value="financialAuditService" />
+		</create> 
+		
+		
+		<!-- 工程基本信息 -->
+		<create creator="new" scope="application"
+			javascript="prjGeneralInfoDWR">
+			<param name="class"
+				value="com.sgepit.pmis.finalAccounts.prjGeneralInfo.control.PrjGeneralInfoDWR" />
+		</create>
+		
+		<!-- 竣工决算报表 -->
+		<create javascript="faReportDWR" creator="new">
+			<param name="class" value="com.sgepit.pmis.finalAccounts.report.control.FAReportDWR" />
+		</create>
+	
+		<!-- 财务科目相关 -->
+		<create creator="spring" javascript="financeSortService" scope="page">
+			<param name="beanName" value="financeSortService" />
+		</create>
+		
+		<!-- 新版竣工决算，使用finalAccounts下complete目录  -->
+		<!-- zhangh 2013-7-30 从津能移植 -->
+		<convert converter="bean" match="com.sgepit.pmis.finalAccounts.complete.hbm.*" />
+		<create creator="spring" javascript="faBaseInfoService" scope="page">
+			<param name="beanName" value="faBaseInfoService" />
+		</create>
+		<create creator="spring" javascript="faCostManageService" scope="page">
+			<param name="beanName" value="faCostManageService" />
+		</create>
+		<create creator="spring" javascript="faFixedAssetService" scope="page">
+			<param name="beanName" value="faFixedAssetService" />
+		</create>
+		<create creator="spring" javascript="faReportService" scope="page">
+			<param name="beanName" value="faReportService" />
+		</create>
+		
+	</allow>
+</dwr>

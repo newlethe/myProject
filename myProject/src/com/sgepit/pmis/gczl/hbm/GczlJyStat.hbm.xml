@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sgepit.pmis.gczl.hbm.GczlJyStat"
+		table="GCZL_JY_STAT">
+		<id name="uids" type="java.lang.String">
+			<column name="UIDS" length="32" />
+			<generator class="uuid" />
+		</id>
+		<property name="statNo" type="java.lang.String">
+			<column name="STAT_NO" length="32" />
+		</property>
+		<property name="userId" type="java.lang.String">
+			<column name="USER_ID" length="50" not-null="true" />
+		</property>
+		<property name="deptId" type="java.lang.String">
+			<column name="DEPT_ID" length="32" />
+		</property>
+		<property name="specialty" type="java.lang.String">
+			<column name="SPECIALTY" length="32" />
+		</property>
+		<property name="sjType" type="java.lang.String">
+			<column name="SJ_TYPE" length="6" />
+		</property>
+		<property name="createTime" type="java.util.Date">
+			<column name="CREATE_TIME" />
+		</property>
+		<property name="jyStatus" type="java.lang.Integer">
+			<column name="JY_STATUS" />
+		</property>
+		<property name="billState" type="java.lang.Integer">
+			<column name="BILL_STATE" />
+		</property>
+	</class>
+</hibernate-mapping>

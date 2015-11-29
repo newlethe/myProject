@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+	<bean id="HrManInfoDAO"
+		class="com.sgepit.pmis.rlzj.dao.HrManInfoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="HrManFamilyDAO"
+		class="com.sgepit.pmis.rlzj.dao.HrManFamilyDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="HrManAbilityDAO"
+		class="com.sgepit.pmis.rlzj.dao.HrManAbilityDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="HrManEducationDAO"
+		class="com.sgepit.pmis.rlzj.dao.HrManEducationDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="HrManWorkexepDAO"
+		class="com.sgepit.pmis.rlzj.dao.HrManWorkexepDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="HrManDeptSetLogDAO"
+		class="com.sgepit.pmis.rlzj.dao.HrManDeptSetLogDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+   
+    <bean id="HrManContractDAO" 
+    class="com.sgepit.pmis.rlzj.dao.HrManContractDAO">
+    <property name="sessionFactory">
+    <ref bean="sessionFactory1"/>
+    </property>
+    </bean>
+   
+   
+   
+	<bean  id="rlzyMgm" class="com.sgepit.pmis.rlzj.service.RlzyMgmImpl">
+		<property name="systemDao" ref="systemDao" />
+		<property name="sgccIniUnitDAO" ref="sgccIniUnitDAO" />
+		<property name="propertyCodeDAO" ref="propertyCodeDAO" />
+		<property name="manDeptSetLogDAO" ref="HrManDeptSetLogDAO" />
+		<property name="hrManContractDAO" ref="HrManContractDAO"></property>
+	</bean>
+	<!-- 员工信息 -->	
+	<bean  id="rlzyYgxxMgm" class="com.sgepit.pmis.rlzj.service.RlzyYgxxMgmImpl">
+		<property name="systemDao" ref="systemDao" />
+	</bean>
+	<!-- 考勤管理 -->	
+	<bean  id="rlzyKqglMgm" class="com.sgepit.pmis.rlzj.service.RlzyKqglMgmImpl">
+		<property name="systemDao" ref="systemDao" />
+		<property name="sgccIniUnitDAO" ref="sgccIniUnitDAO" />
+		<property name="propertyCodeDAO" ref="propertyCodeDAO" />
+		<property name="manDeptSetLogDAO" ref="HrManDeptSetLogDAO" />
+		<property name="hrManContractDAO" ref="HrManContractDAO"></property>
+	</bean>
+	<!-- 薪酬管理 -->	
+	<bean  id="rlzyXcglMgm" class="com.sgepit.pmis.rlzj.service.RlzyXcglMgmImpl">
+		<property name="systemDao" ref="systemDao" />
+	</bean>
+	
+
+	<bean id="KqDaystjDeptXbDAO"
+		class="com.sgepit.pmis.rlzj.dao.KqDaystjDeptXbDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="KqDaysDeptZbDAO"
+		class="com.sgepit.pmis.rlzj.dao.KqDaysDeptZbDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="KqDaysDeptXbDAO"
+		class="com.sgepit.pmis.rlzj.dao.KqDaysDeptXbDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="KqDaysCompZbDAO"
+		class="com.sgepit.pmis.rlzj.dao.KqDaysCompZbDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="KqDaysCompXbDAO"
+		class="com.sgepit.pmis.rlzj.dao.KqDaysCompXbDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="KqDaystjCompXbDAO"
+		class="com.sgepit.pmis.rlzj.dao.KqDaystjCompXbDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<!-- 考勤管理 (新)start-->	
+	<bean id="rzglMainDao"
+		class="com.sgepit.pmis.rlzj.dao.RzglMainDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean  id="rzglMainMgm" class="com.sgepit.pmis.rlzj.service.RzglMainMgmImpl">
+		<property name="rzglMainDao" ref="rzglMainDao" />
+		<property name="rzglMgm" ref="rzglMgm" />
+	</bean>
+	<bean  id="rzglMgm" class="com.sgepit.pmis.rlzj.service.JjmisRzglKqglMgmImpl">
+		<property name="rzglMainDao" ref="rzglMainDao" />
+		<property name="systemMgm" ref="systemMgm" />
+	</bean>
+	<!-- 考勤管理 (新)end-->
+</beans>

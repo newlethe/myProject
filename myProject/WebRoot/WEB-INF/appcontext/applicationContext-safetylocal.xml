@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<!--
+	- Application context definition for JPetStore's data access layer.
+	- Accessed by business layer objects defined in "applicationContext.xml"
+	- (see web.xml's "contextConfigLocation").
+	-
+	- This version of the data access layer works on a combined database,
+	- using a local DataSource with DataSourceTransactionManager. It does not
+	- need any JTA support in the container: It will run as-is in plain Tomcat.
+-->
+<beans>
+
+	<!-- ========================= BUSINESS OBJECT DEFINITIONS ======================== -->
+	<!--
+		-  
+	-->
+	<!-- Generic DAO - can be used when doing standard CRUD -->
+    <bean id="safetyMgm" class="com.sgepit.pmis.document.service.SafetyMgmImpl">
+        <property name="safetyDAO" ref="safetyDAO"/>
+    </bean>
+	
+
+    <bean id="safetyDAO" class="com.sgepit.pmis.document.dao.SafetyDAO">
+		<property name="sessionFactory" ref="sessionFactory1"/>
+    </bean>
+	<!--  
+	<bean id="safetreeMgm"
+		class="com.sgepit.pmis.document.service.SafeTreeMgmImpl">
+		<property name="safetyMgm" ref="safetyMgm" />
+		<property name="baseDAO" ref="baseDAO" />
+	</bean>
+	-->
+</beans>

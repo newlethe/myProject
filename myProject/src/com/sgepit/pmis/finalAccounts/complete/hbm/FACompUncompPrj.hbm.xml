@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sgepit.pmis.finalAccounts.complete.hbm.FACompUncompPrj"
+		table="FACOMP_UNCOMP_PRJ">
+		<id name="uids" type="java.lang.String">
+			<column name="UIDS" length="32" />
+			<generator class="uuid" />
+		</id>
+		<property name="pid" type="java.lang.String">
+			<column name="PID" length="32" />
+		</property>
+		<property name="xh" type="java.lang.String">
+			<column name="XH" length="32" />
+		</property>
+		<property name="prjName" type="java.lang.String">
+			<column name="PRJNAME" length="200" />
+		</property>
+		<property name="prjLocation" type="java.lang.String">
+			<column name="PRJLOCATION" length="100" />
+		</property>
+		<property name="unit" type="java.lang.String">
+			<column name="UNIT" length="32" />
+		</property>
+		<property name="prjNumber" type="java.lang.Double">
+			<column name="PRJNUMBER" length="15" precision="4" />
+		</property>
+		<property name="bdgMoney" type="java.lang.Double">
+			<column name="BDGMONEY" length="15" precision="4" />
+		</property>
+		<property name="compMoney" type="java.lang.Double">
+			<column name="COMPMONEY" length="15" precision="4" />
+		</property>
+		<property name="compPercent" type="java.lang.Double">
+			<column name="COMPPERCENT" length="15" precision="4" />
+		</property>
+		<property name="predUnbuild" type="java.lang.Double">
+			<column name="PREDUNBUILD" length="15" precision="4" />
+		</property>
+		<property name="installEng" type="java.lang.Double">
+			<column name="INSTALLENG" length="15" precision="4" />
+		</property>
+		<property name="equipPurch" type="java.lang.Double">
+			<column name="EQUIPPURCH" length="15" precision="4" />
+		</property>
+		<property name="otherCost" type="java.lang.Double">
+			<column name="OTHERCOST" length="15" precision="4" />
+		</property>
+		<property name="remark" type="java.lang.String">
+			<column name="REMARK" length="200" />
+		</property>
+		<property name="totalmoney" type="java.lang.Double">
+			<column name="TOTALMONEY" length="15" precision="4" />
+		</property>
+	</class>
+</hibernate-mapping>

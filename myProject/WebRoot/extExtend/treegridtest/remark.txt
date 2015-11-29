@@ -1,0 +1,92 @@
+Ext.grid.LockableColumnGridView = Ext.extend(Ext.grid.GridView, {
+	//重载、扩展
+	--initElements : function() { //针对模板的改动，新增锁定表头、表体、滚动条等，同时对其他属性进行相应调整},
+	--getCell : function(rowIndex, colIndex) {	//根据锁定的列号判断单元格的真实索引},
+	--getHeaderCell : function(index) {	//根据锁定的列号判断表头单元格的真实索引 },
+	--scrollToTop : function() {	//新增调用syncScroll方法},
+	--updateSortIcon : function(col, dir) {	//判断锁定列偏移},
+	--updateAllColumnWidths : function() {	//增加对锁定列单元格的处理},
+	--updateColumnWidth : function(col, width) {	//增加对锁定列单元格的处理},
+	--updateColumnHidden : function(col, hidden) {	//增加对锁定列单元格的处理},
+	--doRender : function(cs, rs, ds, startRow, colCount, stripe) { //增加对锁定列的处理},
+	--processRows : function(startRow, skipStripe) { //增加了锁定列的处理},
+	--renderUI : function() {	//增加了锁定列的处理},
+	--layout : function() {	//增加了锁定列的处理},
+	?-renderHeaders : function() {	//增加了锁定表头的处理},
+	--updateHeaders : function() {	//增加了锁定表头的处理},
+	?-insertRows : function(dm, firstRow, lastRow, isUpdate) {	//增加了锁定列的处理},
+	--getColumnData : function() {	//增加了锁定列的处理},
+	--renderBody : function() {	//增加了锁定列的处理},
+	--refresh : function(headersToo) {	//增加了锁定列的处理},
+	--addRowClass : function(row, cls) {	//增加了锁定列的处理},
+	--removeRowClass : function(row, cls) {	//增加了锁定列的处理},
+	--handleHdMenuClick : function(item) {	//增加了锁定表头的处理},
+	--handleHdDown : function(e, t) {	//增加了锁定表头的处理},
+	
+	
+	//新增
+	--lockText : "Lock",	
+	--unlockText : "Unlock",
+	--getLockedRows : function() {	//},
+	--getLockedRow : function(row) {	//},
+	--syncScroll : function(e) {	//}
+	--handleLockChange : function() {	//新增调用refresh方法},
+	--onDenyColumnHide : function(){	//TODO},
+	--onColumnLock : function() {	//对列锁定事件句柄的实现},
+}
+
+Ext.ux.maximgb.treegrid.GridView = Ext.extend(Ext.grid.GridView, {
+	//重载、扩展
+	--initTemplates : function() { //新增树节点UI模板等},
+	--initElements : function() { //根据模板调整innerHd},
+	--doRender : function(cs, rs, ds, startRow, colCount, stripe) { //新增对树节点UI的渲染},
+	--initData : function(ds, cm) { //增加树相关事件对数据的操作},
+	--onLoad : function(store, records, options) { //增加加载数据},
+	
+	
+	//新增
+	--breadcrumbs_el
+	--renderCellTreeUI : function(record, store) { //渲染树节点},
+	--getBreadcrumbsEl : function() {	//节点路径相关},
+	--setRootBreadcrumbs : function() {	//节点路径相关},
+	
+	--onStoreActiveNodeChange
+	--onStoreExpandNode
+	--onStoreCollapseNode
+	--onStoreCheck
+	
+	--expandRow : function(record, initial) { //展开树节点},
+	--collapseRow : function(record) { //收缩树节点},
+	--checkExpandChildNode : function(store, rc, row, target) {	//增加点击节点时判断是否有子节点如果有则展开子节点方法},
+	--childHasChecked : function(store, rc){ //节点是否被选中},
+	--checkparentNode : function(store, rc) { //是否选中父节点},
+	--getCheckNodes : function (store) {	//获取选中节点},
+	--getCheckNodeChildren : function (store, rc) {	//获取选中节点的子节点},
+}
+
+Ext.ux.maximgb.treegrid.GridPanel = Ext.extend(Ext.grid.GridPanel, {
+	//重载、扩展
+	--initComponent : function() {	//新增对属性i18n和roo_title的处理},
+	getView : function() {	//返回TreeGridView},
+	getCheckNodes : function() {	//调用TreeGridView接口},
+	onClick : function(e) {	//单击事件句柄的实现},
+	onMouseDown : function(e) {	//鼠标按下事件句柄的实现},
+	onDblClick : function(e) {	//双击事件句柄的实现},
+	onTreeGridSelectionChange : function(sm, selection) { },
+	
+	
+	//新增
+	ifcheck : false,
+	ifdisable : false,	//新增属性，带checkbox时，设置是否禁用已勾选项的checkbox
+	master_column_id : 0,
+	root_title : null,	//根节点
+	i18n : null,	
+	PagingToolbar = Ext.extend(Ext.PagingToolbar, {}
+}
+
+
+Ext.ux.maximgb.treegrid.AbstractTreeStore	= Ext.extend(Ext.data.Store, { //... ...})	//数据源扩展接口
+Ext.ux.maximgb.treegrid.AdjacencyListStore	= Ext.extend(Ext.ux.maximgb.treegrid.AbstractTreeStore, {})	//接口
+Ext.ux.maximgb.treegrid.NestedSetStore		= Ext.extend(Ext.ux.maximgb.treegrid.AbstractTreeStore, {})	//接口
+
+

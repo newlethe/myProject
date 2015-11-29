@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<!--
+	- Application context definition for JPetStore's data access layer.
+	- Accessed by business layer objects defined in "applicationContext.xml"
+	- (see web.xml's "contextConfigLocation").
+	-
+	- This version of the data access layer works on a combined database,
+	- using a local DataSource with DataSourceTransactionManager. It does not
+	- need any JTA support in the container: It will run as-is in plain Tomcat.
+-->
+<beans>
+
+	<!-- ========================= BUSINESS OBJECT DEFINITIONS ======================== -->
+	<!-- 合同管理 -->
+	
+	<!-- 合同基本信息 -->
+	<bean id="conoveMgm"
+		class="com.sgepit.pmis.contract.service.ConOveMgmImpl">
+		<property name="contractDAO" ref="contractDAO" />
+	</bean>
+	
+	<!-- 合同付款管理 -->
+	<bean id="conpayMgm"
+		class="com.sgepit.pmis.contract.service.ConPayMgmImpl">
+		<property name="contractDAO" ref="contractDAO" />
+	</bean>
+	
+	<!-- 合同乙方单位 -->
+	<bean id="conpartybMgm"
+		class="com.sgepit.pmis.contract.service.ConPartybMgmImpl">
+		<property name="contractDAO" ref="contractDAO" />
+	</bean>
+	
+	<!-- 合同公式定义 -->
+	<bean id="conexpMgm"
+		class="com.sgepit.pmis.contract.service.ConExpMgmImpl">
+		<property name="contractDAO" ref="contractDAO" />
+	</bean>
+	
+	<!-- 合同索赔管理 -->
+	<bean id="conclaMgm"
+		class="com.sgepit.pmis.contract.service.ConClaMgmImpl">
+		<property name="contractDAO" ref="contractDAO" />
+	</bean>
+	
+	<!-- 合同变更管理 -->
+	<bean id="conchaMgm"
+		class="com.sgepit.pmis.contract.service.ConChaMgmImpl">
+		<property name="contractDAO" ref="contractDAO" />
+	</bean>
+	
+	<!-- 合同违约管理 -->
+	<bean id="conbreMgm"
+		class="com.sgepit.pmis.contract.service.ConBreMgmIpml">
+		<property name="contractDAO" ref="contractDAO" />
+	</bean>
+	
+	<!-- 合同结算管理 -->
+	<bean id="conbalMgm"
+		class="com.sgepit.pmis.contract.service.ConBalMgmImpl">
+		<property name="contractDAO" ref="contractDAO" />
+	</bean>
+	
+	<!-- 合同帐目信息 -->
+	<bean id="conAccinfoMgm"
+		class="com.sgepit.pmis.contract.service.ConAccinfoMgmImpl">
+		<property name="contractDAO" ref="contractDAO" />
+	</bean>
+	
+	<bean id="contractDAO" class="com.sgepit.pmis.contract.dao.ContractDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+</beans>

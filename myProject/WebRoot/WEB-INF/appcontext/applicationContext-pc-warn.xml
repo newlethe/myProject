@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<!--
+	- Application context definition for JPetStore's data access layer.
+	- Accessed by business layer objects defined in "applicationContext.xml"
+	- (see web.xml's "contextConfigLocation").
+	-
+	- This version of the data access layer works on a combined database,
+	- using a local DataSource with DataSourceTransactionManager. It does not
+	- need any JTA support in the container: It will run as-is in plain Tomcat.
+-->
+<beans>
+	
+    
+	<bean id="PcWarnService" class="com.sgepit.pcmis.warn.service.PCWarnServiceImpl">
+		<property name="baseDAO">
+			<ref bean="baseDAO"></ref>
+		</property>
+		<property name="pcWarnDAO">
+		    <ref bean="pcWarnDAO"/>
+		</property>
+	</bean>
+    <bean id="baseDAO" class="com.sgepit.frame.base.dao.BaseDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>    
+    </bean>
+    
+    <bean id="pcWarnDAO" class="com.sgepit.pcmis.warn.dao.PCWarnDAO">
+        <property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+    </bean>
+</beans>

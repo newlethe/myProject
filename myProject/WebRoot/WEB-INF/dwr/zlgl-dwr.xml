@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<convert converter="bean" match="com.sgepit.pmis.document.hbm.*" />		
+		<!-- 资料档案 -->
+        <create creator="spring" javascript="infMgm" scope="page">
+			<param name="beanName" value="infMgm" />
+			<include method="getINFSortlist"></include>
+			<include method="getINFDAML"></include>
+			<include method="saveDeptHandover"></include>
+			<include method="Handovered"></include>
+			<include method="getDaml"></include>
+			<include method="addOrUpdate"></include>
+			<include method="getListSortModules"></include>
+			<include method="deleteChildNode"></include>
+			<include method="getdeptname"></include>
+			<include method="saveConUpload"></include>
+			<include method="saveInfEleArc"></include>
+			<include method="getusername"></include>
+			<include method="getExistUserid"></include>
+			<include method="checkDelete"></include>
+			<include method="getcodecatagory"></include>
+			<include method="saveInfGrade"></include>
+			<include method="getusergrade"></include>
+			<include method="getusergradeid"></include>
+			<include method="saveuploaddata"></include>
+			<include method="saveInfEditSort"></include>
+			<include method="saveEditInfGrade"></include>
+			<include method="querySort"></include>
+		</create>
+		
+		<!-- 资料档案 -->
+        <create creator="spring" javascript="zlMgm" scope="page">
+			<param name="beanName" value="zlMgm" />
+			<include method="addOrUpdate"></include>
+			<include method="deleteChildNode"></include>
+			<include method="upzltreenode"></include>
+			<include method="downzltreenode"></include>
+			<include method="insertzlinfo"></include>
+			<include method="insertzlinfo_jy"></include>
+			<include method="insertdazl_jy"></include>
+			<include method="insertda_jy"></include>
+			<include method="insertzlinfo_gh"></include>
+			<include method="insertdazl_gh"></include>
+			<include method="getxj_history"></include>
+			<include method="getdaxj_history"></include>
+			<include method="update_xj"></include>
+			<include method="update_daxj"></include>
+			<include method="updateXh"></include>
+			<include method="updateDaXh"></include>
+			<include method="updatezlinfo"></include>
+			<include method="getdeptname"></include>
+			<include method="deleteinfo"></include>
+			<include method="querySort"></include>
+			<include method="addOrUpdateDA"></include>
+			<include method="addOrUpdateZD"></include>
+			<include method="addOrUpdateZbwj"></include>
+			<include method="deleteDAChildNode"></include>
+			<include method="deleteZDChildNode"></include>
+			<include method="deleteZbwjChildNode"></include>
+			<include method="savedazl"></include>
+			<include method="updatedazl"></include>
+			<include method="savezdgl"></include>
+			<include method="savezbwjgl"></include>
+			<include method="updatezdgl"></include>
+			<include method="updatezbwjgl"></include>
+			<include method="savegdzl"></include>
+			<include method="updataAnther"></include>
+			<include method="saveDeptHandover"></include>
+			<include method="upzjinfo"></include>
+			<include method="downzjinfo"></include>
+			<include method="getExistzlinfo"></include>
+			<include method="getUserOrgid"></include>
+			<include method="getuserId"></include>
+			<include method="ZlHandoverOk"></include>
+			<include method="ZlHandoverContractOk"></include>
+			<include method="ZlHandoverZbzlOk"></include>
+			<include method="ZlUntread"></include>
+			<include method="ZlGdDel"></include>
+			<include method="checkdh"></include>
+			<include method="getdh"></include>
+			<include method="checkzdbh"></include>
+			<include method="checkzbbh"></include>
+			<include method="getzdbh"></include>
+			<include method="getzbbh"></include>
+			<include method="getRowCount"></include>
+			<include method="getqyml"></include>
+			<include method="getparentid"></include>
+			<include method="zlrk"></include>
+			<include method="editzlda"></include>
+			<include method="editUpdata"></include>
+			<include method="excelInput"></include>
+			<include method="ZlIsBlank"></include>
+			<include method="getflml"></include>
+			<include method="getZlFileLshs"></include>
+			<include method="updateXH"></include>
+			<include method="getListForCellBySql"></include>
+			<include method="getFileidByBusinessType"></include>
+		</create>
+		
+		<!-- 安全施工管理 -->
+		<create creator="spring" javascript="safetyMgm" scope="page">
+			<param name="beanName" value="safetyMgm" />
+			<include method="addOrUpdate"></include>
+			<include method="deleteChildNode"></include>
+			<include method="addOrUpdateInit"></include>
+			<include method="deleteChildNodeInit"></include>
+			<include method="checkDelete"></include>
+			<include method="initTree"></include>
+			<include method="sumnode"></include>
+			<include method="DelInitTree"></include>
+			<include method="avg"></include>
+		</create>
+	</allow>
+</dwr>

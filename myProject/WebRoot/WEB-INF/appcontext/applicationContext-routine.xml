@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+
+<beans>
+
+	
+	<!-- 工作总结计划 -->
+	<bean id="gzJhMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.routine.service.GzJhMgmImpl">
+				<property name="gzJhDao" ref="gzJhDAO" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="gzJhDAO" class="com.sgepit.pmis.routine.dao.GzJhDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	<!-- 工作制度管理 
+	<bean id="zdMgm" class="com.sgepit.pmis.routine.service.ZdMgmImpl">
+        <property name="zdDAO" ref="zdDAO"/>
+    </bean>
+	
+    <bean id="zdDAO" class="com.sgepit.pmis.routine.dao.ZdDAO">
+		<property name="sessionFactory" ref="sessionFactory1" />
+    </bean>
+        <bean id="zdtMgm"
+		class="com.sgepit.pmis.routine.service.ZdTMgmImpl">
+		<property name="zdgMgm" ref="zdMgm" />
+		<property name="baseDao" ref="baseDAO" />
+	</bean>	
+	-->
+</beans>

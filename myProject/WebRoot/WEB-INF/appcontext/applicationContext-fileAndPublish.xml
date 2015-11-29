@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+	<bean id="ComFileInfoDAO"
+		class="com.sgepit.fileAndPublish.dao.ComFileInfoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="ComFilePublishHistoryDAO"
+		class="com.sgepit.fileAndPublish.dao.ComFilePublishHistoryDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="ComFileReadHistoryDAO" class="com.sgepit.fileAndPublish.dao.ComFileReadHistoryDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="ComFileSortDAO"
+		class="com.sgepit.fileAndPublish.dao.ComFileSortDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="ComFileSortDeptDAO"
+		class="com.sgepit.fileAndPublish.dao.ComFileSortDeptDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="ComFileSortTemplateDAO"
+		class="com.sgepit.fileAndPublish.dao.ComFileSortTemplateDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	
+	<bean id="ComFileSortService" parent="txProxyTemplate">
+		<property name="target">
+			<bean  class="com.sgepit.fileAndPublish.service.ComFileSortServiceImpl">
+        		<property name="comFileSortDAO" ref="ComFileSortDAO"/>
+        		<property name="comFileSortDeptDAO" ref="ComFileSortDeptDAO"/>
+        	</bean>
+		</property>	
+    </bean>
+    <bean id="ComFileManageService" parent="txProxyTemplate">
+		<property name="target">
+			<bean  class="com.sgepit.fileAndPublish.service.ComFileManageServiceImpl">
+        		<property name="comFileSortDAO" ref="ComFileSortDAO"/>
+        		<property name="comFileSortDeptDAO" ref="ComFileSortDeptDAO"/>
+        		<property name="comFileInfoDAO" ref="ComFileInfoDAO"/>
+        		<property name="comFilePublishHistoryDAO" ref="ComFilePublishHistoryDAO"/>
+        		<property name="comFileReadHistoryDAO" ref="ComFileReadHistoryDAO"/> 
+        		<property name="sgccAttachListDAO" ref="sgccAttachListDAO"/>   
+        		<property name="systemDao" ref="systemDao"/>  
+        		<property name="systemMgm" ref="systemMgm"/>    				       		
+        	</bean>
+		</property>	
+    </bean>
+</beans>

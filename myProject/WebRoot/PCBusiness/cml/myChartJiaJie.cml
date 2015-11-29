@@ -1,0 +1,49 @@
+<Carton width="506" height="255">
+  <variable>
+    <param name="projectuid" tip="" initValue=""/>
+  </variable>
+  <Chart type="AMLINECHART" width="510" height="210" UID="4CK578P5" x="-4" y="25">
+    <param name="dataProvider" mode="sql"><![CDATA[select a.xmonth,
+ n.wancheng wanmonth ,nvl(to_char((n.thistask)),'NULL') wantask ,n.thisname wanname,
+  m.jihua jimonth , nvl(to_char((m.thistask)),'NULL') jitask ,m.thisname jiname
+ from
+ (
+select to_char(t.finish_, 'yyyy-mm-dd') xmonth  from edo_task t where t.outlinelevel_ = '2' and t.milestone_ = '1' and t.projectuid_ = '[projectuid]'
+ union 
+select to_char(b.finish_, 'yyyy-mm-dd') xmonth from edo_baseline b where  b.projectuid_ = '[projectuid]' and b.taskuid_ in (select t.uid_ from edo_task t where t.outlinelevel_ = '2' and t.milestone_ = '1' and t.projectuid_ = '[projectuid]') 
+)
+ a left join 
+( select xx.jihua,rownum thistask,xx.thisname from (select to_char(b.finish_, 'yyyy-mm-dd') jihua ,rownum thistask,t.name_ thisname from edo_task t, edo_baseline b where t.uid_ = b.taskuid_  and b.projectuid_ = t.projectuid_  and  t.projectuid_ = '[projectuid]' and t.outlinelevel_ = '2' and t.milestone_ = '1' order by t.id_) xx) m
+ on a.xmonth = m.jihua
+ left join
+ (select yy.wancheng,rownum thistask,yy.thisname from ( select to_char(t.finish_, 'yyyy-mm-dd') wancheng,rownum thistask,T.NAME_||'('||T.Percentcomplete_||'%)' thisname from edo_task t  where t.percentcomplete_ > 0 and t.projectuid_ = '[projectuid]' and t.outlinelevel_ = '2' and t.milestone_ = '1' order by t.id_)yy ) n
+ on a.xmonth = n.wancheng  order by xmonth
+]]></param>
+    <param name="categoryField" mode="prop" value="XMONTH"/>
+    <param name="fields" mode="prop" value="WANTASK|JITASK"/>
+    <param name="rotate" mode="prop" value="false"/>
+    <param name="graphs.title" mode="prop" value="里程碑完成|里程碑计划"/>
+    <param name="GraphItemClick" mode="event" value="linkParam"/>
+    <param name="ygridCount" mode="prop" value="7"/>
+    <param name="graphs.balloonText" mode="prop" value="里程碑完成&lt;BR>[[WANMONTH]]&lt;BR>[[WANNAME]]|里程碑计划&lt;BR>[[JIMONTH]]&lt;BR>[[JINAME]]"/>
+    <param name="xgridCount" mode="prop" value="4"/>
+    <param name="wrapLabel" mode="prop" value="false"/>
+  </Chart>
+  <Chart type="AMLEGEND" width="280" height="30" UID="2UEPCTOQ" x="220" y="225">
+    <param name="chartProvider" mode="prop" value="4CK578P5"/>
+    <param name="valueWidth" mode="style" value=""/>
+    <param name="horizontalGap" mode="style" value="20"/>
+    <param name="verticalGap" mode="style" value="10"/>
+    <param name="marginLeft" mode="style" value="1"/>
+    <param name="textClickEnabled" mode="prop" value="true"/>
+  </Chart>
+  <Chart type="LABEL" width="303" height="30" text="标签" UID="D6LHAI5" x="126" y="8">
+    <param name="text" mode="prop" value="工程进展趋势"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="fontSize" mode="style" value="19"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="color" mode="style" value="14329120"/>
+    <param name="textAlign" mode="style" value="center"/>
+  </Chart>
+  <param name="backgroundColor" mode="style" value="15330046"/>
+</Carton>

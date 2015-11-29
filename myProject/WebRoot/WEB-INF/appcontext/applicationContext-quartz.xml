@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	                    http://www.directwebremoting.org/schema/spring-dwr 
+						http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd
+						http://www.springframework.org/schema/aop 
+					    http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+	                     ">
+	
+	
+	
+    <!-- 作业1 --> 
+	<bean id="jobDetailTest" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+       <property name="jobClass" value="com.sgepit.quartz.QuartzTest2"/> 
+    </bean> 
+    
+    <!-- 触发器 1 --> 
+    <bean id="cronTriggerTest" class="org.springframework.scheduling.quartz.CronTriggerBean" > 
+       <property name="jobDetail" ref="jobDetailTest"/> 
+       <property name="cronExpression"> 
+       <!-- 每隔2S执行一次 -->
+           <value>0/2 * * * * ?</value> 
+       </property> 
+    </bean>
+    
+    <!-- 短信猫作业 --> 
+	<bean id="jobSms" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+       <property name="jobClass" value="com.sgepit.frame.util.sms.service.SendMsgJob"/> 
+    </bean> 
+    
+    <!-- 短信猫触发器  --> 
+    <bean id="triggerSm" class="org.springframework.scheduling.quartz.CronTriggerBean" > 
+       <property name="jobDetail" ref="jobSms"/> 
+       <property name="cronExpression"> 
+       <!-- 每隔2S执行一次 -->
+           <value>0/20 * * * * ?</value> 
+       </property> 
+    </bean>
+
+    
+     <!-- 调度器(开始执行) --> 
+    <bean lazy-init="false" autowire="no" id="testScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean"> 
+       <property name="triggers"> 
+          <list> 
+          <!--  
+       		  <ref bean="triggerSm"/> 
+       		  <ref bean="cronTriggerTest"/> 
+       	-->	  
+       	<ref bean="ExpWorkCalculate"/>
+          </list> 
+       </property> 
+    </bean>	
+    
+    <!-- 计算工龄触发器 -->
+    <bean id="ExpWork" class="org.springframework.scheduling.quartz.JobDetailBean">
+    <property name="jobClass" value="com.sgepit.pmis.rlzj.control.ExpWorkCalQuartz"></property>
+    
+    </bean>
+    
+    
+    
+    <bean id="ExpWorkCalculate"  class="org.springframework.scheduling.quartz.CronTriggerBean">
+      <property name="jobDetail" ref="ExpWork"/> 
+       <property name="cronExpression"> 
+       <!-- 每隔2S执行一次 -->
+           <value>* 30 6 * * ?</value> 
+       </property> 
+    </bean>
+</beans>
+
+

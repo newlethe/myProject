@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class
+		name="com.sgepit.pmis.finalAccounts.prjGeneralInfo.hbm.FAPrjInvesment"
+		table="fa_prj_invesment">
+		<id name="uids" type="java.lang.String">
+			<column name="UIDS" length="32" />
+			<generator class="uuid" />
+		</id>
+		<property name="pid" type="java.lang.String">
+			<column name="PID" length="32" />
+		</property>
+		<property name="invesName" type="java.lang.String">
+			<column name="INVES_NAME" length="50" />
+		</property>
+		<property name="invesTotal" type="java.lang.Double">
+			<column name="INVES_TOTAL" length="15" precision="4" />
+		</property>
+		<property name="invesAvg" type="java.lang.Double">
+			<column name="INVES_AVG" length="15" precision="4" />
+		</property>
+	</class>
+
+</hibernate-mapping>

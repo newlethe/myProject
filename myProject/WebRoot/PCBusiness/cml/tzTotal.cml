@@ -1,0 +1,38 @@
+<Carton width="780" height="300">
+   <variable>
+    <param name="PID"/>
+    <param name="pname" initValue=""/>
+  </variable>
+  <Chart type="AMPIECHART" width="354" height="187" text="饼图" UID="22PBMD3F" x="136" y="76">
+    <param name="dataProvider" mode="sql"><![CDATA[SELECT  c.property_name typename,t.amount/10000 amount  FROM PC_ZHXX_PRJ_FUNDSRC t ,PROPERTY_TYPE p , property_code c WHERE 1=1 AND  t.PID = '[PID]' AND p.uids = c.type_name AND p.type_name = '资金类型' AND c.property_code = t.src_type]]></param>
+    <param name="depth3D" mode="style" value="20"/>
+    <param name="angle" mode="style" value="56"/>
+    <param name="fields" mode="prop" value="AMOUNT"/>
+    <param name="labelsEnabled" mode="style" value="false"/>
+    <param name="sequencedAnimation" mode="style" value="true"/>
+    <param name="visible" mode="prop" value="true"/>
+    <param name="enabled" mode="prop" value="true"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="fontSize" mode="style" value="12"/>
+    <param name="slicesColors" mode="prop" value="1386458|15674841|13339726"/>
+    <param name="titleField" mode="prop" value="TYPENAME"/>
+  </Chart>
+  <Chart type="LABEL" width="434" height="26" text="标签" UID="22PEKFF8" x="163" y="13">
+    <param name="text" mode="prop" value="[pname]总投资分布（资金来源）"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="fontSize" mode="style" value="16"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+  </Chart>
+  <Chart type="AMLEGEND" width="270" height="88" text="图例" UID="22PFJ107" x="500" y="110">
+    <param name="chartProvider" mode="prop" value="22PBMD3F"/>
+    <param name="marginLeft" mode="style" value="0"/>
+    <param name="marginRight" mode="style" value="0"/>
+    <param name="marginTop" mode="style" value="0"/>
+    <param name="marginBottom" mode="style" value="0"/>
+    <param name="valueWidth" mode="style" value="80"/>
+  </Chart>
+  <Chart type="LABEL" width="120" height="22" text="标签" UID="2BBO7FJG" x="486" y="58">
+    <param name="text" mode="prop" value="单位：万元"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+  </Chart>
+</Carton>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+
+	<!-- 公用模块业务逻辑实现 -->
+	<bean id="sgprjTempletConfigService" parent="txProxyTemplate">
+		<property name="target">
+			<bean
+				class="com.sgepit.frame.xgridTemplet.service.SgprjTempletConfigServiceImpl">
+				<property name="sgprjTempletConfigDAO" ref="SgprjTempletConfigDAO" />
+			</bean>
+		</property>
+	</bean>
+    
+	<bean id="SgprjTempletConfigDAO"
+		class="com.sgepit.frame.xgridTemplet.dao.SgprjTempletConfigDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+</beans>

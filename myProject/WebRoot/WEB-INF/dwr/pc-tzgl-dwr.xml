@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<convert converter="bean" match="com.sgepit.pcmis.tzgl.hbm.*" />		
+		 <create creator="spring" javascript="pcTzglService" scope="page">
+			<param name="beanName" value="PCTzglServiceImpl" />
+			<include method="getYearInvestXml"></include>
+			<include method="sjTypeFilter"></include>
+			<include method="mis2jtOfYearPlan"></include>
+			<include method="mis2jtOfMonthCmp"></include>
+			<include method="monthCompddOrUpdate"></include>
+			<include method="yearPlanAddOrUpdate"></include>
+			<include method="yearPlanIni"></include>
+			<include method="monthCompIni"></include>
+			<include method="mis2jtOfDYReport"></include>
+			<include method="dyReport1Ini"></include>
+			<include method="dyReport2Ini"></include>
+			<include method="dyReport3Ini"></include>
+			<include method="dyReport1AddOrUpdate"></include>
+			<include method="dyReport2AddOrUpdate"></include>
+			<include method="dyReport3AddOrUpdate"></include>
+			<include method="getEarliestMonthReportSj"></include>
+			<include method="getYearReportSj"></include>
+			<include method="getCompData"></include>
+			<include method="getFilterUnitId"></include>
+			
+			<!--新加入回退以及分层上报的方法  -->
+			<include method="comp2TojtOfYearCmp"></include>
+			<include method="comp2TojtOfMonthCmp"></include>
+			<include method="sendBackTzglMonReport"></include>
+			<include method="sendBackTzglYearReport"></include>
+			<include method="comp2TojtOfDYReport"></include>
+			<include method="sendBackDYReport1M"></include>
+			<include method="sendBackDYReport2M"></include>
+			<include method="sendBackDYReport3M"></include>
+			
+			<!--月度投资完成上报  -->
+			<include method="xmdwSubmitReport2"></include>
+			<include method="comp2TojtOfMonthCmp"></include>
+			<include method="findDataByTableId"></include>
+			<include method="updateDataByTableId"></include>
+			<include method="updateState"></include>
+			<include method="updateState2"></include>
+			<!-- 电源报表 -->
+			<include method="updateStateDYReport"></include>
+			<include method="getReportPids"></include>
+			<!-- 投资完成情况报表 -->
+			<include method="initPcTzglMonthInvestD"></include>
+			<include method="updatePcTzglMonthInvestMState"></include>
+			<include method="submitReportFormXmdwToJt"></include>
+		</create>
+		
+	</allow>
+</dwr>

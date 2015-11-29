@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sgepit.pmis.finalAccounts.bdgStructure.hbm.FAUnfinishedPrjReport"
+		table="fa_unfinished_prj_report">
+		<id name="uids" type="java.lang.String">
+			<column name="uids" length="32" />
+			<generator class="uuid"></generator>
+		</id>
+		<property name="pid" type="java.lang.String">
+			<column name="PID" length="32"  />
+		</property>
+		<property name="bdgid" type="java.lang.String">
+			<column name="BDGID" length="32"  />
+		</property>
+		<property name="bdgname" type="java.lang.String">
+			<column name="BDGNAME" length="200"  />
+		</property>
+		<property name="location" type="java.lang.String">
+			<column name="LOCATION" length="200"  />
+		</property>
+		<property name="unit" type="java.lang.String">
+			<column name="UNIT" length="20"  />
+		</property>
+		<property name="quantity" type="java.lang.Integer">
+			<column name="QUANTITY" length="16"  />
+		</property>
+		<property name="bdgmoney" type="java.math.BigDecimal" >
+			<column name="BDGMONEY" length="15" precision="4" />
+		</property>
+		<property name="amountDoneValue" type="java.math.BigDecimal" >
+			<column name="AMOUNT_DONE_VALUE" length="15" precision="4" />
+		</property>
+		<property name="amountDonePer" type="java.lang.Double" >
+			<column name="AMOUNT_DONE_PER" length="7" precision="4" />
+		</property>
+		<property name="unfinishedBuild" type="java.math.BigDecimal" >
+			<column name="UNFINISHED_BUILD" length="15" precision="4" />
+		</property>
+		<property name="unfinishedInstall" type="java.math.BigDecimal" >
+			<column name="UNFINISHED_INSTALL" length="15" precision="4" />
+		</property>
+		<property name="unfinishedEqu" type="java.math.BigDecimal" >
+			<column name="UNFINISHED_EQU" length="15" precision="4" />
+		</property>
+		<property name="unfinishedOther" type="java.math.BigDecimal" >
+			<column name="UNFINISHED_OTHER" length="15" precision="4" />
+		</property>
+		<property name="unfinishedTotal" type="java.math.BigDecimal" >
+			<column name="UNFINISHED_TOTAL" length="15" precision="4" />
+		</property>
+		<property name="remark" type="java.lang.String" >
+			<column name="REMARK" length="200"  />
+		</property>
+		
+	</class>
+
+</hibernate-mapping>

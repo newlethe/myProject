@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<!-- 动态数据基本信息 -->
+	<bean id="pcDynamicDataService"
+		class="com.sgepit.pcmis.dynamicview.service.PcDynamicDataServiceImpl">
+		<property name="baseDAO" ref="baseDao" />
+	</bean>
+	<bean id="baseDao" class="com.sgepit.frame.base.dao.BaseDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+</beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+
+	<!-- ========================= BUSINESS OBJECT DEFINITIONS ======================== -->
+	
+	<bean id="vehicleDAO" class="com.sgepit.pmis.vehicle.dao.VehicleDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	
+	<!-- 车辆使用管理 -->
+	<bean id="vehicleMgm"
+		class="com.sgepit.pmis.vehicle.service.VehicleMgmImpl">
+		<property name="vehicleDAO" ref="vehicleDAO" />
+	</bean>
+    
+</beans>

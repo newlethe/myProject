@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+
+	<allow>
+		<convert converter="bean" match="com.sgepit.frame.sysman.hbm.*" />		
+		<create creator="spring" javascript="systemMgm" scope="page">
+			<param name="beanName" value="systemMgm" />
+		</create>
+		
+		<create creator="spring" javascript="baseMgm" scope="page">
+			<param name="beanName" value="baseMgm" />					
+		</create>
+		
+		<create creator="spring" javascript="baseDao" scope="page">
+			<param name="beanName" value="baseDAO" />			
+		</create>	
+		
+		<create creator="spring" javascript="appMgm" scope="page">
+			<param name="beanName" value="applicationMgm" />
+			<include method="getCodeValue"></include>
+			<include method="getCodeValueForContractSort"></include>
+			<include method="getTableLable"></include>
+		</create>
+	</allow>
+</dwr>

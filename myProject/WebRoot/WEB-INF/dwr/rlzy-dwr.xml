@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+	    <convert converter="bean" match="com.sgepit.pmis.rlzj.hbm.*" /> 
+		<create creator="spring" javascript="rlzyMgm" scope="page">
+			<param name="beanName" value="rlzyMgm" />
+		</create>
+		<!-- 员工信息 -->
+		<create creator="spring" javascript="rlzyYgxxMgm" scope="page">
+			<param name="beanName" value="rlzyYgxxMgm" />
+		</create>
+		<!-- 考勤管理 -->
+		<create creator="spring" javascript="rlzyKqglMgm" scope="page">
+			<param name="beanName" value="rlzyKqglMgm" />
+		</create>
+		<!-- 薪酬管理-->
+		<create creator="spring" javascript="rlzyXcglMgm" scope="page">
+			<param name="beanName" value="rlzyXcglMgm" />
+		</create>
+		<!-- 考勤管理 (新)start-->
+		<create creator="spring" javascript="rzglMainMgm" scope="page">
+			<param name="beanName" value="rzglMainMgm" />
+		</create>
+		<!-- 考勤管理 (新)end-->
+		<!-- 2011-06-23 人资工资发放新功能 2011-10-03从新密移植 -->
+		<create creator="new" scope="session" javascript="XgridBean">
+	 	 	<param name="class" value="com.sgepit.pmis.rlzj.util.XgridBean" />
+		</create>
+		<create creator="new" scope="session" javascript="FormulaUtil">
+	 	 	<param name="class" value="com.sgepit.pmis.rlzj.util.FormulaUtil" />
+		</create>
+	</allow>
+</dwr>

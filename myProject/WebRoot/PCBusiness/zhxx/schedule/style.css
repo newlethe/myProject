@@ -1,0 +1,259 @@
+/* CSS Document */
+
+body{
+	padding:0;
+	margin:0;
+	font-family:Arial, Helvetica, sans-serif;
+}
+div, h1, h2, h3, h4, p, form, label, input, textarea, img, span{
+	margin:0; padding:0;
+}
+
+ul{
+	margin:0; 
+	padding:0; 
+	list-style-type:none;
+	font-size:0;
+}
+.spacer{
+	clear:both; 
+	font-size:0; 
+	line-height:0;
+}
+/*------------------------------------------------body--------------------*/
+
+
+/*------------------------------------------------main--------------------*/
+#main{
+	width:1200px;
+	margin:0;
+	padding:0;
+}
+#main .main_bt{
+	width:1200px;
+	height:26px;
+	margin:0;
+	padding:0;
+	position:relative;
+	background:url(images/xyt_01.jpg) 0 0 repeat-x;
+}
+#main .main_bt h1{
+	font: bold 12px/26px Arial, Helvetica, sans-serif;
+	color:#333;
+	text-align:center
+}
+#main .main_bt_f{
+	width:1200px;
+	height:26px;
+	margin:0;
+	padding:0;
+	background:url(images/xyt_02.jpg) 0 0 repeat-x;
+}
+#main .main_bt_f p{
+	font:12px/26px Arial, Helvetica, sans-serif;
+	color:#333;
+	text-align:center
+}
+#main .main_bt_f span{
+	font:12px/26px Arial, Helvetica, sans-serif;
+	color:#FF0000;
+	text-align:center
+}
+#main .content {
+	width:1200px;
+	height:399px;
+	margin:0;
+	padding:0;
+	background:url(images/xyt_03.jpg) 0 0 repeat-x;
+}
+#main .content_bg {
+	height:399px;
+	margin:0;
+	padding:0;
+	background:url(images/xyt_05.jpg) 0 0 no-repeat;
+}
+.content_txt {
+	z-index:2000;
+}
+.content h1 {
+	display:block;
+	font: bold 14px/24px Arial, Helvetica, sans-serif;
+	color:#225A79;
+	text-align:center
+}
+.content h2{
+	display:block;
+	font: bold 12px/44px Arial, Helvetica, sans-serif;
+	color:#133A42;
+	text-align:center
+}
+.content h3{
+	display:block;
+	font: bold 12px/22px Arial, Helvetica, sans-serif;
+	color:#133A42;
+	padding-left:4px;
+}
+.content p{
+	display:block;
+	font:12px/18px Arial, Helvetica, sans-serif;
+	color:#133A42;
+	padding-left:4px;
+}
+.content span{
+	display:block;
+	font:12px/14px Arial, Helvetica, sans-serif;
+	color:#999;
+	text-align:center;
+}
+.content b{
+	font: bold 12px/14px Arial, Helvetica, sans-serif;
+	color:#CC0000;
+}
+
+.content .s1_c_01{
+	width:164px;
+	height:46px;
+	background:url(images/xyt_09.jpg) 0 0 no-repeat;
+	cursor:hand;
+}
+.content .s1_c_02{
+	width:164px;
+	height:46px;
+	background:url(images/xyt_10.jpg) 0 0 no-repeat;
+	cursor:hand;
+}
+.content .s1_c_03{
+	width:164px;
+	height:46px;
+	background:url(images/xyt_11.jpg) 0 0 no-repeat;
+	cursor:hand;
+}
+.content .s2_c_01{
+	width:150px;
+	height:81px;
+	background:url(images/xyt_12.jpg) 0 0 no-repeat;
+	cursor:hand;
+}
+.content .s2_c_02{
+	width:150px;
+	height:81px;
+	background:url(images/xyt_13.jpg) 0 0 no-repeat;
+	cursor:hand;
+}
+.content .s2_c_03{
+	width:150px;
+	height:81px;
+	background:url(images/xyt_14.jpg) 0 0 no-repeat;
+	cursor:hand;
+}
+
+.content .p_01{
+	position:absolute;
+	top:67px;
+	left:162px;
+}
+.content .p_02{
+	position:absolute;
+	top:67px;
+	left:353px;
+}
+.content .p_03{
+	position:absolute;
+	top:67px;
+	left:544px;
+}
+.content .p_04{
+	position:absolute;
+	top:66px;
+	left:734px;
+}
+.content .p_05{
+	position:absolute;
+	top:168px;
+	left:163px;
+}
+.content .p_06{
+	position:absolute;
+	top:168px;
+	left:547px;
+}
+.content .p_07{
+	position:absolute;
+	top:151px;
+	left:360px;
+}
+.content .p_08{
+	position:absolute;
+	top:266px;
+	left:162px;
+}
+.content .p_09{
+	position:absolute;
+	top:266px;
+	left:324px;
+}
+.content .p_10{
+	position:absolute;
+	top:265px;
+	left:486px;
+}
+.content .p_11{
+	position:absolute;
+	top:265px;
+	left:649px;
+}
+.content .p_12{
+	position:absolute;
+	top:266px;
+	left:810px;
+}
+.content .p_13{
+	position:absolute;
+	top:266px;
+	left:972px;
+}
+.content .p_14{
+	position:absolute;
+	top:390px;
+	left:161px;
+}
+.content .p_15{
+	position:absolute;
+	top:391px;
+	left:353px;
+}
+.content .p_16{
+	position:absolute;
+	top:391px;
+	left:547px;
+}
+.content .p_17{
+	position:absolute;
+	top:391px;
+	left:737px;
+}
+
+
+
+#main .main_botton{
+	width:1200px;
+	height:27px;
+	margin:0;
+	padding:0;
+	background:url(images/xyt_04.jpg) 0 0 repeat-x;
+}
+#main .main_botton p{
+	display:inline;
+	font:12px/26px Arial, Helvetica, sans-serif;
+	color:#333;
+	padding:0 0 0 8px;
+}
+#main .main_botton img{
+	width:74px;
+	height:20px;
+	position:relative;
+	top:5px;
+}
+
+
+/*------------------------------------------------main--------------------*/

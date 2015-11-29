@@ -1,0 +1,30 @@
+<Carton width="0" height="0">
+  <variable/>
+  <Chart type="AMLEGEND" width="138" height="64" UID="2UEPCTOQ" x="462" y="38">
+    <param name="chartProvider" mode="prop" value="2UEOKI9B"/>
+    <param name="valueWidth" mode="style" value=""/>
+    <param name="horizontalGap" mode="style" value="20"/>
+    <param name="verticalGap" mode="style" value="10"/>
+    <param name="marginLeft" mode="style" value="1"/>
+    <param name="textClickEnabled" mode="prop" value="true"/>
+  </Chart>
+  <Chart type="LABEL" width="138" height="31" text="标签" UID="D6LHAI5" x="227" y="14">
+    <param name="text" mode="prop" value="工程进展趋势"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="fontSize" mode="style" value="20"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="color" mode="style" value="16737792"/>
+  </Chart>
+  <Chart type="AMLINECHART" width="479" height="267" UID="4CK578P5" x="1" y="44">
+    <param name="dataProvider" mode="sql"><![CDATA[select a.xmonth,  m.jihua jimonth , nvl(to_char((m.thistask-1)),'NULL') jitask ,m.thisname jiname,  n.wancheng wanmonth ,nvl(to_char((n.thistask-1)),'NULL') wantask ,n.thisname wanname from(select to_char(t.finish_, 'yyyy-mm') xmonth  from edo_task t where t.milestone_ = '1' and t.projectuid_ = (select p.uid_ from edo_project p where p.pid = '1030603' and p.name_ = '里程碑计划') union select to_char(b.finish_, 'yyyy-mm') xmonth from edo_baseline b where  b.projectuid_ = (select p.uid_  from edo_project p where p.pid = '1030603' and p.name_ = '里程碑计划') and b.taskuid_ in (select t.uid_ from edo_task t where t.milestone_ = '1' and t.projectuid_ = (select p.uid_ from edo_project p where p.pid = '1030603' and p.name_ = '里程碑计划')) ) a left join (select to_char(b.finish_, 'yyyy-mm') jihua ,t.id_ thistask,t.name_ thisname from edo_task t, edo_baseline b where t.uid_ = b.taskuid_  and b.projectuid_ = t.projectuid_   and  t.projectuid_ = (select p.uid_ from edo_project p  where p.pid = '1030603' and p.name_ = '里程碑计划') and t.milestone_ = '1' order by t.id_) mon a.xmonth = m.jihualeft join(   select to_char(t.finish_, 'yyyy-mm') wancheng,t.id_ thistask,t.name_ thisname from edo_task t  where  t.projectuid_ = (select p.uid_ from edo_project p  where p.pid = '1030603' and p.name_ = '里程碑计划') and t.milestone_ = '1' order by t.id_ ) non a.xmonth = n.wanchengorder by xmonth]]></param>
+    <param name="categoryField" mode="prop" value="XMONTH"/>
+    <param name="fields" mode="prop" value="JITASK|WANTASK"/>
+    <param name="rotate" mode="prop" value="false"/>
+    <param name="graphs.title" mode="prop" value="里程碑计划|里程碑完成"/>
+    <param name="GraphItemClick" mode="event" value="linkParam"/>
+    <param name="params" mode="prop" value="JIMONTH=JI_MONTH;JINAME=JI_NAME;WANMONTH=WAN_MONTH;WANNAME=WAN_NAME"/>
+    <param name="ygridCount" mode="prop" value="12"/>
+    <param name="graphs.balloonText" mode="prop" value="里程碑计划&lt;BR>[[JIMONTH]]&lt;BR>[[JINAME]]|里程碑完成&lt;BR>[[WANMONTH]]&lt;BR>[[WANNAME]]"/>
+    <param name="xgridCount" mode="prop" value="5"/>
+  </Chart>
+</Carton>

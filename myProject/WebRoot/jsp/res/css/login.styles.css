@@ -1,0 +1,35 @@
+body {
+	background:#7eaeec url(../images/login/bg-body1.jpg) repeat-y 0 0;	
+}
+.add {
+    background-image:url(../images/login/favicon.gif) !important;
+}
+
+.login-banner{
+	background:url(../images/login/zhjh-banner.jpg) no-repeat 0 0;
+}
+
+.login-form{
+	border-top:1px solid white;
+	color: white;
+	background:url(../images/login/bg-login-form.jpg) repeat-y 0 0;
+}
+.log{
+	background: none;
+	color: white;
+}
+
+.msg .x-box-mc {
+	font-size: 14px;
+}
+
+#msg-div {
+	position: absolute;
+	left: 5%;
+	top: 15px;
+	width: 250px;
+	z-index: 20000;
+	word-break: break-all;
+}
+.dlg-error{display:none; background:transparent url(/ext2/resources/images/default/window/icon-error.gif) no-repeat top left;}
+

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<convert converter="bean" match="com.sgepit.pmis.wzgl.hbm.*" />		
+		<!-- 物资基本信息管理 -->
+        <create creator="spring" javascript="wzbaseinfoMgm" scope="page">
+			<param name="beanName" value="wzBaseInfoMgmImpl" />
+			<include method="addOrUpdateWzCkclb"></include>
+			<include method="deleteWzCkclb"></include>
+			<include method="saveWzCkclb"></include>
+			<include method="saveGetResPersonTree"></include>
+			<include method="checkBMno"></include>
+			<include method="checkCSno"></include>
+			<include method="addOrUpdateWzBm"></include>
+			<include method="updateWzbmStateChange"></include>
+			<include method="deleteWzBm"></include>
+			<include method="saveWzBm"></include>
+			<include method="updateWzBm"></include>
+			<include method="addOrUpdateWzBmApply"></include>
+			<include method="deleteWzBmApply"></include>
+			<include method="updateWzbmConfirmReturn"></include>
+			<include method="updateWzCsStateChange"></include>
+			<include method="addOrUpdateWzCsType"></include>
+			<include method="deleteWzCsType"></include>
+			<include method="addOrUpdateWzCsb"></include>
+			<include method="updateWzbmStateChange"></include>
+			<include method="getNewbm"></include>
+			<include method="delWzUser"></include>
+			<include method="addOrUpdateWzBmConfirm"></include>
+			<include method="getNewWzBm"></include>
+			<include method="getStockWzBm"></include>
+			
+			<!-- 物资维护Start -->
+			<include method="addOrUpdateWzArrival"></include>
+			<include method="WzArrivalFinished"></include>
+			<include method="sendSmsByWzGoodsArrival"></include>
+			<include method="setWzSmsUserFun"></include>
+			<include method="deleteArrival"></include>
+			<include method="addOrUpdateWzOpenboxNotice"></include>
+			<include method="insertWzNoticeSubFromArrivalSub"></include>
+			<include method="addOrUpdateWzOpenbox"></include>
+			<include method="deleteWzOpenboxSub"></include>
+			<include method="getWzOpenboxSubFromNotice"></include>
+			<include method="deleteWzOpenbox"></include>
+			<include method="wzOpenboxFinished"></include>
+			<include method="initWzOpenboxResult"></include>
+			<include method="wzNoticeFinished"></include>
+			<include method="deleteWzOpenboxNotice"></include>
+			<include method="saveStoreWzInByCon"></include>
+			<include method="delWzRkGoodsStorein"></include>
+			<include method="judgmentWzFinished"></include>
+			<include method="saveOrUpdataWzRkGoodsStorein"></include>
+			<include method="selectWzCheckToEquIn"></include>
+			<include method="getWzStockNumFromStock"></include>
+			<include method="addOrUpdateWzOut"></include>
+			<include method="insertWzOutSubFromStock"></include>
+			<include method="deleteWzOutAndOutSub"></include>
+			<include method="wzOutFinished"></include>
+			<include method="getWzOutNumFromOutSub"></include>
+			<include method="updateWzStockNum"></include>
+			<include method="saveOrUpdataWzZGRkGoodsStorein"></include>
+			<include method="selectWzCheckToEquInEstimate"></include>
+			<include method="delWzRkGoodsStoreinEstimate"></include>
+			<include method="judgmentWzFinishedEstimate"></include>
+			<include method="finishWzZGRkGoodsStorein"></include>
+			<include method="delWzRkGoodsStoreinBack"></include>
+			<include method="resetMaterialGoodsStoreinBack"></include>
+			<include method="judgmentWzBackFinished"></include>
+			<include method="wzGoodsIntoWarehousingFromZGRK"></include>
+			<include method="addOrUpdateWzOutEstimate"></include>
+			<include method="insertWzEstimateOutSubFromStock"></include>
+			<include method="insertWzOutEsSubFromStock"></include>
+			<include method="getStockNumFromStock"></include>
+			<include method="updateStockNum"></include>
+			<include method="wzOutEstimateFinished"></include>
+			<include method="deleteWzEstimateOutAndOutSub"></include>
+			<include method="getOutNumFromOutSub"></include>
+			<include method="insertWzGoodsOutBack"></include>
+			<include method="deleteWzOutBackAndOutBackSub"></include>
+			<include method="wzOutBackFinished"></include>
+			<include method="insertWzGoodsOutBack"></include>
+			<include method="resetWzGoodsOutEstimate"></include>
+			<include method="insertWzFromOutEstimateToOutStock"></include>
+			<include method="wzBodySaveOrUpdate"></include>
+			<include method="saveOrUpdataWzGoodsStoreinEstimateSub"></include>
+			<include method="saveOrUpdataWzGoodsStoreinSub"></include>
+			<include method="saveWzEsSubFromEquGoodsBody"></include>
+			<include method="saveWzIntoSubFromEquGoodsBody"></include>
+			<include method="insertWzbmIntoMatStoreInSub"></include>
+			<include method="pasteWzOpenboxPart"></include>
+			<!-- 主体材料维护从采购合同选择物资 -->
+		    <include method="wzAddBodyFromConMat"></include>
+		    <include method="insertCLSubToFinishedRecord"></include>
+			
+		    <include method="doSelectInSubToOutSub"></include>
+		    <!-- 主体设备暂估冲回操作方法  yanglh 2013-11-19   -->
+		    <include method="zgrkInsertChrkAndZsrkWz"></include>
+		    <include method="zgckInsertChckAndZsckWzOut"></include>
+		    <!-- 设备清册选择方法 -->
+		    <include method="updateQc"></include>
+		     <!-- 获取设备清册数量方法 -->
+		    <include method="getQcCount"></include>
+		     <!-- 获取设备清册id方法 -->
+		    <include method="getQcUids"></include>
+			<!-- 物资维护end -->    
+			
+		</create>
+		<!-- 采购信息管理 -->
+		 <create creator="spring" javascript="stockMgm" scope="page">
+			<param name="beanName" value="StockMgm" />
+			<include method="collectApplyAndCreateStock"></include>	
+			<include method="deleteStockPlan"></include>		
+			<include method="deleteStockPlanMat"></include>		
+			<include method="getStockPlanNewBh"></include>		
+			<include method="modifyWzInputCheckin"></include>	
+			<include method="addOrUpdateWzCjspb"></include>
+			<include method="checkBHno"></include>
+			<include method="wzcjsxbSelectWz"></include>		
+			<include method="createConMatFromStorage"></include>
+			<include method="createArriveMatFromStorage"></include>
+			<include method="saveApplyHzSub"></include>
+			<include method="deleteApplyHzById"></include>
+			<include method="deleteApplyHzSubById"></include>
+			<include method="saveStockPlanWzFromApply"></include>
+			<include method="saveStockPlanWzFromApplyHz"></include>		
+			<include method="deleteApplyPlan"></include>		
+			
+			<!-- 移植国锦 -->
+			<include method="getArriveBh"></include>	
+		</create>
+		
+		
+		
+		<!-- 出库管理,仓储管理 -->
+        <create creator="spring" javascript="storageMgmImpl" scope="page">
+			<param name="beanName" value="StorageMgmImpl" />
+			<include method="getGoods"></include>
+			<include method="updateBillState"></include>
+			<include method="deleteGoods"></include>
+			<include method="createMonthStock"></include>
+			
+			<!-- 移植国锦方法 -->
+			<include method="getJhbh"></include>
+		</create>
+		
+	</allow>
+</dwr>

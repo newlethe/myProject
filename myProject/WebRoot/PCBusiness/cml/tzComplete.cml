@@ -1,0 +1,317 @@
+<Carton width="1028" height="490">
+  <variable>
+    <param name="pname" initValue=""/>
+  </variable>
+  <Chart type="AMCOLUMNCHART" width="680" height="200" text="柱状图" UID="2BO0G7J7" x="20" y="50">
+    <param name="dataProvider" mode="sql"><![CDATA[SELECT a.y sj,nvl(b.tzplan,0) tzplan,nvl(b.zjin,0) zjin,nvl(b.zjout,0) zjout,nvl(b.tzcomp,0) tzcomp,nvl(b.yue,0) yue FROM (
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*2),'YYYY')||'年' Y FROM DUAL 
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,-12*1),'YYYY')||'年' Y FROM DUAL 
+UNION
+SELECT to_char(SYSDATE,'YYYY')||'年' Y FROM DUAL 
+UNION
+SELECT to_char(ADD_MONTHS(SYSDATE,12),'YYYY')||'年' Y FROM DUAL 
+) a
+LEFT JOIN
+(
+SELECT 
+v.prj_money_total tzplan,
+t.year_in zjin,
+t.year_out zjout,
+t.year_comp tzcomp,
+(T.TOTAL_IN - T.TOTAL_OUT) yue,
+substr(t.sj_type,0,4)||'年' sj,
+t.unit_id
+ FROM pc_tzgk_month_comp_detail t ,v_pc_tzgk_month_report_zhxx v
+ WHERE 1=1 
+ AND v.unit_id = t.unit_id
+ AND t.sj_type = v.sj_type 
+ AND t.sj_type IN (SELECT max(m.sj_type) FROM pc_tzgl_month_comp_m m GROUP BY substr(m.sj_type,0,4)) 
+ ) b
+ON a.y = b.sj
+ORDER BY a.y]]></param>
+    <param name="depth3D" mode="style" value="20"/>
+    <param name="angle" mode="style" value="45"/>
+    <param name="categoryField" mode="prop" value="SJ"/>
+    <param name="fields" mode="prop" value="TZPLAN|ZJIN|ZJOUT|TZCOMP|YUE"/>
+    <param name="marginBottom" mode="style" value="25"/>
+    <param name="marginTop" mode="style" value="0"/>
+    <param name="marginRight" mode="style" value="0"/>
+    <param name="marginLeft" mode="style" value="60"/>
+    <param name="graphs.lineColor" mode="style" value="1386458|52326|13339726|16737843|13395558"/>
+    <param name="rotate" mode="prop" value="false"/>
+    <param name="columnSpacing" mode="style" value="0"/>
+    <param name="graphs.title" mode="prop" value="投资计划|资金到位|资金支出|投资完成|资金余额"/>
+    <param name="ygridCount" mode="prop" value="8"/>
+  </Chart>
+  <Chart type="LABEL" width="449" height="21" text="标签" UID="37OHS7EF" x="176" y="11">
+    <param name="text" mode="prop" value="[pname]投资完成（年度计划）"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="fontSize" mode="style" value="16"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="textAlign" mode="style" value="center"/>
+  </Chart>
+  <Chart type="LABEL" width="78" height="20" text="标签" UID="37OIPKK4" x="694" y="46">
+    <param name="text" mode="prop" value="单位：万元"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="fontSize" mode="style" value="12"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+  </Chart>
+  <Chart type="AMLEGEND" width="95" height="134" text="图例" UID="37OJDSRG" x="694" y="90">
+    <param name="chartProvider" mode="prop" value="2BO0G7J7"/>
+    <param name="marginLeft" mode="style" value="0"/>
+    <param name="marginRight" mode="style" value="0"/>
+    <param name="marginTop" mode="style" value="0"/>
+    <param name="marginBottom" mode="style" value="0"/>
+    <param name="horizontalGap" mode="style" value="0"/>
+    <param name="verticalGap" mode="style" value="5"/>
+    <param name="valueWidth" mode="style" value="0"/>
+  </Chart>
+  <Chart type="TABNAVIGATOR" width="1020" height="240" text="tab页" UID="2BNUGFFT" labels="2012年|2013年|2014年" x="8" y="250">
+    <Chart type="AMCOLUMNCHART" width="920" height="170" text="柱状图" UID="AC1J0I7" tabIndex="1" x="5" y="32">
+      <param name="dataProvider" mode="sql"><![CDATA[SELECT a.m||'月' sj, nvl(b.zjin,0) zjin,nvl(b.zjout,0) zjout,nvl(b.tzcomp,0) tzcomp,nvl(b.yue,0) yue FROM (
+SELECT '01' m FROM DUAL 
+UNION
+SELECT '02' m FROM DUAL 
+UNION
+SELECT '03' m FROM DUAL 
+UNION
+SELECT '04' m FROM DUAL 
+UNION
+SELECT '05' m FROM DUAL 
+UNION
+SELECT '06' m FROM DUAL 
+UNION
+SELECT '07' m FROM DUAL 
+UNION
+SELECT '08' m FROM DUAL 
+UNION
+SELECT '09' m FROM DUAL 
+UNION
+SELECT '10' m FROM DUAL 
+UNION
+SELECT '11' m FROM DUAL 
+UNION
+SELECT '12' m FROM DUAL 
+
+) a
+LEFT JOIN
+(
+SELECT 
+t.year_in zjin,
+t.year_out zjout,
+t.year_comp tzcomp,
+(T.TOTAL_IN - T.TOTAL_OUT) yue,
+substr(t.sj_type,5,6) sj,
+t.unit_id
+ FROM pc_tzgk_month_comp_detail t
+ WHERE substr(t.sj_type,0,4) = '2013'
+ ORDER BY t.sj_type
+) b
+ON a.m = b.sj
+ORDER BY a.m
+]]></param>
+      <param name="categoryField" mode="prop" value="SJ"/>
+      <param name="fields" mode="prop" value="ZJIN|ZJOUT|TZCOMP|YUE"/>
+      <param name="ygridCount" mode="prop" value="6"/>
+      <param name="xgridCount" mode="prop" value="12"/>
+      <param name="angle" mode="style" value="55"/>
+      <param name="depth3D" mode="style" value="11"/>
+      <param name="columnSpacing" mode="style" value="0"/>
+      <param name="marginLeft" mode="style" value="60"/>
+      <param name="marginRight" mode="style" value="0"/>
+      <param name="marginTop" mode="style" value="0"/>
+      <param name="marginBottom" mode="style" value="25"/>
+      <param name="graphs.lineColor" mode="style" value="52326|13339726|16737843|13395558"/>
+      <param name="graphs.title" mode="prop" value="资金到位|资金支出|投资完成|资金余额"/>
+    </Chart>
+    <Chart type="AMCOLUMNCHART" width="920" height="170" text="柱状图" UID="37OFV3U5" tabIndex="2" x="5" y="32">
+      <param name="dataProvider" mode="sql"><![CDATA[SELECT a.m||'月' sj, nvl(b.zjin,0) zjin,nvl(b.zjout,0) zjout,nvl(b.tzcomp,0) tzcomp,nvl(b.yue,0) yue FROM (
+SELECT '01' m FROM DUAL 
+UNION
+SELECT '02' m FROM DUAL 
+UNION
+SELECT '03' m FROM DUAL 
+UNION
+SELECT '04' m FROM DUAL 
+UNION
+SELECT '05' m FROM DUAL 
+UNION
+SELECT '06' m FROM DUAL 
+UNION
+SELECT '07' m FROM DUAL 
+UNION
+SELECT '08' m FROM DUAL 
+UNION
+SELECT '09' m FROM DUAL 
+UNION
+SELECT '10' m FROM DUAL 
+UNION
+SELECT '11' m FROM DUAL 
+UNION
+SELECT '12' m FROM DUAL 
+
+) a
+LEFT JOIN
+(
+SELECT 
+t.year_in zjin,
+t.year_out zjout,
+t.year_comp tzcomp,
+(T.TOTAL_IN - T.TOTAL_OUT) yue,
+substr(t.sj_type,5,6) sj,
+t.unit_id
+ FROM pc_tzgk_month_comp_detail t
+ WHERE substr(t.sj_type,0,4) = '2014'
+ ORDER BY t.sj_type
+) b
+ON a.m = b.sj
+ORDER BY a.m
+]]></param>
+      <param name="categoryField" mode="prop" value="SJ"/>
+      <param name="fields" mode="prop" value="ZJIN|ZJOUT|TZCOMP|YUE"/>
+      <param name="ygridCount" mode="prop" value="6"/>
+      <param name="xgridCount" mode="prop" value="12"/>
+      <param name="angle" mode="style" value="55"/>
+      <param name="depth3D" mode="style" value="11"/>
+      <param name="columnSpacing" mode="style" value="0"/>
+      <param name="marginLeft" mode="style" value="60"/>
+      <param name="marginRight" mode="style" value="0"/>
+      <param name="marginTop" mode="style" value="0"/>
+      <param name="marginBottom" mode="style" value="25"/>
+      <param name="graphs.lineColor" mode="style" value="52326|13339726|16737843|13395558"/>
+      <param name="graphs.title" mode="prop" value="资金到位|资金支出|投资完成|资金余额"/>
+    </Chart>
+    <Chart type="AMCOLUMNCHART" width="920" height="170" text="柱状图" UID="37OFTB4P" tabIndex="0" x="5" y="32">
+      <param name="dataProvider" mode="sql"><![CDATA[SELECT a.m||'月' sj, nvl(b.zjin,0) zjin,nvl(b.zjout,0) zjout,nvl(b.tzcomp,0) tzcomp,nvl(b.yue,0) yue FROM (
+SELECT '01' m FROM DUAL 
+UNION
+SELECT '02' m FROM DUAL 
+UNION
+SELECT '03' m FROM DUAL 
+UNION
+SELECT '04' m FROM DUAL 
+UNION
+SELECT '05' m FROM DUAL 
+UNION
+SELECT '06' m FROM DUAL 
+UNION
+SELECT '07' m FROM DUAL 
+UNION
+SELECT '08' m FROM DUAL 
+UNION
+SELECT '09' m FROM DUAL 
+UNION
+SELECT '10' m FROM DUAL 
+UNION
+SELECT '11' m FROM DUAL 
+UNION
+SELECT '12' m FROM DUAL 
+
+) a
+LEFT JOIN
+(
+SELECT 
+t.year_in zjin,
+t.year_out zjout,
+t.year_comp tzcomp,
+(T.TOTAL_IN - T.TOTAL_OUT) yue,
+substr(t.sj_type,5,6) sj,
+t.unit_id
+ FROM pc_tzgk_month_comp_detail t
+ WHERE substr(t.sj_type,0,4) = '2012'
+ ORDER BY t.sj_type
+) b
+ON a.m = b.sj
+ORDER BY a.m
+]]></param>
+      <param name="categoryField" mode="prop" value="SJ"/>
+      <param name="fields" mode="prop" value="ZJIN|ZJOUT|TZCOMP|YUE"/>
+      <param name="ygridCount" mode="prop" value="6"/>
+      <param name="xgridCount" mode="prop" value="12"/>
+      <param name="angle" mode="style" value="55"/>
+      <param name="depth3D" mode="style" value="11"/>
+      <param name="columnSpacing" mode="style" value="0"/>
+      <param name="marginLeft" mode="style" value="60"/>
+      <param name="marginRight" mode="style" value="0"/>
+      <param name="marginTop" mode="style" value="0"/>
+      <param name="marginBottom" mode="style" value="25"/>
+      <param name="graphs.lineColor" mode="style" value="52326|13339726|16737843|13395558"/>
+      <param name="graphs.title" mode="prop" value="资金到位|资金支出|投资完成|资金余额"/>
+    </Chart>
+    <Chart type="LABEL" width="456" height="19" text="标签" UID="37RJLHGT" tabIndex="0" x="300" y="0">
+      <param name="text" mode="prop" value="[pname]2012年投资完成情况（月度统计）"/>
+      <param name="fontFamily" mode="style" value="宋体"/>
+      <param name="fontSize" mode="style" value="14"/>
+      <param name="fontWeight" mode="style" value="bold"/>
+    </Chart>
+    <Chart type="LABEL" width="456" height="19" text="标签" UID="ACC84TQ" tabIndex="1" x="300" y="0">
+      <param name="text" mode="prop" value="[pname]2013年投资完成情况（月度统计）"/>
+      <param name="fontFamily" mode="style" value="宋体"/>
+      <param name="fontSize" mode="style" value="14"/>
+      <param name="fontWeight" mode="style" value="bold"/>
+    </Chart>
+    <Chart type="LABEL" width="456" height="19" text="标签" UID="ACC8FQE" tabIndex="2" x="300" y="0">
+      <param name="text" mode="prop" value="[pname]2014年投资完成情况（月度统计）"/>
+      <param name="fontFamily" mode="style" value="宋体"/>
+      <param name="fontSize" mode="style" value="14"/>
+      <param name="fontWeight" mode="style" value="bold"/>
+    </Chart>
+    <Chart type="LABEL" width="74" height="19" text="标签" UID="37RIQVRP" tabIndex="0" x="930" y="18">
+      <param name="text" mode="prop" value="单位：万元"/>
+      <param name="fontSize" mode="style" value="12"/>
+      <param name="fontWeight" mode="style" value="bold"/>
+    </Chart>
+    <Chart type="LABEL" width="74" height="19" text="标签" UID="37RQP6JQ" tabIndex="1" x="930" y="18">
+      <param name="text" mode="prop" value="单位：万元"/>
+      <param name="fontSize" mode="style" value="12"/>
+      <param name="fontWeight" mode="style" value="bold"/>
+    </Chart>
+    <Chart type="LABEL" width="74" height="19" text="标签" UID="37RQSUQI" tabIndex="2" x="930" y="18">
+      <param name="text" mode="prop" value="单位：万元"/>
+      <param name="fontSize" mode="style" value="12"/>
+      <param name="fontWeight" mode="style" value="bold"/>
+    </Chart>
+    <Chart type="AMLEGEND" width="80" height="111" text="图例" UID="37RHTESD" tabIndex="0" x="930" y="57">
+      <param name="chartProvider" mode="prop" value="37OFTB4P"/>
+      <param name="marginLeft" mode="style" value="0"/>
+      <param name="marginRight" mode="style" value="0"/>
+      <param name="marginTop" mode="style" value="0"/>
+      <param name="marginBottom" mode="style" value="0"/>
+      <param name="horizontalGap" mode="style" value="0"/>
+      <param name="verticalGap" mode="style" value="5"/>
+      <param name="valueWidth" mode="style" value="0"/>
+    </Chart>
+    <Chart type="AMLEGEND" width="80" height="111" text="图例" UID="37RRDB0B" tabIndex="1" x="930" y="57">
+      <param name="chartProvider" mode="prop" value="AC1J0I7"/>
+      <param name="marginLeft" mode="style" value="0"/>
+      <param name="marginRight" mode="style" value="0"/>
+      <param name="marginTop" mode="style" value="0"/>
+      <param name="marginBottom" mode="style" value="0"/>
+      <param name="horizontalGap" mode="style" value="0"/>
+      <param name="verticalGap" mode="style" value="5"/>
+      <param name="valueWidth" mode="style" value="0"/>
+    </Chart>
+    <Chart type="AMLEGEND" width="80" height="111" text="图例" UID="ACCB6BP" tabIndex="2" x="930" y="57">
+      <param name="chartProvider" mode="prop" value="37OFV3U5"/>
+      <param name="marginLeft" mode="style" value="0"/>
+      <param name="marginRight" mode="style" value="0"/>
+      <param name="marginTop" mode="style" value="0"/>
+      <param name="marginBottom" mode="style" value="0"/>
+      <param name="horizontalGap" mode="style" value="0"/>
+      <param name="verticalGap" mode="style" value="5"/>
+      <param name="valueWidth" mode="style" value="0"/>
+    </Chart>
+  </Chart>
+  <Chart type="BUTTON" width="205" height="41" text="按钮" UID="43Q8H58S" x="808" y="40">
+    <param name="dataProvider" mode="sql"/>
+    <param name="label" mode="prop" value="工程投资完成数据报表查询"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="fontSize" mode="style" value="14"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="textAlign" mode="style" value="center"/>
+    <param name="events" mode="events"/>
+    <param name="click" mode="event" value="actionParam"/>
+    <param name="actionBody" mode="prop" value="openTzWin()"/>
+  </Chart>
+</Carton>

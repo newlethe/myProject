@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+
+	<allow>
+
+		<convert converter="bean" match="com.sgepit.pmis.budget.hbm.*" />
+		<convert converter="bean" match="com.sgepit.pmis.tenders.hbm.*" />
+		<convert converter="bean" match="com.sgepit.pmis.coninvested.hbm.*" />
+		
+        <!--概算结构维护-->
+		<create creator="spring" javascript="bdgInfoMgm" scope="page">
+			<param name="beanName" value="bdgInfoMgm" />
+			<include method="deleteChildNode"></include>
+			<include method="addOrUpdate"></include>
+		    <include method="queryBdgid"></include>
+			<include method="sumAllRealmoney"></include>
+			<include method="isApportion"></include>
+			<include method="isHasChilds"></include>
+			<include method="clearBdgMoney"></include>
+			<include method="checkBdgInit"></include>
+			<include method="initBdgTree"></include>
+			<include method="updaterRemainingMoney"></include>
+			<include method="initializationAction"></include>
+			<include method="updateBdginfoFlag"></include>
+			<include method="deleteChildNodesByCalMoney"></include>
+			<include method="addOrUpdateByCalMoney"></include>	
+			<include method="bdgCheckTreeGrid"></include>	
+			<include method="sumMoneyOfBdgInfo"></include>	
+		</create>
+		
+		<!--合同金额概算-->
+		<create creator="spring" javascript="bdgMoneyMgm" scope="page">
+			<param name="beanName" value="bdgMoneyMgm" />
+			<include method="deleteChildNodeBdgMoneyApp"></include>
+			<include method="addOrUpdateBdgMoneyApp"></include>
+			<include method="saveGetBudgetTree"></include>
+			<include method="checkifhaveChild"></include>
+			<include method="sumbdgMoneyApp"></include>
+			<include method="isPayorChangeApp"></include>
+			<include method="isMonneyApp"></include>
+			<include method="addOrUpdateBdgMonthMoneyPlan"></include>
+			<include method="checkBdgMonAppValueByConId"></include>
+			<include method="checkBdgMonAppNotModify"></include>
+			<include method="deleteChildNodeBdgVMoneyApp"></include>
+			<include method="getBdgMoneyAppNew"></include>
+			
+		</create>
+		<!--合同变更概算-->
+		<create creator="spring" javascript="bdgChangeMgm" scope="page">
+			<param name="beanName" value="bdgChangeMgm" />
+			<include method="deleteChildNodeBdgChangeApp"></include>
+			<include method="addOrUpdateBdgChangeApp"></include>
+			<include method="saveBdgmoneyTree"></include>
+			<include method="isProject"></include>
+			<include method="isEquipment"></include>
+			<include method="CheckChaAppIsValid"></include>
+			<include method="saveGetBudgetTree"></include>
+			<include method="saveBdgmoneyNewTree"></include>
+		</create>
+		
+		<!--合同付款概算-->
+		<create creator="spring" javascript="bdgPayMgm" scope="page">
+			<param name="beanName" value="bdgPayMgm" />
+			<include method="deletePayChildNode"></include>
+			<include method="addOrUpdateBdgPayApp"></include>
+			<include method="savePayTree"></include>
+			<include method="checkifhavaChild"></include>
+			<include method="checkAppPay"></include>
+			<include method="savePayLibraryTree"></include>
+		</create>
+		
+		<!--合同结算概算-->
+		<create creator="spring" javascript="bdgBalMgm" scope="page">
+			<param name="beanName" value="bdgBalMgm" />
+			<include method="deleteBalChildNode"></include>
+			<include method="addOrUpdateBdgBalApp"></include>
+			<include method="saveBalTree"></include>
+		</create>
+		
+		<!--合同索赔概算-->
+		<create creator="spring" javascript="bdgCompensateMgm" scope="page">
+			<param name="beanName" value="bdgCompensateMgm" />
+			<include method="deleteBdgCompensate"></include>
+			<include method="addOrUpdateBdgCompensate"></include>
+			<include method="saveBdgcompensateTree"></include>
+			<include method="validateCompensate"></include>
+			<include method="saveBdgcompensateLibraryTree"></include>
+			<include method="deleteCompensateChildNode"></include>
+		</create>
+		
+		<!--合同违约概算-->
+		<create creator="spring" javascript="bdgBreachMgm" scope="page">
+			<param name="beanName" value="bdgBreachMgm" />
+			<include method="deleteBreachChildNode"></include>
+			<include method="addOrUpdateBdgBreachApp"></include>
+			<include method="saveBreachTree"></include>
+			<include method="checkBdgBreachValid"></include>
+			<include method="saveBreachLibraryTree"></include>
+		</create>
+		
+		<!-- 合同投资完成 -->
+		<create creator="spring" javascript="conCompletionMgm" scope="page">
+			<param name="beanName" value="conCompletionMgm" />
+			<include method="getCompleteConids"></include>
+			<include method="initConCompletionSub"></include>
+			<include method="checkDelete"></include>
+			<include method="setTotalMoney"></include>
+		</create>		
+		
+		<!-- 投资完成 -->
+		<create creator="spring" javascript="corpInvMgm" scope="page">
+			<param name="beanName" value="corpInvMgm" />
+			<include method="checkDelete"></include>
+		</create>
+		
+		<create creator="spring" javascript="subcorpMgm" scope="page">
+			<param name="beanName" value="subcorpMgm" />
+			<include method="saveGetBudgetTree"></include>
+			<include method="reCalculate"></include>
+		</create>
+		
+		<!--材料投资完成-->
+		<create creator="spring" javascript="matCompletionMgmImpl" scope="page">
+			<param name="beanName" value="matCompletionMgmImpl" />
+			<include method="getBdgData"></include>  
+			<include method="initMatCompletion"></include>
+		</create>
+		
+		<!-- 工程量 -->
+		<create creator="spring" javascript="bdgProjectMgm">
+			<param name="beanName" value="bdgProjectMgm"/>
+			<include method="checkBdgProValid"></include>
+			<include method="insertBdgProject"></include>
+			<include method="updateBdgProject"></include>
+			<include method="deleteRelaProject"></include>
+			<include method="insertBdgChangeProject"></include>
+			<include method="updateBdgChangeProject"></include>
+			<include method="deleteBdgChangeProject"></include>
+			<include method="checkBdgChangeProjectOnly"></include>
+			<include method="checkBdgProjectSameToChangeProject"></include>
+			<include method="checkChangeProjectMoneyValid"></include>
+			<include method="deleteRelateChangeProject"></include>
+			<include method="checkBdgProjectIsUse"></include>
+			<include method="relaBdgProject"></include>
+			<include method="relaBdgNewProject"></include>
+		</create>
+		
+		<!--资金计划管理 -->
+		<create creator="spring" javascript="bdgMoneyPlanConMgm" scope="page">
+			<param name="beanName" value="bdgMoneyPlanConMgm" />
+			<include method="getConPayTotal"></include>  
+		</create>		
+		<create creator="spring" javascript="bdgMoneyPlanMainMgm" scope="page">
+			<param name="beanName" value="bdgMoneyPlanMainMgm"></param>
+			<include method="checkPlanMain"></include>
+		</create>
+		
+		<create creator="spring" javascript="bdgMoneyPlanSubMgm" scope="page">
+			<param name="beanName" value = "bdgMoneyPlanSubMgm"/>
+			<include method = "savePlanSubTree"></include>
+			<include method = "deleteChildNodePlanSub"></include>
+			<include method = "updatePlanSubtree"></include>
+			<include method = "getBdgAppConnames"></include>
+			<include method = "checkMaintoSub"></include>
+		</create>
+		
+		<!--招投标管理-->
+		<create creator="spring" javascript="tendersMgm" scope="page">
+			<param name="beanName" value="tendersMgm" />
+			<!--招投标基本信息-->
+			<include method="getFormBeant"></include>
+			<include method="insertOrUpdate"></include>
+			<!--标段划分信息-->
+			<include method="getFormBeanSub"></include>
+			<include method="instOrUpd"></include>
+			<!--招标人才库信息-->
+			<include method="getFormBeanAbi"></include>
+			<include method="insertOrUpd"></include>
+			<include method="delTenAbi"></include>
+			<!--招标委员会信息-->
+			<include method="getFormBeanCom"></include>
+			<include method="instOrUpdCom"></include>
+			<!--招标评委信息-->
+			<include method="getFormBeanReg"></include>
+			<include method="instOrUpdReg"></include>
+			<!--投标单位信息-->
+			<include method="getFormBeanUni"></include>
+			<include method="instOrUpdUni"></include>
+			<include method="delZbBasic"></include> 
+		</create>
+		
+		<!--建设法人管理-->
+		<create creator="spring" javascript="bdgCorpMgm" scope="page">
+			<param name="beanName" value="bdgCorpMgm" />
+			<include method="insertBdgCorpBasic"></include>
+			<include method="updateBdgCorpBasic"></include>
+			<include method="deleteBdgCorpBasic"></include>
+			<include method="saveGetBudgetTree"></include>
+			<include method="addOrUpdateBdgCorpInfo"></include>
+			<include method="deleteChildNodeBdgCorpInfo"></include>
+		</create>
+		
+		<!-- 2011-09-15 移植国锦 -->
+		<!--资金计划管理-->
+		<create creator="spring" javascript="bdgMoneyMonthPlan" scope="page">
+			<param name="beanName" value="bdgMoneyMonthPlanMgm" />
+			<include method="sbPlan"></include>
+			<include method="hzPlan"></include>
+			<include method="downPlan"></include>
+			<include method="sbPlanbl"></include>
+			<include method="sbPlanblhz"></include>
+		</create>
+	</allow>
+</dwr>

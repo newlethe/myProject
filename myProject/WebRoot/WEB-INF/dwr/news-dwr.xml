@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+
+	<allow>
+
+		<convert converter="bean" match="com.sgepit.pmis.news.hbm.*" />
+        <!--新闻管理-->
+		<create creator="spring" javascript="appNewsMgm" scope="page">
+			<param name="beanName" value="appNewsMgm" />
+			<include method="deleteNew"></include>
+			<include method="deleteSelectedNews"></include>
+			<include method="publishNews"></include>
+			<include method="getNewsById"></include>
+			<include method="publishEquManagement"></include>	
+			<include method="deleteEqu"></include>
+			<include method="deleteSelectedEqus"></include>	
+		</create>
+	</allow>
+</dwr>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+
+	<!-- ========================= BUSINESS OBJECT DEFINITIONS ======================== -->
+	
+	<bean id="rzglFlTreeDAO" class="com.sgepit.pmis.rzgl.dao.RzglFlTreeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	<bean id="rzglFlQxUnitDAO" class="com.sgepit.pmis.rzgl.dao.RzglFlQxUnitDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	<bean id="rzglRzDAO" class="com.sgepit.pmis.rzgl.dao.RzglRzDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	<bean id="rzglRzPlDAO" class="com.sgepit.pmis.rzgl.dao.RzglRzPlDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	<!-- 日志管理分类树维护 -->
+	<bean id="rzglService" class="com.sgepit.pmis.rzgl.service.RzglServiceImpl">
+		<property name="rzglFlTreeDAO" ref="rzglFlTreeDAO" />
+		<property name="rzglFlQxUnitDAO" ref="rzglFlQxUnitDAO" />
+		<property name="rzglRzDAO" ref="rzglRzDAO" />
+		<property name="rzglRzPlDAO" ref="rzglRzPlDAO" />
+	</bean>
+    
+</beans>

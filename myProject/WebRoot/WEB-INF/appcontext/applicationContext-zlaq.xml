@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+	<bean id="ZlaqFileDAO"
+		class="com.sgepit.pmis.zlaq.dao.ZlaqFileDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="ZlaqFilemodelDAO"
+		class="com.sgepit.pmis.zlaq.dao.ZlaqFilemodelDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	<bean id="ZlaqTreeDAO" class="com.sgepit.pmis.zlaq.dao.ZlaqTreeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1" />
+		</property>
+	</bean>
+	
+	<bean id="zlaqMgmImpl"  parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.zlaq.service.ZlaqMgmImpl">
+				<property name="zlaqTreeDAO" ref="ZlaqTreeDAO" />
+				<property name="zlaqFileDAO" ref="ZlaqFileDAO"/>		
+				<property name="zlaqFilemodelDAO" ref="ZlaqFilemodelDAO"/>	
+				<property name="sgccAttachListDAO" ref="sgccAttachListDAO"/>		
+			</bean>
+		</property>
+	</bean>	 
+	
+</beans>

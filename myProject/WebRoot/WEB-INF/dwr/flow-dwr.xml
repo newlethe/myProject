@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<convert converter="bean" match="com.sgepit.frame.flow.hbm.*" />
+		<convert converter="bean" match="com.sgepit.frame.datastructure.*" />
+		<!-- 流程实例 -->
+		<create creator="spring" javascript="flwInstanceMgm" scope="page">
+			<param name="beanName" value="flwInstanceMgm" />
+		</create>
+		
+		<!-- 流转日志 -->
+		<create creator="spring" javascript="flwLogMgm" scope="page">
+			<param name="beanName" value="flwLogMgm" />
+		</create>
+		
+		<!-- 流程定义 -->
+		<create creator="spring" javascript="flwDefinitionMgm" scope="page">
+			<param name="beanName" value="flwDefinitionMgm" />
+		</create>
+		
+		<!-- 流程结构 -->
+		<create creator="spring" javascript="flwFrameMgm" scope="page">
+			<param name="beanName" value="flwFrameMgm" />
+		</create>
+		
+		<!-- 流程文档 -->
+		<create creator="spring" javascript="flwFileMgm" scope="page">
+			<param name="beanName" value="flwFileMgm" />
+		</create>
+		
+		<!-- 质量验评 -->
+		<create creator="spring" javascript="flwZlypMgm" scope="page">
+			<param name="beanName" value="flwZlypMgm" />
+		</create>
+		
+		<!-- 流程业务数据处理 -->
+		<create creator="spring" javascript="flwBizMgm" scope="page">
+			<param name="beanName" value="flwBizMgm" />
+		</create>
+		
+		<!-- 流程统计 -->
+		<create creator="spring" javascript="flwStatisticsMgm" scope="page">
+			<param name="beanName" value="flwStatisticsMgm" />
+		</create>
+	</allow>
+</dwr>

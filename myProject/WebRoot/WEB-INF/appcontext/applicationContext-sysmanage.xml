@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	- Application context definition for data access layer.
+	- Accessed by business layer objects defined in "applicationContext.xml"
+	- (see web.xml's "contextConfigLocation").
+	-
+	- This version of the data access layer works on a combined database,
+	- using a local DataSource with DataSourceTransactionManager. It does not
+	- need any JTA support in the container: It will run as-is in plain Tomcat.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd ">
+
+
+	<!-- ========================= BUSINESS OBJECT DEFINITIONS ======================== -->
+	<!-- 公用模块业务逻辑实现 -->
+	<bean id="applicationMgm"
+		class="com.sgepit.frame.sysman.service.ApplicationMgmImpl">
+		<property name="baseDao" ref="baseDAO" />
+	</bean>
+
+	<!--
+		- 系统管理
+		- author: xjdawu
+	-->
+	<bean  id="systemMgm" class="com.sgepit.frame.sysman.service.SystemMgmImpl">
+		<property name="systemDao" ref="systemDao" />
+		<property name="sgccIniUnitDAO" ref="sgccIniUnitDAO" />
+		<property name="propertyCodeDAO" ref="propertyCodeDAO" />
+		<!-- 
+		<property name="manDeptSetLogDAO" ref="HrManDeptSetLogDAO" />
+		 -->
+	</bean>
+
+
+
+	<!-- ========================= DAO DEFINITIONS: Hibernate3 IMPLEMENTATIONS ========================= -->
+
+	<bean id="systemDao" class="com.sgepit.frame.sysman.dao.SystemDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+	<bean id="sgccIniUnitDAO"
+		class="com.sgepit.frame.sysman.dao.SgccIniUnitDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+	<bean id="propertyCodeDAO"
+		class="com.sgepit.frame.sysman.dao.PropertyCodeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	
+	<bean id="sgccAttachListDAO"
+		class="com.sgepit.frame.sysman.dao.SgccAttachListDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	
+	<bean id="fileServiceImpl" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.frame.sysman.service.FileManagementServiceImpl">
+				<property name="systemDao" ref="systemDao" />
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- Start短信相关 -->
+	<bean id="popMspDAO" class="com.sgepit.frame.util.sms.dao.PopMspDAO">
+		<property name="sessionFactory" ref="sessionFactory1" />
+    </bean>    
+    
+    <bean id="sendMessage"  parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.frame.util.sms.service.SendMessage">
+				<property name="popMspDAO" ref="popMspDAO"/>
+			</bean>
+		</property>		
+	</bean>	 
+	
+    <bean id="smsCommonService"  parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.frame.util.sms.service.SmsCommonService">
+				<property name="popMspDAO" ref="popMspDAO"/>		
+				<property name="sendMessage" ref="sendMessage"/>
+			</bean>
+		</property>		
+	</bean>	 
+	<!-- End短信相关 -->
+</beans>

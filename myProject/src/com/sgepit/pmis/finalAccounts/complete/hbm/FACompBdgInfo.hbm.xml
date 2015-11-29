@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sgepit.pmis.finalAccounts.complete.hbm.FACompBdgInfo"
+		table="FACOMP_BDG_INFO">
+		<id name="uids" type="java.lang.String">
+			<column name="UIDS" length="32" />
+			<generator class="uuid" />
+		</id>
+		<property name="pid" type="java.lang.String">
+			<column name="PID" length="32"  />
+		</property>
+		<property name="treeid" type="java.lang.String">
+			<column name="TREEID" length="32"  />
+		</property>
+		<property name="bdgno" type="java.lang.String">
+			<column name="BDGNO" length="32"  />
+		</property>
+		<property name="bdgname" type="java.lang.String">
+			<column name="BDGNAME" length="600"  />
+		</property>
+		<property name="gcType" type="java.lang.String">
+			<column name="GC_TYPE" length="32"  />
+		</property>
+		<property name="buildbdg" type="java.lang.String">
+			<column name="BUILDBDG" length="32"  />
+		</property>
+		<property name="equipbdg" type="java.lang.String">
+			<column name="EQUIPBDG" length="32"  />
+		</property>
+		<property name="installbdg" type="java.lang.String">
+			<column name="INSTALLBDG" length="32"  />
+		</property>
+		<property name="otherbdg" type="java.lang.String">
+			<column name="OTHERBDG" length="32"  />
+		</property>
+		<property name="isleaf" type="java.lang.Long">
+			<column name="ISLEAF" length="1"  />
+		</property>
+		<property name="parentid" type="java.lang.String">
+			<column name="PARENTID" length="32"  />
+		</property>
+		<property name="correspondbdg" type="java.lang.String">
+			<column name="CORRESPONDBDG" length="32"  />
+		</property>
+	</class>
+</hibernate-mapping>

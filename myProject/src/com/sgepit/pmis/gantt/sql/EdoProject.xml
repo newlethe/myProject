@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    
+<sqlMap namespace="EdoProject">
+	<!-- 查找项目(根据项目UID) -->
+	<select id="getProjectByUID" resultClass="java.util.HashMap">
+    	select * from edo_project where UID = #ProjectUID#
+	</select>
+	<!-- 查找日历(根据项目UID) -->
+	<select id="getCalendarsByProjectUID" resultClass="java.util.HashMap">
+    	select * from edo_calendar where ProjectUID = #ProjectUID#
+	</select>
+	<!-- 查找工作日(根据项目UID) -->
+	<select id="getWeekDaysByProjectUID" resultClass="java.util.HashMap">
+    	select * from edo_weekday where ProjectUID = #ProjectUID#
+	</select>
+	<!-- 查找资源(根据项目UID) -->
+	<select id="getResourcesByProjectUID" resultClass="java.util.HashMap">
+    	select * from edo_resource where ProjectUID = #ProjectUID#
+	</select>
+	<!-- 查找资源分配关系(根据项目UID) -->
+	<select id="getAssignmentsByProjectUID" resultClass="java.util.HashMap">
+      select a.*, b.Name ResourceName, b.Type ResourceType
+      from
+      edo_resource b
+      join
+      (select * from edo_assignment
+      where ProjectUID = #ProjectUID#) a
+      on b.UID = a.ResourceUID and b.ProjectUID = #ProjectUID#
+	</select>
+	<!-- 查找任务(根据项目UID, 并以ID排序) -->
+	<select id="getTasksByProjectUID" resultClass="java.util.HashMap">
+    	select * from edo_task where ProjectUID = #ProjectUID# $orderby$
+	</select>
+	<!-- 查找任务相关性(根据项目UID) -->
+	<select id="getPredecessorLinksByProjectUID" resultClass="java.util.HashMap">
+      select c.*, d.Name PredecessorName, d.ID PredecessorID
+      from edo_task d
+      right join
+      (select a.*, b.Name
+      from
+      edo_task b
+      right join
+      (select * from edo_predecessorLink
+      where ProjectUID = #ProjectUID#) a
+      on a.TaskUID = b.UID and b.ProjectUID = #ProjectUID#) c
+      on c.PredecessorUID = d.UID and d.ProjectUID = #ProjectUID#
+	</select>
+	<!-- 查找比较基准(根据项目UID) -->
+	<select id="getBaselinesByProjectUID" resultClass="java.util.HashMap">
+    select * from edo_baseline where ProjectUID = #ProjectUID# order by Number
+  	</select>
+  	<!-- 查找任务(根据任务UID) -->
+    <select id="getTaskByUID" resultClass="java.util.HashMap">
+      select * from edo_task where ProjectUID = #ProjectUID# and UID = #TaskUID#
+    </select>
+    <!--获得日历(根据日历UID)-->
+    <select id="getCalendarByUID" resultClass="java.util.HashMap">
+      select * from edo_calendar where ProjectUID = #ProjectUID# and UID = #CalendarUID#
+    </select>
+    <!--获取日历配置(根据日历UID)-->
+    <select id="getWeekDaysByCalendarUID" resultClass="java.util.HashMap">
+      select * from edo_weekday where ProjectUID = #ProjectUID# and CalendarUID = #CalendarUID#
+    </select>
+  	<!-- 获得所有子任务(不仅限一个层级任务) -->
+    <select id="getTaskChildrenAll" resultClass="java.util.HashMap">
+      select * from edo_task where ProjectUID = #ProjectUID# and OutlineNumber like #key#
+    </select>      
+	
+	<!--删除项目(包括所有相关表) -->
+	<!-- 删除项目(根据项目UID) -->
+	<delete id="deleteProject">	
+		delete from edo_project
+		where UID = #ProjectUID#
+	</delete>		
+	<!-- 删除任务(根据项目UID) -->
+	<delete id="deleteTask">		
+		delete from edo_task
+		where ProjectUID = #ProjectUID#
+	</delete>		
+	<!-- 删除资源(根据项目UID) -->
+	<delete id="deleteResource">		
+		delete from edo_resource
+		where ProjectUID = #ProjectUID#
+	</delete>	
+	<!-- 删除日历(根据项目UID) -->
+	<delete id="deleteCalendar">		
+		delete from edo_calendar
+		where ProjectUID = #ProjectUID#
+	</delete>	
+	<!-- 删除工作日(根据项目UID) -->
+	<delete id="deleteWeekDay">		
+		delete from edo_weekday
+		where ProjectUID = #ProjectUID#
+	</delete>	
+	<!-- 删除比较基准(根据项目UID) -->
+	<delete id="deleteBaseline">		
+		delete from edo_baseline
+		where ProjectUID = #ProjectUID#
+	</delete>	
+	<!-- 删除任务相关性(根据项目UID) -->
+	<delete id="deletePredecessorLink">		
+		delete from edo_predecessorLink
+		where ProjectUID = #ProjectUID#
+	</delete>	
+	<!-- 删除资源分配关系(根据项目UID) -->
+	<delete id="deleteAssignment">		
+		delete from edo_assignment
+		where ProjectUID = #ProjectUID#
+	</delete>		
+	<!-- 删除任务(根据项目UID和任务UID) -->
+    <delete id="deleteTaskByTaskUID">    
+      delete from edo_task
+      where ProjectUID = #ProjectUID# and UID = #TaskUID#
+    </delete>		
+    <!-- 删除比较基准(根据项目UID和任务UID) -->
+    <delete id="deleteBaselineByTaskUID">      
+      delete from edo_baseline
+      where ProjectUID = #ProjectUID# and TaskUID = #TaskUID#
+    </delete>	
+    <!-- 删除资源分配关系(根据项目UID和任务UID) -->
+    <delete id="deleteAssignmentByTaskUID">  
+      delete from edo_assignment
+      where ProjectUID = #ProjectUID# and TaskUID = #TaskUID#
+    </delete>	
+    <!-- 删除任务相关性((根据项目UID和任务UID) -->
+    <delete id="deletePredecessorLinkByTaskUID">  
+      delete from edo_predecessorLink
+      where
+      ProjectUID = #ProjectUID#
+      and TaskUID = #TaskUID#
+    </delete>
+    <!-- 删除任务相关性(根据项目UID和前置任务UID) -->
+    <delete id="deletePredecessorLinkByPredecessorUID">
+      delete from edo_predecessorLink
+      where
+      ProjectUID = #ProjectUID#
+      and PredecessorUID = #PredecessorUID#
+    </delete>
+	
+	<!-- 新增项目 -->	
+  <insert id="insertProject" parameterClass="java.util.HashMap">
+    INSERT INTO edo_project
+    (
+    UID,
+    Name,
+    StartDate,
+    FinishDate,
+    CreationDate,
+    LastSaved,
+    CalendarUID,
+    WeekStartDay,
+    DefaultStartTime,
+    DefaultFinishTime,
+    MinutesPerDay,
+    MinutesPerWeek,
+    DaysPerMonth
+    )
+    VALUES (
+    #UID#,
+    #Name#,
+    #StartDate#,
+    #FinishDate#,
+    #CreationDate#,
+    #LastSaved#,
+    #CalendarUID#,
+    #WeekStartDay#,
+    #DefaultStartTime#,
+    #DefaultFinishTime#,
+    #MinutesPerDay#,
+    #MinutesPerWeek#,
+    #DaysPerMonth#
+    )    
+  </insert>	
+  
+  <!-- 新增任务 -->
+  <insert id="insertTask" parameterClass="java.util.HashMap">
+    INSERT INTO edo_task
+    (
+    UID,
+    ID,
+    Name,
+    Type,
+    OutlineNumber,
+    OutlineLevel,
+    Priority,
+    Start,
+    Finish,
+    CreateDate,
+    Duration,
+    DurationFormat,
+    Work,
+    Estimated,
+    PercentComplete,
+    Milestone,
+    Summary,
+    Critical,
+    Hyperlink,
+    HyperlinkAddress,
+    ConstraintType,
+    ConstraintDate,
+    Notes,
+    ProjectUID,
+    ParentTaskUID
+    )
+    VALUES (
+    #UID#,
+    #ID#,
+    #Name#,
+    #Type#,
+    #OutlineNumber#,
+    #OutlineLevel#,
+    #Priority#,
+    #Start#,
+    #Finish#,
+    #CreateDate#,
+    #Duration#,
+    #DurationFormat#,
+    #Work#,
+    #Estimated#,
+    #PercentComplete#,
+    #Milestone#,
+    #Summary#,
+    #Critical#,
+    #Hyperlink#,
+    #HyperlinkAddress#,
+    #ConstraintType#,
+    #ConstraintDate:DATE#,
+    #Notes#,
+    #ProjectUID#,
+    #ParentTaskUID#
+    )
+  </insert>	
+    
+    <!-- 新增资源 -->
+  <insert id="insertResource" parameterClass="java.util.HashMap">
+    INSERT INTO edo_resource
+    (
+    UID,
+    Name,
+    Type,
+    MaxUnits,
+    ProjectUID
+    )
+    VALUES (
+    #UID#,
+    #Name#,
+    #Type#,
+    #MaxUnits#,
+    #ProjectUID#
+    )
+  </insert>	
+  
+  	<!-- 新增资源分配关系 -->
+  <insert id="insertAssignment" parameterClass="java.util.HashMap">
+    INSERT INTO edo_assignment
+    (
+    TaskUID,
+    ResourceUID,
+    Units,
+    ProjectUID
+    )
+    VALUES (
+    #TaskUID#,
+    #ResourceUID#,
+    #Units#,
+    #ProjectUID#
+    )
+  </insert>	  
+  <!-- 新增任务相关性 -->
+  <insert id="insertPredecessorLink" parameterClass="java.util.HashMap">
+    INSERT INTO edo_predecessorlink
+    (
+    PredecessorUID,
+    TaskUID,
+    Type,
+    LinkLag,
+    LagFormat,
+    ProjectUID
+    )
+    VALUES (
+    #PredecessorUID#,
+    #TaskUID#,
+    #Type#,
+    #LinkLag#,
+    #LagFormat#,
+    #ProjectUID#
+    )
+  </insert>	   
+  <!-- 新增比较基准 -->
+  <insert id="insertBaseline" parameterClass="java.util.HashMap">
+    INSERT INTO edo_baseline
+    (
+    Number,
+    Start,
+    Finish,
+    Duration,
+    TaskUID,
+    ProjectUID
+    )
+    VALUES (
+    #Number#,
+    #Start#,
+    #Finish#,
+    #Duration#,
+    #TaskUID#,
+    #ProjectUID#
+    )
+  </insert>	   
+	<!-- 新增日历 -->
+  <insert id="insertCalendar" parameterClass="java.util.HashMap">
+    insert edo_calendar
+    (
+    UID  ,
+    Name ,
+    IsBaseCalendar,
+    BaseCalendarUID ,
+    ProjectUID
+    )VALUES
+    (
+    #UID#  ,
+    #Name# ,
+    #IsBaseCalendar#,
+    #BaseCalendarUID# ,
+    #ProjectUID#
+    )
+  </insert>
+  <!-- 新增工作日 -->
+  <insert id="insertWeekDay" parameterClass="java.util.HashMap">
+      insert into edo_weekday
+      (
+      DayType  ,
+      DayWorking ,
+      ProjectUID,
+      CalendarUID ,
+      Name,
+      TimePeriodFromDate,
+      TimePeriodToDate,
+
+      WorkingTimeFromTime1,
+      WorkingTimeToTime1,
+      WorkingTimeFromTime2,
+      WorkingTimeToTime2,
+      WorkingTimeFromTime3,
+      WorkingTimeToTime3,
+      WorkingTimeFromTime4,
+      WorkingTimeToTime4,
+      WorkingTimeFromTime5,
+      WorkingTimeToTime5,
+      WorkingTimeFromTime6,
+      WorkingTimeToTime6,
+      WorkingTimeFromTime7,
+      WorkingTimeToTime7,
+      WorkingTimeFromTime8,
+      WorkingTimeToTime8,
+      WorkingTimeFromTime9,
+      WorkingTimeToTime9
+      )VALUES
+      (
+      #DayType#  ,
+      #DayWorking# ,
+      #ProjectUID#,
+      #CalendarUID# ,
+      #Name#,
+      #TimePeriodFromDate#,
+      #TimePeriodToDate#,
+
+      #WorkingTimeFromTime1#,
+      #WorkingTimeToTime1#,
+      #WorkingTimeFromTime2#,
+      #WorkingTimeToTime2#,
+      #WorkingTimeFromTime3#,
+      #WorkingTimeToTime3#,
+      #WorkingTimeFromTime4#,
+      #WorkingTimeToTime4#,
+      #WorkingTimeFromTime5#,
+      #WorkingTimeToTime5#,
+      #WorkingTimeFromTime6#,
+      #WorkingTimeToTime6#,
+      #WorkingTimeFromTime7#,
+      #WorkingTimeToTime7#,
+      #WorkingTimeFromTime8#,
+      #WorkingTimeToTime8#,
+      #WorkingTimeFromTime9#,
+      #WorkingTimeToTime9#
+      ) 
+  </insert>	   	
+  	
+  
+    <!--查询-->
+    <select id="queryTaskByName" resultClass="java.util.HashMap">
+      select * from edo_task where ProjectUID = #ProjectUID# and (Name like #key# or ID like #key#) order by ID
+    </select>
+    <select id="queryResourceByName" resultClass="java.util.HashMap">
+      select * from edo_resource where ProjectUID = #ProjectUID# and Name like #key#
+    </select>      
+</sqlMap>

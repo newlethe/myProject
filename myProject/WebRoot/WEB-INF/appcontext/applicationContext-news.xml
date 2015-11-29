@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+
+<beans>
+	<!--新闻管理-->
+	<bean id="appNewsMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.news.service.AppNewsMgmImpl">
+				<property name="appNewsDao" ref="appNewsDAO" />
+				<property name="sgccAttachListDAO" ref="sgccAttachListDAO"/>   
+			</bean>
+		</property>	
+	</bean>
+	
+	<bean id="appNewsDAO" class="com.sgepit.pmis.news.dao.AppNewsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+</beans>

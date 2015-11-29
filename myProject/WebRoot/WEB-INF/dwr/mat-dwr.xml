@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<convert converter="bean" match="com.sgepit.pmis.material.hbm.*" />
+		<!-- 物资编码结构 -->
+		<create creator="spring" javascript="matFrameMgm" scope="page">
+			<param name="beanName" value="matFrameMgm" />
+			<include method="deleteMatFrame"></include>
+			<include method="updateMatFrame"></include>
+			<include method="insertMatFrame"></include>
+			<include method="getIndexId"></include>  
+			<include method="saveMatContractTree"></include>
+		</create>
+		
+		<!-- 物资编码申请维护申请 -->
+		<create creator="spring" javascript="maAppMgm" scope="page">
+			<param name="beanName" value="maAppMgm" />
+			<include method="updateMcapp"></include>
+			<include method="deleteMcapp"></include>
+			<include method="approveMatNo"></include>  
+			<include method="applyMatno"></include>
+		</create>  
+		
+		<!-- 物资申请, 采购计划 -->
+		<create creator="spring" javascript="appBuyMgm" scope="page">
+			<param name="beanName" value="appBuyMgm" />
+			<include method="updateMaterialp"></include>
+			<include method="deleteMaterial"></include>  
+			<include method="saveMatFrameTree"></include>  
+			<include method="selectBuyMat"></include>   
+			<include method="selectFormMat"></include> 
+			<include method="updateSumPrice"></include>
+		</create>   
+		
+		<!-- 到货验收, 到货发票 -->
+		<create creator="spring" javascript="matGoodsMgm" scope="page">
+			<param name="beanName" value="matGoodsMgm" />
+			<include method="deleteMatGoods"></include>
+			<include method="updateMatGoods"></include>  
+			<include method="deleteMatInvoice"></include>  
+			<include method="updateMatInvoice"></include>   
+			<include method="saveMatFrameTree"></include> 
+			<include method="selectGoodsMat"></include>  
+			<include method="selectStoreMat"></include>  
+		</create>
+		
+		<!--物资出入库管理 -->
+		<create creator="spring" javascript="matStoreMgm" scope="page">
+			<param name="beanName" value="matStoreMgm" />
+			<include method="saveMatFrameTree"></include> 
+			<include method="selectInMat"></include>  
+			<include method="selectInMatBuy"></include>  
+			<include method="selectInMatGoods"></include>   
+			<include method="getAppMat"></include>  
+			<include method="selectOutMaApp"></include>
+			<include method="insertRkd"></include>
+			<include method="updateRkd"></include>	
+			<!-- 物资入库单从采购合同选择物资 -->
+			<include method="saveStoreInByCon"></include>	
+			<include method="saveStoreInByPlan"></include>
+			<!-- 非计划出库,计划内领用 -->
+			<include method="saveMatStoreOutSub"></include>
+			<!-- 选择替代物资 -->
+			<include method="getTdWz"></include>
+			<!-- 保存替代物资 -->
+			<include method="saveTdWz"></include>
+			<!-- 删除替代物资 -->
+			<include method="deleteTdWz"></include>
+		</create> 
+	
+	</allow>
+</dwr>

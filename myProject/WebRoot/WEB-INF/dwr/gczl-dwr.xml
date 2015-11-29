@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<convert converter="bean" match="com.sgepit.pmis.gczl.hbm.*" />
+		<!-- 项目检验-->
+		<create creator="spring" javascript="gczlJyxmImpl" scope="page">
+			<param name="beanName" value="gczlJyxmImpl" />
+			<include method="isHasChilds"></include>
+			<include method="addOrUpdate"></include>
+			<include method="deleteChildNode"></include>
+
+			<include method="saveOrUpdateWord"></include>
+			<include method="deleteWordById"></include>
+			<include method="saveFlow"></include>
+			<include method="deleteFlowById"></include>
+			<include method="setDefaultById"></include>
+			<include method="getFlowByFileId"></include>
+			<include method="setWordDisableById"></include>
+			<include method="isHasWordOrFlow"></include>
+			<include method="setDisableWordById"></include>
+			<include method="isHaveTreeRoot"></include> 
+			<include method="saveOrUpdateApproval"></include> 
+			<include method="deleteWordApprovalById"></include> 
+			<include method="findByDoubleId"></include> 
+			<include method="uploadApproval"></include> 
+		</create>
+		<!-- Gantt操作-->
+		<create creator="new" scope="application" javascript="gantDwr">
+			<param name="class" value="com.sgepit.pmis.gantt.GantDwrOper" />
+		</create>
+
+		<!-- 质量验评统计 -->
+		<create javascript="zlypMgmDwr" creator="new" scope="application">
+			<param name="class" value="com.sgepit.pmis.gczl.control.ZlypMgmDwr"></param>
+		</create>
+		
+		<!-- 工程质量 -->
+		<create creator="spring" javascript="gczlMgm" scope="page">
+			<param name="beanName" value="gczlMgmImpl" />
+		</create>
+	</allow>
+</dwr>

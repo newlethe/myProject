@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<!-- 投资计划管理 -->
+	<bean id="investmentPlanService" parent="txProxyTemplate"> 
+		<property name="target"> 
+			<bean class="com.sgepit.pmis.planMgm.service.InvestmentPlanServiceImpl">
+				<property name="planMasterDAO" ref="planMasterDAO" />
+			</bean> 
+        </property> 
+	</bean>
+	
+	<!--主记录DAO -->
+	<bean id="planMasterDAO" class="com.sgepit.pmis.planMgm.dao.PlanMasterDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>	
+	<bean id="planYearDAO" class="com.sgepit.pmis.planMgm.dao.PlanYearDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>	
+	<bean id="planQuarterDAO" class="com.sgepit.pmis.planMgm.dao.PlanQuarterDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>	
+	<bean id="planMonthDAO" class="com.sgepit.pmis.planMgm.dao.PlanMonthDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>	
+	<!-- 月度资金计划管理 start -->
+	<bean id="fundMonthPlanDAO" class="com.sgepit.pmis.planMgm.dao.FundMonthPlanDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>	
+	<bean id="fundMonthPlanService" parent="txProxyTemplate"> 
+		<property name="target"> 
+			<bean class="com.sgepit.pmis.planMgm.service.FundMonthPlanServiceImpl">
+				<property name="fundMonthPlanDAO" ref="fundMonthPlanDAO" />
+			</bean> 
+        </property> 
+	</bean>
+	<!-- 月度资金计划管理 end -->
+	
+</beans>

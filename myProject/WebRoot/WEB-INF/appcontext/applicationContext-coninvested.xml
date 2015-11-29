@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<bean id="conInvestedDAO" class="com.sgepit.pmis.budget.dao.ConInvestedDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+
+    <!-- 法人建设管理 -->
+	<bean id="corpInvMgm"
+		class="com.sgepit.pmis.coninvested.service.CorpInvestedMgmImpl">
+		<property name="conInvestedDAO" ref="conInvestedDAO" />
+	</bean>
+	
+	<bean id="subcorpMgm"
+		class="com.sgepit.pmis.coninvested.service.SubCorpInvestedMgmImpl">
+		<property name="conInvestedDAO" ref="conInvestedDAO" />
+	</bean>
+
+</beans>

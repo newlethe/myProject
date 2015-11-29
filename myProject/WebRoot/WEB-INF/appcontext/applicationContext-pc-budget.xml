@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+
+<beans>
+	<!-- 合同分摊结构维护 -->
+	<bean id="pcBdgInfoMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pcmis.budget.service.PCBdgInfoServiceImpl">
+				<property name="bdgInfoDao" ref="bdgInfoDAO" />
+			</bean>
+		</property>	
+	</bean>
+	
+	<bean id="bdgInfoDAO" class="com.sgepit.pmis.budget.dao.BdgInfoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,75 @@
+* {
+	margin-left: auto;
+	margin-right: auto;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#liTable{
+	text-align : center;
+}
+#liTable #myChart{
+	height : 260px;
+}
+
+#liTable td{
+	font-size:14px;
+}
+#proInfo{
+	background: #ffffff;
+}
+#proInfo td{
+	font-size:14px;
+	line-height: 26px;
+}
+#proInfo td img{
+	margin-right:3px;
+	vertical-align:text-bottom;
+}
+#proInfo td span{
+	border: 1px solid #FFD700;
+	padding-right : 4px;
+	margin-right : 4px;
+	margin-bottom : 4px;
+	color:#F00;
+	text-align:right;
+	font-size:14px;
+	width:100%;
+	height:26px;
+	line-height: 26px;
+	display: block;
+	background:#fff;
+	overflow: hidden;
+}
+.countdown{
+	background:url(images/countdown.png) 0 0 no-repeat;
+	width:170px;
+	height:115px;
+	margin:auto;
+}
+.countdown-time{
+	text-align:center;
+	margin-top:50px;
+	margin-left:-10px;
+	font-size:45px;
+	color:red;
+}
+.projTitle{
+	color:#DAA520;
+	font-weight: bold;
+	font-size:18px;
+}
+.kaohe {
+	color:#DAA520;
+	font-weight: bold;
+	font-size:18px;
+}
+.buttons{
+	
+}
+.buttons td input{
+	background:url(images/button.jpg) 0 0 no-repeat;
+	width:188px;
+	height:34px;
+	color:#DAA520;
+	font-size:14px;
+	border:0;
+}

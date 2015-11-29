@@ -1,0 +1,55 @@
+<Carton width="1345" height="282">
+  <variable>
+    null
+    <param name="pid" initValue="1030603"/>
+    <param name="pname" initValue="国锦"/>
+  </variable>
+  <Chart type="AMPIECHART" width="354" height="186" UID="IOTIJ7" x="11" y="96">
+    <param name="dataProvider" mode="sql"><![CDATA[select '0101' bdgid,'建筑' name, (select nvl(bdg.bdgmoney,0)/10000 from bdg_info bdg where bdg.bdgno='0101' and bdg.pid='[pid]')   val from dual  unionselect '0102' bdgid,'设备' name, (select nvl(bdg.bdgmoney,0)/10000 from bdg_info bdg where bdg.bdgno='0102' and bdg.pid='[pid]') val from dual  unionselect '0103' bdgid,'安装' name, (select nvl(bdg.bdgmoney,0)/10000 from bdg_info bdg where bdg.bdgno='0103' and bdg.pid='[pid]') val from dual unionselect '0104' bdgid,'其他' name, (select nvl(bdg.bdgmoney,0)/10000 from bdg_info bdg where bdg.bdgno='0104' and bdg.pid='[pid]') val from dual ]]></param>
+    <param name="titleField" mode="prop" value="NAME"/>
+    <param name="valueField" mode="prop" value="VAL"/>
+    <param name="depth3D" mode="style" value="14"/>
+    <param name="angle" mode="style" value="25"/>
+    <param name="slicesColors" mode="prop" value="0x8A2BE2,0xFFA500,0x00BFFF,0xB8860B"/>
+  </Chart>
+  <Chart type="AMLEGEND" width="198" height="132" UID="IOTIVT" x="373" y="120">
+    <param name="chartProvider" mode="prop" value="IOTIJ7"/>
+    <param name="marginLeft" mode="style" value="0"/>
+    <param name="marginRight" mode="style" value="0"/>
+    <param name="valueWidth" mode="style" value="90"/>
+  </Chart>
+  <Chart type="AMCOLUMNCHART" width="607" height="180" UID="IOTJG2" x="620" y="94">
+    <param name="dataProvider" mode="sql"><![CDATA[select name,bdgid,val1,val2,val3 from(select '建筑' name,'0101' bdgid, (select nvl(bdg.bdgmoney,0)/10000 from bdg_info bdg where bdg.bdgno='0101' and bdg.pid='[pid]') val1,(select nvl(bdg.contmoney,0)/10000 from bdg_info bdg where bdg.bdgno='0101' and bdg.pid='[pid]') val2 ,(select nvl(sum(app.factpay),0)/10000 from bdg_pay_app app where app.bdgid='0101' and app.pid='[pid]') val3 from dual unionselect '设备' name,'0102' bdgid, (select nvl(bdg.bdgmoney,0)/10000 from bdg_info bdg where bdg.bdgno='0102' and bdg.pid='[pid]') val1,(select nvl(bdg.contmoney,0)/10000 from bdg_info bdg where bdg.bdgno='0103' and bdg.pid='[pid]') val2 ,(select nvl(sum(app.factpay),0)/10000 from bdg_pay_app app where app.bdgid='0102' and app.pid='[pid]') val3 from dual unionselect '安装' name,'0103' bdgid, (select nvl(bdg.bdgmoney,0)/10000 from bdg_info bdg where bdg.bdgno='0103' and bdg.pid='[pid]') val1,(select nvl(bdg.contmoney,0)/10000 from bdg_info bdg where bdg.bdgno='0102' and bdg.pid='[pid]') val2 ,(select nvl(sum(app.factpay),0)/10000 from bdg_pay_app app where app.bdgid='0103' and app.pid='[pid]') val3 from dual unionselect '其他' name,'0104' bdgid, (select nvl(bdg.bdgmoney,0)/10000 from bdg_info bdg where bdg.bdgno='0104' and bdg.pid='[pid]') val1,(select nvl(bdg.contmoney,0)/10000 from bdg_info bdg where bdg.bdgno='0102' and bdg.pid='[pid]') val2 ,(select nvl(sum(app.factpay),0)/10000 from bdg_pay_app app where app.bdgid='0104' and app.pid='[pid]') val3 from dual) order by bdgid]]></param>
+    <param name="depth3D" mode="style" value="25"/>
+    <param name="angle" mode="style" value="37"/>
+    <param name="categoryField" mode="prop" value="NAME"/>
+    <param name="fields" mode="prop" value="VAL1|VAL2|VAL3"/>
+    <param name="marginLeft" mode="style" value="100"/>
+    <param name="graphs.title" mode="prop" value="概算金额|合同分摊金额|付款分摊金额"/>
+    <param name="graphs.balloonText" mode="prop" value="||"/>
+    <param name="graphs.lineColor" mode="style" value="6711039|16724838|16711935"/>
+  </Chart>
+  <Chart type="LABEL" width="374" height="29" UID="IOTQ0N" x="35" y="53">
+    <param name="text" mode="prop" value="[pname]概算分布图"/>
+    <param name="fontFamily" mode="style" value="华文楷体"/>
+    <param name="fontSize" mode="style" value="16"/>
+    <param name="textAlign" mode="style" value="center"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+  </Chart>
+  <Chart type="LABEL" width="485" height="31" UID="IOTQ3G" x="743" y="57">
+    <param name="text" mode="prop" value="[pname]工程项目概算分摊情况"/>
+    <param name="fontFamily" mode="style" value="华文楷体"/>
+    <param name="fontSize" mode="style" value="16"/>
+    <param name="textAlign" mode="style" value="center"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+  </Chart>
+  <Chart type="AMLEGEND" width="140" height="115" UID="IOU67N" x="1205" y="117">
+    <param name="chartProvider" mode="prop" value="IOTJG2"/>
+    <param name="valueWidth" mode="style" value="90"/>
+    <param name="marginLeft" mode="style" value="20"/>
+  </Chart>
+  <Chart type="LABEL" width="78" height="22" UID="IOV164" x="405" y="88">
+    <param name="text" mode="prop" value="单位：万元"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+  </Chart>
+</Carton>

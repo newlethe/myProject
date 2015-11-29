@@ -1,0 +1,36 @@
+.x-grid-group-hd div{
+	padding-left: 32px;
+}
+.x-grid-group-hd-checkbox .x-grid-group-hd-chx div{
+	width: 13px;
+	height: 13px;
+	margin-top:0px;
+	padding: 0px;
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	background-image: url(checkbox.gif);
+}
+.x-grid3-hd-checker {
+	
+}
+.x-grid-group-hd-checkbox .x-grid-group-hd-chx-on div{
+	width: 13px;
+	height: 13px;
+	margin-top:0px;
+	padding: 0px;
+	background-position: 0px -13px;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	background-image: url(checkbox.gif);
+}
+.x-grid-group-hd-checkbox .x-grid-group-hd-chx-dsc div{
+	width: 13px;
+	height: 13px;
+	margin-top:0px;
+	padding: 0px;
+	background-position: 0px -26px;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	background-image: url(checkbox.gif);
+}

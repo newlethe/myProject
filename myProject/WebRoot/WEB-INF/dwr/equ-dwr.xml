@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<convert converter="bean" match="com.sgepit.pmis.equipment.hbm.*" />
+		
+		<!-- 基础信息维护 2012-06-24 zhangh -->
+		<create creator="spring" javascript="equBaseInfo" scope="page">
+			<param name="beanName" value="equBaseInfo" />
+		</create>
+		<!-- 设备管理 2012-06-26 zhangh-->
+		<create creator="spring" javascript="equMgm" scope="page">
+			<param name="beanName" value="equMgm" />
+		</create>
+		
+		<!-- 设备到货 -->
+		<create creator="spring" javascript="equGetGoodsMgm" scope="page">
+			<param name="beanName" value="equGetGoodsMgm" />
+			<include method="insertGetGoods"></include>
+			<include method="updateGetGoods"></include>
+			<include method="inserthousOutGoods"></include>
+			<include method="updateGetOuseoutGoods"></include>
+			<include method="checkDelete"></include>
+			<include method="deleteGetGoods"></include>
+			<include method="getGoodsSub"></include>
+			<include method="initGetGoodsBh"></include>
+			<include method="initHouseOutBh"></include>
+			<include method="checkBhExist"></include>
+			<include method="insertEqusbdh"></include>
+			<include method="insertEquSbrk"></include>
+			<include method="deleteCkd"></include>			
+			<!-- 2010-12-21 设备入库从设备清单中选择 -->
+			<include method="insertEquSbrkFromEquList"></include>
+			<!-- 2010-12-27 设备出库子表 -->
+			<include method="saveHoustOutSub"></include>
+			<!-- 2011-03-10 删除设备入库 -->
+			<include method="deleteGetGoodInput"></include>
+			<include method="deleteGetGoodInputSub"></include>
+			<!-- 2011-03-10 删除设备出库 -->
+			<include method="deleteHouseOut"></include>
+			<include method="deleteHouseOutSub"></include>
+			
+		</create>
+		<!-- 设备退货 -->
+		<create creator="spring" javascript="equTkGoodsMgm" scope="page">
+			<param name="beanName" value="equTkGoodsMgm" />
+			<include method="insertTkGoods"></include>
+			<include method="updateTkGoods"></include>
+			<include method="checkDelete"></include>
+			<include method="deleteTkGoods"></include>
+			<include method="initTkGoodsBh"></include>
+			<include method="checkBhExist"></include>
+		</create>
+		
+		
+		<!-- 开箱记录 -->
+		<create creator="spring" javascript="openBoxMgm" scope="page">
+			<param name="beanName" value="openBoxMgm" />
+			<include method="delOpenBox"></include>
+			<include method="saveOrUpdate"></include>
+			<include method="insertEquOpenBox"></include>
+			<include method="equGoodsSub"></include>
+			<include method="insertSelectEqu"></include>
+			<include method="saveOpenBoxSub"></include>
+			<include method="saveall"></include>
+			<include method="deleteBoxno"></include>
+			<include method="checkDelete"></include>
+			<include method="checkDeleteOpenSub"></include>
+			<include method="changedhzt"></include>
+		</create>
+		
+		<!-- 设备领用 -->
+		<create creator="spring" javascript="equRecMgm" scope="page">
+			<param name="beanName" value="equRecMgm" />
+			<include method="equInfoGetGoods"></include>
+			<include method="insertRec"></include>
+			<include method="saveOrUpdate"></include>
+			<include method="insertequRec"></include>
+			<include method="equRecSub"></include>
+			<include method="checkDelete"></include>
+			<include method="deleteEquRec"></include>
+			<include method="deleteRecSub"></include>
+			<include method="updateRecSub"></include>
+			<include method="storeNum"></include>
+			<include method="storeNum2"></include>
+			<include method="storeNum3"></include>
+			<include method="equGoodsSub"></include>
+			<include method="getRecNo"></include>
+			<include method="findRecEqu"></include>
+			<include method="equRecSub2"></include>
+			<include method="SaveRecSub"></include>
+			<include method="SaveRecSub2"></include>
+			<include method="initEquSpecialToolsDetail"></include>
+			<include method="deleteEquSpecialToolsDetailByMaster"></include>
+			
+		</create>
+		
+		
+		<!-- 设备催交 -->
+		<create creator="spring" javascript="equUrgeMgm" scope="page">
+			<param name="beanName" value="equUrgeMgm" />
+			<include method="equUrge"></include>
+			<include method="selectEquUrge"></include>
+		</create>
+		
+		<!-- 备品备件查询-->
+		<create creator="spring" javascript="equPartMgm" scope="page">
+			<param name="beanName" value="equPartMgm" />
+			<include method="equPartSub"></include>
+		</create>
+		
+		<!-- 专用工器具查询-->
+		<create creator="spring" javascript="equInstruMgm" scope="page">
+			<param name="beanName" value="equInstruMgm" />
+			<include method="equInstruSub"></include>
+		</create>
+		<!-- 设备安装 -->
+		<create creator="spring" javascript="equSetupMgm" scope="page">
+			<param name="beanName" value="equSetupMgm" />
+			<include method="saveOrUpdateSbaz"></include>
+		</create>
+		<!--设备清单-->
+		  
+		<create creator="spring" javascript="equlistMgm" scope="page">
+			<param name="beanName" value="equlistMgm" />
+		
+			<include method="saveEqulist"></include>   
+			<include method="saveEqulistQc"></include>   
+			<include method="deleteEqulist"></include>   
+			<include method="deleteEqulistQc"></include>   
+			<include method="selectSbtoList"></include>   
+			<include method="getIndexId"></include>   
+			<include method="saveSelectEqu"></include>
+			<include method="addContract"></include>  
+			<include method="moveCon"></include> 
+			<include method="deleteConAll"></include>   
+			<include method="getparent"></include>
+			<include method="getEquNo"></include>
+			<include method="saveSelectEquArr"></include>
+			<include method="saveSelectOpen"></include>
+			<include method="deleteChildNode"></include>
+			<include method="addOrUpdate"></include>
+			<include method="dhzs"></include>
+			<include method="checkGgXh"></include>
+			<include method="saveEqulistAndUpdateQc"></include>
+			<include method="deleteEqulistSb"></include>
+		</create>
+		
+		<!-- 设备到货 汕尾 -->
+		<create creator="spring" javascript="equGetGoodsArrMgm" scope="page">
+			<param name="beanName" value="equGetGoodsArrMgm" />
+			<include method="insertGetGoods"></include>
+			<include method="updateGetGoods"></include>
+			<include method="initGetGoodsBh"></include>
+			<include method="checkBhExist"></include>
+			<include method="deleteGetGoods"></include>
+			<include method="checkDelete"></include>
+			<include method="saveEquSbdh"></include>
+			<include method="checkDeleteEqu"></include>
+			<include method="insertSbZl"></include>
+			<include method="removeSbZl"></include>
+			<include method="deleteGetGoodsSub"></include>
+			<include method="saveGetGoodsSub"></include>
+		</create>		
+
+		<!-- 设备厂商-->
+		<create creator="spring" javascript="equsbcsop" scope="page">
+			<param name="beanName" value="equSbCsOpImp" />
+			<include method="checkCSno"></include>
+			<include method="addOrUpdateWzCsb"></include>
+			<include method="updateWzCsStateChange"></include>
+		</create>		
+	</allow>
+</dwr>

@@ -1,0 +1,41 @@
+delete from property_code where type_name = '组织机构类型';
+delete from property_type where uids = '组织机构类型';
+
+commit;
+
+insert into property_type (UIDS, TYPE_NAME, MODULE_NAME, XH)
+values ('组织机构类型', '组织机构类型', '系统管理', 1);
+
+
+insert into PROPERTY_CODE (UIDS, PROPERTY_CODE, TYPE_NAME, PROPERTY_NAME, MODULE_NAME, DETAIL_TYPE, ITEM_ID, COL1, COL2, COL3)
+values ('4', '0', '组织机构类型', '集团公司', '', 'SORT', 0, '', '', '');
+
+insert into PROPERTY_CODE (UIDS, PROPERTY_CODE, TYPE_NAME, PROPERTY_NAME, MODULE_NAME, DETAIL_TYPE, ITEM_ID, COL1, COL2, COL3)
+values ('5', '2', '组织机构类型', '二级企业', '', 'CORP', 2, '', '', '');
+
+insert into PROPERTY_CODE (UIDS, PROPERTY_CODE, TYPE_NAME, PROPERTY_NAME, MODULE_NAME, DETAIL_TYPE, ITEM_ID, COL1, COL2, COL3)
+values ('6', '1', '组织机构类型', '集团总部', '', 'CORP', 1, '', '', '');
+
+insert into PROPERTY_CODE (UIDS, PROPERTY_CODE, TYPE_NAME, PROPERTY_NAME, MODULE_NAME, DETAIL_TYPE, ITEM_ID, COL1, COL2, COL3)
+values ('4028e3982f2e0651012f2e3e9e1d001b', '6', '组织机构类型', '直属单位', '', 'CORP', 6, '', '', '');
+
+insert into PROPERTY_CODE (UIDS, PROPERTY_CODE, TYPE_NAME, PROPERTY_NAME, MODULE_NAME, DETAIL_TYPE, ITEM_ID, COL1, COL2, COL3)
+values ('4028e3982f7079a3012f70819c4f0001', 'A', '组织机构类型', '项目单位', '', 'CORP', 10, '', '', '');
+
+insert into PROPERTY_CODE (UIDS, PROPERTY_CODE, TYPE_NAME, PROPERTY_NAME, MODULE_NAME, DETAIL_TYPE, ITEM_ID, COL1, COL2, COL3)
+values ('4028e3982f2e0651012f2e3e9e1d001c', '7', '组织机构类型', '外部单位', '', 'CORP', 7, '', '', '');
+
+insert into PROPERTY_CODE (UIDS, PROPERTY_CODE, TYPE_NAME, PROPERTY_NAME, MODULE_NAME, DETAIL_TYPE, ITEM_ID, COL1, COL2, COL3)
+values ('4028e3982f2e0651012f2e3ceb7d0019', '4', '组织机构类型', '四级单位', '', 'CORP', 4, '', '', '');
+
+insert into PROPERTY_CODE (UIDS, PROPERTY_CODE, TYPE_NAME, PROPERTY_NAME, MODULE_NAME, DETAIL_TYPE, ITEM_ID, COL1, COL2, COL3)
+values ('4028e3982f2e0651012f2e3e9e1d001d', '8', '组织机构类型', '部门', '', 'DEPT', 8, '', '', '');
+
+insert into PROPERTY_CODE (UIDS, PROPERTY_CODE, TYPE_NAME, PROPERTY_NAME, MODULE_NAME, DETAIL_TYPE, ITEM_ID, COL1, COL2, COL3)
+values ('4028e3982f2e0651012f2e3ceb7d0018', '3', '组织机构类型', '三级企业', '', 'CORP', 3, '', '', '');
+
+insert into PROPERTY_CODE (UIDS, PROPERTY_CODE, TYPE_NAME, PROPERTY_NAME, MODULE_NAME, DETAIL_TYPE, ITEM_ID, COL1, COL2, COL3)
+values ('4028e3982f2e0651012f2e3e9e2c001e', '9', '组织机构类型', '岗位', '', 'SORT', 9, '', '', '');
+
+
+commit;

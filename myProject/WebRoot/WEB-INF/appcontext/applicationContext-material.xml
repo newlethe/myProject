@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<!-- 物资模块 -->
+	<bean id="matMgm" class="com.sgepit.pmis.material.service.MatMgmImpl">
+		<!-- <property name="baseDao" ref="baseDAO" />  -->
+		<property name="matFrameMgm"  ref="matFrameMgm" />
+		<property name="appBuyMgm"  ref="appBuyMgm" />  
+		<property name="matGoodsMgm"  ref="matGoodsMgm" />
+	</bean>
+	
+	<!--材料编码维维护 -->
+	<bean id="matFrameMgm"
+		class="com.sgepit.pmis.material.service.MatFrameMgmImpl">
+		<property name="equipmentDAO" ref="equipmentDAO" />
+	</bean>
+	
+	<!-- 材料编码维护申请 -->
+	<bean id="maAppMgm"
+		class="com.sgepit.pmis.material.service.MatCodeAppMgmImpl">
+		<property name="equipmentDAO" ref="equipmentDAO" />
+	</bean>  
+	 
+	<!-- 材料申请, 采购计划 -->
+	<bean id="appBuyMgm"  
+		class="com.sgepit.pmis.material.service.MatAppbuyMgmImpl">
+		<property name="equipmentDAO" ref="equipmentDAO" />
+	</bean> 
+	
+	<!-- 到货验收, 到货发票 --> 
+	<bean id="matGoodsMgm"  
+		class="com.sgepit.pmis.material.service.MatGoodsMgmImpl">
+		<property name="equipmentDAO" ref="equipmentDAO" />
+	</bean> 
+	
+	<!-- 物资出入库 --> 
+	<bean id="matStoreMgm"  
+		class="com.sgepit.pmis.material.service.MatStoreMgmImpl">
+		<property name="equipmentDAO" ref="equipmentDAO" />
+	</bean> 
+	
+</beans>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<convert converter="bean" match="com.sgepit.pcmis.bid.hbm.*" />
+		<convert converter="bean" match="com.sgepit.pmis.budget.hbm.*" />
+
+		<create creator="new" scope="application" javascript="PCBidDWR">
+			<param name="class" value="com.sgepit.pcmis.bid.control.PCBidDWR" />
+		</create>
+		
+		<create creator="spring" scope="page" javascript="PCBidService">
+			<param name="beanName" value="pcBidService" />
+		</create>
+		
+		<!-- 招投标 -->
+		<create creator="spring" javascript="bidBdgApportionMgm" scope="page">
+			<param name="beanName" value="bidBdgApportionMgm" />
+		</create>
+		
+	</allow>
+
+</dwr>

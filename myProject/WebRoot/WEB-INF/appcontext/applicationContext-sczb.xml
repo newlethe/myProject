@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<!--
+	- Application context definition for JPetStore's data access layer.
+	- Accessed by business layer objects defined in "applicationContext.xml"
+	- (see web.xml's "contextConfigLocation").
+	-
+	- This version of the data access layer works on a combined database,
+	- using a local DataSource with DataSourceTransactionManager. It does not
+	- need any JTA support in the container: It will run as-is in plain Tomcat.
+-->
+<beans>
+
+	<!-- ========================= BUSINESS OBJECT DEFINITIONS ======================== -->
+	<!-- 值班管理 -->
+	
+	<!-- 班次设定-->
+	<bean id="sczbBcMgm"
+		class="com.sgepit.pmis.sczb.service.SczbBcMgmImpl">
+		<property name="sczbBcDao" ref="sczbBcDAO"></property>
+	</bean>
+	<!-- 值次设定-->
+	<bean id="sczbZcMgm"
+		class="com.sgepit.pmis.sczb.service.SczbZcMgmImpl">
+		<property name="sczbBcDao" ref="sczbBcDAO"></property>
+	</bean>
+	
+	<!-- 值班顺序设定-->
+	<bean id="sczbZbsxMgm"
+		class="com.sgepit.pmis.sczb.service.SczbZbsxMgmImpl">
+		<property name="sczbBcDao" ref="sczbBcDAO"></property>
+	</bean>
+	
+	<!-- 交接班管理-->
+	<bean id="sczbJjbMgm"
+		class="com.sgepit.pmis.sczb.service.SczbJjbMgmImpl">
+		<property name="sczbBcDao" ref="sczbBcDAO"></property>
+	</bean>
+	
+	<!-- 值班记录管理-->
+	<bean id="sczbZbjlMgm"
+		class="com.sgepit.pmis.sczb.service.SczbZbjlMgmImpl">
+		<property name="sczbBcDao" ref="sczbBcDAO"></property>
+	</bean>
+	<!-- 排班管理-->
+	<bean id="sczbPbQueryMgm"
+		class="com.sgepit.pmis.sczb.service.SczbPbQueryMgmImpl">
+		<property name="sczbBcDao" ref="sczbBcDAO"></property>
+	</bean>
+	
+	
+	<bean id="sczbBcDAO" class="com.sgepit.pmis.sczb.dao.SczbBcDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+</beans>

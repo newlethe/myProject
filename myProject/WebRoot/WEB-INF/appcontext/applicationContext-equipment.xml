@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+
+	<!-- ========================= BUSINESS OBJECT DEFINITIONS ======================== -->
+	
+	<bean id="equipmentDAO" class="com.sgepit.pmis.equipment.dao.EquipmentDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	
+	<!-- 基础信息维护 2012-06-24 zhangh -->
+	<bean id="equBaseInfo"
+		class="com.sgepit.pmis.equipment.service.EquBaseInfoImpl">
+		<property name="equipmentDAO" ref="equipmentDAO" />
+	</bean>
+	<!-- 设备管理 2012-06-26 zhangh-->
+	<bean id="equMgm"
+		class="com.sgepit.pmis.equipment.service.EquMgmImpl">
+		<property name="equipmentDAO" ref="equipmentDAO" />
+		<property name="equlistMgm" ref="equlistMgm"/>
+		<property name="equSetupMgm" ref="equSetupMgm"/>
+		<property name="equBaseInfo" ref="equBaseInfo"/>
+		<property name="sendMessage" ref="sendMessage"/>
+	</bean>
+	
+	<!-- 设备到货信息 -->
+	<bean id="equGetGoodsMgm"
+		class="com.sgepit.pmis.equipment.service.EqugetgoodsMgmImpl">
+		<property name="equipmentDAO" ref="equipmentDAO" />
+	</bean>
+	<!-- 设备退库信息 -->
+	<bean id="equTkGoodsMgm"
+		class="com.sgepit.pmis.equipment.service.EqutkgoodsMgmImpl">
+		<property name="equipmentDAO" ref="equipmentDAO" />
+	</bean>
+	
+	<!-- 开箱记录信息 -->
+	<bean id="openBoxMgm"
+		class="com.sgepit.pmis.equipment.service.OpenBoxMgmImpl">
+		<property name="equipmentDAO" ref="equipmentDAO" />
+	</bean>
+	
+	<!-- 设备领用信息 -->
+	<bean id="equRecMgm"
+		class="com.sgepit.pmis.equipment.service.EqurecMgmImpl">
+		<property name="equipmentDAO" ref="equipmentDAO" />
+	</bean>
+	
+	
+	<!-- 设备催交信息 -->
+	<bean id="equUrgeMgm"
+		class="com.sgepit.pmis.equipment.service.EquUrgeMgmImpl">
+	</bean>
+	
+	<!-- 备品备件查询 --> 
+	<bean id="equPartMgm"
+		class="com.sgepit.pmis.equipment.service.EquPartMgmImpl">
+	</bean>
+	
+	<!-- 专用工器具查询 --> 
+	<bean id="equInstruMgm"
+		class="com.sgepit.pmis.equipment.service.EquInstruMgmImpl">
+	</bean>
+	
+	<!-- 设备安装 -->
+	<bean id="equSetupMgm" class="com.sgepit.pmis.equipment.service.EquSteupMgmImpl">
+		<property name="equipmentDAO" ref="equipmentDAO"/>
+	</bean>
+	<bean id="equlistMgm" class="com.sgepit.pmis.equipment.service.EqulistMgmImpl">
+		<property name="equipmentDAO" ref="equipmentDAO" />  
+		<property name="applicationMgm" ref="applicationMgm" />
+	</bean>
+	
+	<!-- 设备清单（山西） -->
+	<!-- 
+	<bean id="equMgm" class="com.sgepit.pmis.equipment.service.EquMgmImpl">
+		<property name="baseDAO" ref="baseDAO"/>
+		<property name="equlistMgm" ref="equlistMgm"/>
+		<property name="equSetupMgm" ref="equSetupMgm"/>
+	</bean>
+	-->
+	
+	<!-- 设备到货信息 汕尾 -->
+	<bean id="equGetGoodsArrMgm"
+		class="com.sgepit.pmis.equipment.service.EqugetgoodsArrMgmImpl">
+		<property name="equipmentDAO" ref="equipmentDAO" />
+	</bean>	
+	
+	<!-- 设备厂商 -->
+    <bean id="equSbCsOpImp" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.equipment.service.EquSbCsOpImp">
+        	<property name="equipmentDAO" ref="equipmentDAO"/>
+        </bean>
+		</property>	
+    </bean>
+    
+</beans>

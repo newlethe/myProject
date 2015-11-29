@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<convert converter="bean" match="com.sgepit.pcmis.zhxx.hbm.*" />		
+        <create creator="spring" javascript="pcPrjService" scope="page">
+			<param name="beanName" value="pcPrjServiceImpl" />
+			<include method="addOrUpdate"></include>
+			<include method="validateImage"></include>
+			<include method="keymanAddOrUpdate"></include>
+			<include method="isUnique"></include>
+			<include method="getUnumber"></include>
+			<include method="getAllProjectSheduleByPid"></include>
+			<include method="sendPrjInfoToMIS"></include>
+			<include method="sendKeymanToJT"></include>
+			<include method="sendKeymanToJTDEL"></include>
+			<include method="sendCoUnitToJT"></include>
+			<include method="sendCoUnitToJTDEL"></include>
+			<include method="fileDeleteDataEx"></include>
+			<include method="fileUploadDataEx"></include>
+			<include method="sendFundsrcToJT"></include>
+			<include method="sendFundsrcToJTDEL"></include>
+			<!-- 项目单位组织结构报送  -->
+			<include method="reportUnitData"></include>
+			<include method="checkFundsrcEqual"></include>
+			<!-- flex图表配置 -->
+			<include method="getCmlFileList"></include>
+			<include method="saveCmlFile"></include>
+			<include method="activeCml"></include>
+			<include method="backupCml"></include>
+			<include method="deleteCml"></include>
+			
+			<!-- 前期项目新增修改 -->
+			<include method="addOrUpdatePre"></include>
+			
+			<!-- 建立前期项目时自动获得项目编号 -->
+			<include method="checkPidBeUsed"></include>
+			
+			<!-- 前期项目转换为正式项目 -->
+			<include method="prjSwitch"></include>
+			<include method="getPreUnumber"></include>
+			
+			<include method="addOrUpdateSgccUnitModule"></include>
+			<include method="getSgccUnitModuleByUnitid"></include>
+			<include method="getSgccUnitModuleByModuleid"></include>
+			
+			<include method="getProIndexData"/>
+			<include method="getProItemIndexData"/> 
+			<include method="getMapUnitInfo"/>
+			<include method="getLiChengBeiByType"/>
+			<include method="getProItemJiaJieIndexData"/>
+			
+			<!-- 组织机构新增或者修改 -->
+			<include method="addDydaAfterSaveOrUpdateSgcc"/>
+			
+			<!--上月数据完整性考核分数 -->
+			<include method="getLastMonthNum"/>			
+			<include method="getLastMonthNums"/>	
+			
+			<!--项目基本情况表-->
+			<include method="initBaseInfoD"/>			
+			<include method="deleteBaseInfoD"/>
+			<include method="doProBaseInfoExchangeDataToQueue"/>
+		</create>
+		
+	</allow>
+</dwr>

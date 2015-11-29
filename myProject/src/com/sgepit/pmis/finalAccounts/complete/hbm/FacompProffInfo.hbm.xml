@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.sgepit.pmis.finalAccounts.complete.hbm.FacompProofInfo"
+		table="FACOMP_PROOF_INFO">
+        <id name="uids" type="java.lang.String">
+            <column name="UIDS" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="pid" type="java.lang.String">
+            <column name="PID" length="32">
+                <comment>项目ID</comment>
+            </column>
+        </property>
+        <property name="proofNo" type="java.lang.String">
+            <column name="PROOF_NO" length="32">
+                <comment>凭证号</comment>
+            </column>
+        </property>
+        <property name="proofAbstract" type="java.lang.String">
+            <column name="PROOF_ABSTRACT" length="100">
+                <comment>凭证摘要</comment>
+            </column>
+        </property>
+        <property name="comptime" type="java.lang.String">
+            <column name="COMPTIME" length="100">
+                <comment>期别/子数据位科目全程</comment>
+            </column>
+        </property>
+        <property name="conid" type="java.lang.String">
+            <column name="CONID" length="32">
+                <comment>合同主键/子数据位财务科目treeid</comment>
+            </column>
+        </property>
+        <property name="totalmoney" type="java.lang.Double">
+            <column name="TOTALMONEY" precision="15" scale="4">
+                <comment>投资完成总金额</comment>
+            </column>
+        </property>
+        <property name="remark" type="java.lang.String">
+            <column name="REMARK" length="200">
+                <comment>备注</comment>
+            </column>
+        </property>
+        <property name="createtime" type="java.util.Date">
+            <column name="CREATTIME" />
+        </property>
+        <property name="relateuids" type="java.lang.String">
+            <column name="RELATEUIDS" length="32" />
+        </property>
+        <property name="detialBh" type="java.lang.Long">
+            <column name="DETIAL_BH" />
+        </property>
+    </class>
+</hibernate-mapping>

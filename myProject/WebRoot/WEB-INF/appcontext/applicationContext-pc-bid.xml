@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<!--
+	- Application context definition for JPetStore's data access layer.
+	- Accessed by business layer objects defined in "applicationContext.xml"
+	- (see web.xml's "contextConfigLocation").
+	-
+	- This version of the data access layer works on a combined database,
+	- using a local DataSource with DataSourceTransactionManager. It does not
+	- need any JTA support in the container: It will run as-is in plain Tomcat.
+-->
+<beans>
+
+    
+	<bean id="pcBidDAO" class="com.sgepit.pcmis.bid.dao.PCBidDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	
+	<bean id="pcBidService" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pcmis.bid.service.PCBidServiceImpl">
+				<property name="pcBidDAO" ref="pcBidDAO" />
+				<property name="systemDao" ref="systemDao"/>  
+			</bean>
+		</property>
+	</bean>
+	<bean id="pcBidApplyService" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pcmis.bid.service.PCBidApplyServiceImpl">
+				<property name="pcBidDAO" ref="pcBidDAO" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="pcBidTbUnitService" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pcmis.bid.service.PCBidTbUnitServiceImpl">
+				<property name="pcBidDAO" ref="pcBidDAO" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="pcBidExDataService" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pcmis.bid.service.PCBidExDataServiceImpl">
+				<property name="pcBidDAO" ref="pcBidDAO" />
+			</bean>	
+		</property>
+	</bean>
+	
+	<!-- 招标概算分摊20151116 -->
+	<bean id="bidBdgApportionMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.budget.service.BidBdgApportionMgmImpl">
+				<property name="bidBdgApportionDao" ref="bidBdgApportionDao"></property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="bidBdgApportionDao" class="com.sgepit.pmis.budget.dao.BidBdgApportionDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"/>
+		</property>
+	</bean>
+
+</beans>

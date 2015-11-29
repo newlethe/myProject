@@ -1,0 +1,308 @@
+/*
+ * Ext JS Library 2.0 RC 1
+ * Copyright(c) 2006-2007, Ext JS, LLC.
+ * licensing@extjs.com
+ * 
+ * http://extjs.com/license
+ */
+
+/*
+ * Ext JS Library 2.0
+ * Copyright(c) 2006-2007, Ext JS, LLC.
+ * licensing@extjs.com
+ * 
+ * http://www.extjs.com/license
+ */
+body{
+	font-size: 12px;
+}
+td{
+	font-size: 12px;
+}
+.viewLabel{
+	font-weight: bold;
+	white-space: nowrap;
+	background:#f0f0f0;
+	padding-left:20px;
+	width: 15%;
+	height:22;
+}
+.viewData{
+	width: 15%;
+	padding-left:20px;
+}
+.add {
+    background-image:url(../images/shared/icons/add.gif) !important;
+}
+.option {
+    background-image:url(../images/shared/icons/plugin.gif) !important;
+}
+.remove {
+    background-image:url(../images/shared/icons/delete.gif) !important;
+}
+.save {
+    background-image:url(../images/shared/icons/save.gif) !important;
+}
+.refresh {
+    background-image:url(../images/shared/icons/refresh.png) !important;
+}
+.form {
+    background-image:url(../images/shared/icons/application_view_list.png) !important;
+}
+.btn {
+	background-image:url(../images/shared/icons/cog_edit.png) !important;
+}
+.returnTo {
+    background-image:url(../images/shared/icons/rss_go.png) !important;
+}
+.multiplication{
+	background-image:url(../images/shared/icons/cross.gif) !important;
+}
+.division{
+	background-image:url(../images/shared/icons/connect.gif) !important;
+}
+.select{
+	background-image:url(../images/icon-by-date.gif) !important;
+}
+.title{
+	background-image:url(../images/icon-show-all.gif) !important;
+}
+.setPassword {
+    background-image:url(../images/index/key.png) !important;
+}
+.copyUser {
+    background-image:url(../images/shared/icons/page_copy.png) !important;
+}
+.cutUser {
+    background-image:url(../images/shared/icons/cut.png) !important;
+}
+.pasteUser {
+    background-image:url(../images/shared/icons/group.png) !important;
+}
+.pasteUser0 {
+    background-image:url(../images/shared/icons/group_link.png) !important;
+}
+.copy{
+	background-image:url(../images/icons/page_copy.png) !important;
+}
+.paste{
+	background-image:url(../images/icons/page_paste.png) !important;
+}
+
+.pasteUser1 {
+    background-image:url(../images/shared/icons/group_go.png) !important;
+}
+.orangeUser {
+    background-image:url(../images/icons/user_orange.png) !important;
+}
+.delUser {
+    background-image:url(../images/shared/icons/group_delete.png) !important;
+}
+.flow {
+    background-image:url(../images/index/cmp.gif) !important;
+}
+.pageNext {
+    background-image:url(../images/page-next.gif) !important;
+}
+.pagePrev {
+    background-image:url(../images/page-prev.gif) !important;
+}
+.finish {
+	background-image:url(../images/icon-complete.gif) !important;
+}
+.upload {
+	background-image:url(../images/file-upload.gif) !important;
+}
+.download {
+	background-image:url(../images/file-download.gif) !important;
+}
+.word {
+	background-image:url(../images/word.gif) !important;
+}
+.bmenu {
+	background-image:url(../images/menu-show.gif) !important;
+}
+.open {
+	background-image:url(../images/shared/icons/folder_wrench.png) !important;
+}
+.x-panel-flow {
+	background-image:url(../images/flowBg.jpg) !important;	
+}
+.upload-icon {
+    background: url('../images/image_add.png') no-repeat 0 0 !important;
+}
+.toBegin {
+	background-image:url(../images/to-begin.gif) !important;
+}
+.toPrevious {
+	background-image:url(../images/to-previous.gif) !important;
+}
+.key {
+	background-image:url(../images/index/key.png) !important;
+}
+.bookmark {
+	background-image:url(../images/index/docs.gif) !important;
+}
+.getbookmark {
+	background-image:url(../images/index/expand-members.gif) !important;
+}
+.msg .x-box-mc {
+    font-size:14px;
+}
+#msg-div {
+    position:absolute;
+    left:5%;
+    top:15px;
+    width:250px;
+    z-index:20000;
+}
+.icon-modify-key {
+    background-image:url(../images/index/key.png) !important;
+}
+.icon-sys-help {
+    background-image:url(../images/index/docs.gif) !important;
+}
+.icon-by-category {
+    background-image:url(../images/icon-by-category.gif) !important;
+}
+.icon-show-active {
+    background-image:url(../images/icon-show-active.gif) !important;
+}
+.icon-show-complete {
+    background-image:url(../images/icon-show-complete.gif) !important;
+}
+.icon-show-all {
+    background-image:url(../images/icon-show-all.gif) !important;
+}
+.icon-detail-form {
+    background-image:url(../images/edit.gif) !important;
+}
+.icon-plugin {
+    background-image:url(../images/shared/icons/plugin.gif) !important;
+}
+.icon-refresh-all {
+    background-image:url(../images/shared/icons/refresh.png) !important;
+}
+.icon-role-tree {
+    background-image:url(../images/edit.gif) !important;
+}
+.x-grid3-dirty-cell {
+    /*background:transparent;*/
+}
+.icon-class{
+	background-image:url(../images/index/class.gif) !important;
+}
+.icon-active {
+    background-image:url(../images/icon-active.gif) !important;
+}
+.icon-complete {
+    background-image:url(../images/icon-complete.gif) !important;
+}
+.icon-delete {
+    background-image:url(../images/delete.gif) !important;
+}
+.icon-edit {
+	background-image:url(../images/edit.gif) !important;
+}
+.icon-expand-all {
+    background-image: url(../images/index/expand-all.gif) !important;
+}
+.icon-collapse-all {
+    background-image: url(../images/index/collapse-all.gif) !important;
+}
+.icon-by-date {
+    background-image:url(../images/icon-by-date.gif) !important;
+}
+.icon-by-category {
+    background-image:url(../images/icon-by-category.gif) !important;
+}
+.icon-no-group {
+    background-image:url(../images/icon-no-group.gif) !important;
+}
+.x-panel-trans {
+	background:transparent;
+}
+
+.x-layout-split-west {
+	cursor:move;
+    background-color:#F5F5F5;
+}
+.x-panel-header-text {
+	color:#708090;
+}
+.borderLeft {
+	border-left:1px solid #ffffff;
+}
+#content-panel {
+	border-left:1px solid #ffffff;
+}
+#grid-panel {
+	/*border-bottom:1px solid #99bbe8;*/
+}
+#form-panel {
+	border-top:1px solid #ffffff;
+}
+
+.excel {
+    background-image:url(../images/shared/icons/excel.gif) !important;
+}
+.print{
+	background-image:url(../images/shared/icons/b_print.gif) !important;
+}
+.mod-icon {
+	padding-left:20px;
+	padding-top: 1px;
+	line-height: 19px;
+}
+.work-report {
+	background: url('../images/portal/action_paste.gif') no-repeat;
+}
+.big-meeting {
+	background: url('../images/portal/action_forward.gif') no-repeat;
+}
+.big-action {
+	background: url('../images/portal/box.gif') no-repeat;
+}
+.big-report {
+	background: url('../images/portal/comment_yellow.gif') no-repeat;
+}
+.leaders-interview {
+	background: url('../images/portal/page_favourites.gif') no-repeat;
+}
+.background-materials {
+	background: url('../images/portal/folder_page.gif') no-repeat;
+}
+.dept-work-track {
+	background: url('../images/portal/action_forward.gif') no-repeat;	
+}
+.meet-materials-coordination {
+	background: url('../images/portal/icon_airmail.gif') no-repeat;
+}
+.icon-sys-config{
+	background-image:url(../images/icons/application_view_columns.png) !important;
+}
+button.pageBtn {
+	filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr='#FFFEFE',endColorStr='#C3C3C3');	
+	height: 21px;
+	width: 51px;
+	border: none;
+	padding-top: 1px;
+	font-size: 9pt;
+	border: 1px solid #808080;
+}
+.maxWin {
+    background-image:url(../images/shared/icons/maxwin.png) !important;
+}
+.minWin {
+    background-image:url(../images/shared/icons/minwin.png) !important;
+}
+
+.permit {
+    background-image:url(../images/pass2.png) !important;
+}
+.rollback {
+    background-image:url(../images/sendBack2.png) !important;
+}
+.rollpermit {
+	background-image:url(../images/icons/undo.gif) !important;
+}

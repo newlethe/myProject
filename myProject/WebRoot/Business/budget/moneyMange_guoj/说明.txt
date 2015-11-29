@@ -1,0 +1,6 @@
+资金计划：budget/moneyMange/money.month.plan.jsp
+资金计划汇总：budget/moneyMange/hz/money.month.plan.jsp
+资金计划下达：budget/moneyMange/down/money.month.plan.jsp
+
+资金计划补录：budget/moneyMange/addrecord/money.month.plan.jsp
+资金计划补录审批：budget/moneyMange/addrecordhz/money.month.plan.jsp

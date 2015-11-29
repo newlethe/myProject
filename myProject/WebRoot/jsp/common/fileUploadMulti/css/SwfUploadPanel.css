@@ -1,0 +1,49 @@
+.SwfUploadPanel_iconAdd {
+	background-image:url(../images/add.png) !important;
+}
+
+.SwfUploadPanel_iconUpload {
+	background-image:url(../images/arrow_up.png) !important;
+}
+
+.SwfUploadPanel_iconCancel {
+	background-image:url(../images/delete.png) !important;
+}
+.SwfUploadPanel_iconClear {
+	background-image:url(../images/delete.png) !important;
+}
+.ext-ux-uploaddialog-state
+{
+	text-align: center;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+/* Queued */
+.ext-ux-uploaddialog-state-0
+{
+	background-image: url('../images/uncheck.gif');
+}
+
+/* Processing */
+.ext-ux-uploaddialog-state-1
+{
+	background-image: url('../images/file-uploading.gif') !important;	
+}
+/*  Finished*/
+.ext-ux-uploaddialog-state-2
+{
+	background-image: url('../images/check.gif');
+}
+/* Failed */
+.ext-ux-uploaddialog-state-3
+{
+	background-image: url('../images/failed.gif')!important;
+}
+/* Reset */
+.ext-ux-uploaddialog-state-4
+{
+	background-image: url('../images/reset.gif')!important;
+}
+
+

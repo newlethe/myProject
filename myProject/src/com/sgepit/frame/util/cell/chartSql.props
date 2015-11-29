@@ -1,0 +1,11 @@
+monthSql = select property_code as mm,property_name as axis from property_code where type_name='月度' order by property_code
+
+yearSql = select property_code as yyyy,property_name as axis from property_code where type_name='年度'and property_code>=substr('&date',1,4)-4 and property_code<=substr('&date',1,4) order by property_code 
+
+dateSql = select &col as val,sj_type from &tab where unit_id='&corp' and zb_seqno='&inx'
+
+inx_20_* = select axis,val as 本年 from (#dateSql) sTab,(#monthSql) mTab where substr(&date,1,4)||mTab.mm=sTab.sj_type(+)
+
+inx_22_* = select axis,sTab2.val as 上年,sTab1.val as 本年 from (#dateSql) sTab1,(#dateSql) sTab2,(#monthSql) mTab where substr(&date,1,4)||mTab.mm=sTab1.sj_type(+) and substr(&date-100,1,4)||mTab.mm=sTab2.sj_type(+)
+
+inx_10_* = select axis,val as value from (#dateSql) sTab,(#yearSql) yTab where yTab.yyyy=sTab.sj_type(+)

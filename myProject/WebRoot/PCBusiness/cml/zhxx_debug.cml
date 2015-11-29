@@ -1,0 +1,57 @@
+<Carton width="1147" height="277">
+  <variable>
+    <param name="FD_VAL" initValue="6456"/>
+    <param name="SD_VAL" initValue="7345"/>
+    <param name="HD_VAL" initValue="3456"/>
+    <param name="IGCC_VAL" initValue="7345"/>
+    <param name="XJ_ZTZ" initValue="7345"/>
+    <param name="KJ_ZTZ" initValue="2347"/>
+    <param name="GJ_ZTZ" initValue="2367"/>
+    <param name="XJ_ZBJ_JT" initValue="3477"/>
+    <param name="KJ_ZBJ_JT" initValue="4567"/>
+    <param name="GJ_ZBJ_JT" initValue="2346"/>
+    <param name="XJ_ZBJ_ZY" initValue="3473"/>
+    <param name="GJ_ZBJ_ZY" initValue="3745"/>
+    <param name="KJ_ZBJ_ZY" initValue="3453"/>
+    <param name="XJ_ZBJ_QT" initValue="7435"/>
+    <param name="GJ_ZBJ_QT" initValue="4567"/>
+    <param name="KJ_ZBJ_QT" initValue="2345"/>
+    <param name="XJ_DK" initValue="7345"/>
+    <param name="KJ_DK" initValue="5467"/>
+    <param name="GJ_DK" initValue="2367"/>
+    <param name="XJ_QT" initValue="7345"/>
+    <param name="KJ_QT" initValue="2234"/>
+    <param name="GJ_QT" initValue="2346"/>
+  </variable>
+  <Chart type="AMPIECHART" width="300" height="226" UID="IOSQL3" x="55" y="46">
+    <param name="dataProvider" mode="sql"><![CDATA[select 'FD' A ,'[FD_VAL]' B FROM DUAL UNION select 'SD' A ,'[SD_VAL]' B FROM DUAL UNION select 'HD' A ,'[FD_VAL]' B FROM DUAL UNION select 'IGCC' A ,'[IGCC_VAL]' B FROM DUAL ]]></param>
+    <param name="titleField" mode="prop" value="A"/>
+    <param name="valueField" mode="prop" value="B"/>
+    <param name="depth3D" mode="style" value="13"/>
+    <param name="angle" mode="style" value="31"/>
+    <param name="labelRadius" mode="style" value="-16"/>
+    <param name="GraphDoubleClick" mode="event" value="scaleZoom"/>
+  </Chart>
+  <Chart type="AMCOLUMNCHART" width="608" height="231" UID="IOSQM2" x="345" y="45">
+    <param name="dataProvider" mode="sql"><![CDATA[SELECT 'XJ' NAME,'[XJ_ZTZ]' ZTZ,'[XJ_ZBJ_JT]' ZBJ_JT,'[XJ_ZBJ_ZY]' ZBJ_ZY,'[XJ_ZBJ_QT]' ZBJ_QT,'[XJ_DK]' DK,'[XJ_QT]' QT FROM DUAL UNION SELECT 'GJ' NAME,'[GJ_ZTZ]' ZTZ,'[GJ_ZBJ_JT]' ZBJ_JT,'[GJ_ZBJ_ZY]' ZBJ_ZY,'[GJ_ZBJ_QT]' ZBJ_QT,'[GJ_DK]' DK,'[GJ_QT]' QT FROM DUAL UNION SELECT 'KJ' NAME,'[KJ_ZTZ]' ZTZ,'[KJ_ZBJ_JT]' ZBJ_JT,'[KJ_ZBJ_ZY]' ZBJ_ZY,'[KJ_ZBJ_QT]' ZBJ_QT,'[KJ_DK]' DK,'[KJ_QT]' QT FROM DUAL ]]></param>
+    <param name="marginLeft" mode="style" value="100"/>
+    <param name="depth3D" mode="style" value="29"/>
+    <param name="angle" mode="style" value="30"/>
+    <param name="categoryField" mode="prop" value="NAME"/>
+    <param name="fields" mode="prop" value="ZTZ|ZBJ_JT|ZBJ_ZY|ZBJ_QT|DK|QT"/>
+    <param name="graphs.title" mode="prop" value="ZONG_TOU_ZI|ZI_BEN_JIN_JI_TUAN|ZI_BEN_JIN_ZI_YOU|ZI_BEN_JIN_QI_TA|DAI_KUANG|QI_TA"/>
+    <param name="GraphDoubleClick" mode="event" value="scaleZoom"/>
+  </Chart>
+  <Chart type="AMLEGEND" width="171" height="250" UID="IOSQM9" x="976" y="27">
+    <param name="chartProvider" mode="prop" value="IOSQM2"/>
+    <param name="marginLeft" mode="style" value="0"/>
+    <param name="marginRight" mode="style" value="-100"/>
+    <param name="textClickEnabled" mode="prop" value="true"/>
+  </Chart>
+  <Chart type="LABEL" width="120" height="22" UID="IOSS21" x="154" y="20">
+    <param name="text" mode="prop" value="GONG_CHENG"/>
+  </Chart>
+  <Chart type="LABEL" width="120" height="22" UID="IOSS2H" x="558" y="15">
+    <param name="text" mode="prop" value="GONG_CHENG"/>
+  </Chart>
+</Carton>

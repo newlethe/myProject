@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<convert converter="bean" match="com.sgepit.pmis.safeManage.hbm.*" />		
+        <create creator="spring" javascript="safeManageMgmImpl" scope="page">
+			<param name="beanName" value="safeManageMgmImpl" />
+			<include method="insertSafeUser"></include>
+			<include method="updateSafeUser"></include>
+			<include method="ShowUserTypeTree"></include>
+			<include method="insertSevereAccidentRegister"></include>
+			<include method="updateSevereAccidentRegister"></include>
+			<include method="insertSafeAccident"></include>
+			<include method="updateSafeAccident"></include>
+			<include method="insertCasualtyAccident"></include>
+			<include method="updateCasualtyAccident"></include>
+			<include method="insertSafeEnterpriseAccident"></include>
+			<include method="updateSafeEnterpriseAccident"></include>
+			<include method="insertSafeEnterpriseDetail"></include>
+			<include method="updateSafeEnterpriseDetail"></include>
+			<include method="insertSafeEducationCard"></include>
+			<include method="updateSafeEducationCard"></include>
+			<include method="insertSafeExamineType"></include>
+			<include method="updateSafeExamineType"></include>
+			<include method="deleteChildNode"></include>
+			<include method="addOrUpdate"></include>
+			<include method="getMaxBm"></include>
+			<!-- 新增检查管理-检查项目 -->
+			<include method="insertSafetyCheckItem"></include>
+			<include method="updateSafetyCheckItem"></include>
+			<include method="deleteSafetyCheckItem"></include>
+			<!-- 安全专款申请 -->
+			<include method="insertSafetyMoneyApplyPg"></include>
+			<include method="updateSafetyMoneyApplyPg"></include>
+			<include method="deleteSafetyMoneyApplyPg"></include>
+			
+			<include method="findBeanByProperty"></include>
+		</create>
+	</allow>
+</dwr>

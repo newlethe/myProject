@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+
+<beans>
+
+	<!-- ========================= 合同概算 ======================== -->
+	<!-- 合同概算 -->
+	<bean id="bdgMgm"  parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.budget.service.BdgMgmImpl">
+				<property name="baseDao" ref="baseDAO" />
+			</bean>
+		</property>		
+	</bean>	 
+
+	<!-- 合同分摊结构维护 -->
+	<bean id="bdgInfoMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.budget.service.BdgInfoMgmImpl">
+				<property name="bdgInfoDao" ref="bdgInfoDAO" />
+			</bean>
+		</property>	
+	</bean>
+	
+	<bean id="bdgInfoDAO" class="com.sgepit.pmis.budget.dao.BdgInfoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	
+	<!-- 合同变更概算 -->
+	<bean id="bdgChangeMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.budget.service.BdgChangeMgmImpl">
+				<property name="bdgChangeDao" ref="bdgChangeDAO" />
+			</bean>
+		</property>		
+	</bean>
+	<bean id="bdgChangeDAO" class="com.sgepit.pmis.budget.dao.BdgChangeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	
+	<!-- 合同金额概算  --> 
+	<bean id="bdgMoneyMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.budget.service.BdgMoneyMgmImpl">
+				<property name="bdgMoneyDao" ref="bdgMoneyDAO" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="bdgMoneyDAO" class="com.sgepit.pmis.budget.dao.BdgMoneyDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	<!-- 合同违约概算  --> 
+	<bean id="bdgBreachMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.budget.service.BdgBreachMgmImpl">
+				<property name="bdgBreachDao" ref="bdgBreachDAO" />
+			</bean>
+		</property>	
+	</bean>
+	<bean id="bdgBreachDAO" class="com.sgepit.pmis.budget.dao.BdgBreachDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean> 
+	
+	<!-- 合同付款概算  --> 
+	<bean id="bdgPayMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.budget.service.BdgPayMgmImpl">
+				<property name="bdgPayDao" ref="bdgPayDAO" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="bdgPayDAO" class="com.sgepit.pmis.budget.dao.BdgPayDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean> 
+	
+	<!-- 合同结算概算  --> 
+	<bean id="bdgBalMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.budget.service.BdgBalMgmImpl">
+				<property name="bdgBalDao" ref="bdgBalDAO" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="bdgBalDAO" class="com.sgepit.pmis.budget.dao.BdgBalDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean> 
+	
+	<!-- 合同索赔概算  --> 
+	<bean id="bdgCompensateMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.budget.service.BdgCompensateMgmImpl">
+				<property name="bdgCompensateDao" ref="bdgCompensateDAO" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="bdgCompensateDAO" class="com.sgepit.pmis.budget.dao.BdgCompensateDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean> 
+	
+	<!-- 工程量分摊  --> 
+	<bean id="bdgProjectMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean	class="com.sgepit.pmis.budget.service.BdgProjectMgmImpl">
+				<property name="baseDao" ref="baseDAO" />
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<!-- 建设法人管理  --> 
+	<bean id="bdgCorpMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean	class="com.sgepit.pmis.budget.service.BdgCorpMgmImpl">
+				<property name="bdgCorpDao" ref="bdgCorpDAO" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="bdgCorpDAO" class="com.sgepit.pmis.budget.dao.BdgCorpDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean> 
+	
+	<!-- ========================= 投资完成 ======================== -->
+	
+	<!-- 合同投资完成 -->
+    <bean id="conInvestedDAO" class="com.sgepit.pmis.budget.dao.ConInvestedDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	
+	<!-- 合同投资完成 -->
+	<bean id="conCompletionMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.budget.service.ConCompletionMgmImpl">
+				<property name="conCompletionDAO" ref="conCompletionDAO" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="conCompletionDAO" class="com.sgepit.pmis.budget.dao.ConCompletionDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean> 
+	
+	<!--  材料投资完成 -->  
+	<bean id="matCompletionMgmImpl" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.budget.service.MatCompletionMgmImpl">
+				<property name="matCompletionDAO" ref="matCompletionDAO" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="matCompletionDAO" class="com.sgepit.pmis.budget.dao.MatCompletionDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean> 
+	
+	<!-- 其他费用投资完成 -->
+	<bean id="othCompletionMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.pmis.budget.service.OthCompletionMgmImpl">
+				<property name="bdgMoneyDao" ref="bdgMoneyDAO" />
+			</bean>
+		</property>
+	</bean>	
+	<!-- 资金计划  合同付款计划 -->
+	<bean id = "bdgMoneyPlanConMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean class = "com.sgepit.pmis.budget.service.BdgMoneyPlanConMgmImpl">
+				<property name="bdgMoneyPlanConDAO" ref="bdgMoneyPlanConDAO"/>
+				<property name="contractDAO" ref="contractDAO"/>
+			</bean>
+		</property>
+	</bean>
+	<bean id = "bdgMoneyPlanConDAO" class = "com.sgepit.pmis.budget.dao.BdgMoneyPlanConDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	
+	<!-- 工程投资计划管理模块 -->
+	<bean id = "bdgMoneyPlanMainMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean	class = "com.sgepit.pmis.budget.service.BdgMoneyPlanMainMgmImpl">
+				<property name="bdgMoneyPlanMainDAO" ref = "bdgMoneyPlanMainDAO"/>
+			</bean>
+		</property>
+	</bean>
+	<bean id = "bdgMoneyPlanMainDAO" class = "com.sgepit.pmis.budget.dao.BdgMoneyPlanMainDAO">
+		<property name="sessionFactory">
+			<ref bean = "sessionFactory1"></ref>
+		</property>
+	</bean>
+	
+	<bean id = "bdgMoneyPlanSubMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean	class = "com.sgepit.pmis.budget.service.BdgMoneyPlanSubMgmImpl">
+				<property name="bdgMoneyPlanSubDAO" ref = "bdgMoneyPlanSubDAO"/>
+			</bean>
+		</property>
+	</bean>
+	<bean id = "bdgMoneyPlanSubDAO" class = "com.sgepit.pmis.budget.dao.BdgMoneyPlanSubDAO">
+		<property name="sessionFactory">
+			<ref bean = "sessionFactory1"></ref>
+		</property>
+	</bean>
+	<!-- 招投标管理 -->
+	<bean id="tendersDAO" class="com.sgepit.pmis.tenders.dao.TendersDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	
+	<!-- 招投标管理 -->
+	<bean id="tendersMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean	class="com.sgepit.pmis.tenders.service.TendersMgmImpl">
+				<property name="tendersDAO" ref="tendersDAO" />
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 2011-09-15 移植国锦 -->
+	<!-- 资金计划管理 -->
+	<bean id="bdgMoneyMonthPlanConDAO" class="com.sgepit.pmis.budget.dao.BdgMoneyMonthPlanDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	<!-- 2011-09-15 移植国锦 -->
+	<!-- 资金计划管理 -->
+	<bean id="bdgMoneyMonthPlanMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean	class="com.sgepit.pmis.budget.service.BdgMoneyMonthPlanImpl">
+				<property name="bdgMoneyMonthPlanConDAO" ref="bdgMoneyMonthPlanConDAO" />
+			</bean>
+		</property>
+	</bean>
+</beans>

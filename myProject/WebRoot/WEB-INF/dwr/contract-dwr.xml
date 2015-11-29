@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+
+	<allow>
+
+		<convert converter="bean" match="com.sgepit.pmis.contract.hbm.*" />
+		
+		<!-- 合同 -->
+	    <create creator="spring" javascript="conpartybMgm"
+			scope="page">
+			<param name="beanName" value="conpartybMgm" />
+			<include method="getPartyB"></include>
+			<include method="getPartyBBean"></include>
+			<include method="checkPartyb"></include>
+			<include method="getPartyBNo"></include>
+			<include method="getyfdwmc"></include>
+			<include method="insertConPartyb"></include>
+			<include method="immediatelySendPartybDel"></include>
+			<include method="immediatelySendPartybSave"></include>
+		</create>
+
+		<create creator="spring" javascript="conexpMgm" scope="page">
+			<param name="beanName" value="conexpMgm" />
+			<include method="getExpression"></include>
+			<include method="getCountInfo"></include>
+		</create>
+<!-- 
+		<create creator="spring" javascript="conAccinfoMgm" scope="page">
+			<param name="beanName" value="conAccinfoMgm" />
+			<include method="addOrUpdate"></include>
+			<include method="deleteAccinfoBeans"></include>
+			<include method="getConAccinfoBeans"></include>
+		</create>
+ -->
+		<create creator="new" javascript="conAccinfoMgm" scope="page">
+			<param name="class" value="com.sgepit.pmis.contract.service.ConAccinfoMgmImpl" />
+			<include method="addOrUpdate"></include>
+			<include method="deleteAccinfoBeans"></include>
+			<include method="getConAccinfoBeans"></include>
+		</create>
+
+		<create creator="spring" javascript="conpayMgm" scope="page">
+			<param name="beanName" value="conpayMgm" />
+			<include method="insertConpay"></include>
+			<include method="updateConpay"></include>
+			<include method="deleteConpay"></include>
+			<include method="percentCheck"></include>
+			<include method="sumAlreadyPay"></include>
+			<include method="AutoPayNo"></include>
+			<include method="getMoneyMessage"></include>
+			<include method="addDataChangeToSave"/>
+			<include method="addDataChangeToDel"/>
+			<include method="getApplyMoneyFromBdgProject"></include>
+		</create>
+
+		<create creator="spring" javascript="conoveMgm" scope="page">
+			<param name="beanName" value="conoveMgm" />
+			<include method="insertConove"></include>
+			<include method="updateConove"></include>
+			<include method="deleteConove"></include>
+			<include method="removeConove"></include>
+			<include method="getRealName"></include>
+			<include method="isApportion"></include>
+			<include method="isPay"></include>
+			<include method="isEquInfo"></include>
+			<include method="checkConno"></include>
+			<include method="getUnequalcon"></include>   
+			<include method="getUnequalbdg"></include>    
+			<include method="sumConmoney"></include>
+			<!-- zhangh -->
+			<include method="getContractSortByDept"></include>
+			<!-- zhangh 2010-10-19 -->
+			<include method="getCgContractSort"></include>	
+			<!-- 增加获取采购合同的方法 -->
+			<include method="getCgHt"></include>	
+			<!-- 生成合同自动编码 -->  
+			<include method="generateConno"></include>		
+			<include method="getConRockPowerRole"></include>
+			<include method="conOveFileDataExchange"></include>
+			<include method="doHistoryDataExchange"></include>
+		</create>
+
+		<create creator="spring" javascript="conbreMgm" scope="page">
+			<param name="beanName" value="conbreMgm" />
+			<include method="insertConbre"></include>
+			<include method="updateConbre"></include>
+			<include method="deleteConbre"></include>
+		</create>
+		
+		<create creator="spring" javascript="conbalMgm" scope="page">
+			<param name="beanName" value="conbalMgm" />
+			<include method="insertConbal"></include>
+			<include method="updateConbal"></include>
+			<include method="insertConbalNew"></include>
+			<include method="updateConbalNew"></include>
+			<include method="deleteConbalNew"></include>
+		</create>
+
+		<create creator="spring" javascript="conchaMgm" scope="page">
+			<param name="beanName" value="conchaMgm" />
+			<include method="getConCha"></include>
+			<include method="instConCha"></include>
+			<include method="insertConcha"></include>
+			<include method="instorupdConcha"></include>
+			<include method="updateConcha"></include>
+			<include method="updConCha"></include>
+			<include method="deleteConcha"></include>
+			<include method="delConcha"></include>
+			<include method="autoChaNo"></include>
+		</create>
+
+		<create creator="spring" javascript="conclaMgm" scope="page">
+			<param name="beanName" value="conclaMgm" />
+			<include method="insertConCla"></include>
+			<include method="updateConCla"></include>
+			<include method="deleteConCla"></include>
+		</create>
+
+	</allow>
+</dwr>

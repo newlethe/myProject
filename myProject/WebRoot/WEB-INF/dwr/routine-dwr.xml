@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+
+	<allow>
+
+		<convert converter="bean" match="com.sgepit.pmis.routine.hbm.*" />
+		<convert converter="bean" match="com.sgepit.pmis.tenders.hbm.*" />
+		<convert converter="bean" match="com.sgepit.pmis.coninvested.hbm.*" />
+		
+ 
+		<!-- 工作总结汇报 -->
+		<create creator="spring" javascript="gzJhMgm" scope="page">
+			<param name="beanName" value="gzJhMgm" />
+            <!--   周-->
+			<include method="addOrUpdateGzJh"></include>
+			<include method="addOrUpdateWeekReport"></include>
+			<include method="deleteWeekReport"></include>
+			<include method="addOrUpdateWeekReportList"></include>
+			<include method="deleteWeekReportList"></include>
+			<include method="hzReportWeek"></include>
+		     	<!--  月 -->
+			<include method="addOrUpdateMonthReport"></include>
+			<include method="addOrUpdateMonthReportList"></include>
+			<include method="deleteMonthReport"></include>
+			<include method="deleteMonthReportList"></include>
+			<include method="hzReportMonth"></include>
+			
+		</create>
+
+		<!-- 工作制度 
+		<create creator="spring" javascript="zdMgm" scope="page">
+			<param name="beanName" value="zdMgm" />
+			<include method="addOrUpdate"></include>
+			<include method="deleteChildNode"></include>
+			<include method="getUserOrgid"></include>
+			<include method="getuserId"></include>
+			<include method="ZlIsBlank"></include>
+		</create>	
+		-->	
+	</allow>
+</dwr>

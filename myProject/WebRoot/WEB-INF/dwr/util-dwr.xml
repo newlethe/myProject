@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<convert converter="servlet" match="javax.servlet.http.HttpSession"/>
+		
+		<create creator="new" scope="session" javascript="db2Json">
+	 	 	<param name="class" value="com.sgepit.frame.util.db.Db2Json" />
+		</create>
+	    <create creator="new" javascript="xlsUtil">
+	    	<param name="class" value="com.sgepit.frame.util.file.XlsUtil"></param>
+	    </create>
+	    <create creator="new" javascript="fileUtil">
+	    	<param name="class" value="com.sgepit.frame.util.file.FileUtil"></param>
+	    </create>
+	    
+	    <!-- 文件上传下载 -->
+	    <create creator="spring" javascript="fileServiceImpl" scope="page">
+			<param name="beanName" value="fileServiceImpl" />
+		</create>
+		
+		<create creator="new" javascript="commonUtilDwr">
+	    	<param name="class" value="com.sgepit.pmis.common.CommonUtilDwr"></param>
+	    </create>
+	</allow>
+</dwr>

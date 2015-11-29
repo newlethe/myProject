@@ -1,0 +1,41 @@
+<Carton width="682" height="300">
+  <variable>
+    <param name="projectuid" tip="" initValue=""/>
+  </variable>
+  <Chart type="AMLINECHART" width="600" height="280" UID="4CK578P5" x="82" y="20">
+    <param name="dataProvider" mode="sql"><![CDATA[SELECT * FROM (select v.xmonth,v.jimonth,v.jitask,v.jiname,v.wanmonth,v.wantask,v.wanname,       '6' AS A1,       (CASE v.iswan WHEN '0' THEN 'NULL' ELSE '5' END) AS A2,       'NULL' AS B1,       'NULL' AS B2,       'NULL' AS G1,       'NULL' AS G2    from edo_baseline_task_view v where v.parenttaskuid_ =       (select t.uid_ from edo_task t where t.projectuid_='[projectuid]' and t.name_='1#机组') unionselect to_char(t.finish_, 'yyyy-mm-dd') as xmonth,'' as jimonth,'NULL' as jitask,'' as jiname,       to_char(t.finish_, 'yyyy-mm-dd') as wanmonth,to_char(t.id_) as wantask,t.name_||'('||t.percentcomplete_||'%)' as wanname,       'NULL' AS A1,       '5' AS A2,       'NULL' AS B1,       'NULL' AS B2,       'NULL' AS G1,       'NULL' AS G2    from edo_task t where t.parenttaskuid_ = (select t.uid_ from edo_task t where t.projectuid_='[projectuid]' and t.name_='1#机组')      and t.percentcomplete_=100 and to_char(t.id_) not in (select v.wantask from edo_baseline_task_view v where v.parenttaskuid_ =       	(select t.uid_ from edo_task t where t.projectuid_='[projectuid]' and t.name_='1#机组'))UNIONselect v.xmonth,v.jimonth,v.jitask,v.jiname,v.wanmonth,v.wantask,v.wanname,       'NULL' AS A1,       'NULL' AS A2,       '4' AS B1,       (CASE v.iswan WHEN '0' THEN 'NULL' ELSE '3' END) AS B2,       'NULL' AS G1,       'NULL' AS G2    from edo_baseline_task_view v where v.parenttaskuid_ =       (select t.uid_ from edo_task t where t.projectuid_='[projectuid]' and t.name_='2#机组') unionselect to_char(t.finish_, 'yyyy-mm-dd') as xmonth,'' as jimonth,'NULL' as jitask,'' as jiname,       to_char(t.finish_, 'yyyy-mm-dd') as wanmonth,to_char(t.id_) as wantask,t.name_||'('||t.percentcomplete_||'%)' as wanname,       'NULL' AS A1,       'NULL' AS A2,       'NULL' AS B1,       '3' AS B2,       'NULL' AS G1,       'NULL' AS G2    from edo_task t where t.parenttaskuid_ = (select t.uid_ from edo_task t where t.projectuid_='[projectuid]' and t.name_='2#机组')	  and t.percentcomplete_=100 and to_char(t.id_) not in (select v.wantask from edo_baseline_task_view v where v.parenttaskuid_ =         (select t.uid_ from edo_task t where t.projectuid_='[projectuid]' and t.name_='2#机组'))UNIONselect v.xmonth,v.jimonth,v.jitask,v.jiname,v.wanmonth,v.wantask,v.wanname,       'NULL' AS A1,       'NULL' AS A2,       'NULL' AS B1,       'NULL' AS B2,       '2' AS G1,       (CASE v.iswan WHEN '0' THEN 'NULL' ELSE '1' END) AS G2    from edo_baseline_task_view v where v.parenttaskuid_ =       (select t.uid_ from edo_task t where t.projectuid_='[projectuid]' and t.name_='公共部分') unionselect to_char(t.finish_, 'yyyy-mm-dd') as xmonth,'' as jimonth,'NULL' as jitask,'' as jiname,       to_char(t.finish_, 'yyyy-mm-dd') as wanmonth,to_char(t.id_) as wantask,t.name_||'('||t.percentcomplete_||'%)' as wanname,       'NULL' AS A1,       'NULL' AS A2,       'NULL' AS B1,       'NULL' AS B2,       'NULL' AS G1,       '1' AS G2    from edo_task t where t.parenttaskuid_ = (select t.uid_ from edo_task t where t.projectuid_='[projectuid]' and t.name_='公共部分')      and t.percentcomplete_=100 and to_char(t.id_) not in (select v.wantask from edo_baseline_task_view v where v.parenttaskuid_ =         (select t.uid_ from edo_task t where t.projectuid_='[projectuid]' and t.name_='公共部分'))     ) m order by m.xmonth,m.jitask ]]></param>
+    <param name="categoryField" mode="prop" value="XMONTH"/>
+    <param name="fields" mode="prop" value="A1|A2|B1|B2|G1|G2"/>
+    <param name="rotate" mode="prop" value="false"/>
+    <param name="graphs.title" mode="prop" value="1#机组计划|1#机组完成|2#机组计划|2#机组完成|公共部分计划|公共部分完成"/>
+    <param name="GraphItemClick" mode="event" value="linkParam"/>
+    <param name="ygridCount" mode="prop" value="6"/>
+    <param name="graphs.balloonText" mode="prop" value="1#机组计划&lt;BR>[[JIMONTH]]&lt;BR>[[JINAME]]|1#机组完成&lt;BR>[[WANMONTH]]&lt;BR>[[WANNAME]]|2#机组计划&lt;BR>[[JIMONTH]]&lt;BR>[[JINAME]]|2#机组完成&lt;BR>[[WANMONTH]]&lt;BR>[[WANNAME]]|公共部分计划&lt;BR>[[JIMONTH]]&lt;BR>[[JINAME]]|公共部分完成&lt;BR>[[WANMONTH]]&lt;BR>[[WANNAME]]"/>
+    <param name="xgridCount" mode="prop" value="5"/>
+    <param name="wrapLabel" mode="prop" value="false"/>
+    <param name="graphs.lineColor" mode="style" value="16711680|16763904|16711680|16763904|16711680|16763904"/>
+    <param name="fontSize" mode="style" value="12"/>
+    <param name="marginLeft" mode="style" value="35"/>
+    <param name="marginBottom" mode="style" value="30"/>
+  </Chart>
+  <Chart type="AMLEGEND" width="120" height="224" UID="2UEPCTOQ" x="3" y="58">
+    <param name="chartProvider" mode="prop" value="4CK578P5"/>
+    <param name="valueWidth" mode="style" value=""/>
+    <param name="horizontalGap" mode="style" value="0"/>
+    <param name="verticalGap" mode="style" value="10"/>
+    <param name="marginLeft" mode="style" value="-17"/>
+    <param name="textClickEnabled" mode="prop" value="true"/>
+    <param name="marginRight" mode="style" value="0"/>
+    <param name="marginTop" mode="style" value="0"/>
+    <param name="marginBottom" mode="style" value="0"/>
+    <param name="fontSize" mode="style" value="14"/>
+  </Chart>
+  <Chart type="LABEL" width="303" height="25" text="标签" UID="D6LHAI5" x="180" y="9">
+    <param name="text" mode="prop" value="工程进展"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="fontSize" mode="style" value="19"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="color" mode="style" value="14329120"/>
+    <param name="textAlign" mode="style" value="center"/>
+  </Chart>
+</Carton>

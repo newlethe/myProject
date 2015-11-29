@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd ">
+	<bean id="baseDAO" class="com.sgepit.frame.base.dao.BaseDAO">
+		<property name="sessionFactory" ref="sessionFactory1" />
+	</bean>
+
+	<bean id="ibaseDAO" class="com.sgepit.frame.base.dao.IBaseDAO">
+		<property name="sessionFactory" ref="sessionFactory1" />
+	</bean>
+	
+	<bean id="baseService" abstract="true"
+		class="com.sgepit.frame.base.service.BaseServiceImpl">
+		<property name="baseDAO" ref ="baseDAO" />
+	</bean>
+	
+	<bean id="baseMgm" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.sgepit.frame.base.service.BaseMgmImpl">
+				<property name="baseDAO" ref="baseDAO" />
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 公用模块业务逻辑实现 -->
+	<bean id="applicationMgm"
+		class="com.sgepit.frame.sysman.service.ApplicationMgmImpl">
+		<property name="baseDao" ref="baseDAO" />
+	</bean>
+	<bean id="systemDao" class="com.sgepit.frame.sysman.dao.SystemDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>
+	<!-- 数据交互 -->
+	<!-- 数据交互发送业务类 -->
+	<bean id="PCDataExchangeService"
+		class="com.sgepit.frame.dataexchange.service.PCDataExchangeServiceImpl">
+		<property name="baseDAO" ref="baseDAO" />
+		<!-- 定时发送时每个压缩包里的记录条数 -->
+		<property name="recPerTrans" value="15"></property>
+		<!-- 定时发送时允许失败的最大次数 -->
+		<property name="retryLimit" value="5" ></property>
+		<!-- 读写文件的缓冲区大小 -->
+		<property name="bufferSize" value="40960"></property>
+		<!-- 是否为调试模式 -->
+		<property name="debug" value="false"></property>
+	</bean>
+	<!-- 数据交互接收业务类 -->
+	<bean id="PCDataReceiveService" 
+		class="com.sgepit.frame.dataexchange.service.PCDataReceiveServiceImpl">
+		<property name="baseDAO" ref="baseDAO" />
+		<!-- 读写文件的缓冲区大小 -->
+		<property name="bufferSize" value="102400"></property>
+		<!-- 是否为调试模式 -->
+		<property name="debug" value="false"></property>
+	</bean>
+	<!-- 指标管理-->
+	<bean id="sgccGuidelineInfoDAO"
+		class="com.sgepit.frame.guideline.dao.SgccGuidelineInfoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>	
+	
+	<bean id="sgccGuidelineFormulaDAO"
+		class="com.sgepit.frame.guideline.dao.SgccGuidelineFormulaDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory1"></ref>
+		</property>
+	</bean>	
+	<bean id="guidelineService" 
+		class="com.sgepit.frame.guideline.service.GuidelineServiceImpl">
+		<property name="sgccGuidelineInfoDAO" ref="sgccGuidelineInfoDAO" />
+		<property name="sgccGuidelineFormulaDAO" ref="sgccGuidelineFormulaDAO" />
+		<property name="sgccIniUnitDAO" ref="sgccIniUnitDAO" />
+		<property name="systemDao" ref="systemDao" />
+	</bean>
+</beans>

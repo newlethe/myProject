@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<convert converter="bean"
+			match="com.sgepit.fileAndPublish.hbm.*" />
+		<create creator="new" scope="application"
+			javascript="ComFileSortDWR">
+			<param name="class"
+				value="com.sgepit.fileAndPublish.control.ComFileSortDWR" />
+		</create>
+		<create creator="new" scope="application"
+			javascript="ComFileManageDWR">
+			<param name="class"
+				value="com.sgepit.fileAndPublish.control.ComFileManageDWR" />
+		</create>
+
+		<create creator="spring" javascript="comFileManageService"
+			scope="page">
+			<param name="beanName" value="ComFileManageService" />
+		</create>
+		<create creator="new" scope="application" javascript="UserSync">
+			<param name="class" value="com.sgepit.portal.UserSync" />
+		</create>
+		<!-- 
+			XGRID DWR setting
+		-->
+		<create creator="new" scope="session"
+			javascript="xgridCommon">
+			<param name="class"
+				value="com.sgepit.frame.util.xgridload.XgridCommon" />
+		</create>
+		<!-- 数据交互 -->
+		<convert converter="bean" match="com.sgepit.frame.dataexchange.hbm.*" />
+		<create creator="spring" javascript="pcDataExchangeService"	scope="page">
+			<param name="beanName" value="PCDataExchangeService" />
+		</create>
+		<!-- 指标管理 -->
+		<convert converter="bean" match="com.sgepit.frame.guideline.hbm.*" />
+		<create creator="spring" javascript="guidelineService"	scope="page">
+			<param name="beanName" value="guidelineService" />
+		</create>
+	</allow>
+</dwr>

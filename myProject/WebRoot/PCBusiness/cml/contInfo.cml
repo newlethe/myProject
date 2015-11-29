@@ -1,0 +1,133 @@
+<Carton width="1000" height="460">
+  <variable>
+    <param name="pname" initValue=""/>
+  </variable>
+  <Chart type="TEXTAREA" width="350" height="270" text="文本域" UID="8GRF9EC" x="5" y="5">
+    <param name="dataProvider" mode="sql"><![CDATA[select '' text from dual]]></param>
+    <param name="borderThickness" mode="style" value="1"/>
+    <param name="editable" mode="prop" value="false"/>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="backgroundColor" mode="style" value="16777215"/>
+  </Chart>
+  <Chart type="AMPIECHART" width="230" height="200" text="饼图" UID="2L4UQCSR" x="8" y="44">
+    <param name="dataProvider" mode="sql"><![CDATA[SELECT ROUND(SUM(V.CONMONEY)/10000,0) conmoney, c.property_name contype
+  FROM V_CON V, PROPERTY_TYPE T, PROPERTY_CODE C
+ WHERE T.TYPE_NAME = '合同划分类型'
+   AND T.UIDS = C.TYPE_NAME
+   AND v.CONDIVNO = c.property_code 
+ GROUP BY c.property_name,c.item_id
+ ORDER BY c.item_id]]></param>
+    <param name="fields" mode="prop" value="CONMONEY"/>
+    <param name="angle" mode="style" value="43"/>
+    <param name="depth3D" mode="style" value="16"/>
+    <param name="titleField" mode="prop" value="CONTYPE"/>
+    <param name="labelsEnabled" mode="style" value="false"/>
+    <param name="slicesColors" mode="prop" value="1386458|8950101|2839103|15674841|13339726"/>
+  </Chart>
+  <Chart type="LABEL" width="120" height="22" text="标签" UID="2L81VC3M" x="210" y="50">
+    <param name="text" mode="prop" value="单位：万元"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+  </Chart>
+  <Chart type="AMLEGEND" width="100" height="170" text="图例" UID="2L716FKL" x="250" y="90">
+    <param name="chartProvider" mode="prop" value="2L4UQCSR"/>
+    <param name="textClickEnabled" mode="prop" value="true"/>
+    <param name="marginLeft" mode="style" value="1"/>
+    <param name="marginTop" mode="style" value="1"/>
+    <param name="marginBottom" mode="style" value="1"/>
+    <param name="valueWidth" mode="style" value="0"/>
+    <param name="marginRight" mode="style" value="1"/>
+    <param name="verticalGap" mode="style" value="5"/>
+  </Chart>
+  <Chart type="TEXTAREA" width="635" height="270" text="文本域" UID="2L8C8DQL" x="360" y="5">
+    <param name="dataProvider" mode="sql"><![CDATA[select '' text from dual]]></param>
+    <param name="borderThickness" mode="style" value="1"/>
+    <param name="editable" mode="prop" value="false"/>
+    <param name="fields" mode="prop" value="TEXT"/>
+  </Chart>
+  <Chart type="AMCOLUMNCHART" width="570" height="240" text="柱状图" UID="2L45R4GQ" x="370" y="30">
+    <param name="dataProvider" mode="sql"><![CDATA[SELECT ROUND(SUM(V.CONMONEY)/10000,0) conmoney, ROUND(sum(v.conpay)/10000,0) conpay, c.property_name contype
+  FROM V_CON V, PROPERTY_TYPE T, PROPERTY_CODE C
+ WHERE T.TYPE_NAME = '合同划分类型'
+   AND T.UIDS = C.TYPE_NAME
+   AND v.CONDIVNO = c.property_code 
+ GROUP BY c.property_name,c.item_id
+ ORDER BY c.item_id]]></param>
+    <param name="chartMart" mode="prop" value="z"/>
+    <param name="categoryField" mode="prop" value="CONTYPE"/>
+    <param name="fields" mode="prop" value="CONMONEY|CONPAY"/>
+    <param name="visible" mode="prop" value="true"/>
+    <param name="enabled" mode="prop" value="false"/>
+    <param name="stackType" mode="prop" value="none"/>
+    <param name="angle" mode="style" value="19"/>
+    <param name="wrapLabel" mode="prop" value="false"/>
+    <param name="marginLeft" mode="style" value="60"/>
+    <param name="graphs.title" mode="prop" value="合同签订金额|合同付款金额"/>
+    <param name="depth3D" mode="style" value="9"/>
+    <param name="ygridCount" mode="prop" value="5"/>
+    <param name="graphs.lineColor" mode="style" value="45553|7352479"/>
+  </Chart>
+  <Chart type="AMLEGEND" width="110" height="50" text="图例" UID="2L7QPHH8" x="890" y="127">
+    <param name="chartProvider" mode="prop" value="2L45R4GQ"/>
+    <param name="fontFamily" mode="style" value="宋体"/>
+    <param name="fontSize" mode="style" value="12"/>
+    <param name="valueWidth" mode="style" value="0"/>
+    <param name="textClickEnabled" mode="prop" value="false"/>
+    <param name="marginLeft" mode="style" value="1"/>
+    <param name="marginRight" mode="style" value="1"/>
+    <param name="marginTop" mode="style" value="1"/>
+    <param name="marginBottom" mode="style" value="1"/>
+    <param name="horizontalGap" mode="style" value="3"/>
+  </Chart>
+  <Chart type="LABEL" width="100" height="22" text="标签" UID="2L82LIC1" x="890" y="58">
+    <param name="text" mode="prop" value="单位：万元"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+  </Chart>
+  <Chart type="LABEL" width="302" height="19" text="标签" UID="2L81J2DM" x="17" y="14">
+    <param name="text" mode="prop" value="[pname]合同分布"/>
+    <param name="fontSize" mode="style" value="14"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="textAlign" mode="style" value="center"/>
+  </Chart>
+  <Chart type="LABEL" width="465" height="21" text="标签" UID="2L83PJMJ" x="395" y="12">
+    <param name="text" mode="prop" value="[pname]合同签订及付款情况(按合同分类）"/>
+    <param name="fontSize" mode="style" value="14"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="textAlign" mode="style" value="center"/>
+  </Chart>
+  <Chart type="TEXTAREA" width="350" height="180" text="文本域" UID="2L8H3CR1" x="5" y="280">
+    <param name="dataProvider" mode="sql"><![CDATA[select '<br><br>[pname]<br><br>合同签订、付款信息<br><br>分类统计一览表' text from dual]]></param>
+    <param name="textAlign" mode="style" value="center"/>
+    <param name="fontWeight" mode="style" value="bold"/>
+    <param name="fontSize" mode="style" value="18"/>
+    <param name="borderThickness" mode="style" value="1"/>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="editable" mode="prop" value="false"/>
+  </Chart>
+  <Chart type="TEXTAREA" width="635" height="180" text="文本域" UID="2LB4KJ1T" x="360" y="280">
+    <param name="dataProvider" mode="sql"><![CDATA[select '' text from dual]]></param>
+    <param name="borderThickness" mode="style" value="1"/>
+    <param name="fields" mode="prop" value="TEXT"/>
+    <param name="editable" mode="prop" value="false"/>
+  </Chart>
+  <Chart type="HTMLDATAGRID" width="635" height="180" text="html表格" UID="8H3OKTG" x="360" y="280">
+    <param name="dataProvider" mode="sql"><![CDATA[SELECT * FROM (
+SELECT T.CONTYPE,t.CODE,t.PID,
+       '<a href="event:clickFlexFun(''sign'','''||t.CODE||''')"><u><font color="#000ff">'||(T.CONNUM)||'</font></u></a>' CONNUM,
+       T.CONMONEY,
+       '<a href="event:clickFlexFun(''pay'','''||t.CODE||''')"><u><font color="#000ff">'||(T.PAYNUM)||'</font></u></a>' PAYNUM,
+       t.CONPAY,
+       t.ITEM_ID FROM V_CON_ANALYSIS T
+UNION
+SELECT '累计' CONTYPE,'' CODE,v.PID,
+       '<a href="event:clickFlexFun(''sign'',''-1'')"><u><font color="#000ff">'||SUM(V.CONNUM)||'</font></u></a>' CONNUM,
+       SUM(V.CONMONEY),
+       '<a href="event:clickFlexFun(''pay'',''-1'')"><u><font color="#000ff">'||SUM(V.PAYNUM)||'</font></u></a>' PAYNUM,
+       SUM(V.CONPAY),
+       6 ITEM_ID
+  FROM V_CON_ANALYSIS V GROUP BY v.pid) ORDER BY ITEM_ID]]></param>
+    <param name="fields" mode="prop" value="CONTYPE|CONNUM|CONMONEY|PAYNUM|CONPAY"/>
+    <param name="columns.textAlign" mode="style" value="center|center|center|center|center"/>
+    <param name="columns.headerText" mode="prop" value="合同分类|签订数量（份）|签订总金额|付款数量（份）|付款总金额"/>
+    <param name="draggableColumns" mode="prop" value="false"/>
+  </Chart>
+</Carton>
