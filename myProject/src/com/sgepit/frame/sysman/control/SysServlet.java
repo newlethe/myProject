@@ -683,9 +683,9 @@ public class SysServlet extends MainServlet {
 		String userId = (String) request.getSession().getAttribute(Constant.USERID);
 	
 		//用户待办消息数
-		String taskSql = "select count(*) from task_view where tonode='" + userId + "' and flag='0'";
-		Integer taskNum = ((BigDecimal )baseMgm.getData(taskSql).get(0)).intValue();
-		request.setAttribute("taskNum", taskNum);
+//		String taskSql = "select count(*) from task_view where tonode='" + userId + "' and flag='0'";
+//		Integer taskNum = ((BigDecimal )baseMgm.getData(taskSql).get(0)).intValue();
+//		request.setAttribute("taskNum", taskNum);
 		
 		request.getRequestDispatcher("/"+Constant.APPTOPMENUPAGE).forward(request, response);
 	}

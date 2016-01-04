@@ -1,4 +1,0 @@
-综合查询模块：
-
-月度费用计划汇总：Business/complexQuery/money.month.plan.hz.jsp
-合同付款综合查询：Business/complexQuery/contractPayinfoQuery.jsp

@@ -79,6 +79,10 @@
 		</property>
 		<property name="mappingLocations">
 			<list>
+				<value>classpath:com/imfav/business/*/hbm/*.hbm.xml</value>
+				
+				
+			
 				<!-- start	业务模块 -->
 				
 				<!-- start 综合信息管理 -->

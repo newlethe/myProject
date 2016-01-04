@@ -4,6 +4,8 @@
 <beans>
     <import resource="applicationContext-hibernate.xml"/>
     <import resource="applicationContext-common.xml"/>
+    <import resource="applicationContext-IoC.xml"/>
+    
     <import resource="applicationContext-budget.xml"/>
     <import resource="applicationContext-coninvested.xml"/>
     <import resource="applicationContext-contract.xml"/>
@@ -11,9 +13,7 @@
     <import resource="applicationContext-equipment.xml"/>
     <import resource="applicationContext-flow.xml"/>
     <import resource="applicationContext-gczl.xml"/>
-    <import resource="applicationContext-infManage.xml"/>
     <import resource="applicationContext-material.xml"/>
-    <import resource="applicationContext-quartz.xml"/>
     <import resource="applicationContext-rlzy.xml"/>
     <import resource="applicationContext-routine.xml"/>
     <import resource="applicationContext-safemanage.xml"/>
@@ -22,67 +22,30 @@
     <import resource="applicationContext-tenders.xml"/>
     <import resource="applicationContext-wzgl.xml"/>
     <import resource="applicationContext-zlaq.xml"/>    
-    <import resource="quartz.xml"/>
     <import resource="applicationContext-design.xml"/>
     <import resource="applicationContext-fileAndPublish.xml"/>
-    <!-- 车辆使用管理  -->
     <import resource="applicationContext-vehicle.xml"/>
-    
-    
-    <!-- 投资及资金计划管理  -->
     <import resource="applicationContext-planMgm.xml"/>
-    
-    <!-- 投资完成 -->
     <import resource="applicationContext-comp.xml"/>
-    
-    <!-- 内控概算 -->
     <import resource="applicationContext-budgetNk.xml" />
-    
-    <!--  竣工决算 -->
     <import resource="applicationContext-finalAccounts.xml" />
-    
-     <!-- 综合信息管理 -->
     <import resource="applicationContext-pc-zhxx.xml" />
-    
-     <!-- 安全管控 -->
     <import resource="applicationContext-pc-aqgk.xml" />
-    
-     <!-- 投资管理 -->
     <import resource="applicationContext-pc-tzgl.xml" />
-      
-    <!-- 批文管理 -->
     <import resource="applicationContext-pc-approvl.xml"/>  
-    <!-- 概算体系管理 -->
     <import resource="applicationContext-pc-budget.xml" /> 
-    <!-- 结算体系管理 -->
     <import resource="applicationContext-pc-balance.xml" />
-    <!-- 合同管控 -->
     <import resource="applicationContext-pc-contract.xml" />
-     <!-- 质量管控-->
     <import resource="applicationContext-pc-zlgk.xml"/>
-    <!-- 招投标 -->
     <import resource="applicationContext-pc-bid.xml" />
-    <!-- 预警管理 -->
     <import resource="applicationContext-pc-warn.xml"/>
-    <!-- 进度管控 -->
     <import resource="applicationContext-pc-jdgk.xml" />
-    
-    <!-- xgrid模板配置 -->
     <import resource="applicationContext-xgridTemplet.xml"/>
-    
-        <!--报销 -->
     <import resource="applicationContext-reimburse.xml"/>
-    <!-- 动态数据概览 -->
     <import resource="applicationContext-pc-dynamicdata.xml"/>
-    
-    <!-- 值班管理 -->
     <import resource="applicationContext-sczb.xml"/>
-    
-    <!--新闻管理-->
     <import resource="applicationContext-news.xml"/>    
-    <!--周工作事项管理-->
     <import resource="applicationContext-weekworkmanagement.xml"/>   
-    <!-- 日志管理分类树维护 -->
     <import resource="applicationContext-rzgl.xml"/> 
     
 </beans>

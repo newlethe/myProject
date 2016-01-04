@@ -3,7 +3,7 @@
 
 <dwr>
 	<allow>
-		<convert converter="servlet" match="javax.servlet.http.HttpSession"/>
+		<!-- <convert converter="servlet" match="javax.servlet.http.HttpSession"/> -->
 		
 		<create creator="new" scope="session" javascript="db2Json">
 	 	 	<param name="class" value="com.sgepit.frame.util.db.Db2Json" />

@@ -1,33 +1,0 @@
-<Carton width="1061" height="273">
-  <variable>null</variable>
-  <Chart type="AMCOLUMNCHART" width="575" height="200" UID="IO0I5N" x="7" y="68">
-    <param name="dataProvider" mode="sql"><![CDATA[select '工程合同' name, 20000 val from dual union  all select '其他合同' name, 2200 val from dual union  all select '总包合同' name, 32400 val from dual union  all select '设备(自营)合同' name, 2100 val from dual union  all select '前期合同' name, 42000 val from dual union  all select '设备(总包合同)' name, 2600 val from dual]]></param>
-    <param name="depth3D" mode="style" value="27"/>
-    <param name="angle" mode="style" value="39"/>
-    <param name="marginLeft" mode="style" value="100"/>
-    <param name="categoryField" mode="prop" value="NAME"/>
-    <param name="fields" mode="prop" value="VAL"/>
-  </Chart>
-  <Chart type="LABEL" width="238" height="22" UID="IO0I6N" x="174" y="21">
-    <param name="text" mode="prop" value="合 同 分 类 统 计 金 额"/>
-    <param name="fontFamily" mode="style" value="华文楷体"/>
-    <param name="fontSize" mode="style" value="16"/>
-    <param name="fontWeight" mode="style" value="bold"/>
-    <param name="textAlign" mode="style" value="center"/>
-  </Chart>
-  <Chart type="AMLINECHART" width="494" height="200" UID="IO0J82" x="567" y="73">
-    <param name="dataProvider" mode="sql"><![CDATA[select '2006' sj, 20000 val from dual union  all select '2007' sj, 2200 val from dual union  all select '2008' sj, 32400 val from dual union  all select '2009' sj, 2100 val from dual union  all select '2010' sj, 42000 val from dual union  all select '2011' sj, 2600 val from dual ]]></param>
-    <param name="depth3D" mode="style" value="22"/>
-    <param name="angle" mode="style" value="36"/>
-    <param name="categoryField" mode="prop" value="SJ"/>
-    <param name="fields" mode="prop" value="VAL"/>
-    <param name="marginLeft" mode="style" value="100"/>
-  </Chart>
-  <Chart type="LABEL" width="363" height="22" UID="IO0JBV" x="672" y="30">
-    <param name="text" mode="prop" value="合 同 年 度 签 订 金 额"/>
-    <param name="fontFamily" mode="style" value="华文楷体"/>
-    <param name="fontSize" mode="style" value="16"/>
-    <param name="fontWeight" mode="style" value="bold"/>
-    <param name="textAlign" mode="style" value="center"/>
-  </Chart>
-</Carton>

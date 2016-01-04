@@ -1,2 +1,0 @@
-信息发布  Business/pubinfo/pubinfoInput.jsp
-信息查询 Business/pubinfo/pubinfoQuery.jsp

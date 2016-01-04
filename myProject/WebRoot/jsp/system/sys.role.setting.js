@@ -143,8 +143,8 @@ Ext.onReady(function (){
 				if (checked){
 					var p = node.parentNode
 					while(p){
-						if (p.getUI().elNode && p.getUI().elNode.all(chx.id))
-						checkerClick(p.getUI().elNode.all(chx.id), true)			
+						if (p.getUI().elNode && p.getUI().elNode.querySelector("#"+chx.id))
+						checkerClick(p.getUI().elNode.querySelector("#"+chx.id), true)			
 						p = p.parentNode
 					}
 				}
@@ -607,9 +607,11 @@ Ext.onReady(function (){
 			}
 		}),
 		root : new Ext.tree.AsyncTreeNode({
-	       id  : (USERBELONGUNITTYPEID=="0"||USERBELONGUNITTYPEID=="1"?defaultOrgRootID:USERBELONGUNITID),
-	       text: (USERBELONGUNITTYPEID=="0"||USERBELONGUNITTYPEID=="1"?defaultOrgRootName:USERBELONGUNITNAME),
-	       expanded:true
+//	       id  : (USERBELONGUNITTYPEID=="0"||USERBELONGUNITTYPEID=="1"?defaultOrgRootID:USERBELONGUNITID),
+//	       text: (USERBELONGUNITTYPEID=="0"||USERBELONGUNITTYPEID=="1"?defaultOrgRootName:USERBELONGUNITNAME),
+			id: defaultOrgRootID,
+			text: MODULE_ROOT_NAME,
+			expanded:true
 	    }),
 	    listeners:{
 	    	beforeload:function(node){
@@ -718,9 +720,9 @@ Ext.onReady(function (){
     	for(var i=0; i<len; i++){
     		var child = node.childNodes[i]
     		var elNode = child.getUI().elNode;
-			var lvl = elNode.all("lvlColumn").innerText
+			var lvl = elNode.querySelector("#lvlColumn").innerText
 			if (lvl*1 < 4) {
-				var id = elNode.all("idColumn").innerText
+				var id = elNode.querySelector("#idColumn").innerText
 				var a = new Object();
 				a.rolepk = selectedRoleId;
 				a.powerpk = id;
@@ -737,7 +739,7 @@ function deepCheck(node, id, checked){
 	for(var i=0; i<node.childNodes.length; i++) {		
 		var child = node.childNodes[i];
 		var elNode = child.getUI().elNode;
-		var chx = elNode.all(id)
+		var chx = elNode.querySelector("#"+id)
 		checkerClick(chx, checked)
 		deepCheck(child, id, checked)
 	}
@@ -756,7 +758,7 @@ function checkerClick(chx, flag){
 function readChxClick(obj, flag){
 	var checked = obj.className == cssCheckOn
 	var c = obj.parentElement.parentElement.nextSibling.children[0].children[0]
-	var n = obj.parentElement.parentElement.parentElement.all("lvlColumn")
+	var n = obj.parentElement.parentElement.parentElement.querySelector("#lvlColumn")
 	if (typeof(flag)=="undefined") {
 		obj.className = checked ? cssCheckOff : cssCheckOn
 		if (checked) {
@@ -783,7 +785,7 @@ function writeChxClick(obj, flag){
 	var checked = obj.className == cssCheckOn
 	var r = obj.parentElement.parentElement.previousSibling.children[0].children[0]
 	var c = obj.parentElement.parentElement.nextSibling.children[0].children[0]
-	var n = obj.parentElement.parentElement.parentElement.all("lvlColumn")
+	var n = obj.parentElement.parentElement.parentElement.querySelector("#lvlColumn")
 	if (typeof(flag)=="undefined") {
 		obj.className = checked ? cssCheckOff : cssCheckOn
 		if (checked) {
@@ -810,7 +812,7 @@ function writeChxClick(obj, flag){
 function controlChxClick(obj, flag){
 	var checked = obj.className == cssCheckOn
 	var r = obj.parentElement.parentElement.previousSibling.children[0].children[0]
-	var n = obj.parentElement.parentElement.parentElement.all("lvlColumn")
+	var n = obj.parentElement.parentElement.parentElement.querySelector("#lvlColumn")
 	if (typeof(flag)=="undefined") {
 		obj.className = checked ? cssCheckOff : cssCheckOn
 		if (!checked) {

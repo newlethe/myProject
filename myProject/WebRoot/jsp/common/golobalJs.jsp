@@ -70,14 +70,12 @@
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="/<%=Constant.propsMap.get("ROOT_EXT")%>/resources/css/ext-all.css" />
-<link rel="stylesheet" type="text/css" href="/<%=Constant.propsMap.get("ROOT_EXT")%>/resources/css/examples.css" />
-<link rel="stylesheet" type="text/css" href="/<%=Constant.propsMap.get("ROOT_EXT")%>/resources/css/xtheme-gray.css" />  
-<link rel="stylesheet" type="text/css" href="<%=basePath %>extExtend/Ext.ux.grid.GridSummary.css" />  
-<link rel="stylesheet" type="text/css" href="<%=basePath %>jsp/res/css/style.css">
 <!--  
-<link rel="stylesheet" type="text/css" href="/<%=Constant.propsMap.get("ROOT_EXT")%>/resources/css/xtheme-green.css" />  
 <link rel="stylesheet" type="text/css" href="/<%=Constant.propsMap.get("ROOT_EXT")%>/resources/css/xtheme-normal.css"" />  
+<link rel="stylesheet" type="text/css" href="/<%=Constant.propsMap.get("ROOT_EXT")%>/resources/css/xtheme-green.css" />  
+<link rel="stylesheet" type="text/css" href="/<%=Constant.propsMap.get("ROOT_EXT")%>/resources/css/xtheme-gray.css" />  
 -->
+<link rel="stylesheet" type="text/css" href="<%=basePath %>jsp/res/css/style.css">
 <script type="text/javascript" src="/<%=Constant.propsMap.get("ROOT_EXT")%>/adapter/ext/ext-base.js"></script>
 <script type="text/javascript" src="/<%=Constant.propsMap.get("ROOT_EXT")%>/ext-all.js"></script>
 <script type="text/javascript" src="/<%=Constant.propsMap.get("ROOT_EXT")%>/source/debug.js"></script>
@@ -90,7 +88,6 @@
 <script type="text/javascript" src="<%=basePath %>extExtend/FileUploadField.js"></script>
 <script type="text/javascript" src="<%=basePath %>extExtend/columnTreeNodeUI.js"></script>
 <script type="text/javascript" src="<%=basePath %>extExtend/TreeCombo.js"></script>
-<script type="text/javascript" src="<%=basePath %>extExtend/Ext.ux.grid.GridSummary.js"></script>
 <!-- 切换项目 -->
 <script src='<%=basePath %>dwr/engine.js'></script>
 <script src='<%=basePath %>dwr/interface/commonUtilDwr.js'></script>
@@ -100,127 +97,66 @@
 html, body {
 	height: 100%;
 }
+*{
+	font-family:"微软雅黑" !important;
+	font-size:12px !important;
+}
+.x-grid3-hd-inner{
+	text-align:center !important;
+	padding-right:3px !important;
+}
+.x-grid3-row td{
+	/* font-size:12px; */
+	line-height:20px !important;
+}
+.x-form-field-wrap .x-form-trigger{
+	height:19px !important;
+}
+.x-item-disabled {
+	color: #000;
+	opacity: 1;
+	background: #f0f0f0;
+}
+input[readOnly]{
+	color: #666;
+	border: 1px solid #ccc;
+	background: #f0f0f0;
+}
+.grid-row-cell-button{
+	height:20px;
+	line-height:20px;
+	margin:0 10px;
+	color:#fff;
+	background:#65A6FF;
+	cursor:pointer;
+}
+.grid-row-cell-button:hover{
+	background: #3388ff;
+}
+.x-editor {
+	padding-top: 3px !important;
+}
+.grid-record-yollow table{
+	background: #FAF6B6;
+}
+.grid-record-blue table{
+	background: #82B1FF;
+}
+
+/*修改grid单元格边框*/
+/*
+.x-grid3-row{
+	border:0;
+}
+.x-grid3-col {
+    border-right: 1px solid #D2D2D2;
+    border-bottom: 1px solid #D2D2D2;
+}
+.x-grid3-row td, .x-grid3-summary-row td {
+    padding: 0px;
+}
+*/
 </style>
-<script type="">		   
-var bgColor = getThemeFromCookie("theme");
-switch(bgColor){
-	case 'null':
-		// 默认
-		//Ext.util.CSS.swapStyleSheet("theme", "/<%=Constant.propsMap.get("ROOT_EXT")%>/resources/css/xtheme-normal.css");
-		break;
-	case 'xtheme-green.css':
-		Ext.util.CSS.swapStyleSheet("theme", "/<%=Constant.propsMap.get("ROOT_EXT")%>/resources/css/"+bgColor);				    
-		break;
-	case 'xtheme-red5.css':
-		Ext.util.CSS.swapStyleSheet("theme", "/<%=Constant.propsMap.get("ROOT_EXT")%>/resources/css/"+bgColor);				    
-		break;
-	case 'xtheme-normal.css':
-		Ext.util.CSS.swapStyleSheet("theme", "/<%=Constant.propsMap.get("ROOT_EXT")%>/resources/css/"+bgColor);				    
-		break;
-	default:
-		 // 默认
-		Ext.util.CSS.swapStyleSheet("theme", "/<%=Constant.propsMap.get("ROOT_EXT")%>/resources/css/xtheme-normal.css");
-		break;
- }
-	// 从 Cookie 中取出皮肤的颜色
-	function getThemeFromCookie(bgColor){
-		var color= " ";
-		var bgColor = bgColor +"=";
-		
-		if(document.cookie.length >0){   
-			offset = document.cookie.indexOf(bgColor);	
-			end=document.cookie.indexOf( "; ",offset);
-			
-			if(offset == -1){
-				return "null";
-			}else if(end == -1)   // 即此 Cookie 的值为最后一个 Cookie 值
-			{
-				length1 = bgColor.length;
-				str = document.cookie.substring(offset,end);
-				length2 = str.length;
-				temp = document.cookie.substring(length2);
-				color = temp.substring(length1,length2);
-			}
-			else
-			{
-				length1 = bgColor.length;				
-				str = document.cookie.substring(offset,end);				
-				color = str.substring(length1,(end-offset));				
-			}
-    	} 
-		return color; 
-	}
-	</script>
-	<style>
-	
-	.x-form-field-wrap .x-form-trigger{
-		top:-2px !important;
-	}
-	
-	<%if(DEPLOY_UNITTYPE.equals("A")){%>
-		.x-grid3-hd-row TD {
-			font-weight:bold; 
-		    color: #4682B4;/*设置字体背景颜色*/
-		    text-align:center!important;
-		 }
-		.x-grid3-row TD { 
-		    font-size: 13px;/*改变行内容字体大小*/ 
-		    LINE-HEIGHT: 20px;//设置字体高度
-		    color: #FF0000;//改变字体颜色
-		}
-	<%}else{%>
-		.x-grid3-header{
-			background : #fff !important;
-			border-bottom:1px solid RGB(208,208,208) !important;
-			border-top:1px solid RGB(208,208,208) !important;
-		}
-		.x-grid3-td-checker{
-			background : #fff !important;
-		}
-		.x-grid3-td-numberer{
-			background : #fff !important;
-		}
-		.x-panel-header{
-			background : #fff !important;
-		}
-		TD.sort-desc .x-grid3-hd-inner{
-			background : #fff !important;
-		}
-		TD.sort-asc .x-grid3-hd-inner{
-			background : #fff !important;
-		}
-		.x-toolbar{
-			background : #fff !important;
-			border:1px solid #fff !important;
-			padding:2px !important;
-			border-top:1px solid RGB(208,208,208) !important;
-		}
-		.x-grid3-summary-row{
-			background : #fff !important;
-		}
-	
-		.x-grid3-hd-row TD {
-			font-weight:bold; 
-		    color: #708090;/*设置字体背景颜色*/
-		    text-align:center!important;
-		 }
-		.x-grid3-row TD { 
-		    font-size: 13px;/*改变行内容字体大小*/ 
-		    LINE-HEIGHT: 21px;//设置字体高度
-		    color: #FF0000;//改变字体颜色
-		}
-		a{
-			font:13px/21px Arial, Helvetica, sans-serif;
-			color:#666666;
-			text-decoration:none;
-		}
-		a:hover{
-			font: bold 13px/21px Arial, Helvetica, sans-serif;
-			color:#353535;
-			text-decoration:underline;
-		}
-	<%}%>	
-	</style>
 <script type="text/javascript">
 <!--
 	var DEBUG = true;//全局调试标志,在开发调试时可以显示异常信息,显示是一些按钮等，更新到服务器时需要修改为false

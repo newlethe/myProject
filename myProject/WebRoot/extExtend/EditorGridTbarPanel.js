@@ -15,6 +15,9 @@
  */
 
 Ext.grid.EditorGridTbarPanel = Ext.extend(Ext.grid.EditorGridPanel, {
+	trackMouseOver : true, //鼠标移动到行上，行高亮
+	stripeRows : true, // 斑马线效果 
+	border: false,
 	plant : null, // 初始化记录集，必须
 	plantInt : null, // 初始化记录集配置，必须
 	servletUrl : '', // 服务器地址，必须
@@ -71,7 +74,7 @@ Ext.grid.EditorGridTbarPanel = Ext.extend(Ext.grid.EditorGridPanel, {
 			this.getStore().insert(0, p);
 			this.startEditing(0, 0);
 			var td = this.getView().getCell(0, 0)
-			td.runtimeStyle.border = '1px solid red';
+			//td.style.border = '1px solid red';
 			var sm = this.getSelectionModel();
 			sm.selectFirstRow();
 			this.fireEvent("afterinsert", this)

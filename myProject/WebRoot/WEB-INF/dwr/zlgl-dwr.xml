@@ -5,6 +5,7 @@
 	<allow>
 		<convert converter="bean" match="com.sgepit.pmis.document.hbm.*" />		
 		<!-- 资料档案 -->
+		<!--
         <create creator="spring" javascript="infMgm" scope="page">
 			<param name="beanName" value="infMgm" />
 			<include method="getINFSortlist"></include>
@@ -30,7 +31,8 @@
 			<include method="saveEditInfGrade"></include>
 			<include method="querySort"></include>
 		</create>
-		
+		-->
+		 
 		<!-- 资料档案 -->
         <create creator="spring" javascript="zlMgm" scope="page">
 			<param name="beanName" value="zlMgm" />

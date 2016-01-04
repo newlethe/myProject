@@ -99,11 +99,8 @@ public class FlwInstance
         this.title = title;
     }
 
-    public Set getFlwLogs1()
+    public Set getFlwLogs()
     {
-    	//FlwLog flwLog = new FlwLog();
-    	System.out.println("!!!!!!!!!!!");
-    	//flwLogs.add(flwLog);
         return flwLogs;
     }
 

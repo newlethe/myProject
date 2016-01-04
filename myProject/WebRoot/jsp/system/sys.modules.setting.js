@@ -163,29 +163,25 @@ Ext.onReady(function() {
 		'powerpk' : {
 			name : 'powerpk',
 			fieldLabel : '主键',
-			anchor : '95%',
 			readOnly : true,
 			hidden : true,
 			hideLabel : true
 		},
 		'powername' : {
 			name : 'powername',
-			fieldLabel : '名称',
-			allowBlank : false,
-			anchor : '95%'
+			fieldLabel : '功能名称',
+			allowBlank : false
 		},
 		'resourcepk' : {
 			name : 'resourcepk',
 			fieldLabel : '标识符（唯一）',
-			allowBlank : true,
-			anchor : '95%'
+			allowBlank : true
 		},
 		'parentid' : {
 			name : 'parentid',
 			fieldLabel : '父模块ID',
 			readOnly : true,
-			hidden : true,
-			anchor : '95%'
+			hidden : true
 		},
 		'modelflag' : {
 			name : 'modelflag',
@@ -199,32 +195,24 @@ Ext.onReady(function() {
 			triggerAction : 'all',
 			store : moduleTypeSt,
 			lazyRender : true,
-			listClass : 'x-combo-list-small',
-			anchor : '95%'
+			listClass : 'x-combo-list-small'
 		},
 		'ordercode' : {
 			name : 'ordercode',
-			fieldLabel : '显示顺序',
-			allowNegative : false,
-			maxValue : 1000,
-			allowDecimals : false,
-			allowBlank : false,
-			anchor : '95%'
+			fieldLabel : '排序',
+			maxValue : 1000
 		},
 		'url' : {
 			name : 'url',
-			fieldLabel : '访问地址',
-			anchor : '95%'
+			fieldLabel : '功能地址'
 		},
 		'leaf' : {
 			name : 'leaf',
-			fieldLabel : '叶子？',
-			anchor : '95%'
+			fieldLabel : '叶子？'
 		},
 		'iconcls' : {
 			name : 'iconcls',
-			fieldLabel : '图标',
-			anchor : '95%'
+			fieldLabel : '图标'
 		},
 		'flowflag':{
 			name : 'flowflag',
@@ -238,8 +226,7 @@ Ext.onReady(function() {
 			triggerAction : 'all',
 			store : moduleFlowTypeSt,
 			lazyRender : true,
-			listClass : 'x-combo-list-small',
-			anchor : '95%'
+			listClass : 'x-combo-list-small'
 		},
 		'ifalone':{
 			name : 'ifalone',
@@ -253,8 +240,7 @@ Ext.onReady(function() {
 			triggerAction : 'all',
 			store : moduleAloneTypeSt,
 			lazyRender : true,
-			listClass : 'x-combo-list-small',
-			anchor : '95%'
+			listClass : 'x-combo-list-small'
 		}
 		
 	}
@@ -302,7 +288,7 @@ Ext.onReady(function() {
 		ordercode : '',
 		url : '',
 		leaf : 1,
-		iconcls : '',
+		iconcls : 'folder.png',
 		flowflag : 'None',
 		ifalone : '3'
 	}
@@ -313,31 +299,61 @@ Ext.onReady(function() {
 		id : 'powerpk',
 		header : fc['powerpk'].fieldLabel,
 		dataIndex : fc['powerpk'].name,
+		hideable:false,
 		hidden : true,
-		width : 200
+		width : 0
 	}, {
 		id : 'parentid',
 		header : fc['parentid'].fieldLabel,
 		dataIndex : fc['parentid'].name,
+		hideable:false,
 		hidden : true,
-		width : 200
+		width : 0
+	}, {
+		id : 'ordercode',
+		align : 'right',
+		header : fc['ordercode'].fieldLabel,
+		dataIndex : fc['ordercode'].name,
+		width : 40,
+		align : 'center',
+		editor : new fm.NumberField(fc['ordercode'])
+	}, {
+		id : 'iconcls',
+		header : fc['iconcls'].fieldLabel,
+		dataIndex : fc['iconcls'].name,
+		width : 40,
+		align : 'center',
+		renderer: function(vl){
+			return vl!=null&&vl!="" ? "<img src='jsp/res/images/icons/" + vl + "'>" : vl
+		},
+		editor : new fm.TextField(fc['iconcls'])
 	}, {
 		id : 'powername',
 		header : fc['powername'].fieldLabel,
 		dataIndex : fc['powername'].name,
-		width : 120,
+		width : 180,
 		editor : new fm.TextField(fc['powername'])
+	}, {
+		id : 'url',
+		header : fc['url'].fieldLabel,
+		dataIndex : fc['url'].name,
+		width : 460,
+		editor : new fm.TextField(fc['url'])
 	}, {
 		id : 'resourcepk',
 		header : fc['resourcepk'].fieldLabel,
 		dataIndex : fc['resourcepk'].name,
-		width : 120,
+		hideable:false,
+		hidden : true,
+		width : 0,
 		editor : new fm.TextField(fc['resourcepk'])
 	}, {
 		id : 'modelflag',
 		header : fc['modelflag'].fieldLabel,
 		dataIndex : fc['modelflag'].name,
-		width : 80,
+		hideable:false,
+		hidden : true,
+		width : 0,
 		renderer : function(value) {
 			for(var i=0; i<moduleTypeArr.length; i++){
 				if(moduleTypeArr[i][0]+""==value+"")
@@ -346,32 +362,12 @@ Ext.onReady(function() {
 		},
 		editor : new fm.ComboBox(fc['modelflag'])
 	}, {
-		id : 'ordercode',
-		align : 'right',
-		header : fc['ordercode'].fieldLabel,
-		dataIndex : fc['ordercode'].name,
-		width : 60,
-		editor : new fm.NumberField(fc['ordercode'])
-	}, {
-		id : 'url',
-		header : fc['url'].fieldLabel,
-		dataIndex : fc['url'].name,
-		width : 240,
-		editor : new fm.TextField(fc['url'])
-	}, {
-		id : 'iconcls',
-		header : fc['iconcls'].fieldLabel,
-		dataIndex : fc['iconcls'].name,
-		width : 90,
-		renderer: function(vl){
-			return vl!=null&&vl!="" ? "<img src='jsp/res/images/icons/" + vl + "'>" : vl
-		},
-		editor : new fm.TextField(fc['iconcls'])
-	}, {
 		id : 'leaf',
 		header : fc['leaf'].fieldLabel,
 		dataIndex : fc['leaf'].name,
-		width : 50,
+		hideable:false,
+		hidden : true,
+		width : 0,
 		align : 'center',
 		renderer : function(value) {
 			return value ? '是' : '否';
@@ -380,7 +376,9 @@ Ext.onReady(function() {
 		id : 'flowflag',
 		header : fc['flowflag'].fieldLabel,
 		dataIndex : fc['flowflag'].name,
-		width : 100,
+		hideable:false,
+		hidden : true,
+		width : 0,
 		renderer : function(value) {
 			for(var i=0; i<moduleFlowTypeArr.length; i++){
 				if(moduleFlowTypeArr[i][0]+""==value+"")
@@ -392,7 +390,9 @@ Ext.onReady(function() {
 		id : 'ifalone',
 		header : fc['ifalone'].fieldLabel,
 		dataIndex : fc['ifalone'].name,
-		width : 120,
+		hideable:false,
+		hidden : true,
+		width : 0,
 		renderer : function(value) {
 			for(var i=0; i<moduleAloneTypeArr.length; i++){
 				if(moduleAloneTypeArr[i][0]+""==value+"")
@@ -445,7 +445,7 @@ Ext.onReady(function() {
 		autoScroll : true, // 自动出现滚动条
 		collapsible : false, // 是否可折叠
 		animCollapse : false, // 折叠时显示动画
-		autoExpandColumn : 1, // 列宽度自动扩展，可以用列名，也可以用序号（从1开始）
+		//autoExpandColumn : 1, // 列宽度自动扩展，可以用列名，也可以用序号（从1开始）
 		loadMask : true, // 加载时是否显示进度
 		// ctCls: 'borderLeft',
 		viewConfig : {
@@ -542,7 +542,7 @@ function addIconForModule(){
 	if (!iconsWin)
        iconsWin = new Ext.Window({
 			title : "设置模块图标操作",
-			width : 680,
+			width : 720,
 			height: 480,
 			html: "<iframe src='jsp/system/sys.resource.icons.list.jsp' frameborder=0 width=100% height=100%></iframe>",
 			closeAction: 'hide', modal: true, plain: true, 

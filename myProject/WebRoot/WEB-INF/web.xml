@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" id="WebApp_1361944486336">
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	id="WebApp_1361944486336">
 	<description>Web Project Management Information System</description>
 	<display-name>frame</display-name>
-	 <context-param>
-	 	<param-name>contextConfigLocation</param-name>
-	 	<param-value>/WEB-INF/appcontext/applicationContext.xml</param-value>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/appcontext/applicationContext.xml</param-value>
 	</context-param>
 	<filter>
 		<filter-name>PageFilter</filter-name>
@@ -21,16 +22,12 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<listener>
-		<listener-class>
-			org.springframework.web.context.ContextLoaderListener
-		</listener-class>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<!-- start -->
 	<servlet>
 		<servlet-name>SpirngContext</servlet-name>
-		<servlet-class>
-			com.sgepit.frame.base.servlet.SpirngContext
-		</servlet-class>
+		<servlet-class>com.sgepit.frame.base.servlet.SpirngContext</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet>
@@ -47,105 +44,103 @@
 		<load-on-startup>2</load-on-startup>
 	</servlet>
 	<!-- end -->
-	
+
 	<!-- start -->
 	<servlet>
 		<servlet-name>dwr-invoker</servlet-name>
-		<servlet-class>
-			org.directwebremoting.spring.DwrSpringServlet
-		</servlet-class>
-		<!-- start 系统管理-->
+		<servlet-class>org.directwebremoting.spring.DwrSpringServlet</servlet-class>
+		<!-- start 系统管理 -->
 		<init-param>
 			<param-name>config-sys</param-name>
 			<param-value>/WEB-INF/dwr/sys-dwr.xml</param-value>
 		</init-param>
-		<!-- end   系统管理-->
-		
-		<!-- start 工作总结-->
+		<!-- end 系统管理 -->
+
+		<!-- start 工作总结 -->
 		<init-param>
 			<param-name>config-routine</param-name>
 			<param-value>/WEB-INF/dwr/routine-dwr.xml</param-value>
 		</init-param>
-		<!-- end 工作总结-->
-		
-		<!-- start 通用工具-->
+		<!-- end 工作总结 -->
+
+		<!-- start 通用工具 -->
 		<init-param>
 			<param-name>config-util</param-name>
 			<param-value>/WEB-INF/dwr/util-dwr.xml</param-value>
 		</init-param>
-		<!-- end 通用工具-->
-		
-		<!-- start 流程管理-->
+		<!-- end 通用工具 -->
+
+		<!-- start 流程管理 -->
 		<init-param>
 			<param-name>config-flow</param-name>
 			<param-value>/WEB-INF/dwr/flow-dwr.xml</param-value>
 		</init-param>
-		<!-- end 流程管理-->
-		
+		<!-- end 流程管理 -->
+
 		<!-- start 综合信息管理 -->
 		<init-param>
 			<param-name>config-pc-zhxx</param-name>
 			<param-value>/WEB-INF/dwr/pc-zhxx-dwr.xml</param-value>
 		</init-param>
-		<!-- end 综合信息管理-->
-		
+		<!-- end 综合信息管理 -->
+
 		<!-- start 安全管控 -->
 		<init-param>
 			<param-name>config-pc-aqgk</param-name>
 			<param-value>/WEB-INF/dwr/pc-aqgk-dwr.xml</param-value>
 		</init-param>
-		<!-- end 安全管控-->
-		
+		<!-- end 安全管控 -->
+
 		<!-- start 投资管理 -->
 		<init-param>
 			<param-name>config-pc-tzgl</param-name>
 			<param-value>/WEB-INF/dwr/pc-tzgl-dwr.xml</param-value>
 		</init-param>
-		<!-- end 投资管理-->
-		
+		<!-- end 投资管理 -->
+
 		<!-- start 批文管理 -->
 		<init-param>
 			<param-name>config-approvl</param-name>
 			<param-value>/WEB-INF/dwr/pc-approvl-dwr.xml</param-value>
 		</init-param>
 		<!-- end 批文管理 -->
-		
+
 		<!-- start 资粮管控 -->
 		<init-param>
 			<param-name>config-zlgk</param-name>
 			<param-value>/WEB-INF/dwr/pc-zlgk-dwr.xml</param-value>
 		</init-param>
 		<!-- end质量管控 -->
-		
+
 		<!-- start招投标管理 -->
 		<init-param>
 			<param-name>config-bid</param-name>
 			<param-value>/WEB-INF/dwr/pc-bid-dwr.xml</param-value>
 		</init-param>
 		<!-- end招投标管理 -->
-		
+
 		<!-- start 进度管控 -->
 		<init-param>
 			<param-name>config-jdgk</param-name>
 			<param-value>/WEB-INF/dwr/pc-jdgk-dwr.xml</param-value>
 		</init-param>
 		<!-- end 进度管控 -->
-		
+
 		<!-- start 概算管理 -->
 		<init-param>
 			<param-name>config-budget</param-name>
 			<param-value>/WEB-INF/dwr/budget-dwr.xml</param-value>
 		</init-param>
 		<!-- end 概算管理 -->
-		
+
 		<!-- start 合同管理 -->
 		<init-param>
 			<param-name>config-contract</param-name>
 			<param-value>/WEB-INF/dwr/contract-dwr.xml</param-value>
 		</init-param>
-		<!-- end 合同管理-->
-		
-		<!-- start 物资-->
+		<!-- end 合同管理 -->
+
+		<!-- start 物资 -->
 		<init-param>
 			<param-name>config-mat</param-name>
 			<param-value>/WEB-INF/dwr/mat-dwr.xml</param-value>
@@ -154,139 +149,146 @@
 			<param-name>config-wzgl</param-name>
 			<param-value>/WEB-INF/dwr/wzgl-dwr.xml</param-value>
 		</init-param>
-		<!-- end 物资-->
-		
-		<!--  start 资料 -->
+		<!-- end 物资 -->
+
+		<!-- start 资料 -->
 		<init-param>
 			<param-name>config-zlgl</param-name>
 			<param-value>/WEB-INF/dwr/zlgl-dwr.xml</param-value>
 		</init-param>
-		<!--  end 资料 -->
-		
+		<!-- end 资料 -->
+
 		<!-- start 设备 -->
 		<init-param>
 			<param-name>config-equ</param-name>
 			<param-value>/WEB-INF/dwr/equ-dwr.xml</param-value>
 		</init-param>
 		<!-- end 设备 -->
-		
+
 		<!-- start 文档 -->
 		<init-param>
 			<param-name>config-zlaq</param-name>
 			<param-value>/WEB-INF/dwr/com-dwr.xml</param-value>
 		</init-param>
 		<!-- end 文档 -->
-		
+
 		<!-- start 计划 -->
 		<init-param>
 			<param-name>config-planMgm</param-name>
 			<param-value>/WEB-INF/dwr/planMgm-dwr.xml</param-value>
 		</init-param>
 		<!-- end 计划 -->
-		
-		<!-- start	投资完成 -->
+
+		<!-- start 投资完成 -->
 		<init-param>
 			<param-name>config-comp</param-name>
 			<param-value>/WEB-INF/dwr/comp-dwr.xml</param-value>
 		</init-param>
 		<!-- end 投资完成 -->
-		
-		<!-- start	工程管理 -->
+
+		<!-- start 工程管理 -->
 		<init-param>
 			<param-name>config-gczl</param-name>
 			<param-value>/WEB-INF/dwr/gczl-dwr.xml</param-value>
 		</init-param>
-		<!-- end 	工程管理 -->
-		
-		<!-- start	竣工决算 -->
+		<!-- end 工程管理 -->
+
+		<!-- start 竣工决算 -->
 		<init-param>
 			<param-name>config-finalAccounts</param-name>
 			<param-value>/WEB-INF/dwr/finalAccounts-dwr.xml</param-value>
 		</init-param>
-		<!-- end 	竣工决算 -->
-				<!-- start	概算管理 -->
+		<!-- end 竣工决算 -->
+		<!-- start 概算管理 -->
 		<init-param>
 			<param-name>config-pcbudget</param-name>
 			<param-value>/WEB-INF/dwr/pc-budget-dwr.xml</param-value>
 		</init-param>
-		<!-- end 	概算管理 -->
-		<!-- start	结算管理 -->
+		<!-- end 概算管理 -->
+		<!-- start 结算管理 -->
 		<init-param>
 			<param-name>config-pcbalance</param-name>
 			<param-value>/WEB-INF/dwr/pc-balance-dwr.xml</param-value>
 		</init-param>
-		<!-- end 	结算管理 -->
-				<!-- start	预警管理 -->
+		<!-- end 结算管理 -->
+		<!-- start 预警管理 -->
 		<init-param>
 			<param-name>config-pcwarn</param-name>
 			<param-value>/WEB-INF/dwr/pc-warn-dwr.xml</param-value>
 		</init-param>
-		<!-- end 	预警管理-->	
-		
+		<!-- end 预警管理 -->
+
 		<!-- xgrid模板管理Start -->
 		<init-param>
 			<param-name>config-xgridTemplet</param-name>
 			<param-value>/WEB-INF/dwr/xgridTemplet-dwr.xml</param-value>
 		</init-param>
-		<!-- end xgrid模板管理-->
-		
-		<!-- 设计管理Start-->
+		<!-- end xgrid模板管理 -->
+
+		<!-- 设计管理Start -->
 		<init-param>
 			<param-name>config-design</param-name>
 			<param-value>/WEB-INF/dwr/design-dwr.xml</param-value>
 		</init-param>
-		<!-- end 设计管理-->
-		
-		<!-- 安监管理Start-->
+		<!-- end 设计管理 -->
+
+		<!-- 安监管理Start -->
 		<init-param>
 			<param-name>config-safe</param-name>
 			<param-value>/WEB-INF/dwr/safe-dwr.xml</param-value>
 		</init-param>
-		<!-- end 安监管理-->
-		
+		<!-- end 安监管理 -->
+
 		<!-- 人资管理Start -->
 		<init-param>
 			<param-name>config-rlzy</param-name>
 			<param-value>/WEB-INF/dwr/rlzy-dwr.xml</param-value>
 		</init-param>
-		<!-- end 人资管理-->
-		
+		<!-- end 人资管理 -->
+
 		<!-- 值班管理Start -->
 		<init-param>
 			<param-name>config-sczb</param-name>
 			<param-value>/WEB-INF/dwr/sczb-dwr.xml</param-value>
 		</init-param>
-		<!-- end 值班管理-->
-		
+		<!-- end 值班管理 -->
+
 		<!-- 新闻管理Start -->
 		<init-param>
 			<param-name>config-news</param-name>
 			<param-value>/WEB-INF/dwr/news-dwr.xml</param-value>
 		</init-param>
-		<!-- end 新闻管理-->		
+		<!-- end 新闻管理 -->
 		<!-- 车辆管理Start -->
 		<init-param>
 			<param-name>config-vehicle</param-name>
 			<param-value>/WEB-INF/dwr/vehicle-dwr.xml</param-value>
 		</init-param>
-		<!-- end 车辆管理-->		
+		<!-- end 车辆管理 -->
 		<!-- 周工作管理Start -->
 		<init-param>
 			<param-name>config-weekworkmanagemnet</param-name>
 			<param-value>/WEB-INF/dwr/weekworkmanagemnet-dwr.xml</param-value>
 		</init-param>
-		<!-- end 周工作管理-->	
+		<!-- end 周工作管理 -->
 
-		
-		
+
+
 		<init-param>
 			<param-name>debug</param-name>
 			<param-value>true</param-value>
 		</init-param>
-		<init-param>   
-	        <param-name>crossDomainSessionSecurity</param-name><!-- 跨域调用 -->   
-	        <param-value>false</param-value>   
-	   </init-param>
+		<init-param>
+			<param-name>crossDomainSessionSecurity</param-name><!-- 跨域调用 -->
+			<param-value>false</param-value>
+		</init-param>
+		
+		
+		<init-param>
+			<param-name>config-crm</param-name>
+			<param-value>/WEB-INF/dwr/crm-dwr.xml</param-value>
+		</init-param>
+		
 		<load-on-startup>5</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -298,9 +300,7 @@
 	<!--start 附表 -->
 	<servlet>
 		<servlet-name>xlsUtil</servlet-name>
-		<servlet-class>
-			com.sgepit.frame.util.file.XlsUtil
-		</servlet-class>
+		<servlet-class>com.sgepit.frame.util.file.XlsUtil</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>xlsUtil</servlet-name>
@@ -311,9 +311,7 @@
 	<!--start -->
 	<servlet>
 		<servlet-name>ExpServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.frame.example.control.ExampleServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.frame.example.control.ExampleServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ExpServlet</servlet-name>
@@ -321,23 +319,19 @@
 	</servlet-mapping>
 	<!-- end -->
 
-	<!--start 流程管理-->
+	<!--start 流程管理 -->
 	<servlet>
 		<servlet-name>FlwServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.frame.flow.control.FlwServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.frame.flow.control.FlwServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>FlwServlet</servlet-name>
 		<url-pattern>/servlet/FlwServlet</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>FlowStatisticsServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.frame.flow.control.FlowStatisticsServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.frame.flow.control.FlowStatisticsServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>FlowStatisticsServlet</servlet-name>
@@ -348,9 +342,7 @@
 	<!--start -->
 	<servlet>
 		<servlet-name>AxisServlet</servlet-name>
-		<servlet-class>
-			org.apache.axis.transport.http.AxisServlet
-		</servlet-class>
+		<servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
 		<load-on-startup>4</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -362,13 +354,11 @@
 		<url-pattern>/services/*</url-pattern>
 	</servlet-mapping>
 	<!-- end -->
-	
+
 	<!--start -->
 	<servlet>
 		<servlet-name>MainServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.frame.base.servlet.MainServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.frame.base.servlet.MainServlet</servlet-class>
 		<load-on-startup>3</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -379,46 +369,38 @@
 	<!--start -->
 	<servlet>
 		<servlet-name>DynamicServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.pcmis.dynamicview.control.PcDynamicServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.pcmis.dynamicview.control.PcDynamicServlet</servlet-class>
 		<load-on-startup>3</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DynamicServlet</servlet-name>
 		<url-pattern>/servlet/DynamicServlet</url-pattern>
 	</servlet-mapping>
-	<!-- end -->	
+	<!-- end -->
 	<!--start -->
 	<servlet>
 		<servlet-name>SysServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.frame.sysman.control.SysServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.frame.sysman.control.SysServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SysServlet</servlet-name>
 		<url-pattern>/servlet/SysServlet</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>CrossDomainServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.frame.base.CrossDomainServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.frame.base.CrossDomainServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CrossDomainServlet</servlet-name>
 		<url-pattern>/servlet/CrossDomainServlet</url-pattern>
 	</servlet-mapping>
 	<!-- end -->
-	
+
 	<!-- start -->
 	<servlet>
 		<servlet-name>FlowGetUtilServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.frame.flow.control.FlowGetUtilServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.frame.flow.control.FlowGetUtilServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>FlowGetUtilServlet</servlet-name>
@@ -429,75 +411,63 @@
 	<!-- start文件上传 -->
 	<servlet>
 		<servlet-name>fileupload</servlet-name>
-		<servlet-class>
-			com.sgepit.frame.util.file.FileUpload
-		</servlet-class>
+		<servlet-class>com.sgepit.frame.util.file.FileUpload</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>fileupload</servlet-name>
 		<url-pattern>/fileupload</url-pattern>
 	</servlet-mapping>
 	<!-- end -->
-	
+
 	<!-- start 文件下载 -->
 	<servlet>
 		<servlet-name>filedownload</servlet-name>
-		<servlet-class>
-			com.sgepit.frame.util.file.FileDownload
-		</servlet-class>
+		<servlet-class>com.sgepit.frame.util.file.FileDownload</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>filedownload</servlet-name>
 		<url-pattern>/filedownload</url-pattern>
 	</servlet-mapping>
 	<!-- end -->
-	
-	<!-- start 集团跨域访问项目单位大对象-->
+
+	<!-- start 集团跨域访问项目单位大对象 -->
 	<servlet>
 		<servlet-name>fileDownloadCrossDomainServletJT</servlet-name>
-		<servlet-class>
-			com.sgepit.portal.FileDownloadCrossDomainServletJT
-		</servlet-class>
+		<servlet-class>com.sgepit.portal.FileDownloadCrossDomainServletJT</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>fileDownloadCrossDomainServletJT</servlet-name>
 		<url-pattern>/fileDownloadCrossDomainServletJT</url-pattern>
 	</servlet-mapping>
 	<!-- end -->
-	
-	<!-- start  项目单位提供的集团访问项目单位系统大对象-->
+
+	<!-- start 项目单位提供的集团访问项目单位系统大对象 -->
 	<servlet>
 		<servlet-name>filedownloadCrossDomainServletForJT</servlet-name>
-		<servlet-class>
-			com.sgepit.portal.FileDownLoadCrossDomainServletForJT
-		</servlet-class>
+		<servlet-class>com.sgepit.portal.FileDownLoadCrossDomainServletForJT</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>filedownloadCrossDomainServletForJT</servlet-name>
 		<url-pattern>/filedownloadCrossDomainServletForJT</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- end -->
-	<!-- start	业务模块 【servlet部分】-->
-	
+	<!-- start 业务模块 【servlet部分】 -->
+
 	<!-- start 文件管理 -->
 	<servlet>
 		<description>文档分类树</description>
 		<display-name>文档分类树</display-name>
 		<servlet-name>ComFileSortServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.fileAndPublish.control.ComFileSortServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.fileAndPublish.control.ComFileSortServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<description>文件信息及发布管理</description>
 		<display-name>文件信息及发布管理</display-name>
 		<servlet-name>ComFileManageServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.fileAndPublish.control.ComFileManageServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.fileAndPublish.control.ComFileManageServlet</servlet-class>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>ComFileSortServlet</servlet-name>
 		<url-pattern>/servlet/ComFileSortServlet</url-pattern>
@@ -507,61 +477,48 @@
 		<url-pattern>/servlet/ComFileManageServlet</url-pattern>
 	</servlet-mapping>
 	<!-- end 文件管理 -->
-	
+
 	<!-- 概算 -->
 	<servlet>
 		<servlet-name>BdgServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.pmis.budget.control.BdgServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.pmis.budget.control.BdgServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>BdgServlet</servlet-name>
 		<url-pattern>/servlet/BdgServlet</url-pattern>
 	</servlet-mapping>
 	<!-- 概算 -->
-	
+
 	<!-- start 概算管理 -->
 	<servlet>
 		<servlet-name>BudgetNkServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.pmis.budgetNk.control.BudgetNkServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.pmis.budgetNk.control.BudgetNkServlet</servlet-class>
 	</servlet>
 
 	<servlet>
 		<servlet-name>BudgetMoneyAppServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.pmis.budgetNk.control.BudgetMoneyAppServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.pmis.budgetNk.control.BudgetMoneyAppServlet</servlet-class>
 	</servlet>
 
 	<servlet>
 		<servlet-name>BudgetChangeAppServlet</servlet-name>
 		<servlet-class>
-			com.sgepit.pmis.budgetNk.control.BudgetChangeAppServlet
-		</servlet-class>
+			com.sgepit.pmis.budgetNk.control.BudgetChangeAppServlet</servlet-class>
 	</servlet>
 
 	<servlet>
 		<servlet-name>BudgetPayAppServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.pmis.budgetNk.control.BudgetPayAppServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.pmis.budgetNk.control.BudgetPayAppServlet</servlet-class>
 	</servlet>
 
 	<servlet>
 		<servlet-name>BudgetClaAppServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.pmis.budgetNk.control.BudgetClaAppServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.pmis.budgetNk.control.BudgetClaAppServlet</servlet-class>
 	</servlet>
 
 	<servlet>
 		<servlet-name>BudgetBreakAppServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.pmis.budgetNk.control.BudgetBreakAppServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.pmis.budgetNk.control.BudgetBreakAppServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -594,79 +551,69 @@
 		<url-pattern>/servlet/BudgetNkServlet</url-pattern>
 	</servlet-mapping>
 	<!-- end 概算管理 -->
-	
+
 	<!-- start 合同管理 -->
 	<servlet>
 		<servlet-name>ConServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.pmis.contract.control.ConServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.pmis.contract.control.ConServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ConServlet</servlet-name>
 		<url-pattern>/servlet/ConServlet</url-pattern>
 	</servlet-mapping>
-	<!-- end 合同管理-->
-	
+	<!-- end 合同管理 -->
+
 	<!-- start 批文管理 -->
 	<servlet>
 		<servlet-name>ApprovlServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.pcmis.approvl.control.ApprovlServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.pcmis.approvl.control.ApprovlServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ApprovlServlet</servlet-name>
 		<url-pattern>/servlet/ApprovlServlet</url-pattern>
 	</servlet-mapping>
 	<!-- end 批文管理 -->
-	
+
 	<!-- start 安全隐患信息导出为excel servlet -->
 	<servlet>
 		<servlet-name>AqgkServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.pcmis.aqgk.control.AqgkServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.pcmis.aqgk.control.AqgkServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AqgkServlet</servlet-name>
 		<url-pattern>/servlet/AqgkServlet</url-pattern>
 	</servlet-mapping>
 	<!-- end 安全隐患信息导出为excel servlet -->
-	
-	<!-- start 物资-->
+
+	<!-- start 物资 -->
 	<servlet>
 		<servlet-name>MatServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.pmis.wzgl.control.MatServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.pmis.wzgl.control.MatServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>MatServlet</servlet-name>
 		<url-pattern>/servlet/MatServlet</url-pattern>
 	</servlet-mapping>
-	<!-- end 物资-->
-	
+	<!-- end 物资 -->
+
 	<!-- start 设备 -->
 	<!-- end 设备 -->
-	
+
 	<!-- start 文档 -->
 	<!-- end 文档 -->
-	
+
 	<!-- start 计划 -->
 	<servlet>
 		<servlet-name>InvestmentPlanServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.pmis.planMgm.control.InvestmentPlanServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.pmis.planMgm.control.InvestmentPlanServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>InvestmentPlanServlet</servlet-name>
 		<url-pattern>/servlet/InvestmentPlanServlet</url-pattern>
 	</servlet-mapping>
 	<!-- end 计划 -->
-	
-	 <!-- 竣工决算 -->
+
+	<!-- 竣工决算 -->
 	<servlet>
 		<servlet-name>FAAssetsServlet</servlet-name>
 		<servlet-class>com.sgepit.pmis.finalAccounts.basicData.control.FAAssetsServlet</servlet-class>
@@ -674,59 +621,59 @@
 	<servlet-mapping>
 		<servlet-name>FAAssetsServlet</servlet-name>
 		<url-pattern>/servlet/FAAssetsServlet</url-pattern>
-	</servlet-mapping> 
-	
+	</servlet-mapping>
+
 	<!-- 竣工决算 工程基本信息 -->
-	 <servlet>
-  	<servlet-name>PrjGeneralInfoServlet</servlet-name>
-  	<servlet-class>com.sgepit.pmis.finalAccounts.prjGeneralInfo.control.PrjGeneralInfoServlet</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-  	<servlet-name>PrjGeneralInfoServlet</servlet-name>
-  	<url-pattern>/servlet/PrjGeneralInfoServlet</url-pattern>
-  </servlet-mapping>
-  
-  <!-- 竣工决算概算结构 -->
-   <servlet>
-  	<servlet-name>BdgStructureServlet</servlet-name>
-  	<servlet-class>com.sgepit.pmis.finalAccounts.bdgStructure.control.BdgStructureServlet</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-  	<servlet-name>BdgStructureServlet</servlet-name>
-  	<url-pattern>/servlet/BdgStructureServlet</url-pattern>
-  </servlet-mapping>
-  
-  <!-- 竣工决算 财务 -->
-  <servlet>
-  	<servlet-name>FAFinanceServlet</servlet-name>
-  	<servlet-class>com.sgepit.pmis.finalAccounts.finance.contorl.FAFinanceServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>FAFinanceServlet</servlet-name>
-  	<url-pattern>/servlet/FAFinanceServlet</url-pattern>
-  </servlet-mapping>
-   <!-- 进度管理 -->
- <servlet>
-   <servlet-name>GanttServlet</servlet-name>
-   <servlet-class>com.sgepit.pmis.gantt.GanttServlet</servlet-class>
- </servlet>
- <servlet-mapping>
-  <servlet-name>GanttServlet</servlet-name>
-  <url-pattern>/GanttServlet</url-pattern>
- </servlet-mapping> 
- 
-   <!-- 质量验评 -->
- <servlet>
-   <servlet-name>zlypServlet</servlet-name>
-   <servlet-class>com.sgepit.pmis.gczl.control.ZlypServlet</servlet-class>
- </servlet>  
- <servlet-mapping>
-  <servlet-name>zlypServlet</servlet-name>
-  <url-pattern>/servlet/ZlypServlet</url-pattern>
- </servlet-mapping> 
-	
+	<servlet>
+		<servlet-name>PrjGeneralInfoServlet</servlet-name>
+		<servlet-class>com.sgepit.pmis.finalAccounts.prjGeneralInfo.control.PrjGeneralInfoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>PrjGeneralInfoServlet</servlet-name>
+		<url-pattern>/servlet/PrjGeneralInfoServlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- 竣工决算概算结构 -->
+	<servlet>
+		<servlet-name>BdgStructureServlet</servlet-name>
+		<servlet-class>com.sgepit.pmis.finalAccounts.bdgStructure.control.BdgStructureServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>BdgStructureServlet</servlet-name>
+		<url-pattern>/servlet/BdgStructureServlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- 竣工决算 财务 -->
+	<servlet>
+		<servlet-name>FAFinanceServlet</servlet-name>
+		<servlet-class>com.sgepit.pmis.finalAccounts.finance.contorl.FAFinanceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FAFinanceServlet</servlet-name>
+		<url-pattern>/servlet/FAFinanceServlet</url-pattern>
+	</servlet-mapping>
+	<!-- 进度管理 -->
+	<servlet>
+		<servlet-name>GanttServlet</servlet-name>
+		<servlet-class>com.sgepit.pmis.gantt.GanttServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GanttServlet</servlet-name>
+		<url-pattern>/GanttServlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- 质量验评 -->
+	<servlet>
+		<servlet-name>zlypServlet</servlet-name>
+		<servlet-class>com.sgepit.pmis.gczl.control.ZlypServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>zlypServlet</servlet-name>
+		<url-pattern>/servlet/ZlypServlet</url-pattern>
+	</servlet-mapping>
+
 	<!-- 人资管理 -->
 	<servlet>
 		<servlet-name>RlzyServlet</servlet-name>
@@ -736,7 +683,7 @@
 		<servlet-name>RlzyServlet</servlet-name>
 		<url-pattern>/servlet/RlzyServlet</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>GuidelineServlet</servlet-name>
 		<servlet-class>com.sgepit.frame.guideline.control.GuidelineServlet</servlet-class>
@@ -744,156 +691,150 @@
 	<servlet-mapping>
 		<servlet-name>GuidelineServlet</servlet-name>
 		<url-pattern>/servlet/GuidelineServlet</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet>
-	    <description>数据交互</description>
-	    <display-name>数据交互</display-name>
-	    <servlet-name>PCDataExchangeServlet</servlet-name>
-	    <servlet-class>com.sgepit.frame.dataexchange.control.PCDataExchangeServlet</servlet-class>
-	  </servlet>
-	
-	  <servlet-mapping>
-    	<servlet-name>PCDataExchangeServlet</servlet-name>
-	    <url-pattern>/servlet/PCDataExchangeServlet</url-pattern>
-	  </servlet-mapping>
-	  
-	  
-	<!--新闻管理-->  
+		<description>数据交互</description>
+		<display-name>数据交互</display-name>
+		<servlet-name>PCDataExchangeServlet</servlet-name>
+		<servlet-class>com.sgepit.frame.dataexchange.control.PCDataExchangeServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>PCDataExchangeServlet</servlet-name>
+		<url-pattern>/servlet/PCDataExchangeServlet</url-pattern>
+	</servlet-mapping>
+
+
+	<!--新闻管理 -->
 	<servlet>
-	<description>新闻管理</description>
-	<display-name>新闻管理</display-name>
-	<servlet-name>NewsServlet</servlet-name>
-	<servlet-class>com.sgepit.pmis.news.control.NewsServlet</servlet-class>
+		<description>新闻管理</description>
+		<display-name>新闻管理</display-name>
+		<servlet-name>NewsServlet</servlet-name>
+		<servlet-class>com.sgepit.pmis.news.control.NewsServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	<servlet-name>NewsServlet</servlet-name>
-	<url-pattern>/servlet/NewsServlet</url-pattern>
-	</servlet-mapping>	 
-	 
-	<!--招投标管理-->  
+		<servlet-name>NewsServlet</servlet-name>
+		<url-pattern>/servlet/NewsServlet</url-pattern>
+	</servlet-mapping>
+
+	<!--招投标管理 -->
 	<servlet>
-	<description>招投标管理</description>
-	<display-name>招投标管理</display-name>
-	<servlet-name>PcBidServlet</servlet-name>
-	<servlet-class>com.sgepit.pcmis.bid.control.PcBidServlet</servlet-class>
+		<description>招投标管理</description>
+		<display-name>招投标管理</display-name>
+		<servlet-name>PcBidServlet</servlet-name>
+		<servlet-class>com.sgepit.pcmis.bid.control.PcBidServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	<servlet-name>PcBidServlet</servlet-name>
-	<url-pattern>/servlet/PcBidServlet</url-pattern>
-	</servlet-mapping>	 
-	  
+		<servlet-name>PcBidServlet</servlet-name>
+		<url-pattern>/servlet/PcBidServlet</url-pattern>
+	</servlet-mapping>
+
 	<!--Start 单点登录通道 -->
 	<servlet>
-   		<servlet-name>SSOLogin</servlet-name>
-   		<servlet-class>com.sgepit.portal.SSOLogin</servlet-class>
- 	</servlet>  
- 	<servlet-mapping>
-  	<servlet-name>SSOLogin</servlet-name>
-  		<url-pattern>/servlet/SSOLogin</url-pattern>
- 	</servlet-mapping> 
- 	<!--End 单点登录通道 -->
+		<servlet-name>SSOLogin</servlet-name>
+		<servlet-class>com.sgepit.portal.SSOLogin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SSOLogin</servlet-name>
+		<url-pattern>/servlet/SSOLogin</url-pattern>
+	</servlet-mapping>
+	<!--End 单点登录通道 -->
 
 	<!-- Start 资料档案excel导入 -->
 	<servlet>
 		<servlet-name>ZlDAExcelServlet</servlet-name>
 		<servlet-class>com.sgepit.pmis.document.control.ZlDAExcelServlet</servlet-class>
 	</servlet>
-  <servlet>
+	<servlet>
+		<servlet-mapping>
+			<servlet-name>ZlDAExcelServlet</servlet-name>
+			<url-pattern>/servlet/ZlDAExcelServlet</url-pattern>
+		</servlet-mapping>
+		<!-- End 资料档案excel导入 -->
+		<!-- Start 车辆管理 -->
+		<servlet-name>VehicleServlet</servlet-name>
+		<servlet-class>com.sgepit.pmis.vehicle.control.VehicleServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
-		<servlet-name>ZlDAExcelServlet</servlet-name>
-		<url-pattern>/servlet/ZlDAExcelServlet</url-pattern>
+		<servlet-name>VehicleServlet</servlet-name>
+		<url-pattern>/servlet/VehicleServlet</url-pattern>
+		<!-- end 车辆管理 -->
 	</servlet-mapping>
- 	<!-- End 资料档案excel导入 -->
- 	<!-- Start 车辆管理 -->
-  <servlet-name>VehicleServlet</servlet-name>
-    <servlet-class>com.sgepit.pmis.vehicle.control.VehicleServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>VehicleServlet</servlet-name>
-    <url-pattern>/servlet/VehicleServlet</url-pattern>
-    <!-- end 车辆管理 -->
-  </servlet-mapping>
-  <!-- Start 设备管理 -->
-  <servlet>
-    <servlet-name>EquServlet</servlet-name>
-    <servlet-class>com.sgepit.pmis.equipment.control.EquServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EquServlet</servlet-name>
-    <url-pattern>/servlet/EquServlet</url-pattern>
-  </servlet-mapping>
-   
-   <!-- Start 国锦计划管理 -->
-   <servlet>
-    <description>国锦计划管理 </description>
-    <display-name>国锦计划管理 </display-name>
-    <servlet-name>PCBdgService</servlet-name>
-    <servlet-class>com.sgepit.pcmis.budget.control.PCBdgService</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>PCBdgService</servlet-name>
-    <url-pattern>/servlet/PCBdgService</url-pattern>
-  </servlet-mapping> 
-    <!-- end 国锦计划管理 -->
-    
- 	<!-- end 设备管理 -->
- 	<!--国锦质量验评start -->
+	<!-- Start 设备管理 -->
+	<servlet>
+		<servlet-name>EquServlet</servlet-name>
+		<servlet-class>com.sgepit.pmis.equipment.control.EquServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EquServlet</servlet-name>
+		<url-pattern>/servlet/EquServlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- Start 国锦计划管理 -->
+	<servlet>
+		<description>国锦计划管理 </description>
+		<display-name>国锦计划管理</display-name>
+		<servlet-name>PCBdgService</servlet-name>
+		<servlet-class>com.sgepit.pcmis.budget.control.PCBdgService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PCBdgService</servlet-name>
+		<url-pattern>/servlet/PCBdgService</url-pattern>
+	</servlet-mapping>
+	<!-- end 国锦计划管理 -->
+
+	<!-- end 设备管理 -->
+	<!--国锦质量验评start -->
 	<servlet>
 		<servlet-name>PCZlgkServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.pcmis.zlgk.control.PCZlgkServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.pcmis.zlgk.control.PCZlgkServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>PCZlgkServlet</servlet-name>
 		<url-pattern>/servlet/PCZlgkServlet</url-pattern>
 	</servlet-mapping>
 	<!-- 国锦质量验评end -->
-	
-	
-	<!-- start  集团跨域访问项目单位大对象-->
+
+
+	<!-- start 集团跨域访问项目单位大对象 -->
 	<servlet>
 		<servlet-name>BlobCrossDomainServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.portal.BlobCrossDomainServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.portal.BlobCrossDomainServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>BlobCrossDomainServlet</servlet-name>
 		<url-pattern>/servlet/BlobCrossDomainServlet</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>BlobFetchCrossDomainServlet</servlet-name>
-		<servlet-class>
-			com.sgepit.portal.BlobFetchCrossDomainServlet
-		</servlet-class>
+		<servlet-class>com.sgepit.portal.BlobFetchCrossDomainServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>BlobFetchCrossDomainServlet</servlet-name>
 		<url-pattern>/servlet/BlobFetchCrossDomainServlet</url-pattern>
 	</servlet-mapping>
 	<!-- end -->
-	
+
 	<!-- 周工作管理Start -->
 	<servlet>
-	    <servlet-name>WeekWorkManagementServlet</servlet-name>
-	<servlet-class>com.sgepit.pmis.weekworkmanagement.control.WeekWorkManagementServlet</servlet-class>
+		<servlet-name>WeekWorkManagementServlet</servlet-name>
+		<servlet-class>com.sgepit.pmis.weekworkmanagement.control.WeekWorkManagementServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	    <servlet-name>WeekWorkManagementServlet</servlet-name>
-	    <url-pattern>/servlet/WeekWorkManagementServlet</url-pattern>
+		<servlet-name>WeekWorkManagementServlet</servlet-name>
+		<url-pattern>/servlet/WeekWorkManagementServlet</url-pattern>
 	</servlet-mapping>
 	<!-- 周工作管理end -->
-	
+
 	<!-- 日志管理-Start -->
 	<servlet>
-	    <servlet-name>RzglServlet</servlet-name>
-	<servlet-class>com.sgepit.pmis.rzgl.control.RzglServlet</servlet-class>
+		<servlet-name>RzglServlet</servlet-name>
+		<servlet-class>com.sgepit.pmis.rzgl.control.RzglServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	    <servlet-name>RzglServlet</servlet-name>
-	    <url-pattern>/servlet/RzglServlet</url-pattern>
+		<servlet-name>RzglServlet</servlet-name>
+		<url-pattern>/servlet/RzglServlet</url-pattern>
 	</servlet-mapping>
 	<!-- 日志管理-end -->
 
@@ -920,12 +861,28 @@
 		<url-pattern>/servlet/DhtmlxExcelGeneratorServlet</url-pattern>
 	</servlet-mapping>
 	<!-- DHX导出结束 -->
-	
+
+
+	<servlet><!-- 股票管理 -->
+		<servlet-name>StockServlet</servlet-name>
+		<servlet-class>com.imfav.business.stock.control.StockServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StockServlet</servlet-name>
+		<url-pattern>/servlet/StockServlet</url-pattern>
+	</servlet-mapping>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/jsp/index/404.html</location>
+	</error-page>
+
 	<session-config>
-		<session-timeout>30</session-timeout>
+		<session-timeout>-1</session-timeout>
 	</session-config>
 	<welcome-file-list>
-		<welcome-file>login/gf/login.jsp</welcome-file>             
+		<welcome-file>login/oa/login.html</welcome-file>
+		<welcome-file>login/oa/login.jsp</welcome-file>
 	</welcome-file-list>
 	<login-config>
 		<auth-method>BASIC</auth-method>

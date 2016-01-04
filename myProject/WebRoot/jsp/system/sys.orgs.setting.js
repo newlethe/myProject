@@ -82,7 +82,7 @@ Ext.onReady(function (){
 			requestMethod: "GET"
 		}),
 		root : new Ext.tree.AsyncTreeNode({
-	       text: defaultParentName,
+	       text: MODULE_ROOT_NAME,
 	       id: defaultParentId
 	    }),
 		collapseFirst : false,
@@ -124,24 +124,24 @@ Ext.onReady(function (){
 			    		});
 		    		}
 			    }
-				if(DEPLOY_UNITTYPE&&DEPLOY_UNITTYPE=="S"){//如果是系统不属于多项目系统，而是独立的项目系统，能维护项目单位下的组织机构信息
-					gridPanel.getTopToolbar().enable();
-				}else{
-					//在项目单位系统中，只能修改三级单位和项目单位的下级组织机构信息；
-					if(DEPLOY_UNITTYPE && DEPLOY_UNITTYPE=="A") {
-						if (selectedUnitNode.attributes.unitTypeId=="A"||selectedUnitNode.attributes.unitTypeId=="3") {
-							gridPanel.getTopToolbar().enable();
-						} else {
-							gridPanel.getTopToolbar().disable();
-						}
-					} else if(DEPLOY_UNITTYPE&&DEPLOY_UNITTYPE=="0" && node.attributes.unitTypeId=="A") {
-						//如果是集团系统，且属于多项目系统，不能维护项目单位下的组织机构信息
-						gridPanel.getTopToolbar().disable();
-						
-					} else {
-						gridPanel.getTopToolbar().enable();
-					}
-				}
+//				if(DEPLOY_UNITTYPE&&DEPLOY_UNITTYPE=="S"){//如果是系统不属于多项目系统，而是独立的项目系统，能维护项目单位下的组织机构信息
+//					gridPanel.getTopToolbar().enable();
+//				}else{
+//					//在项目单位系统中，只能修改三级单位和项目单位的下级组织机构信息；
+//					if(DEPLOY_UNITTYPE && DEPLOY_UNITTYPE=="A") {
+//						if (selectedUnitNode.attributes.unitTypeId=="A"||selectedUnitNode.attributes.unitTypeId=="3") {
+//							gridPanel.getTopToolbar().enable();
+//						} else {
+//							gridPanel.getTopToolbar().disable();
+//						}
+//					} else if(DEPLOY_UNITTYPE&&DEPLOY_UNITTYPE=="0" && node.attributes.unitTypeId=="A") {
+//						//如果是集团系统，且属于多项目系统，不能维护项目单位下的组织机构信息
+//						gridPanel.getTopToolbar().disable();
+//						
+//					} else {
+//						gridPanel.getTopToolbar().enable();
+//					}
+//				}
 			}
 		}
 	});
@@ -187,9 +187,9 @@ Ext.onReady(function (){
 			anchor:'95%'
 		}, 'viewOrderNum': {
 			name: 'viewOrderNum',
-			fieldLabel: '显示顺序',
+			fieldLabel: '行政级别',
             allowNegative: false,
-            maxValue: 1000000000,
+            maxValue: 1000,
             allowDecimals: false,
 			allowBlank: false,
 			anchor:'95%'
@@ -258,7 +258,8 @@ Ext.onReady(function (){
            id:'id',
            header: fc['id'].fieldLabel,
            dataIndex: fc['id'].name,
-           hidden:true
+           width: 0,
+           hidden:true,hideable:false
         }, {
            id:'unitid',
            header: fc['unitid'].fieldLabel,
@@ -269,7 +270,8 @@ Ext.onReady(function (){
            id:'upunit',
            header: fc['upunit'].fieldLabel,
            dataIndex: fc['upunit'].name,
-           hidden:true
+           width: 0,
+           hidden:true,hideable:false
         }, {
            id:'unitname',
            header: fc['unitname'].fieldLabel,
@@ -305,13 +307,15 @@ Ext.onReady(function (){
            id:'startYear',
            header: fc['startYear'].fieldLabel,
            dataIndex: fc['startYear'].name,
-           width: 80,
+           width: 0,
+           hidden: true,hideable:false,
 		   editor: new Ext.form.TextField(fc['startYear'])
         }, {
            id:'endYear',
            header: fc['endYear'].fieldLabel,
            dataIndex: fc['endYear'].name,
-           width: 80,
+           width: 0,
+           hidden: true,hideable:false,
 		   editor: new Ext.form.TextField(fc['endYear'])
         }, {
            id:'viewOrderNum',
@@ -324,9 +328,9 @@ Ext.onReady(function (){
            id:'leaf',
            header: fc['leaf'].fieldLabel,
            dataIndex: fc['leaf'].name,
-           width: 120,
+           width: 0,
+           hidden: true,hideable:false,
            align: 'center',
-           hidden:true,
            renderer: function(value){
               return value ? '否' : '是';
 		   }
@@ -334,7 +338,8 @@ Ext.onReady(function (){
            id:'appUrl',
            header: fc['appUrl'].fieldLabel,
            dataIndex: fc['appUrl'].name,
-           width: 200,
+           width: 0,
+           hidden: true,hideable:false,
            align: 'left',
            tooltip:'如果没有远程地址则可以不填写',
            renderer:function(v){
@@ -367,8 +372,8 @@ Ext.onReady(function (){
         }, Columns),
 
         // 设置是否可以服务器端排序
-        remoteSort: true,
-        pruneModifiedRecords: true	//若remoteSort为真，则必须为真,否则新增行未保存时按列排序报错
+        remoteSort: false,
+        pruneModifiedRecords: false	//若remoteSort为真，则必须为真,否则新增行未保存时按列排序报错
     });
     unitDS.setDefaultSort('viewOrderNum', 'asc');	//设置默认排序列
 
@@ -379,19 +384,18 @@ Ext.onReady(function (){
         sm: unitSM,						//行选择模式
         tbar: [],					//顶部工具栏，可选
         title: defaultParentName,		//面板标题
-        iconCls: 'icon-by-category',	//面板样式
         border: false,				// 
         region: 'center',
         clicksToEdit: 1,			//单元格单击进入编辑状态,1单击，2双击
-        header: true,				//
+        header: false,				//
         autoScroll: true,			//自动出现滚动条
         collapsible: false,			//是否可折叠
         animCollapse: false,		//折叠时显示动画
-        autoExpandColumn: 'unitname',		//列宽度自动扩展，可以用列名，也可以用序号（从1开始）
+//        autoExpandColumn: 'unitname',		//列宽度自动扩展，可以用列名，也可以用序号（从1开始）
         loadMask: true,				//加载时是否显示进度
 		viewConfig:{
 			forceFit: true,
-			ignoreAdd: true
+			ignoreAdd: false
 		},
 		bbar: new Ext.PagingToolbar({//在底部工具栏上添加分页导航
             pageSize: PAGE_SIZE,
@@ -458,7 +462,7 @@ Ext.onReady(function (){
 			},
 			beforeedit:function(o){
 				if(o.field=="unitTypeId"&&o.record.get("unitTypeId")==="A"){
-					return false;
+					//return false;
 				}
 			},
 			rowcontextmenu : function(grid,rowIndex,e){
@@ -672,12 +676,12 @@ Ext.onReady(function (){
         }
     });	
     // gbtn
-	gridPanel.getTopToolbar().add(gbtn);
-	if(DEPLOY_UNITTYPE&&DEPLOY_UNITTYPE=="S"){//如果是系统不属于多项目系统，能维护项目单位下的组织机构信息
-		gridPanel.getTopToolbar().enable();
-	}else if(DEPLOY_UNITTYPE=="A") {
-	    gridPanel.getTopToolbar().disable();
-	}
+//	gridPanel.getTopToolbar().add(gbtn);
+//	if(DEPLOY_UNITTYPE&&DEPLOY_UNITTYPE=="S"){//如果是系统不属于多项目系统，能维护项目单位下的组织机构信息
+//		gridPanel.getTopToolbar().enable();
+//	}else if(DEPLOY_UNITTYPE=="A") {
+//	    gridPanel.getTopToolbar().disable();
+//	}
 });
 function reportUnitData(){
 	try{

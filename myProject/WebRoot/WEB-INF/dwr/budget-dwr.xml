@@ -7,7 +7,7 @@
 
 		<convert converter="bean" match="com.sgepit.pmis.budget.hbm.*" />
 		<convert converter="bean" match="com.sgepit.pmis.tenders.hbm.*" />
-		<convert converter="bean" match="com.sgepit.pmis.coninvested.hbm.*" />
+		<!-- <convert converter="bean" match="com.sgepit.pmis.coninvested.hbm.*" /> -->
 		
         <!--概算结构维护-->
 		<create creator="spring" javascript="bdgInfoMgm" scope="page">

@@ -32,16 +32,16 @@ td{
 	padding-left:20px;
 }
 .add {
-    background-image:url(../images/shared/icons/add.gif) !important;
+    background:url(../images/shared/icons/add.gif) no-repeat 0px 3px !important;
 }
 .option {
-    background-image:url(../images/shared/icons/plugin.gif) !important;
+    background:url(../images/shared/icons/plugin.gif) no-repeat 0px 3px !important;
 }
 .remove {
-    background-image:url(../images/shared/icons/delete.gif) !important;
+    background:url(../images/shared/icons/delete.gif) no-repeat 0px 3px !important;
 }
 .save {
-    background-image:url(../images/shared/icons/save.gif) !important;
+    background:url(../images/shared/icons/save.gif) no-repeat 0px 3px !important;
 }
 .refresh {
     background-image:url(../images/shared/icons/refresh.png) !important;
@@ -88,12 +88,21 @@ td{
 .paste{
 	background-image:url(../images/icons/page_paste.png) !important;
 }
+.star{
+	background-image:url(../images/icons/star.png) !important;
+}
+.resend{
+	background-image:url(../images/icons/resend.png) !important;
+}
+.book_open{
+	background-image:url(../images/icons/book_open.png) !important;
+}
 
 .pasteUser1 {
     background-image:url(../images/shared/icons/group_go.png) !important;
 }
 .orangeUser {
-    background-image:url(../images/icons/user_orange.png) !important;
+    background:url(../images/icons/user_orange.png) no-repeat 0px 3px !important;
 }
 .delUser {
     background-image:url(../images/shared/icons/group_delete.png) !important;
@@ -147,7 +156,10 @@ td{
 	background-image:url(../images/index/expand-members.gif) !important;
 }
 .msg .x-box-mc {
-    font-size:14px;
+    font-size:14px !important;
+}
+.msg .x-box-mc h2{
+    font-size:14px !important;
 }
 #msg-div {
     position:absolute;

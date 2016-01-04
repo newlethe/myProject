@@ -18,7 +18,7 @@
 		<script src='dwr/interface/systemMgm.js'></script>
 		<script src='dwr/engine.js'></script>
 		<script src='dwr/interface/UserSync.js'></script>
-		<script type="text/javascript" src="jsp/index/MD5.js"></script>
+		<script type="text/javascript" src="common/MD5.js"></script>
 		<script type='text/javascript' src='dwr/interface/baseMgm.js'></script>
 		<script type="text/javascript" src="jsp/system/sys.user.setting.js"></script>
 		<script type="text/javascript" src="jsp/system/sys.user.hr.importWindow.js"></script>

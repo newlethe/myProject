@@ -19,6 +19,8 @@ Ext.onReady(function(){
 			id : 'uids',
 			header : fc['uids'].fieldLabel,
 			dataIndex : fc['uids'].name,
+			width:0,
+			hideable:false,
 			hidden : true
 		},{
 			id : 'username',
@@ -106,8 +108,8 @@ Ext.onReady(function(){
 				fieldLabel: "访问模块：",
 				width: 120
 			}),
-		"登录时间：",new Ext.form.DateField({id:'st_begin',emptyText:'开始时间',readOnly:true,width:85,format:'Y-m-d'}),
-	    '至',new Ext.form.DateField({id:'st_end',emptyText:'结束时间',readOnly:true,width:85,format:'Y-m-d', value: new Date}),
+		"登录时间：",new Ext.form.DateField({id:'st_begin',emptyText:'开始时间',readOnly:true,width:100,format:'Y-m-d'}),
+	    '至',new Ext.form.DateField({id:'st_end',emptyText:'结束时间',readOnly:true,width:100,format:'Y-m-d', value: new Date}),
 	    '-',new Ext.Toolbar.Button({id : 'query',text : '查 询',cls : 'x-btn-text',icon : 'images/business/flowsend.png',handler : onItemClick}),
 	    '-',new Ext.Toolbar.Button({id : 'reset',text : '重 置',cls : 'x-btn-text',icon : 'images/icons/clear.gif',handler : onItemClick})
 	    ],

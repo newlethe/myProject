@@ -1,50 +1,0 @@
-<Carton width="1378" height="289">
-  <variable>
-    <param name="UNITID" initValue="1"/>
-    <param name="UNITNAME" initValue="山西国际电力集团公司"/>
-  </variable>
-  <Chart type="AMPIECHART" width="355" height="264" UID="IOSQL3" x="-1" y="25">
-    <param name="dataProvider" mode="sql"><![CDATA[select round(SUM(t2.INVEST_SCALE)/10000,2) B,t2.PRJ_TYPE_NAME A  from v_Pc_Zhxx_Prj_Info t2 where t2.pid in (select t1.unitid  from sgcc_ini_unit t1 where t1.unit_type_id = 'A'   connect by prior t1.unitid = t1.upunit  start with t1.unitid = '[UNITID]') and  t2.PRJ_TYPE is not null group by t2.PRJ_TYPE_NAME]]></param>
-    <param name="titleField" mode="prop" value="A"/>
-    <param name="valueField" mode="prop" value="B"/>
-    <param name="angle" mode="style" value="1"/>
-    <param name="labelRadius" mode="style" value="-17"/>
-    <param name="GraphDoubleClick" mode="event" value="scaleZoom"/>
-    <param name="slicesColors" mode="prop" value="16763904|13421670|16764108|13408767"/>
-    <param name="fontSize" mode="style" value="16"/>
-    <param name="fields" mode="prop" value="B"/>
-  </Chart>
-  <Chart type="LABEL" width="381" height="28" UID="IOSS21" x="-4" y="0">
-    <param name="text" mode="prop" value="工程项目总投资分布（按产业类型）"/>
-    <param name="textAlign" mode="style" value="center"/>
-    <param name="fontSize" mode="style" value="22"/>
-    <param name="fontWeight" mode="style" value="bold"/>
-    <param name="fontFamily" mode="style" value="华文细黑"/>
-  </Chart>
-  <Chart type="LABEL" width="898" height="33" UID="IOSS2H" x="377" y="-1">
-    <param name="text" mode="prop" value="工程项目总投资分布（按资金来源）"/>
-    <param name="fontFamily" mode="style" value="华文细黑"/>
-    <param name="fontSize" mode="style" value="22"/>
-    <param name="fontWeight" mode="style" value="bold"/>
-    <param name="textAlign" mode="style" value="center"/>
-  </Chart>
-  <Chart type="LABEL" width="120" height="22" UID="LKGBHQ" x="1258" y="19">
-    <param name="text" mode="prop" value="单位：万元"/>
-    <param name="fontFamily" mode="style" value="华文楷体"/>
-    <param name="fontSize" mode="style" value="14"/>
-    <param name="fontWeight" mode="style" value="bold"/>
-    <param name="textAlign" mode="style" value="center"/>
-  </Chart>
-  <Chart type="COLUMNCHART" width="888" height="256" UID="70LT3A7F" x="373" y="27">
-    <param name="dataProvider" mode="sql"><![CDATA[select  'ztz' property_code,        '总投资'  property_name,        (select round(sum(v0.INVEST_SCALE)/10000,2) from v_pc_zhxx_prj_info v0 where v0.pid in (        select t1.unitid  from sgcc_ini_unit t1 where t1.unit_type_id = 'A'           connect by prior t1.unitid = t1.upunit  start with t1.unitid = '[UNITID]')         and v0.BUILD_NATURE = 'XJ') xj,         (select round(sum(v0.INVEST_SCALE)/10000,2) from v_pc_zhxx_prj_info v0 where v0.pid in (        select t1.unitid  from sgcc_ini_unit t1 where t1.unit_type_id = 'A'           connect by prior t1.unitid = t1.upunit  start with t1.unitid = '[UNITID]')         and v0.BUILD_NATURE = 'GJ') gj,         (select round(sum(v0.INVEST_SCALE)/10000,2) from v_pc_zhxx_prj_info v0 where v0.pid in (        select t1.unitid  from sgcc_ini_unit t1 where t1.unit_type_id = 'A'           connect by prior t1.unitid = t1.upunit  start with t1.unitid = '[UNITID]')         and v0.BUILD_NATURE = 'KJ') kj,         -1000 item_id    from dual      union allselect v1.property_code,        v1.property_name,       (select round(sum(src.AMOUNT)/10000,2) from PC_ZHXX_PRJ_FUNDSRC src where src.pid in(        select v0.PID from v_pc_zhxx_prj_info v0 where v0.pid in (        select t1.unitid  from sgcc_ini_unit t1 where t1.unit_type_id = 'A'           connect by prior t1.unitid = t1.upunit  start with t1.unitid = '[UNITID]')         and v0.BUILD_NATURE = 'XJ') and src.src_type=v1.PROPERTY_CODE       )  xj,       (select round(sum(src.AMOUNT)/10000,2) from PC_ZHXX_PRJ_FUNDSRC src where src.pid in(        select v0.PID from v_pc_zhxx_prj_info v0 where v0.pid in (        select t1.unitid  from sgcc_ini_unit t1 where t1.unit_type_id = 'A'           connect by prior t1.unitid = t1.upunit  start with t1.unitid = '[UNITID]')         and v0.BUILD_NATURE = 'GJ') and src.src_type=v1.PROPERTY_CODE       )  gj,       (select round(sum(src.AMOUNT)/10000,2) from PC_ZHXX_PRJ_FUNDSRC src where src.pid in(        select v0.PID from v_pc_zhxx_prj_info v0 where v0.pid in (        select t1.unitid  from sgcc_ini_unit t1 where t1.unit_type_id = 'A'           connect by prior t1.unitid = t1.upunit  start with t1.unitid = '[UNITID]')         and v0.BUILD_NATURE = 'KJ') and src.src_type=v1.PROPERTY_CODE       )  kj,       v1.ITEM_ID item_id    from  v_property v1 where v1.TNAME='资金类型' order by ITEM_ID asc]]></param>
-    <param name="categoryField" mode="prop" value="PROPERTY_NAME"/>
-    <param name="fields" mode="prop" value="XJ|GJ|KJ"/>
-    <param name="GraphDoubleClick" mode="event" value="scaleZoom"/>
-    <param name="series.displayName" mode="prop" value="新建|改建|扩建"/>
-    <param name="series.fill:SolidColor.color" mode="style" value="16764006|13421670|16764108"/>
-    <param name="showDataTips" mode="prop" value="true"/>
-  </Chart>
-  <Chart type="LEGEND" width="100" height="78" text="图例" UID="70LT9DO6" x="1278" y="55">
-    <param name="dataProvider" mode="prop" value="70LT3A7F"/>
-  </Chart>
-</Carton>

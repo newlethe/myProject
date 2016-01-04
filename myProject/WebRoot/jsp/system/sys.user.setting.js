@@ -17,6 +17,7 @@ var cutUserBtn, pasteUserBtn,setPasswordBtn ,loadSignBtn, sycUserBtn, searchTrig
 var orgIdWhenCopied, usersToMove, moveAction;
 var uploadWindow;
 var unitArr = new Array();
+var userArr = new Array();
 var userDS;
 var toolBarEnable = false;
 var signAndPasswartEnable = true;
@@ -45,6 +46,14 @@ Ext.onReady(function (){
 			temp.push(list[i][0]);
 			temp.push(list[i][1]);
 			unitArr.push(temp);
+		}
+    });
+    baseMgm.getData("select userid, realname from rock_user ",function(list){
+		for(var i = 0; i < list.length; i++) {
+			var temp = new Array();
+			temp.push(list[i][0]);
+			temp.push(list[i][1]);
+			userArr.push(temp);
 		}
     });
     DWREngine.setAsync(true);
@@ -86,7 +95,7 @@ Ext.onReady(function (){
 			}
 		}),
         root:  new Ext.tree.AsyncTreeNode({
-	       text: defaultOrgRootName,
+	       text: MODULE_ROOT_NAME,
 	       id: defaultOrgRootId,
 	       expanded:true
 	    }),
@@ -97,7 +106,18 @@ Ext.onReady(function (){
         	},
         	click:function(node,e){
         		e.stopEvent();
+        		
+        		var unitTypeId = node.attributes.unitTypeId;
+        		console.log(node)
+        		if(unitTypeId != '9'){
+        			//9为岗位，岗位上才能新增用户
+        			gridPanel.getTopToolbar().items.get('add').disable();
+        		}else{
+        			gridPanel.getTopToolbar().items.get('add').enable();
+        		}
+        		
 				PlantInt.posid = node.id;
+				PlantInt.deptId = node.attributes.upunit;
 				var titles = [node.text];
 				var obj = node.parentNode;
 				while(obj!=null){
@@ -137,10 +157,10 @@ Ext.onReady(function (){
 				userDS.load({params:{start: 0,limit: PAGE_SIZE}});	
 				
 				//在项目单位系统中，只能修改三级单位及项目单位及下面本部单位的用户信息；
-				gridPanel.getTopToolbar().enable();
-			    roleGridPanel.showHideTopToolbarItems("del",true);
-			    roleGridPanel.showHideTopToolbarItems("add",true);
-				roleGridPanel.showHideTopToolbarItems("save",true);						
+//				gridPanel.getTopToolbar().enable();
+//			    roleGridPanel.showHideTopToolbarItems("del",true);
+//			    roleGridPanel.showHideTopToolbarItems("add",true);
+//				roleGridPanel.showHideTopToolbarItems("save",true);						
 				toolBarEnable = true;
 				var tempSelectedUnitNode = selectedUnitNode;
 				if(selectedUnitNode.attributes.unitTypeId=="1") {
@@ -153,18 +173,18 @@ Ext.onReady(function (){
 				}
 				if(DEPLOY_UNITTYPE=="A") {
 					if (tempSelectedUnitNode.attributes.unitTypeId=="A"||tempSelectedUnitNode.attributes.unitTypeId=="3") {
-						gridPanel.getTopToolbar().enable();
-					    roleGridPanel.showHideTopToolbarItems("del",true);
-					    roleGridPanel.showHideTopToolbarItems("add",true);
-						roleGridPanel.showHideTopToolbarItems("save",true);						
-						toolBarEnable = true;
+//						gridPanel.getTopToolbar().enable();
+//					    roleGridPanel.showHideTopToolbarItems("del",true);
+//					    roleGridPanel.showHideTopToolbarItems("add",true);
+//						roleGridPanel.showHideTopToolbarItems("save",true);						
+//						toolBarEnable = true;
 					} else {
-					    roleGridPanel.showHideTopToolbarItems("del",false);
-					    roleGridPanel.showHideTopToolbarItems("add",false);
-						roleGridPanel.showHideTopToolbarItems("save",false);
-						gridPanel.getTopToolbar().disable();
-						searchTriggerField.enable();
-						toolBarEnable = false;
+//					    roleGridPanel.showHideTopToolbarItems("del",false);
+//					    roleGridPanel.showHideTopToolbarItems("add",false);
+//						roleGridPanel.showHideTopToolbarItems("save",false);
+//						gridPanel.getTopToolbar().disable();
+//						searchTriggerField.enable();
+//						toolBarEnable = false;
 					}
 				} else {
 					//如果是集团系统，不能修改三级单位、项目单位及下级单位用户的密码及上传签名等；
@@ -235,6 +255,55 @@ Ext.onReady(function (){
             lazyRender:true,
             listClass: 'x-combo-list-small',
 			anchor:'95%'
+		}, 'guidetype': {
+			name: 'guidetype',
+			fieldLabel: '上级领导',
+			valueField: 'k', 
+			displayField: 'v',
+			mode: 'local',
+            typeAhead: true,
+            triggerAction: 'all',
+            store: new Ext.data.SimpleStore({
+				fields: ['k','v'],   
+				data: userArr
+			}),
+			listeners:{
+				'beforequery':function(obj){	
+					var _this = obj.combo;
+					var _thisStore = _this.store;
+					var record = userSM.getSelected();
+			    	if(!record) {
+			    		return false;
+			    	}
+			    	if(record.data.uids == ''){
+			    		Ext.Msg.alert('提示', '请先保存用户信息！');
+			    		return false;
+			    	}
+			    	var upUserArr = new Array();
+			    	var _thisDeptId = record.data.deptId;
+			    	var _thisPosid = record.data.posid;
+			    	
+			    	DWREngine.setAsync(false);
+			    	var sql = "select userid, realname from rock_user where dept_id = '"+_thisDeptId+"' " +
+			    			" AND posid in (SELECT t.unitid FROM sgcc_ini_unit t WHERE t.upunit = '"+_thisDeptId+"' " +
+	    					" AND t.unit_type_id = '9' " +
+	    					" AND t.view_order_num = (SELECT s.view_order_num-1 FROM sgcc_ini_unit s WHERE s.unitid = '"+_thisPosid+"'))";
+		    		baseMgm.getData(sql,function(list){
+						for(var i = 0; i < list.length; i++) {
+							var temp = new Array();
+							temp.push(list[i][0]);
+							temp.push(list[i][1]);
+							upUserArr.push(temp);
+						}
+				    });
+					_thisStore.loadData(upUserArr);
+					DWREngine.setAsync(true);
+			    	return true;
+		        }
+			},
+            lazyRender:true,
+            listClass: 'x-combo-list-small',
+			anchor:'95%'
 		}, 'lastlogon': {
 			name: 'lastlogon',
 			fieldLabel: '最后登录时间',
@@ -252,10 +321,12 @@ Ext.onReady(function (){
 		}, 'mobile': {
 			name: 'mobile',
 			fieldLabel: '手机',
+			allowBlank: false,
 			anchor:'95%'
 		}, 'email': {
 			name: 'email',
-			fieldLabel: 'HR同步信息',
+			fieldLabel: 'Email',
+			allowBlank: false,
 			anchor:'95%'
 		},'unitid': {
 			name: 'unitid',
@@ -264,9 +335,13 @@ Ext.onReady(function (){
 			readOnly:true,
 			hidden:true,
 			hideLabel:true
+        }, 'deptId': {
+			name: 'deptId',
+			fieldLabel: '部门',
+			anchor:'95%'
         }, 'posid': {
 			name: 'posid',
-			fieldLabel: '部门或岗位',
+			fieldLabel: '岗位',
 			anchor:'95%'
         }, 'receiveSMS': {
 			name: 'receiveSMS',
@@ -275,7 +350,7 @@ Ext.onReady(function (){
 			displayField: 'v',
 			mode: 'local',
             typeAhead: true,
-            allowBlank: false,
+            //allowBlank: false,
             triggerAction: 'all',
             store: new Ext.data.SimpleStore({
 				fields: ['k','v'],   
@@ -295,11 +370,13 @@ Ext.onReady(function (){
 		{name: 'realname', type: 'string'},
     	{name: 'sex', type: 'string'},
     	{name: 'userstate', type: 'string'},
+    	{name: 'guidetype', type: 'string'},
     	{name: 'lastlogon', type: 'date', dateFormat: 'Y-m-d H:i:s'},
     	{name: 'createdon', type: 'date', dateFormat: 'Y-m-d H:i:s'},
     	{name: 'phone', type: 'string'},
     	{name: 'mobile', type: 'string'},
 		{name: 'email', type: 'string'},
+		{name: 'deptId', type: 'string'},
 		{name: 'posid', type: 'string'},
 		{name: 'receiveSMS', type: 'string'}
 		];
@@ -312,10 +389,12 @@ Ext.onReady(function (){
     	realname: '',
     	sex: '0',
     	userstate: defaultStatus,
+    	guidetype: '',
     	phone: '',
     	mobile: '',
     	email: '',
     	unitid:selectedUnitId,
+    	deptId: '',
     	posid: selectedOrgId
     };
     
@@ -325,25 +404,27 @@ Ext.onReady(function (){
            id:'userid',
            header: fc['userid'].fieldLabel,
            dataIndex: fc['userid'].name,
+           hideable:false,
            hidden:true,
-           width: 200
+           width: 0
         },{
            id:'useraccount',
            header: fc['useraccount'].fieldLabel,
            dataIndex: fc['useraccount'].name,
-           width: 120,
+           width: 100,
            editor: new Ext.form.TextField(fc['useraccount'])
         }, {
            id:'realname',
            header: fc['realname'].fieldLabel,
            dataIndex: fc['realname'].name,
-           width: 150,
+           width: 100,
            editor: new Ext.form.TextField(fc['realname'])
         }, {
            id:'sex',
            header: fc['sex'].fieldLabel,
            dataIndex: fc['sex'].name,
-           width: 60,
+           width: 50,
+           align: 'center',
            renderer: function(value){
            	  if (value!="")
            	  	return value=='0' ? '男':'女';
@@ -352,76 +433,98 @@ Ext.onReady(function (){
            },
            editor: new Ext.form.ComboBox(fc['sex'])
         }, {
+           id:'mobile',
+           header: fc['mobile'].fieldLabel,
+           dataIndex: fc['mobile'].name,
+           width: 100,
+           editor: new Ext.form.TextField(fc['mobile'])
+       }, {
+           id:'email',
+           header: fc['email'].fieldLabel,
+           dataIndex: fc['email'].name,
+           width: 160,
+           editor: new Ext.form.TextField(fc['email'])
+       }, {
+           id:'deptId',
+           header: fc['deptId'].fieldLabel,
+           dataIndex: fc['deptId'].name,
+           renderer: showDeptOrPosNameFun,
+           width: 100
+       }, {
+           id:'posid',
+           header: fc['posid'].fieldLabel,
+           dataIndex: fc['posid'].name,
+           renderer: showDeptOrPosNameFun,
+           width: 100
+        }, {
            id:'userstate',
            header: fc['userstate'].fieldLabel,
            dataIndex: fc['userstate'].name,
-           width: 80,
+           width: 60,
+           align: 'center',
            renderer: function(value){
            	  for(var i=0; i<statusList.length; i++){
            	  	if (value == statusList[i][0])
            	  		return statusList[i][1]
            	  }
            },
+           hideable:false,
+           hidden:true,
            editor: new Ext.form.ComboBox(fc['userstate'])
+        }, {
+           id:'guidetype',
+           header: fc['guidetype'].fieldLabel,
+           dataIndex: fc['guidetype'].name,
+           width: 80,
+           align: 'center',
+           renderer: function(value){
+           	  for(var i=0; i<userArr.length; i++){
+           	  	if (value == userArr[i][0])
+           	  		return userArr[i][1]
+           	  }
+           },
+           editor: new Ext.form.ComboBox(fc['guidetype'])
         }, {
            id:'lastlogon',
            align: 'center',
            header: fc['lastlogon'].fieldLabel,
            dataIndex: fc['lastlogon'].name,
-           hidden:true,
+           //hidden:true,
            renderer:formatDateTime,
-           width: 120
+           width: 150
         }, {
            id:'createdon',
            align: 'center',
            header: fc['createdon'].fieldLabel,
            dataIndex: fc['createdon'].name,
-           hidden:true,
-           renderer:formatDateTime,
-           width: 120
+           width: 150,
+           renderer:formatDateTime
         }, {
            id:'phone',
            align: 'center',
            header: fc['phone'].fieldLabel,
            dataIndex: fc['phone'].name,
-           width: 60,
-           hidden: true,
+           hideable:false,
+           hidden:true,
+           width: 0,
            editor: new Ext.form.TextField(fc['phone'])
-        }, {
-           id:'mobile',
-           header: fc['mobile'].fieldLabel,
-           dataIndex: fc['mobile'].name,
-           width: 80,
-           editor: new Ext.form.TextField(fc['mobile'])
-        },  {id:'unitid',
+       
+        },  {
+        	id:'unitid',
            header: fc['unitid'].fieldLabel,
            dataIndex: fc['unitid'].name,
            renderer: showDeptOrPosNameFun,
-           hidden : true,
-           width: 200
-        }, {
-           id:'posid',
-           header: fc['posid'].fieldLabel,
-           dataIndex: fc['posid'].name,
-           renderer: showDeptOrPosNameFun,
-           width: 100
-           
-        }, {
-           id:'email',
-           header: fc['email'].fieldLabel,
-           dataIndex: fc['email'].name,
-           width: 300,
-        //   editor: new Ext.form.TextField(fc['email']),
-           renderer: function(data, metadata, record){
-           			if ( data)
-                	metadata.attr = 'ext:qwidth=200 ext:qtip="' + data.bold() + '"';
-                	return   data;
-				}
+           hideable:false,
+           hidden:true,
+           width: 0
+        
          }, {
            id:'receiveSMS',
            header: fc['receiveSMS'].fieldLabel,
            dataIndex: fc['receiveSMS'].name,
-           width: 80,
+           hideable:false,
+           hidden:true,
+           width: 0,
            renderer: function(value){
            	  if (value!="")
            	  	return value=='0' ? '否':'是';
@@ -598,8 +701,8 @@ Ext.onReady(function (){
 	});
 	
 	setPasswordBtn = new Ext.Button({
-		text: '重置默认密码',
-		tooltip: '将用户密码重置为默认值',
+		text: '重置密码',
+		tooltip: '将用户密码重置为默认值123456',
 		iconCls: 'setPassword',
 		handler: setPassword,
 		disabled: false
@@ -617,7 +720,7 @@ Ext.onReady(function (){
 	
 	if(ModuleLVL=='3'){
 		cutUserBtn.setVisible(false);
-		loadSignBtn.setVisible(false);
+		//loadSignBtn.setVisible(false);
 		pasteUserBtn.setVisible(false);
 		setPasswordBtn.setVisible(false);
 	}
@@ -629,7 +732,6 @@ Ext.onReady(function (){
         sm: userSM,
         tbar: [],
         title: "用户列表，请选择部门",
-        iconCls: 'icon-by-category',
         border: false, 
         region: 'center',
         clicksToEdit: 1,
@@ -637,11 +739,11 @@ Ext.onReady(function (){
         autoScroll: true,
         collapsible: false,
         animCollapse: false,
-        autoExpandColumn: 1,
+//        autoExpandColumn: 1,
         loadMask: true,
 		viewConfig:{
-			forceFit: true,
-			ignoreAdd: true
+			forceFit: false,
+			ignoreAdd: false
 		},
 		bbar: new Ext.PagingToolbar({
             pageSize: 20,
@@ -661,35 +763,35 @@ Ext.onReady(function (){
 		insertMethod: 'insertUser',
 		saveMethod: 'updateUser',
 		deleteMethod: 'deleteUser',
-		getOrgTree:function(){
-      		return Ext.getCmp("orgs-tree");
-      	},
-      	getSelectNode:function(){
-      		var _tree = this.getOrgTree();
-      		if(_tree){
-      			return _tree.getSelectionModel().getSelectedNode();
-      		}else{
-      			return null;
-      		}
-      	},
-      	insertHandler: function(){
-      		var _grid = this;
-			var selNode = this.getSelectNode();
-			//用户的UnitId 存在的组织机构类型： 集团公司0、二级企业2、三级企业3、四级单位4、直属单位6、外部单位7、项目单位A
-			if(selNode){
-				_grid.plantInt = Ext.apply(_grid.plantInt,{unitid:selectedUnitId});
-	    		
-				if(USERBELONGUNITTYPEID=="0"||USERBELONGUNITTYPEID=="1"){//集团公司及集团总部用户
-					this.defaultInsertHandler();
-				}else if(selNode.attributes.modifyauth){
-					this.defaultInsertHandler();
-				}else{
-					Ext.example.msg('提示','权限不足,只能对本公司下的单位进行维护!');
-				}
-			}else{
-	    		Ext.example.msg('','请先选择组织机构!')
-			}
-      	},
+//		getOrgTree:function(){
+//      		return Ext.getCmp("orgs-tree");
+//      	},
+//      	getSelectNode:function(){
+//      		var _tree = this.getOrgTree();
+//      		if(_tree){
+//      			return _tree.getSelectionModel().getSelectedNode();
+//      		}else{
+//      			return null;
+//      		}
+//      	},
+//      	insertHandler: function(){
+//      		var _grid = this;
+//			var selNode = this.getSelectNode();
+//			//用户的UnitId 存在的组织机构类型： 集团公司0、二级企业2、三级企业3、四级单位4、直属单位6、外部单位7、项目单位A
+//			if(selNode){
+//				_grid.plantInt = Ext.apply(_grid.plantInt,{unitid:selectedUnitId});
+//	    		
+//				if(USERBELONGUNITTYPEID=="0"||USERBELONGUNITTYPEID=="1"){//集团公司及集团总部用户
+//					this.defaultInsertHandler();
+//				}else if(selNode.attributes.modifyauth){
+//					this.defaultInsertHandler();
+//				}else{
+//					Ext.example.msg('提示','权限不足,只能对本公司下的单位进行维护!');
+//				}
+//			}else{
+//	    		Ext.example.msg('','请先选择组织机构!')
+//			}
+//      	},
       	listeners:{
       		afteredit:function(o){
       			if(o.record.isNew===true&&o.field=="useraccount"&&o.value!=""){
@@ -703,16 +805,15 @@ Ext.onReady(function (){
       			}
       		},
       		"render" : function (){
-      			if(DEPLOY_UNITTYPE == "0"){
-      				addToolbar.render(this.tbar);
-      			}
-		        
+      			//if(DEPLOY_UNITTYPE == "0"){
+      				//addToolbar.render(this.tbar);
+      			//}
 		    },
       		aftersave:function(grid, idsOfInsert, idsOfUpdate, primaryKey,  bean){
-				reportUserData()
+				//reportUserData()
 			},
 			afterdelete:function(grid,ids,  primaryKey,  bean){
-				reportUserData()
+				//reportUserData()
 			}
       	}
 	});
@@ -786,19 +887,22 @@ Ext.onReady(function (){
            header: '主键',
            dataIndex: 'uids',
            hidden:true,
-           width: 200
+           hideable:false,
+           width: 0
         }, {
            id:'unitid',
            header: '单位',
            dataIndex: 'unitid',
            hidden:true,
-           width: 120
+           hideable:false,
+           width: 0
         },{
            id:'userid',
            header: '用户ID',
            dataIndex: 'userid',
            hidden:true,
-           width: 120
+           hideable:false,
+           width: 0
         }, {
            id:'rolepk',
            header: '角色',
@@ -894,13 +998,14 @@ Ext.onReady(function (){
         	}
         }
     });	
-	
+	gridPanel.getTopToolbar().items.get('add').disable();
 	gridPanel.getTopToolbar().add('&nbsp查询&nbsp', searchTriggerField);	
 	if ( DEPLOY_UNITTYPE=="0" ){
 	
 	gridPanel.getTopToolbar().add('-',hrViewCombo);
 	}
-	gridPanel.getTopToolbar().add('->',  cutUserBtn, pasteUserBtn,loadSignBtn,setPasswordBtn);
+//	gridPanel.getTopToolbar().add('->',  cutUserBtn, pasteUserBtn,loadSignBtn,setPasswordBtn);
+	gridPanel.getTopToolbar().add('->', cutUserBtn, pasteUserBtn,setPasswordBtn);
 	
 	treePanel.root.select();	
 	userDS.baseParams.params = "posid" + SPLITB +defaultOrgRootId + SPLITA +"unitType"+SPLITB +"-1";
@@ -911,13 +1016,13 @@ Ext.onReady(function (){
     	}
     });
     if(DEPLOY_UNITTYPE=="A") {
-	    roleGridPanel.showHideTopToolbarItems("del",false);
-	    roleGridPanel.showHideTopToolbarItems("add",false);
-		roleGridPanel.showHideTopToolbarItems("save",false);   	
-	    gridPanel.getTopToolbar().disable();
-	    searchTriggerField.enable();
-	    searchTriggerField.readOnly = false;
-	    toolBarEnable = false;
+//	    roleGridPanel.showHideTopToolbarItems("del",false);
+//	    roleGridPanel.showHideTopToolbarItems("add",false);
+//		roleGridPanel.showHideTopToolbarItems("save",false);   	
+//	    gridPanel.getTopToolbar().disable();
+//	    searchTriggerField.enable();
+//	    searchTriggerField.readOnly = false;
+//	    toolBarEnable = false;
     }
     
 	/** 关联 **/	
@@ -932,16 +1037,16 @@ Ext.onReady(function (){
     	//不能修改当前登陆用户所属的角色
     	if(record!=null && ROLETYPE != '0'){
     		if(record.data.userid == USERID){
-    			cutUserBtn.setDisabled(true);
-    			loadSignBtn.setDisabled(true);
-    			roleGridPanel.showHideTopToolbarItems("del",false)
-    			roleGridPanel.showHideTopToolbarItems("add",false)
-    			roleGridPanel.showHideTopToolbarItems("save",false)
+//    			cutUserBtn.setDisabled(true);
+//    			loadSignBtn.setDisabled(true);
+//    			roleGridPanel.showHideTopToolbarItems("del",false)
+//    			roleGridPanel.showHideTopToolbarItems("add",false)
+//    			roleGridPanel.showHideTopToolbarItems("save",false)
     		} else
     		{
-    			roleGridPanel.showHideTopToolbarItems("del",true)
-    			roleGridPanel.showHideTopToolbarItems("add",true)
-    			roleGridPanel.showHideTopToolbarItems("save",true)
+//    			roleGridPanel.showHideTopToolbarItems("del",true)
+//    			roleGridPanel.showHideTopToolbarItems("add",true)
+//    			roleGridPanel.showHideTopToolbarItems("save",true)
     		}
     	}
     	

@@ -91,6 +91,7 @@
 	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/slf4j-jdk14-1.5.10.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/slf4j-log4j12-1.5.10.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/wsdl4j-1.5.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.1.37-bin.jar"/>
 	<classpathentry exported="true" kind="con" path="com.genuitec.runtime.library/com.genuitec.generic_5.0"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

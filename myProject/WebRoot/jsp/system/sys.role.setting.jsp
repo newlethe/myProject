@@ -27,13 +27,15 @@
 		
 		var basePath = '<%=basePath %>';
 		var treedata = new Array();
+		treedata[0] = ["01", defaultOrgRootName, "0", "0", "0", "null"];
 		<%
 			SystemMgmFacade systemMgm = (SystemMgmFacade)Constant.wact.getBean("systemMgm");
 			List<RockPower> modules = systemMgm.getListedModules("0", true);
 			for(int i=0; i<modules.size(); i++){
 				RockPower module = (RockPower)modules.get(i);
 				String first = module.getParentid().equals(Constant.APPModuleRootID) ? "1" : "0";
-				out.println("treedata["+i+"] = [\"" + module.getPowerpk() + "\", \"" + module.getPowername() + "\", \"" + module.getLeaf().toString() + "\", \"" + module.getParentid() + "\", \"" + first + "\", \"" + module.getUrl() + "\"];");
+				if(i == 0)continue;
+				//out.println("treedata["+i+"] = [\"" + module.getPowerpk() + "\", \"" + module.getPowername() + "\", \"" + module.getLeaf().toString() + "\", \"" + module.getParentid() + "\", \"" + first + "\", \"" + module.getUrl() + "\"];");
 			}
 		%>
 		</script>

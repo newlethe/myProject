@@ -6,8 +6,8 @@
 	<allow>
 
 		<convert converter="bean" match="com.sgepit.pmis.routine.hbm.*" />
-		<convert converter="bean" match="com.sgepit.pmis.tenders.hbm.*" />
-		<convert converter="bean" match="com.sgepit.pmis.coninvested.hbm.*" />
+		<!-- <convert converter="bean" match="com.sgepit.pmis.tenders.hbm.*" />
+		<convert converter="bean" match="com.sgepit.pmis.coninvested.hbm.*" /> -->
 		
  
 		<!-- 工作总结汇报 -->

@@ -4,7 +4,7 @@
 <dwr>
 	<allow>
 		<convert converter="bean" match="com.sgepit.pcmis.bid.hbm.*" />
-		<convert converter="bean" match="com.sgepit.pmis.budget.hbm.*" />
+		<!-- <convert converter="bean" match="com.sgepit.pmis.budget.hbm.*" /> -->
 
 		<create creator="new" scope="application" javascript="PCBidDWR">
 			<param name="class" value="com.sgepit.pcmis.bid.control.PCBidDWR" />

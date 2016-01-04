@@ -108,7 +108,7 @@
 			
 		</create>
 		<!-- 采购信息管理 -->
-		 <create creator="spring" javascript="stockMgm" scope="page">
+		 <create creator="spring" javascript="stockMgmJJMIS" scope="page">
 			<param name="beanName" value="StockMgm" />
 			<include method="collectApplyAndCreateStock"></include>	
 			<include method="deleteStockPlan"></include>		

@@ -1,55 +1,0 @@
-<Carton width="1433" height="294">
-  <variable>
-    null
-    <param name="pid" initValue=""/>
-    <param name="pname" initValue=""/>
-    <param name="mindate" initValue="2008" tip=""/>
-    <param name="maxdate" initValue="2015"/>
-  </variable>
-  <Chart type="LABEL" width="728" height="34" UID="IOT53V" x="1" y="2">
-    <param name="text" mode="prop" value="[pname]合同分类金额统计"/>
-    <param name="fontFamily" mode="style" value="华文细黑"/>
-    <param name="fontSize" mode="style" value="22"/>
-    <param name="fontWeight" mode="style" value="bold"/>
-    <param name="textAlign" mode="style" value="center"/>
-  </Chart>
-  <param name="backgroundColor" mode="style" value="16777215"/>
-  <Chart type="LABEL" width="651" height="42" UID="IOU6NP" x="775" y="-1">
-    <param name="text" mode="prop" value="[pname] 合同年度签订金额"/>
-    <param name="textAlign" mode="style" value="center"/>
-    <param name="fontSize" mode="style" value="22"/>
-    <param name="fontFamily" mode="style" value="华文细黑"/>
-    <param name="fontWeight" mode="style" value="bold"/>
-  </Chart>
-  <Chart type="LABEL" width="87" height="21" UID="IOVDIR" x="654" y="20">
-    <param name="text" mode="prop" value="单位：万 元"/>
-    <param name="fontFamily" mode="style" value="华文细黑"/>
-    <param name="fontSize" mode="style" value="12"/>
-    <param name="fontWeight" mode="style" value="bold"/>
-    <param name="textAlign" mode="style" value="center"/>
-  </Chart>
-  <Chart type="LABEL" width="89" height="22" UID="KSJSVE" x="1344" y="24">
-    <param name="text" mode="prop" value="单位：万 元"/>
-    <param name="fontFamily" mode="style" value="华文细黑"/>
-    <param name="fontSize" mode="style" value="12"/>
-    <param name="fontWeight" mode="style" value="bold"/>
-    <param name="textAlign" mode="style" value="center"/>
-  </Chart>
-  <Chart type="COLUMNCHART" width="663" height="260" UID="147RSEJ" x="0" y="32">
-    <param name="dataProvider" mode="sql"><![CDATA[select a.property_name,b.conmoney from (select p.property_code,p.property_name from property_code p where p.type_name='4028e3261709e71e011709e948780001')a left join (select t.condivno,round(nvl(sum(nvl(t.convaluemoney,0)),0)/10000,0) as conmoney from v_con t where t.billstate != 0 and t.pid='[pid]' group by t.condivno ) b on a.property_code=b.condivno]]></param>
-    <param name="categoryField" mode="prop" value="PROPERTY_NAME"/>
-    <param name="fields" mode="prop" value="CONMONEY"/>
-    <param name="series.displayName" mode="prop" value="合同金额"/>
-    <param name="showDataTips" mode="prop" value="true"/>
-    <param name="series.fill:SolidColor.color" mode="style" value="16750899"/>
-    <param name="paddingLeft" mode="style" value="20"/>
-  </Chart>
-  <Chart type="COLUMNCHART" width="682" height="254" UID="70L977L4" x="749" y="40">
-    <param name="dataProvider" mode="sql"><![CDATA[select a.property_code,a.property_name, round(d.conmoney/10000,0) as convalue  from (select t.property_code,t.property_name          from property_code t         where type_name = '年度'           and to_date(t.property_code, 'yyyy') >=               to_date('[mindate]', 'yyyy')           and to_date(t.property_code, 'yyyy') <=               to_date('[maxdate]', 'yyyy')) a  left join (select b.signdate, nvl(nvl(sum(b.conmoney), 0), 0) as conmoney               from (select to_char(c.signdate, 'yyyy') as signdate,                            c.conmoney as conmoney                       from con_ove c                      where c.billstate != 0 and c.pid = '[pid]') b              group by b.signdate) d    on a.property_code = d.signdate order by to_date(a.property_code, 'yyyy') asc]]></param>
-    <param name="categoryField" mode="prop" value="PROPERTY_NAME"/>
-    <param name="fields" mode="prop" value="CONVALUE"/>
-    <param name="series.displayName" mode="prop" value="签订金额"/>
-    <param name="showDataTips" mode="prop" value="true"/>
-    <param name="series.fill:SolidColor.color" mode="style" value="10079487"/>
-  </Chart>
-</Carton>

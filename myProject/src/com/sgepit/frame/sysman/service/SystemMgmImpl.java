@@ -1747,7 +1747,11 @@ public class SystemMgmImpl extends BaseMgmImpl implements SystemMgmFacade {
 				sbf.append("{id:'");
 				sbf.append(temp.getPowerpk());
 				sbf.append("',text:'");
-				sbf.append(temp.getPowername());
+				if("01".equals(temp.getPowerpk())){
+					sbf.append(Constant.DefaultModuleRootName);
+				}else{
+					sbf.append(temp.getPowername());
+				}
 				sbf.append("',read:");
 				sbf.append(read);
 				sbf.append(",write:");
@@ -3584,6 +3588,10 @@ public class SystemMgmImpl extends BaseMgmImpl implements SystemMgmFacade {
 		for(int i=0,j=jsonarray.size();i<j;i++){
 			JSONObject prop = jsonarray.getJSONObject(i);
 			String rockpk = prop.getString("powerpk");
+			if("01".equals(prop.getString("powerpk"))){
+				prop.remove("powername");
+				prop.accumulate("powername", Constant.DefaultModuleRootName);
+			}
 			
 			if(selectedRock.containsKey(rockpk)) 
 				attributesMap.put("checked", true);
