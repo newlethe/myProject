@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<convert converter="bean" match="com.imfav.business.customer.hbm.*" />
+		<convert converter="bean" match="com.imfav.business.stock.hbm.*" />
+		
+			
+		<create creator="spring" javascript="customerMgm" scope="page">
+			<param name="beanName" value="customerMgmImpl" />
+		</create>
+		<create creator="spring" javascript="stockMgm" scope="page">
+			<param name="beanName" value="stockMgmImpl" />
+		</create>
+	</allow>
+</dwr>

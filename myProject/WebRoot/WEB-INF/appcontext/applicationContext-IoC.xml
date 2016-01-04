@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<bean id="customerDao" class="com.imfav.business.customer.dao.CustomerDao">
+		<property name="sessionFactory" ref="sessionFactory1" />
+	</bean>
+	<bean id="stockDao" class="com.imfav.business.stock.dao.StockDao">
+		<property name="sessionFactory" ref="sessionFactory1" />
+	</bean>
+
+	<bean id="customerMgmImpl" parent="txProxyTemplate" >
+		<property name="target">
+			<bean class="com.imfav.business.customer.service.CustomerMgmImpl">
+				<property name="customerDao" ref="customerDao" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="stockMgmImpl" parent="txProxyTemplate" >
+		<property name="target">
+			<bean class="com.imfav.business.stock.service.StockMgmImpl">
+				<property name="stockDao" ref="stockDao" />
+			</bean>
+		</property>
+	</bean>
+
+</beans>
