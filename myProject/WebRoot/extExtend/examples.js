@@ -20,7 +20,7 @@ Ext.example = function(){
     }
     return {
         msg : function(title, format,duration){
-        	duration = duration||2
+        	duration = duration||1
             if(!msgCt){
                 msgCt = Ext.DomHelper.insertFirst(document.body, {id:'msg-div'}, true);
             }

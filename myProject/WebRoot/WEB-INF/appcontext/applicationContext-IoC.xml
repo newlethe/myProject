@@ -13,6 +13,7 @@
 		<property name="target">
 			<bean class="com.imfav.business.customer.service.CustomerMgmImpl">
 				<property name="customerDao" ref="customerDao" />
+				<property name="applicationMgm" ref="applicationMgm" />
 			</bean>
 		</property>
 	</bean>

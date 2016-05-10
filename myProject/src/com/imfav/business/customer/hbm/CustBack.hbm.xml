@@ -25,5 +25,8 @@
         <property name="addTime" type="java.util.Date">
             <column name="ADD_TIME" length="7" />
         </property>
+        <property name="payway" type="java.lang.String">
+            <column name="PAYWAY" length="50" />
+        </property>
     </class>
 </hibernate-mapping>

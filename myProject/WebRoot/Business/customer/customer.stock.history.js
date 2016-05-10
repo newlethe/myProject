@@ -4,18 +4,20 @@ var stockHistoryWin = stockHistoryWin || {};
 
 	var bean = "com.imfav.business.stock.hbm.Stock";
 	var orderColumn = "dealTime";
+	var total_1 = 0;
+	var total_2 = 0;
 	
 	var fc={
 		 'uids':{name:'uids',fieldLabel:'主键'}
 		,'custUids':{name:'custUids',fieldLabel:'客户'}
 		,'stockNo':{name:'stockNo',fieldLabel:'股票代码'}
 		,'stockName':{name:'stockName',fieldLabel:'股票名称'}
-		,'openPosition':{name:'openPosition',fieldLabel:'建仓成本'}
+		,'openPosition':{name:'openPosition',fieldLabel:'买入价/卖出价'}
 		,'nowPrice':{name:'nowPrice',fieldLabel:'现价'}
 		,'haveNumber':{name:'haveNumber',fieldLabel:'数量'}
 		,'profitPoint':{name:'profitPoint',fieldLabel:'盈利点(%)'}
 		,'incomeMoney':{name:'incomeMoney',fieldLabel:'收益'}
-		,'stockDeal':{name:'stockDeal',fieldLabel:'买入/卖出'}
+		,'stockDeal':{name:'stockDeal',fieldLabel:'方向'}
 		,'dealTime':{name:'dealTime',fieldLabel:'交易时间',format:'Y-m-d'}
 		,'remark':{name:'remark',fieldLabel:'备注'}
 	};
@@ -29,12 +31,21 @@ var stockHistoryWin = stockHistoryWin || {};
     	, {id:'custUids',header: fc['custUids'].fieldLabel,dataIndex: fc['custUids'].name,hideable:false,hidden:true}
     	, {id:'stockNo',header: fc['stockNo'].fieldLabel,dataIndex: fc['stockNo'].name,align:"center"}
     	, {id:'stockName',header: fc['stockName'].fieldLabel,dataIndex: fc['stockName'].name,align:"center"}
-    	, {id:'openPosition',header: fc['openPosition'].fieldLabel,dataIndex: fc['openPosition'].name,align:'right',
+    	, {id:'stockDeal',header: fc['stockDeal'].fieldLabel,dataIndex: fc['stockDeal'].name,align:"center",
     		renderer:function(value,cell,record){
+    			if(value == 'buy'){
+    				return "买入";
+    			}else if(value == 'sell'){
+    				return "卖出";
+    			}
+    		}
+    	}
+    	, {id:'openPosition',header: fc['openPosition'].fieldLabel,dataIndex: fc['openPosition'].name,align:'right',
+    		width:120,renderer:function(value,cell,record){
     			return value.toFixed(2)
     		}
     	}
-    	, {id:'nowPrice',header: fc['nowPrice'].fieldLabel,dataIndex: fc['nowPrice'].name,align:'right',
+    	, {id:'nowPrice',header: fc['nowPrice'].fieldLabel,dataIndex: fc['nowPrice'].name,align:'right',hidden:true,
     		renderer :function(value,cell,record){
     			var open = record.data.openPosition;
     			if(value > open){
@@ -50,33 +61,53 @@ var stockHistoryWin = stockHistoryWin || {};
     		}
     	}
     	, {id:'profitPoint',header: fc['profitPoint'].fieldLabel,dataIndex: fc['profitPoint'].name,align:'right',
-    		renderer:function(value,cell,record){
-    			var openPosition = record.data.openPosition;
-    			var nowPrice = record.data.nowPrice;
-    			value = getProfitPoint(openPosition,nowPrice);
-				var color = (value > 0) ? "red" : "green";
-				return "<div style='color:"+color+"'>"+value.toFixed(2)+"</div>";
-    		}
-    	}
-    	, {id:'incomeMoney',header: fc['incomeMoney'].fieldLabel,dataIndex: fc['incomeMoney'].name,align:'right',
-    		renderer:function(value,cell,record){
-    			var openPosition = record.data.openPosition;
-    			var nowPrice = record.data.nowPrice;
-    			var haveNumber = record.data.haveNumber;
-    			value = getIncomeMoney(openPosition,nowPrice,haveNumber);
-				var color = (value > 0) ? "red" : "green";
-				return "<div style='color:"+color+"'>"+value.toFixed(2)+"</div>";
-    		}
-    	}
-    	, {id:'stockDeal',header: fc['stockDeal'].fieldLabel,dataIndex: fc['stockDeal'].name,align:"center",
-    		renderer:function(value,cell,record){
-    			if(value == 'buy'){
-    				return "买入";
-    			}else if(value == 'sell'){
-    				return "卖出";
+    		renderer:function(value,cell,record,rid,cid,ds){
+    			if(record.data.stockDeal == 'buy'){
+    				return null
+    			}else{
+	    			var v = 0;
+	    			var stock = record.data.stockNo;
+	    			var sell = record.data.openPosition;
+	    			var buy = 0;
+	    			for (var i = 0; i < ds.getCount(); i++) {
+						var res = ds.getAt(i);
+						if(stock == res.data.stockNo && res.data.stockDeal == 'buy'){
+							buy = res.data.openPosition;
+							break;
+						}
+					}
+    				value = (sell - buy) / buy * 100
+					var color = (value > 0) ? "red" : "green";
+					total_1 += parseFloat(value.toFixed(2));
+					return "<div style='color:"+color+"'>"+value.toFixed(2)+"</div>";
     			}
     		}
     	}
+    	, {id:'incomeMoney',header: fc['incomeMoney'].fieldLabel,dataIndex: fc['incomeMoney'].name,align:'right',
+    		renderer:function(value,cell,record,rid,cid,ds){
+    			if(record.data.stockDeal == 'buy'){
+    				return null
+    			}else{
+	    			var v = 0;
+	    			var stock = record.data.stockNo;
+	    			var sell = record.data.openPosition;
+	    			var num = record.data.haveNumber;
+	    			var buy = 0;
+	    			for (var i = 0; i < ds.getCount(); i++) {
+						var res = ds.getAt(i);
+						if(stock == res.data.stockNo && res.data.stockDeal == 'buy'){
+							buy = res.data.openPosition;
+							break;
+						}
+					}
+    				value = (sell - buy) * Math.abs(num);
+					var color = (value > 0) ? "red" : "green";
+					total_2 += parseFloat(value.toFixed(2));
+					return "<div style='color:"+color+"'>"+value.toFixed(2)+"</div>";
+    			}
+    		}
+    	}
+    	
     	, {id:'dealTime',header: fc['dealTime'].fieldLabel,dataIndex: fc['dealTime'].name,
     		align:"center",renderer : formatDate}
     	, {id:'remark',header: fc['remark'].fieldLabel,dataIndex: fc['remark'].name}
@@ -118,8 +149,8 @@ var stockHistoryWin = stockHistoryWin || {};
 		remoteSort : true,
 		pruneModifiedRecords : true
 	});
-	ds.setDefaultSort('dealTime', 'desc');
-	cm.defaultSortable = true;
+	ds.setDefaultSort(orderColumn, 'asc');
+	//cm.defaultSortable = true;
 	
 	var showAllCheckbox = new Ext.form.Checkbox({
 		boxLabel : '查看该用户所有股票',
@@ -184,6 +215,8 @@ var stockHistoryWin = stockHistoryWin || {};
 						DWREngine.setAsync(false);
 						stockMgm.deleteStock(uids,function(num){
 							if(num > 0){
+								total_1 = 0;
+								total_2 = 0;
 								Ext.example.msg("提示","您成功删除了1条股票信息。");
 								ds.reload();
 				   			}else{
@@ -199,7 +232,10 @@ var stockHistoryWin = stockHistoryWin || {};
 		}
 	})
 	
-	var tbarText = '<b>客户：<span id="custName"></span>，股票：<span id="custStock"></span>，收益：<span id="custIncome"></span></b>';
+	var tbarText = '<b>客户：<span id="custName"></span>，' +
+			'股票：<span id="custStock"></span>，' +
+			'总体收益：<span id="custIncome"></span>，' +
+			'盈利点(%)：<span id="custProfitPoint"></b>';
 	var tbarArr = [tbarText,'->',showAllCheckbox,'-',delStockBtn,'-',closeBtn];
 	var gridPanel = new Ext.grid.GridPanel({
 		ds : ds,
@@ -264,6 +300,12 @@ var stockHistoryWin = stockHistoryWin || {};
 		var stockNo = uids.split("-")[1];
 		var name = record.data.name;
 		document.getElementById("custName").innerHTML = name;
+		var toKefu = record.data.toKefu;
+		if(toKefu == "1" && kefu != true){
+			delStockBtn.disable();
+		}else{
+			delStockBtn.enable();
+		}
 		if(stockNo != null && stockNo != ""){
 			var stockName = record.data.stockName
 			document.getElementById("custStock").innerHTML = stockName+"["+stockNo+"]";
@@ -278,19 +320,35 @@ var stockHistoryWin = stockHistoryWin || {};
 //		ds.load({params:{start:0,limit: PAGE_SIZE}});
 		ds.load();
 		ds.on('load',function(){
-			var income = 0;
+			var income = total_2;
+			var inprofitPoint = total_1;
 			var custIncome = document.getElementById("custIncome");
+			var custProfitPoint = document.getElementById("custProfitPoint");
+			/*
 			for (var i = 0; i < ds.getTotalCount(); i++) {
 	    		var rec = ds.getAt(i);
-	    		income += parseFloat(rec.data.incomeMoney);
+	    		if(rec.data.stockDeal == 'sell'){
+		    		income += parseFloat(rec.data.incomeMoney);
+	    			inprofitPoint += parseFloat(rec.data.profitPoint);
+	    		}
+	    		
 			}
+			*/
 			if(income > 0){
-				custIncome.innerHTML = income.toFixed(2);
+				custIncome.innerHTML = income;
 				custIncome.style.color = 'red';
 			}else{
-				custIncome.innerHTML = income.toFixed(2);
+				custIncome.innerHTML = income;
 				custIncome.style.color = 'green';
 			}
+			if(inprofitPoint > 0){
+				custProfitPoint.innerHTML = inprofitPoint;
+				custProfitPoint.style.color = 'red';
+			}else{
+				custProfitPoint.innerHTML = inprofitPoint;
+				custProfitPoint.style.color = 'green';
+			}
+			
 		})
 	}
 })();

@@ -746,7 +746,7 @@ Ext.onReady(function (){
 			ignoreAdd: false
 		},
 		bbar: new Ext.PagingToolbar({
-            pageSize: 20,
+            pageSize: PAGE_SIZE,
             store: userDS,
             displayInfo: true,
             displayMsg: ' {0} - {1} / {2}',

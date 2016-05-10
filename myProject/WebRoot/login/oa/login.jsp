@@ -218,6 +218,17 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	{
 		return  str.replace(/(^\s*)|(\s*$)/g, "");
 	}	
+	
+	//IE9中Script438: 对象不支持“createContextualFragment”属性或方法
+	if ((typeof Range !== "undefined") && !Range.prototype.createContextualFragment) {
+	    Range.prototype.createContextualFragment = function(html) {
+	        var frag = document.createDocumentFragment(),
+	        div = document.createElement("div");
+	        frag.appendChild(div);
+	        div.outerHTML = html;
+	        return frag;
+	    };
+	}
 </script>
 </body>
 </html>

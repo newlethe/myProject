@@ -107,15 +107,15 @@ function modifyPwd() {
 		pwdWindow = new Ext.Window({
 			title : '修改口令',
 			iconCls : 'icon-modify-key',
-			html : "<iframe id='tree' scrolling='no' align='center' src='<%=path%>/jsp/system/sys.password.setting.jsp' width='100%' height='100%'></iframe>",
+			html : "<iframe id='tree' scrolling='no' frameborder='0' align='center' src='<%=path%>/jsp/system/sys.password.setting.jsp' width='100%' height='100%'></iframe>",
 			closeAction : 'hide',
 			modal : true,
 			plain : true,
 			closable : true,
-			border : true,
+			border : false,
 			maximizable : false,
-			width : 500,
-			height : 400
+			width : 400,
+			height : 240
 		});
 	}
 	pwdWindow.show();

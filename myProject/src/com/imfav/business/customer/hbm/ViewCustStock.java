@@ -15,6 +15,8 @@ public class ViewCustStock implements java.io.Serializable {
 	private String mobile;
 	private Double fund;
 	private String salesman;
+	private String manager;
+	private String director;
 	private String stockNo;
 	private String stockName;
 	private Double openPosition;
@@ -24,12 +26,18 @@ public class ViewCustStock implements java.io.Serializable {
 	private Double incomeMoney;
 	private Double quote;
 	private Double back;
+	private Date firstBackTime;
 	private Date newDealTime;
 	private String remark;
 	private String addUser;
 	private Date addTime;
 	private String haveState;
 	private String state;
+	private String managerShow;
+	private String toKefu;
+	private String toKefuUser;
+	private Date toKefuTime;
+	private String giveup;
 
 	// Constructors
 
@@ -39,15 +47,20 @@ public class ViewCustStock implements java.io.Serializable {
 
 	/** full constructor */
 	public ViewCustStock(String uids, String name, String mobile, Double fund,
-			String salesman, String stockNo, String stockName,
-			Double openPosition, Double nowPrice, Long haveNumber,
-			Double profitPoint, Double incomeMoney, Double quote, Double back,
-			Date newDealTime, String remark, String addUser, Date addTime, String haveState, String state) {
+			String salesman, String manager, String director, String stockNo,
+			String stockName, Double openPosition, Double nowPrice,
+			Long haveNumber, Double profitPoint, Double incomeMoney,
+			Double quote, Double back, Date firstBackTime, Date newDealTime,
+			String remark, String addUser, Date addTime, String haveState,
+			String state, String managerShow, String toKefu, String toKefuUser,
+			Date toKefuTime, String giveup) {
 		this.uids = uids;
 		this.name = name;
 		this.mobile = mobile;
 		this.fund = fund;
 		this.salesman = salesman;
+		this.manager = manager;
+		this.director = director;
 		this.stockNo = stockNo;
 		this.stockName = stockName;
 		this.openPosition = openPosition;
@@ -57,12 +70,18 @@ public class ViewCustStock implements java.io.Serializable {
 		this.incomeMoney = incomeMoney;
 		this.quote = quote;
 		this.back = back;
+		this.firstBackTime = firstBackTime;
 		this.newDealTime = newDealTime;
 		this.remark = remark;
 		this.addUser = addUser;
 		this.addTime = addTime;
 		this.haveState = haveState;
 		this.state = state;
+		this.managerShow = managerShow;
+		this.toKefu = toKefu;
+		this.toKefuUser = toKefuUser;
+		this.toKefuTime = toKefuTime;
+		this.giveup = giveup;
 	}
 
 	// Property accessors
@@ -225,6 +244,70 @@ public class ViewCustStock implements java.io.Serializable {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public String getManagerShow() {
+		return managerShow;
+	}
+
+	public void setManagerShow(String managerShow) {
+		this.managerShow = managerShow;
+	}
+
+	public String getManager() {
+		return manager;
+	}
+
+	public void setManager(String manager) {
+		this.manager = manager;
+	}
+
+	public String getDirector() {
+		return director;
+	}
+
+	public void setDirector(String director) {
+		this.director = director;
+	}
+
+	public Date getFirstBackTime() {
+		return firstBackTime;
+	}
+
+	public void setFirstBackTime(Date firstBackTime) {
+		this.firstBackTime = firstBackTime;
+	}
+
+	public String getToKefu() {
+		return toKefu;
+	}
+
+	public void setToKefu(String toKefu) {
+		this.toKefu = toKefu;
+	}
+
+	public String getToKefuUser() {
+		return toKefuUser;
+	}
+
+	public void setToKefuUser(String toKefuUser) {
+		this.toKefuUser = toKefuUser;
+	}
+
+	public Date getToKefuTime() {
+		return toKefuTime;
+	}
+
+	public void setToKefuTime(Date toKefuTime) {
+		this.toKefuTime = toKefuTime;
+	}
+
+	public String getGiveup() {
+		return giveup;
+	}
+
+	public void setGiveup(String giveup) {
+		this.giveup = giveup;
 	}
 
 }

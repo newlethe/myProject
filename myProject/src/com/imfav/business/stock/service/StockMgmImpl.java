@@ -62,11 +62,11 @@ public class StockMgmImpl extends BaseMgmImpl implements StockMgm {
 			String sinaStockUrl = "http://hq.sinajs.cn/";
 			sinaStockUrl += "/list="+stockNo;
 			String rtn = UrlConnUtil.loadGBKJson(sinaStockUrl);
-			StockSina stock = new StockSina();
 			if(null == rtn || "FAILED".equals(rtn)){
 	//			查询失败，失败结果可能为：var hq_str_sys_auth="FAILED";或var hq_str_sh601006="";
 				return null;
 			}
+			StockSina stock = new StockSina();
 			if(rtn.indexOf("=") > 0){
 				String[] tempArr = rtn.split("=");
 				if(tempArr.length == 2){
@@ -165,6 +165,7 @@ public class StockMgmImpl extends BaseMgmImpl implements StockMgm {
 			}
 			String sinaStockUrl = "http://hq.sinajs.cn/";
 			sinaStockUrl += "/list="+stockNoStr;
+			System.out.println("股票查询请求地址："+sinaStockUrl);
 			String rtn = UrlConnUtil.loadGBKJson(sinaStockUrl);
 			System.out.println("股票查询返回结果："+rtn);
 			StockSina stock = new StockSina();
@@ -187,7 +188,7 @@ public class StockMgmImpl extends BaseMgmImpl implements StockMgm {
 						if(sotckInfoArr.length > 0){
 							//sotckInfoArr[3] = 现价
 							String updateSql = "update crm_stock t set t.now_price = "+sotckInfoArr[3]+" "
-									+ " where t.stock_no = '"+stockNo+"' and t.stock_deal = 'buy' ";
+									+ " where t.stock_no = '"+stockNo+"' ";
 							String updateSql2 = "update crm_stock t set t.now_price = "+sotckInfoArr[3]+", "
 									+ " t.profit_point = (("+sotckInfoArr[3]+" - t.open_position)/t.open_position*100),"
 									+ " t.income_money = (("+sotckInfoArr[3]+" - t.open_position)*t.have_number)"

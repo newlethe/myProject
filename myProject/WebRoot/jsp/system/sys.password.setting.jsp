@@ -7,7 +7,7 @@
 		<base href="<%=basePath %>">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link rel="stylesheet" type="text/css" href="jsp/res/css/style.css" />
-		<script type="text/javascript" src="jsp/index/MD5.js"></script>
+		<script type="text/javascript" src="./common/MD5.js"></script>
 		<style>
 			#cat-grid-panel {border-right:1px solid #99bbe8;}
 			#code-grid-panel {border-left:1px solid #99bbe8;}
@@ -23,7 +23,7 @@
 	Ext.onReady(function (){
 	    fromPanel = new Ext.FormPanel({
 	        labelWidth: 75,
-	        labelAlign: 'top',
+	        //labelAlign: 'top',
 	        bodyStyle:'padding:25px 25px 0',
 			region: 'center',
 			layout: 'form',
@@ -97,9 +97,14 @@
 		}]
 	});
 	    var viewport = new Ext.Viewport({  
-	        //layout:'border',
-	        items:[tabSign]	
+	        layout:'border',
+	        //items:[tabSign]	
+	        items:[fromPanel]	
 	    });
+	    
+	    parent.pwdWindow.on("show",function(){
+	    	fromPanel.getForm().reset();
+	    })
 
 		function checkValid(){
 			var form = fromPanel.getForm();
@@ -129,17 +134,15 @@
 		   			var msg = rspXml.documentElement.getElementsByTagName("msg").item(0).firstChild.nodeValue;
 		   			if(msg == "ok"){
 		   				Ext.example.msg('保存成功！', '您成功修改了口令！', "");
-		   			}
-		   			else
-		   			{
+		   			}else{
 		   				var stackTrace = rspXml.documentElement.getElementsByTagName("stackTrace").item(0).firstChild.nodeValue;
 				        Ext.MessageBox.show({
 				           title: '口令修改失败！',
 				           msg: msg,
-				           width:400,
-				           value:stackTrace,
+				           width:300,
+				           //value:stackTrace,
 				           buttons: Ext.MessageBox.OK,
-				           multiline: true,
+				           //multiline: true,
 				           icon: Ext.MessageBox.ERROR
 						});
 		   			}

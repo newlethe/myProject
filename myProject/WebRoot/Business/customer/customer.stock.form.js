@@ -50,8 +50,18 @@ var stockFormWin = stockFormWin || {};
 		var openPosition = form.findField("openPosition").getValue();
 		var nowPrice = form.findField("nowPrice").getValue();
 		var haveNumber = form.findField("haveNumber").getValue();
-		var profitPoint = getProfitPoint(openPosition,nowPrice);
-		var incomeMoney = getIncomeMoney(openPosition,nowPrice,haveNumber);
+		var stockDeal = form.findField("stockDeal").getValue();
+		var profitPoint = 0;
+		var incomeMoney = 0;
+		if(stockDeal == "buy"){
+			profitPoint = getProfitPoint(openPosition,nowPrice);
+			incomeMoney = getIncomeMoney(openPosition,nowPrice,haveNumber);
+		}else if(stockDeal == "sell"){
+			var cost = document.querySelector("#price").querySelector("b").innerHTML;
+			cost = parseFloat(cost);
+			profitPoint = getProfitPoint(cost,openPosition);
+			incomeMoney = getIncomeMoney(cost,openPosition,haveNumber*(-1));
+		}
 		form.findField("profitPoint").setValue(profitPoint.toFixed(2));
 		form.findField("incomeMoney").setValue(incomeMoney.toFixed(2));
 	}
@@ -178,15 +188,14 @@ var stockFormWin = stockFormWin || {};
 				items : [new Ext.form.TriggerField(fc['stockNo'])
 						,new Ext.form.TextField(fc['stockName'])
 						,new Ext.form.NumberField(fc['openPosition'])
-						,new Ext.form.NumberField(fc['nowPrice'])
+						,new Ext.form.NumberField(fc['haveNumber'])
+						
 						]
 			}, {
 				layout : 'form',
 				columnWidth : .5,
 				border : false,
-				items : [new Ext.form.NumberField(fc['haveNumber'])
-						,new Ext.form.NumberField(fc['profitPoint'])
-						,new Ext.form.NumberField(fc['incomeMoney'])
+				items : [new Ext.form.NumberField(fc['nowPrice'])
 						,new Ext.form.DateField(fc['dealTime'])
 						]
 			}]
@@ -197,7 +206,8 @@ var stockFormWin = stockFormWin || {};
 				layout : 'form',
 				columnWidth : .95,
 				border : false,
-				items : [new Ext.form.TextArea(fc['remark']),
+				items : [
+				new Ext.form.TextArea(fc['remark']),
 				new Ext.form.Label({html:'<div style="color:red;float:right;">* 请核对信息无误后再保存！</div>'})]
 			}]
 		},{
@@ -208,6 +218,8 @@ var stockFormWin = stockFormWin || {};
             	new Ext.form.TextField(fc['uids'])
             	,new Ext.form.TextField(fc['custUids'])
             	,new Ext.form.TextField(fc['stockDeal'])
+            	,new Ext.form.NumberField(fc['profitPoint'])
+				,new Ext.form.NumberField(fc['incomeMoney'])
             	]
 		}]
 	});
@@ -253,8 +265,9 @@ var stockFormWin = stockFormWin || {};
 	
 	stockFormWin = new Ext.Window({
 		title:'编辑股票信息',
+		tbar:['<span id=price></span>'],
 		width: 500,
-		height: 270,
+		height: 290,
 		modal: true, 
 		plain: true, 
 		border: false,
@@ -292,7 +305,7 @@ var stockFormWin = stockFormWin || {};
 		};
 		if(deal == "buy"){
 			var txtLabel = Ext.getCmp('openPosition').getEl().parent().parent().first(); 
-			txtLabel.dom.innerHTML="建仓成本"; 
+			txtLabel.dom.innerHTML="建仓价格"; 
 			form.findField("stockNo").enable();
 			form.findField("haveNumber").enable();
 			tempPlantInt.custUids = custUids;
@@ -300,6 +313,7 @@ var stockFormWin = stockFormWin || {};
 			tempPlantInt.dealTime = new Date();
 			var loadFormRecord = new formRecord(tempPlantInt);
 			formPanel.getForm().loadRecord(loadFormRecord);
+			document.getElementById("price").innerHTML = "";
 		}else if(deal == "sell"){
 			var txtLabel = Ext.getCmp('openPosition').getEl().parent().parent().first(); 
 			txtLabel.dom.innerHTML="卖出价格"; 
@@ -318,6 +332,7 @@ var stockFormWin = stockFormWin || {};
 		    		tempPlantInt.haveNumber = 0 - parseInt(obj.haveNumber,10);
 		    		tempPlantInt.stockName = obj.stockName;
 		    		tempPlantInt.nowPrice = obj.nowPrice;
+		    		document.getElementById("price").innerHTML = " 建仓成本：<b>"+obj.openPosition+"</b>元";
 		    	}
 		    });
 		    DWREngine.setAsync(true);

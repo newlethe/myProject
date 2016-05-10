@@ -33,6 +33,10 @@ public class Customer implements java.io.Serializable {
 	private String addUser;
 	private Date addTime;
 	private String state;
+	private String managerShow;
+	private String toKefu;
+	private String toKefuUser;
+	private Date toKefuTime;
 
 	// Constructors
 
@@ -45,7 +49,8 @@ public class Customer implements java.io.Serializable {
 			String city, Double fund, Double quote, Double deposit,
 			Double back, String payway, String salesman, String manager,
 			String director, String remark, Date backTime, String addUser,
-			Date addTime,String state) {
+			Date addTime, String state, String managerShow, String toKefu,
+			String toKefuUser, Date toKefuTime) {
 		this.name = name;
 		this.mobile = mobile;
 		this.mobile = qq;
@@ -63,6 +68,10 @@ public class Customer implements java.io.Serializable {
 		this.addUser = addUser;
 		this.addTime = addTime;
 		this.state = state;
+		this.managerShow = managerShow;
+		this.toKefu = toKefu;
+		this.toKefuUser = toKefuUser;
+		this.toKefuTime = toKefuTime;
 	}
 
 	// Property accessors
@@ -217,6 +226,38 @@ public class Customer implements java.io.Serializable {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public String getManagerShow() {
+		return managerShow;
+	}
+
+	public void setManagerShow(String managerShow) {
+		this.managerShow = managerShow;
+	}
+
+	public String getToKefu() {
+		return toKefu;
+	}
+
+	public void setToKefu(String toKefu) {
+		this.toKefu = toKefu;
+	}
+
+	public String getToKefuUser() {
+		return toKefuUser;
+	}
+
+	public void setToKefuUser(String toKefuUser) {
+		this.toKefuUser = toKefuUser;
+	}
+
+	public Date getToKefuTime() {
+		return toKefuTime;
+	}
+
+	public void setToKefuTime(Date toKefuTime) {
+		this.toKefuTime = toKefuTime;
 	}
 
 }

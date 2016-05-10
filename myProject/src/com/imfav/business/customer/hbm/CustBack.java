@@ -14,6 +14,7 @@ public class CustBack implements java.io.Serializable {
 	private String custUids;
 	private Double backMoney;
 	private Date backTime;
+	private String payway;
 	private String addUser;
 	private Date addTime;
 
@@ -24,16 +25,16 @@ public class CustBack implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public CustBack(String custUids, Double backMoney,
-			Date backTime, String addUser, Date addTime) {
+	public CustBack(String custUids, Double backMoney, Date backTime,
+			String addUser, Date addTime, String payway) {
 		this.custUids = custUids;
 		this.backMoney = backMoney;
 		this.backTime = backTime;
 		this.addUser = addUser;
 		this.addTime = addTime;
+		this.payway = payway;
 	}
-	
-	
+
 	// Property accessors
 	public String getUids() {
 		return uids;
@@ -81,6 +82,14 @@ public class CustBack implements java.io.Serializable {
 
 	public void setAddTime(Date addTime) {
 		this.addTime = addTime;
+	}
+
+	public String getPayway() {
+		return payway;
+	}
+
+	public void setPayway(String payway) {
+		this.payway = payway;
 	}
 
 }

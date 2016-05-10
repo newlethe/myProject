@@ -64,5 +64,17 @@
         <property name="state" type="java.lang.String">
             <column name="STATE" length="10" />
         </property>
+        <property name="managerShow" type="java.lang.String">
+            <column name="MANAGER_SHOW" length="10" />
+        </property>
+        <property name="toKefu" type="java.lang.String">
+            <column name="TO_KEFU" length="10" />
+        </property>
+        <property name="toKefuTime" type="java.util.Date">
+            <column name="TO_KEFU_TIME" length="7" />
+        </property>
+		<property name="toKefuUser" type="java.lang.String">
+            <column name="TO_KEFU_USER" length="32" />
+        </property>
     </class>
 </hibernate-mapping>

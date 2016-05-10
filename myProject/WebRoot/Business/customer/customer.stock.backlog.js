@@ -4,6 +4,7 @@ var backlogWin = backlogWin || {};
 	
 	var bean = "com.imfav.business.customer.hbm.CustBacklog";
 	var PAGE_SIZE = 10;
+	var _thisSelectCustUids = null;
 	
 	//TODO:回访日志表单
 	var saveBtn = new Ext.Button({
@@ -133,10 +134,17 @@ var backlogWin = backlogWin || {};
 		rowNum
     	, {id:'uids',header: fc['uids'].fieldLabel,dataIndex: fc['uids'].name,hideable:false,hidden:true}
     	, {id:'custUids',header: fc['custUids'].fieldLabel,dataIndex: fc['custUids'].name,hideable:false,hidden:true}
-    	, {id:'logContent',header: fc['logContent'].fieldLabel,dataIndex: fc['logContent'].name,width:85}
-    	, {id:'addUser',header: fc['addUser'].fieldLabel,dataIndex: fc['addUser'].name,hideable:false,hidden:true,
-    		align:"center",renderer:function(value){return formatCombo(value,userArr)}}
-    	, {id:'addTime',header: fc['addTime'].fieldLabel,dataIndex: fc['addTime'].name,width:15,
+    	, {id:'logContent',header: fc['logContent'].fieldLabel,dataIndex: fc['logContent'].name,width:85,
+    		renderer:function(value,cell,record){
+    			var title = "";  
+			    var tip = value;   
+			    cell.attr = 'ext:qtitle="' + title + '"' + ' ext:qtip="' + tip + '"';    
+			    return value;   
+    		}
+    	}
+    	, {id:'addUser',header: fc['addUser'].fieldLabel,dataIndex: fc['addUser'].name,width:60,
+    		align:"center",renderer:function(value){return formatCombo(value,allUserArr)}}
+    	, {id:'addTime',header: fc['addTime'].fieldLabel,dataIndex: fc['addTime'].name,width:30,
     		align:"center",renderer : formatDate}
 	]);
 	cm.defaultSortable = true;
@@ -219,14 +227,16 @@ var backlogWin = backlogWin || {};
 	function showBacklogWin(custUids,editable){
 		backlogWin.show();
 		var form = formPanel.getForm();
+		_thisSelectCustUids = custUids;
 		form.findField("custUids").setValue(custUids);
 		form.findField("addUser").setValue(USERID);
-		ds.baseParams.params = " 1=1 and custUids = '"+custUids+"' and addUser = '"+USERID+"' ";
+//		ds.baseParams.params = " 1=1 and custUids = '"+custUids+"' and addUser = '"+USERID+"' ";
+		ds.baseParams.params = " 1=1 and custUids = '"+custUids+"' ";
 		ds.load({params:{start:0,limit: PAGE_SIZE}});
 	}
 	
 	function closeBacklogWin(custDs){
-		//custDs.reload();
+		custDs.reload();
 	}
 	
 })();

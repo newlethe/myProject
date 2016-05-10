@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <title>客户股票维护</title>
+    <title>客户回款查询</title>
 	<meta charset="utf-8">
 	<base href="<%=basePath%>">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,16 +18,8 @@
 	<script type="text/javascript" src="dwr/interface/stockMgm.js"></script>
 	<script type="text/javascript" src="dwr/interface/baseDao.js"></script>
 	<script type="text/javascript" src="common/common.js"></script>
-	<script type="text/javascript">
-		var kefu = <%="true".equals(request.getParameter("kefu"))?true:false%>;
-	</script>
-	<script type="text/javascript" src="Business/customer/customer.stock.js"></script>
-	<script type="text/javascript" src="Business/customer/customer.stock.form.js"></script>
-	<script type="text/javascript" src="Business/customer/customer.stock.history.js"></script>
-	<script type="text/javascript" src="Business/customer/customer.stock.backlog.js"></script>
-	<script type="text/javascript" src="Business/customer/customer.back.win.js"></script>
+	<script type="text/javascript" src="Business/customer/customer.payment.record.js"></script>
   </head>
   <body>
-  	<form action="" id="formAc" method="post" name="formAc"></form>
   </body>
 </html>

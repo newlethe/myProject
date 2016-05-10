@@ -140,7 +140,10 @@ input[readOnly]{
 	background: #FAF6B6;
 }
 .grid-record-blue table{
-	background: #82B1FF;
+	background: #E3F2FD;
+}
+.grid-record-red table{
+	background: #febfbf;
 }
 
 /*修改grid单元格边框*/
@@ -329,135 +332,16 @@ input[readOnly]{
 	    expdate.setTime(expdate.getTime() - (86400 * 1000 * 1)); 
 	    setCookie(name, "", expdate); 
 	} 
-	//切换PID
-	function switchoverProj(pid,pname){
-		try{
-			DWREngine.setAsync(false);
-			commonUtilDwr.changeCurrentAppPid(pid,pname,function(){
-				CURRENTAPPID = pid;
-				CURRENTAPPNAME = name;
-				if(top){
-					top.CURRENTAPPID = pid;
-					top.CURRENTAPPNAME = name;
-				};
-				if(top.btn&&top.btn.setText){
-					top.btn.setText(pname);
-				}
-			});
-			DWREngine.setAsync(true);
-			return true;
-		}catch(e){
-			return false;
-		}
-	}
-	function loadFirstModule(pid,pname,param){
-		systemMgm.getFirstPowerFromSubSystem(parent.selectedSubSystemId,USERID,function(dat){
-			if(dat != null){
-				DWREngine.setAsync(false);
-				switchoverProj(pid,pname)
-				DWREngine.setAsync(true);
-				//parent.lt.expand();
-				ifaloneShowOrHide(dat.ifalone);
-				//parent.pathButton.setText("<b>当前位置:"+parent.selectedSubSystemName+"/"+dat.powername+"</b>")
-				parent.pathButton.setText("<font color=#15428b><b>&nbsp;"+dat.powername+"</b></font>")
-				if(!param) param = null;
-				loadModule(dat.powerpk,parent.frames["contentFrame"],param)
-				//parent.frames["contentFrame"].location.href = CONTEXT_PATH +"/"+ dat.url
-				if(parent.CT_TOOL_DISPLAY){
-    				parent.CT_TOOL_DISPLAY(true);
-				}
-			}
-		})
-	}
 	
-	changeUnitsCombo();
-	//功能模块页面切换项目的combo中过滤本模块不显示的项目单位。
-	function changeUnitsCombo(){
-		var unitPageCombo = parent.proTreeCombo;	//模块页面切换项目的combo
-		var sub2Modid = parent.selectedSubSystemId;	//二级模块首页id
-		var unitsData = new Array();
-		if(unitPageCombo && !unitPageCombo.hidden){
-			DWREngine.setAsync(false);
-			systemMgm.findUnitsByModid(sub2Modid,USERBELONGUNITID,function(list){
-				for(var i=0;i<list.length;i++){
-					var temp = new Array();
-					temp.push(list[i].unitid);
-					temp.push(list[i].unitname);
-					unitsData.push(temp);
-				}
-			});
-			DWREngine.setAsync(true);
-			unitPageCombo.store.loadData(unitsData);
-			//combo重新加载数据后隐藏下拉框
-			if(unitPageCombo.list)unitPageCombo.list.hide();	
-		}
+	//IE9中Script438: 对象不支持“createContextualFragment”属性或方法
+	if ((typeof Range !== "undefined") && !Range.prototype.createContextualFragment) {
+	    Range.prototype.createContextualFragment = function(html) {
+	        var frag = document.createDocumentFragment(),
+	        div = document.createElement("div");
+	        frag.appendChild(div);
+	        div.outerHTML = html;
+	        return frag;
+	    };
 	}
-	function ifaloneShowOrHide(ifalonecode){
-		if(parent.proTreeCombo&&parent.backToSubSystemBtn){
-			switch(ifalonecode){
-				//0：不显示，1：只显示返回子系统按钮，2：只显示项目选择框，3：两者均显示';
-				case "0":
-					parent.proTreeCombo.hide();
-					parent.backToSubSystemBtn.hide();
-					break;
-				case "1":
-					parent.proTreeCombo.hide();
-					parent.backToSubSystemBtn.show();
-					break;
-				case "2":
-					parent.proTreeCombo.show();
-					parent.proTreeCombo.setValue(CURRENTAPPID)
-					parent.backToSubSystemBtn.hide();
-					break;
-				case "3":
-					parent.proTreeCombo.show();
-					parent.proTreeCombo.setValue(CURRENTAPPID)
-					parent.backToSubSystemBtn.show();
-					break;
-				default:
-					parent.proTreeCombo.hide();
-					parent.backToSubSystemBtn.hide();
-						break;
-			}
-		}
-	}
-	//判断功能模块页面是否显示项目选择框和返回按钮
-	isShowOrHide=function(){
-		var curl=window.location.href;
-		if(curl.indexOf("?")!=-1&&curl.indexOf("modid=")==-1){
-			curl=curl.replace(BASE_PATH,"");
-			var aurl=curl.split("?")[0];
-			DWREngine.setAsync(false);
-			baseDao.getData("select s.url,s.ifalone from (select * from user_power_view where userid='"+USERID+"') s "+
-				"where s.url like '"+aurl+"%' start with s.powerpk = '"+parent.selectedSubSystemId+"' connect by prior s.powerpk = s.parentid",function(list){
-				if(list.length<1){
-					
-				}else if(list.length>1){
-					for(var i=0;i<list.length;i++){
-						if(list[i][0].indexOf("?")!=-1){
-							var arguments=list[i][0].split("?")[1].split("&");
-							var matchFlag=true;
-							for(var j=0;j<arguments.length;j++){
-								if(curl.indexOf(arguments[j])==-1){
-									matchFlag=false;
-								}
-							}
-							if(matchFlag){
-								ifaloneShowOrHide(list[i][1]);
-								break;
-							}
-						}else{
-							ifaloneShowOrHide(list[i][1]);
-							break;
-						}
-					}
-				}else if(list.length==1){
-					ifaloneShowOrHide(list[0][1]);
-				}
-			});
-			DWREngine.setAsync(true);
-		}
-	}();
-		
 //-->
 </script>

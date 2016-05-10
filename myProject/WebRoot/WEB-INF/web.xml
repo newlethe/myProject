@@ -55,6 +55,17 @@
 			<param-value>/WEB-INF/dwr/sys-dwr.xml</param-value>
 		</init-param>
 		<!-- end 系统管理 -->
+		
+		
+		
+		
+		
+		
+		<!-- ================================================= -->
+		
+		
+		
+		
 
 		<!-- start 工作总结 -->
 		<init-param>
@@ -871,6 +882,15 @@
 		<servlet-name>StockServlet</servlet-name>
 		<url-pattern>/servlet/StockServlet</url-pattern>
 	</servlet-mapping>
+	<servlet><!-- 客户管理 -->
+		<servlet-name>CustomerServlet</servlet-name>
+		<servlet-class>com.imfav.business.customer.control.CustomerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CustomerServlet</servlet-name>
+		<url-pattern>/servlet/CustomerServlet</url-pattern>
+	</servlet-mapping>
+	
 
 	<error-page>
 		<error-code>404</error-code>
