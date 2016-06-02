@@ -96,10 +96,10 @@ public class CustomerMgmImpl extends BaseMgmImpl implements CustomerMgm {
 			}
 			if(null == uids || "".equals(uids)){
 				String mobile = customer.getMobile();
-				List list = customerDao.findByWhere(Customer.class.getName(), "mobile = '"+mobile+"'");
-				if(list.size() > 0){
-					return "1";
-				}
+//				List list = customerDao.findByWhere(Customer.class.getName(), "mobile = '"+mobile+"'");
+//				if(list.size() > 0){
+//					return "1";
+//				}
 				uids = customerDao.insert(customer);
 			}else{
 				customerDao.saveOrUpdate(customer);
@@ -167,19 +167,20 @@ public class CustomerMgmImpl extends BaseMgmImpl implements CustomerMgm {
 		try {
 			//返回JSON格式
 			String url = "http://virtual.paipai.com/extinfo/GetMobileProductInfo?mobile="+mobile+"&amount=10000&callname=getPhoneNumInfoExtCallback";
-			String rtn = UrlConnUtil.loadGBKJson(url);
+			url = "http://apis.juhe.cn/mobile/get?callback=jQuery18301382324884081252_1464791159907&phone="+mobile+"&dtype=jsonp&key=b4b88a8ffc09e2fd3f24251ee19fa168&_=1464791169811";
+			String rtn = UrlConnUtil.loadUTF8Json(url);
 			if(null != rtn && !"".equals(rtn) && rtn.indexOf("未知") == -1){
 				rtn = rtn.substring(rtn.indexOf("(")+1, rtn.lastIndexOf(")"));
 				System.out.println("手机号归属信息："+rtn);
 				JSONObject json = JSONObject.fromObject(rtn);
-				from += null == json.get("province") ? "" : json.get("province").toString();
+				JSONObject result = json.getJSONObject("result");
+				from += null == result.get("province") ? "" : result.get("province").toString();
 				from += "||";
-				from += null == json.get("cityname") ? "" : json.get("cityname").toString();
+				from += null == result.get("city") ? "" : result.get("city").toString();
 			}
-			
 			//财付通API地址：返回XML格式
 			//String url = "http://life.tenpay.com/cgi-bin/mobile/MobileQueryAttribution.cgi?chgmobile="+mobile;
-			
+			//String rtn = UrlConnUtil.loadUTF8Json(url);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

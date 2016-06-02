@@ -83,12 +83,19 @@ public class UrlConnUtil {
 	 * @param url
 	 * @return
 	 */
-	public static String loadGBKJson (String urlStr) {  
+	public static String loadGBKJson (String urlStr) {
+		return loadJson(urlStr, "GBK");
+    }
+	public static String loadUTF8Json (String urlStr) {
+		return loadJson(urlStr, "utf-8");
+	}
+	
+	public static String loadJson (String urlStr,String code) {  
         StringBuilder json = new StringBuilder();  
         try {  
             URL url = new URL(urlStr);  
             URLConnection conn = url.openConnection();
-            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(),"GBK"));
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(),code));
             String inputLine = null;  
             while ( (inputLine = in.readLine()) != null) {  
                 json.append(inputLine);  

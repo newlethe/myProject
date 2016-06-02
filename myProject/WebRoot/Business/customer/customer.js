@@ -224,7 +224,7 @@ Ext.onReady(function(){
 				'blur':function(field){
 					var num = field.getValue();
 					if(num.toString().length == 11){
-						DWREngine.setAsync(false);
+						//DWREngine.setAsync(false);
 					    customerMgm.getMobileFrom(num,function(str){
 					    	try{
 						    	if(null != num && "" != num){
@@ -236,7 +236,7 @@ Ext.onReady(function(){
 					    		alert(e)
 					    	}
 					    });
-					    DWREngine.setAsync(true);
+					    //DWREngine.setAsync(true);
 					}
 				}
 			}
@@ -302,7 +302,8 @@ Ext.onReady(function(){
     	sm,rowNum
     	, {id:'uids',header: fc['uids'].fieldLabel,dataIndex:fc['uids'].name,hideable:false,hidden:true}
     	, {id:'managerShow',header: fc['managerShow'].fieldLabel,dataIndex:fc['managerShow'].name,align:'center',width:80,
-    		hideable:hideAllBtn,hidden:!hideAllBtn,
+//    		hideable:hideAllBtn,hidden:!hideAllBtn,
+    		hideable:false,hidden:true,//暂时隐藏分配功能
     		renderer:function(value, cell, record, rowInd, colInd, store){
     			var str = "分配";
     			var color = "#00f";

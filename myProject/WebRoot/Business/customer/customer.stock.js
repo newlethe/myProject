@@ -458,9 +458,12 @@ Ext.onReady(function(){
 		var record = sm.getSelected();
 		if(record){
 			var uids = record.data.uids;
+			var giveup = record.data.giveup;
+			giveup = giveup == '1' ? '0' : '1';
 			var custUids = uids.split("-")[0];
-			var sql = "UPDATE CRM_CUSTOMER T SET T.GIVEUP = '1' WHERE T.UIDS = '" + custUids + "'";
+			var sql = "UPDATE CRM_CUSTOMER T SET T.GIVEUP = '"+giveup+"' WHERE T.UIDS = '" + custUids + "'";
 			baseDao.updateBySQL(sql,function(){
+				Ext.example.msg("提示","放弃客户操作成功！")
 				ds.reload();
 			});
 		}else{
@@ -473,6 +476,7 @@ Ext.onReady(function(){
 		iconCls : 'book_open',
 		handler : showHistoryWin
 	})
+	
 	
 	function showHistoryWin(){
 		var record = sm.getSelected();
@@ -1044,7 +1048,8 @@ Ext.onReady(function(){
 			paramsStr += " and director = '"+directorCombo.getValue()+"' ";
         }
         if(managerCombo.getValue().length > 0){
-			paramsStr += " and manager = '"+managerCombo.getValue()+"' and managerShow = '1' ";
+//			paramsStr += " and manager = '"+managerCombo.getValue()+"' and managerShow = '1' ";
+			paramsStr += " and manager = '"+managerCombo.getValue()+"' ";
         }
         if(salesmanCombo.getValue().length > 0){
 			paramsStr += " and salesman = '"+salesmanCombo.getValue()+"' ";
@@ -1062,13 +1067,15 @@ Ext.onReady(function(){
 			}else{
 				//如果当前用户角色是销售经理，则需要按照managerShow字段为1进行过滤
 				if(USERPOSNAME.indexOf("销售经理") != -1){
-					paramsStr += " and managerShow = '1' and manager = '"+USERID+"'";
+//					paramsStr += " and managerShow = '1' and manager = '"+USERID+"'";
+					paramsStr += " and manager = '"+USERID+"'";
 				}else{
 					//如果不是经理，则为总监，则看到的是没有被分配的客户
 					if(managerCombo.getValue().length > 0){
 						paramsStr += " and director = '"+USERID+"'";
 					}else{
-						paramsStr += " and managerShow != '1' and director = '"+USERID+"'";
+//						paramsStr += " and managerShow != '1' and director = '"+USERID+"'";
+						paramsStr += " and director = '"+USERID+"'";
 					}					
 				}
 			}

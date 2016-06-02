@@ -160,6 +160,8 @@ var stockHistoryWin = stockHistoryWin || {};
 		checked : true,
 		listeners : {
  			'check' : function(cb, check){
+ 				total_1 = 0;
+				total_2 = 0;
  				if (check){
 					ds.baseParams.params = " custUids = '"+_custUids+"' ";
 					document.getElementById("custStock").innerHTML = "所有股票";
@@ -294,6 +296,8 @@ var stockHistoryWin = stockHistoryWin || {};
 	var _stockNo = null;
 	var _stockName = null;
 	function showStockHistoryWin(record){
+		total_1 = 0;
+		total_2 = 0;
 		stockHistoryWin.show();
 		var uids = record.data.uids;
 		var custUids = uids.split("-")[0];
@@ -301,11 +305,13 @@ var stockHistoryWin = stockHistoryWin || {};
 		var name = record.data.name;
 		document.getElementById("custName").innerHTML = name;
 		var toKefu = record.data.toKefu;
+		/*
 		if(toKefu == "1" && kefu != true){
 			delStockBtn.disable();
 		}else{
 			delStockBtn.enable();
 		}
+		*/
 		if(stockNo != null && stockNo != ""){
 			var stockName = record.data.stockName
 			document.getElementById("custStock").innerHTML = stockName+"["+stockNo+"]";
@@ -321,7 +327,7 @@ var stockHistoryWin = stockHistoryWin || {};
 		ds.load();
 		ds.on('load',function(){
 			var income = total_2;
-			var inprofitPoint = total_1;
+			var inprofitPoint = total_1.toFixed(2);
 			var custIncome = document.getElementById("custIncome");
 			var custProfitPoint = document.getElementById("custProfitPoint");
 			/*
@@ -348,7 +354,6 @@ var stockHistoryWin = stockHistoryWin || {};
 				custProfitPoint.innerHTML = inprofitPoint;
 				custProfitPoint.style.color = 'green';
 			}
-			
 		})
 	}
 })();
