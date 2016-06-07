@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sgepit.pmis.gczl.hbm.GczlJyDetail"
+		table="GCZL_JY_DETAIL">
+		<id name="jyDetailId" type="java.lang.String">
+			<column name="JY_DETAIL_ID" length="32" />
+			<generator class="uuid" />
+		</id>
+		<property name="jyStatId" type="java.lang.String">
+			<column name="JY_STAT_ID" length="32" />
+		</property>
+		<property name="jyxmBh" type="java.lang.String">
+			<column name="JYXM_BH" length="20" />
+		</property>
+		<property name="parentBh" type="java.lang.String">
+			<column name="PARENT_BH" length="20" />
+		</property>
+		<property name="jyDetailDate" type="java.util.Date">
+			<column name="JY_DETAIL_DATE" />
+		</property>
+		<property name="jyp" type="java.lang.Double">
+			<column name="JYP" length="22" precision="4" />
+		</property>
+		<property name="fxPrj" type="java.lang.Double">
+			<column name="FX_PRJ" length="22" precision="4" />
+		</property>
+		<property name="zfbPrj" type="java.lang.Double">
+			<column name="ZFB_PRJ" length="22" precision="4" />
+		</property>
+		<property name="fbPrj" type="java.lang.Double">
+			<column name="FB_PRJ" length="22" precision="4" />
+		</property>
+		<property name="zdwPrj" type="java.lang.Double">
+			<column name="ZDW_PRJ" length="22" precision="4" />
+		</property>
+		<property name="prjPd" type="java.lang.String">
+			<column name="PRJ_PD" />
+		</property>
+	</class>
+</hibernate-mapping>

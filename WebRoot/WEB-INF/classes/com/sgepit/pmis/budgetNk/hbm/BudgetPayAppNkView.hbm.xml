@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sgepit.pmis.budgetNk.hbm.BudgetPayAppNkView"
+		table="VIW_BDG_PAY_APP_NK">
+		<id name="payappid" type="java.lang.String">
+			<column name="PAYAPPID" length="32" />
+			<generator class="uuid" />
+		</id>
+		<property name="payappno" type="java.lang.String">
+			<column name="PAYAPPNO" length="32" />
+		</property>
+		<property name="bdgid" type="java.lang.String">
+			<column name="BDGID" length="32" not-null="true" />
+		</property>
+		<property name="pid" type="java.lang.String">
+			<column name="PID" length="18" not-null="true" />
+		</property>
+		<property name="conid" type="java.lang.String">
+			<column name="CONID" length="32" not-null="true" />
+		</property>
+		<property name="proname" type="java.lang.String">
+			<column name="PRONAME" length="200" />
+		</property>
+		<property name="actiondate" type="java.util.Date">
+			<column name="ACTIONDATE" length="7" />
+		</property>
+		<property name="begindate" type="java.util.Date">
+			<column name="BEGINDATE" length="7" />
+		</property>
+		<property name="enddate" type="java.util.Date">
+			<column name="ENDDATE" length="7" />
+		</property>
+		<property name="applypay" type="java.lang.Double">
+			<column name="APPLYPAY" precision="15" scale="4" />
+		</property>
+		<property name="auditing" type="java.lang.Double">
+			<column name="AUDITING" precision="15" scale="4" />
+		</property>
+		<property name="factpay" type="java.lang.Double">
+			<column name="FACTPAY" precision="15" scale="4" />
+		</property>
+		<property name="passpay" type="java.lang.Double">
+			<column name="PASSPAY" precision="15" scale="4" />
+		</property>
+		<property name="remark" type="java.lang.String">
+			<column name="REMARK" length="1000" />
+		</property>
+		<property name="isLeaf" type="java.lang.Boolean">
+			<column name="IS_LEAF" precision="1" scale="0" />
+		</property>
+		<property name="parent" type="java.lang.String">
+			<column name="PARENT" length="32" />
+		</property>
+		<property name="realBdgMoney" type="java.lang.Double">
+			<column name="REAL_MONEY" precision="15" scale="4" />
+		</property>
+		<property name="bdgName" type="java.lang.String">
+			<column name="BDG_NAME" length="600" />
+		</property>
+		<property name="bdgNo" type="java.lang.String">
+			<column name="BDG_NO" length="32" />
+		</property>
+		<property name="bdgMoney" type="java.lang.Double">
+			<column name="BDG_MONEY" precision="15" scale="4" />
+		</property>
+		<property name="sumRealMoney" type="java.lang.Double">
+			<column name="SUM_REAL_MONEY" precision="15" scale="4" />
+		</property>
+		<property name="sumfactpay" type="java.lang.Double">
+			<column name="SUMFACTPAY" precision="15" scale="4" />
+		</property>
+	</class>
+
+</hibernate-mapping>

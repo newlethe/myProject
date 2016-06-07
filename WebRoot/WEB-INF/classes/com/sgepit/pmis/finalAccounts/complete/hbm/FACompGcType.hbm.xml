@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sgepit.pmis.finalAccounts.complete.hbm.FACompGcType"
+		table="FACOMP_GC_TYPE">
+		<id name="uids" type="java.lang.String">
+			<column name="UIDS" length="32" />
+			<generator class="uuid" />
+		</id>
+		<property name="pid" type="java.lang.String">
+			<column name="PID" length="32"  />
+		</property>
+		<property name="treeid" type="java.lang.String">
+			<column name="TREEID" length="32"  />
+		</property>
+		<property name="gcTypeName" type="java.lang.String">
+			<column name="GC_TYPE_NAME" length="100"  />
+		</property>
+		<property name="gcTypeBm" type="java.lang.String">
+			<column name="GC_TYPE_BM" length="32"  />
+		</property>
+		<property name="remark" type="java.lang.String">
+			<column name="REMARK" length="200"  />
+		</property>
+		<property name="parentid" type="java.lang.String">
+			<column name="PARENTID" length="32"  />
+		</property>
+		<property name="isleaf" type="java.lang.Long">
+			<column name="ISLEAF" length="1"  />
+		</property>
+	</class>
+</hibernate-mapping>

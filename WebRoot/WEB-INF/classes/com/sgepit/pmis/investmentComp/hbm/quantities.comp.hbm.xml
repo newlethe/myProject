@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>	
+	<!-- 工程投资完成 - 月份信息 -->
+   <class name="com.sgepit.pmis.investmentComp.hbm.ProAcmMonth" table="PRO_ACM_MONTH">
+        <id name="uids" type="java.lang.String">
+            <column name="UIDS" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="monId" type="java.lang.String">
+            <column name="MON_ID" length="32"/>
+        </property>
+        <property name="conid" type="java.lang.String">
+            <column name="CONID" length="32" not-null="true" />
+        </property>
+        <property name="month" type="java.lang.String">
+            <column name="MONTH" length="10" />
+        </property>
+        <property name="billstate" type="java.lang.Long">
+            <column name="BILLSTATE" precision="22" scale="0" />
+        </property>
+        <property name="decmoney" type="java.lang.Double">
+            <column name="DECMONEY" precision="15" />
+        </property>
+        <property name="checkmoney" type="java.lang.Double">
+            <column name="CHECKMONEY" precision="15" />
+        </property>
+        <property name="ratiftmoney" type="java.lang.Double">
+            <column name="RATIFTMONEY" precision="15" />
+        </property>
+        <property name="pid" type="java.lang.String">
+            <column name="PID" length="18" not-null="true" />
+        </property>
+        <property name="operator" type="java.lang.String">
+            <column name="OPERATOR" length="50" />
+        </property>
+        <property name="unitId" type="java.lang.String">
+            <column name="UNIT_ID" length="100" />
+        </property>
+        <property name="auditState" type="java.lang.String">
+            <column name="AUDIT_STATE" length="10"/>
+        </property>
+        <property name="reportUnit" type="java.lang.String">
+            <column name="REPORT_UNIT" length="60"/>
+        </property>
+    </class>
+    <!-- 工程投资完成 - 本月完成情况 -->
+	<class name="com.sgepit.pmis.investmentComp.hbm.ProAcmInfo" table="PRO_ACM_INFO">
+        <id name="acmId" type="java.lang.String">
+            <column name="ACM_ID" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="proid" type="java.lang.String">
+            <column name="PROID" length="32" />
+        </property>
+        <property name="totalpro" type="java.lang.Double">
+            <column name="TOTALPRO" precision="15" scale="4" />
+        </property>
+        <property name="totalpercent" type="java.lang.Double">
+            <column name="TOTALPERCENT" precision="15" scale="4" />
+        </property>
+        <property name="declpro" type="java.lang.Double">
+            <column name="DECLPRO" precision="15" scale="4" />
+        </property>
+        <property name="checkpro" type="java.lang.Double">
+            <column name="CHECKPRO"  precision="15" scale="4"  />
+        </property>
+        <property name="ratiftpro" type="java.lang.Double">
+            <column name="RATIFTPRO" precision="15" scale="4" />
+        </property>
+        <property name="decmoney" type="java.lang.Double">
+            <column name="DECMONEY" precision="15" />
+        </property>
+        <property name="checkmoney" type="java.lang.Double">
+            <column name="CHECKMONEY" precision="15" />
+        </property>
+        <property name="ratiftmoney" type="java.lang.Double">
+            <column name="RATIFTMONEY" precision="15" />
+        </property>
+        <property name="remark" type="java.lang.String">
+            <column name="REMARK" length="50" />
+        </property>
+        <property name="monId" type="java.lang.String">
+            <column name="MON_ID" length="32" />
+        </property>
+        <property name="proname" type="java.lang.String">
+            <column name="PRONAME" length="300" />
+        </property>
+        <property name="unit" type="java.lang.String">
+            <column name="UNIT" length="32" />
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="PRICE" precision="15" scale="4" />
+        </property>
+        <property name="amount" type="java.lang.Double">
+            <column name="AMOUNT" precision="15" scale="4" />
+        </property>
+        <property name="money" type="java.lang.Double">
+            <column name="MONEY" precision="15" scale="4" />
+        </property>
+        <property name="bdgid" type="java.lang.String">
+            <column name="BDGID" length="32" />
+        </property>
+        <property name="conid" type="java.lang.String">
+            <column name="CONID" length="32" />
+        </property>
+        <property name="pid" type="java.lang.String">
+            <column name="PID" length="18" not-null="true" />
+        </property>
+        <property name="isper" type="java.lang.String">
+			<column name="ISPER" length="10" >
+				<comment>总工程量是否带百分号</comment>
+			</column>
+		</property>
+    </class>
+    
+    <!-- 工程投资完成 - 本月概算结构树 -->
+    <class name="com.sgepit.pmis.investmentComp.hbm.ProAcmTree" table="PRO_ACM_TREE">
+        <id name="uuid" type="java.lang.String">
+            <column name="UUID" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="conid" type="java.lang.String">
+            <column name="CONID" length="32" />
+        </property>
+        <property name="monId" type="java.lang.String">
+            <column name="MON_ID" length="32" />
+        </property>
+        <property name="bdgid" type="java.lang.String">
+            <column name="BDGID" length="32" />
+        </property>
+        <property name="proMoney" type="java.lang.Double">
+            <column name="PRO_MONEY" precision="15" scale="4" />
+        </property>
+        <property name="parent" type="java.lang.String">
+            <column name="PARENT" length="32" />
+        </property>
+        <property name="isleaf" type="java.lang.Long">
+            <column name="ISLEAF" precision="1" scale="0" />
+        </property>
+        <property name="sumMoney" type="java.lang.Double">
+            <column name="SUM_MONEY" precision="15" scale="4" />
+        </property>
+        <property name="pid" type="java.lang.String">
+            <column name="PID" length="18" not-null="true" />
+        </property>
+        <property name="decmoney" type="java.lang.Double">
+            <column name="DECMONEY" precision="15" />
+        </property>
+        <property name="checkmoney" type="java.lang.Double">
+            <column name="CHECKMONEY" precision="15" />
+        </property>
+        <property name="ratiftmoney" type="java.lang.Double">
+            <column name="RATIFTMONEY" precision="15" />
+        </property>
+    </class>
+
+	<class name="com.sgepit.pmis.investmentComp.hbm.ProAcmInfoTreeReport" table="PRO_ACM_INFO_TREE_REPORT">
+        <id name="uids" type="java.lang.String">
+            <column name="UIDS" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="pid" type="java.lang.String">
+            <column name="PID" length="32" />
+        </property>
+        <property name="prono" type="java.lang.String">
+            <column name="PRONO" length="100" />
+        </property>
+        <property name="bdgid" type="java.lang.String">
+            <column name="BDGID" length="32" />
+        </property>
+        <property name="bdgname" type="java.lang.String">
+            <column name="BDGNAME" length="600" />
+        </property>
+        <property name="unit" type="java.lang.String">
+            <column name="UNIT" length="32" />
+        </property>
+        <property name="amount" type="java.lang.Double">
+            <column name="AMOUNT" precision="15" scale="4" />
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="PRICE" precision="15" scale="4" />
+        </property>
+        <property name="money" type="java.lang.Double">
+            <column name="MONEY" precision="15" scale="4" />
+        </property>
+        <property name="totalratimonthmoneylastall" type="java.lang.Double">
+            <column name="TOTALRATIMONTHMONEYLASTALL" precision="15" scale="4" />
+        </property>
+        <property name="totalratimonthlast" type="java.lang.String">
+            <column name="TOTALRATIMONTHLAST" length="40" />
+        </property>
+        <property name="totalratimonthmoneylast" type="java.lang.Double">
+            <column name="TOTALRATIMONTHMONEYLAST" precision="15" scale="4" />
+        </property>
+        <property name="declpro" type="java.lang.String">
+            <column name="DECLPRO" length="40" />
+        </property>
+        <property name="decmoney" type="java.lang.Double">
+            <column name="DECMONEY" precision="15" scale="4" />
+        </property>
+        <property name="checkpro" type="java.lang.String">
+            <column name="CHECKPRO" length="40" />
+        </property>
+        <property name="checkmoney" type="java.lang.Double">
+            <column name="CHECKMONEY" precision="15" scale="4" />
+        </property>
+        <property name="ratiftpro" type="java.lang.String">
+            <column name="RATIFTPRO" length="40" />
+        </property>
+        <property name="ratiftmoney" type="java.lang.Double">
+            <column name="RATIFTMONEY" precision="15" scale="4" />
+        </property>
+        <property name="totalratimonth" type="java.lang.String">
+            <column name="TOTALRATIMONTH" length="40" />
+        </property>
+        <property name="totalratimonthmoney" type="java.lang.Double">
+            <column name="TOTALRATIMONTHMONEY" precision="15" scale="4" />
+        </property>
+        <property name="percent1" type="java.lang.String">
+            <column name="PERCENT1" length="32" />
+        </property>
+        <property name="percent2" type="java.lang.Double">
+            <column name="PERCENT2" precision="15" scale="4" />
+        </property>
+        <property name="parent" type="java.lang.String">
+            <column name="PARENT" length="32" />
+        </property>
+        <property name="isleaf" type="java.lang.Long">
+            <column name="ISLEAF" />
+        </property>
+        <property name="conid" type="java.lang.String">
+            <column name="CONID" length="32" />
+        </property>
+        <property name="monId" type="java.lang.String">
+            <column name="MON_ID" length="32" />
+        </property>
+        <property name="month" type="java.lang.String">
+            <column name="MONTH" length="10" />
+        </property>
+    </class>
+
+	<class name="com.sgepit.pmis.investmentComp.hbm.ProAcmInfoTreeView" table="PRO_ACM_INFO_TREE_VIEW">
+		<id name="acmId" type="java.lang.String">
+			<column name="ACM_ID" length="32" />
+			<generator class="uuid" />
+		</id>
+		<property name="proname" type="java.lang.String">
+		    <column name="PRONAME" length="300" />
+		</property>
+		<property name="unit" type="java.lang.String">
+		    <column name="UNIT" length="32" />
+		</property>
+		<property name="amount" type="java.lang.Double">
+		    <column name="AMOUNT" precision="15" />
+		</property>
+		<property name="price" type="java.lang.Double">
+		    <column name="PRICE" precision="15" />
+		</property>
+		<property name="money" type="java.lang.Double">
+		    <column name="MONEY" precision="15" />
+		</property>
+		<property name="bdgid" type="java.lang.String">
+		    <column name="BDGID" length="32" />
+		</property>
+		<property name="pid" type="java.lang.String">
+		    <column name="PID" length="18" />
+		</property>
+		<property name="totalratimonthmoneylastall" type="java.lang.Double">
+		    <column name="TOTALRATIMONTHMONEYLASTALL" precision="15" />
+		</property>
+		<property name="totalratimonthlast" type="java.lang.String">
+		    <column name="TOTALRATIMONTHLAST" length="41" />
+		</property>
+		<property name="totalratimonthmoneylast" type="java.lang.Double">
+		    <column name="TOTALRATIMONTHMONEYLAST" precision="15"/>
+		</property>
+		<property name="declpro" type="java.lang.String">
+		    <column name="DECLPRO" length="41" />
+		</property>
+		<property name="checkpro" type="java.lang.String">
+		    <column name="CHECKPRO" length="41" />
+		</property>
+		<property name="ratiftpro" type="java.lang.String">
+		    <column name="RATIFTPRO" length="41" />
+		</property>
+		<property name="decmoney" type="java.lang.Double">
+		    <column name="DECMONEY" precision="15" />
+		</property>
+		<property name="checkmoney" type="java.lang.Double">
+		    <column name="CHECKMONEY" precision="15" />
+		</property>
+		<property name="ratiftmoney" type="java.lang.Double">
+		    <column name="RATIFTMONEY" precision="15" />
+		</property>
+		<property name="totalratimonth" type="java.lang.String">
+		    <column name="TOTALRATIMONTH" length="41" />
+		</property>
+		<property name="totalratimonthmoney" type="java.lang.Double">
+		    <column name="TOTALRATIMONTHMONEY" precision="15" />
+		</property>
+		<property name="percent1" type="java.lang.Double">
+		    <column name="PERCENT1" precision="15" />
+		</property>
+		<property name="proid" type="java.lang.String">
+		    <column name="PROID" length="32" />
+		</property>
+		<property name="monId" type="java.lang.String">
+		    <column name="MON_ID" length="32" />
+		</property>
+		<property name="month" type="java.lang.String">
+		    <column name="MONTH" length="10" />
+		</property>
+		<property name="conid" type="java.lang.String">
+		    <column name="CONID" length="32" />
+		</property>
+		<property name="prono" type="java.lang.String">
+		    <column name="PRONO" length="32" />
+		</property>
+	</class>
+</hibernate-mapping>

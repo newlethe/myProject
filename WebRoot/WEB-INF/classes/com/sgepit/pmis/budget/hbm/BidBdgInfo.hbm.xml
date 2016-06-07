@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.sgepit.pmis.budget.hbm.BidBdgInfo" table="BDG_INFO">
+        <id name="bdgid" type="java.lang.String">
+            <column name="BDGID" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="pid" type="java.lang.String">
+            <column name="PID" length="18" not-null="true" />
+        </property>
+        <property name="bdgno" type="java.lang.String">
+            <column name="BDGNO" length="32" />
+        </property>
+        <property name="bdgname" type="java.lang.String">
+            <column name="BDGNAME" length="60" />
+        </property>
+        <property name="bdgflag" type="java.lang.Long">
+            <column name="BDGFLAG" precision="1" scale="0" />
+        </property>
+        <property name="bdgmoney" type="java.lang.Double">
+            <column name="BDGMONEY" precision="15" scale="4" />
+        </property>
+        <property name="matrmoney" type="java.lang.Double">
+            <column name="MATRMONEY" precision="15" scale="4" />
+        </property>
+        <property name="buildmoney" type="java.lang.Double">
+            <column name="BUILDMONEY" precision="15" scale="4" />
+        </property>
+        <property name="equmoney" type="java.lang.Double">
+            <column name="EQUMONEY" precision="15" scale="4" />
+        </property>
+        <property name="isleaf" type="java.lang.Long">
+            <column name="ISLEAF" precision="1" scale="0" />
+        </property>
+        <property name="parent" type="java.lang.String">
+            <column name="PARENT" length="32" />
+        </property>
+        <property name="contmoney" type="java.lang.Double">
+            <column name="CONTMONEY" precision="15" scale="4" />
+        </property>
+        <property name="isfinish" type="java.lang.Long">
+            <column name="ISFINISH" precision="1" scale="0" />
+        </property>
+        <property name="correspondbdg" type="java.lang.String">
+            <column name="CORRESPONDBDG" length="32" />
+        </property>
+        <property name="isAudit" type="java.lang.Long">
+            <column name="IS_AUDIT" precision="1" scale="0" />
+        </property>
+        <property name="auditNo" type="java.lang.String">
+            <column name="AUDIT_NO" length="32" />
+        </property>
+        <property name="auditId" type="java.lang.String">
+            <column name="AUDIT_ID" length="32" />
+        </property>
+        <property name="assetNo" type="java.lang.String">
+            <column name="ASSET_NO" length="60" />
+        </property>
+        <property name="gcType" type="java.lang.String">
+            <column name="GC_TYPE" length="32"></column>
+        </property>
+        <property name="bdgmoneyCal" type="java.lang.Double">
+            <column name="BDGMONEY_CAL" precision="15" scale="4" />
+        </property>    
+        <property name="remainingMoney" type="java.lang.Double">
+           <column name="REMAININGMONEY" precision="15" scale="4"></column>
+        </property>
+        <property name="prono" type="java.lang.String">
+           <column name="PRONO" length="100"></column>
+        </property>
+    </class>
+</hibernate-mapping>

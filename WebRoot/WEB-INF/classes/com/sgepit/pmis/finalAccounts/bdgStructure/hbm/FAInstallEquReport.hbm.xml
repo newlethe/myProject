@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sgepit.pmis.finalAccounts.bdgStructure.hbm.FAInstallEquReport"
+		table="fa_install_equ_report">
+		<id name="uids" type="java.lang.String">
+			<column name="uids" length="32" />
+			<generator class="uuid"></generator>
+		</id>
+		<property name="pid" type="java.lang.String">
+			<column name="PID" length="32"  />
+		</property>
+		<property name="bdgid" type="java.lang.String">
+			<column name="BDGID" length="32"  />
+		</property>
+		<property name="bdgname" type="java.lang.String">
+			<column name="BDGNAME" length="200"  />
+		</property>
+		<property name="installBdgValue" type="java.math.BigDecimal">
+			<column name="INSTALL_BDG_VALUE" length="15" precision="4"  />
+		</property>
+		<property name="installRealValue" type="java.math.BigDecimal">
+			<column name="INSTALL_REAL_VALUE" length="15" precision="4"  />
+		</property>
+		<property name="installBdgRealDiff" type="java.math.BigDecimal">
+			<column name="INSTALL_BDG_REAL_DIFF" length="15" precision="4"  />
+		</property>
+		<property name="installBdgRealDiffPer" type="java.lang.Double">
+			<column name="INSTALL_BDG_REAL_DIFF_PER" length="7" precision="4"  />
+		</property>
+		<property name="equBdgValue" type="java.math.BigDecimal">
+			<column name="EQU_BDG_VALUE" length="15" precision="4"  />
+		</property>
+		<property name="equRealValue" type="java.math.BigDecimal">
+			<column name="EQU_REAL_VALUE" length="15" precision="4"  />
+		</property>
+		<property name="equBdgRealDiff" type="java.math.BigDecimal">
+			<column name="EQU_BDG_REAL_DIFF" length="15" precision="4"  />
+		</property>
+		<property name="equBdgRealDiffPer" type="java.lang.Double">
+			<column name="EQU_BDG_REAL_DIFF_PER" length="7" precision="4"  />
+		</property>
+	</class>
+
+</hibernate-mapping>

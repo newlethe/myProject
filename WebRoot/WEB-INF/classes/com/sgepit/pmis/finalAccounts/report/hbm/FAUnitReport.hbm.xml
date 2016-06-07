@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	
+	
+	<class name="com.sgepit.pmis.finalAccounts.report.hbm.FAUnitReport"
+		table="fa_unit_report">
+		<id name="uids" type="java.lang.String">
+			<column name="UIDS" length="32" />
+			<generator class="uuid" />
+		</id>
+		<property name="pid" type="java.lang.String">
+			<column name="PID" length="32" />			
+		</property>
+		<property name="sjType" type="java.lang.String">
+			<column name="SJ_TYPE" length="6"></column>
+		</property>
+		<property name="title" type="java.lang.String">
+			<column name="TITLE" length="100"></column>
+		</property>
+		<property name="billState" type="java.lang.Integer">
+			<column name="BILL_STATE" length="1"></column>
+		</property>
+		<property name="remark" type="java.lang.String">
+			<column name="REMARK" length="200"></column>
+		</property>
+		<property name="userId" type="java.lang.String">
+			<column name="USER_ID" length="32"></column>
+		</property>
+		<property name="createDate" type="java.util.Date">
+			<column name="CREATE_DATE"></column>
+		</property>
+		<property name="lastModifyDate" type="java.util.Date">
+			<column name="LAST_MODIFY_DATE"></column>
+		</property>
+		<property name="sourceType" type="java.lang.String">
+			<column name="SOURCE_TYPE" length="20"></column>
+		</property>
+		<property name="reportStatus" type="java.lang.Integer">
+			<column name="REPORT_STATUS" length="1"></column>
+		</property>
+		<property name="fileLsh" type="java.lang.String">
+			<column name="FILE_LSH" length="32"></column>
+		</property>
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sgepit.pmis.finalAccounts.complete.hbm.FACompInfoProgress"
+		table="FACOMP_INFO_PROGRESS">
+		<id name="uids" type="java.lang.String">
+			<column name="UIDS" length="32" />
+			<generator class="uuid" />
+		</id>
+		<property name="pid" type="java.lang.String">
+			<column name="PID" length="32"  />
+		</property>
+		<property name="progName" type="java.lang.String">
+			<column name="PROG_NAME" length="100"  />
+		</property>
+		<property name="planDate" type="java.util.Date">
+			<column name="PLAN_DATE"  />
+		</property>
+		<property name="assesDate" type="java.util.Date">
+			<column name="ASSES_DATE"  />
+		</property>
+		<property name="actualDate" type="java.util.Date">
+			<column name="ACTUAL_DATE"  />
+		</property>
+		<property name="createDate" type="java.util.Date">
+			<column name="CREATE_DATE"  />
+		</property>
+		<property name="progNo" type="java.lang.Long">
+			<column name="PROG_NO"  />
+		</property>
+	</class>
+</hibernate-mapping>

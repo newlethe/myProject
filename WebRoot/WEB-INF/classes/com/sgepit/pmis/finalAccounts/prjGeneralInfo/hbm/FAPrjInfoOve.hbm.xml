@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sgepit.pmis.finalAccounts.prjGeneralInfo.hbm.FAPrjInfoOve"
+		table="fa_prj_info_ove">
+		<id name="uids" type="java.lang.String">
+			<column name="UIDS" length="32" />
+		</id>
+		<property name="prjName" type="java.lang.String">
+			<column name="PRJ_NAME" length="100"  />
+		</property>
+		<property name="prjAddress" type="java.lang.String">
+			<column name="PRJ_ADDRESS" length="200"></column>
+		</property>
+		<property name="designUnit" type="java.lang.String">
+			<column name="DESIGN_UNIT" length="50"></column>
+		</property>
+		<property name="constructUnit" type="java.lang.String">
+			<column name="CONSTRUCT_UNIT" length="50"></column>
+		</property>
+		<property name="eqIntensity" type="java.lang.String">
+			<column name="EQ_INTENSITY" length="20"></column>
+		</property>
+		<property name="fdIntensity" type="java.lang.String">
+			<column name="FD_INTENSITY" length="20"></column>
+		</property>
+		
+	</class>
+
+</hibernate-mapping>

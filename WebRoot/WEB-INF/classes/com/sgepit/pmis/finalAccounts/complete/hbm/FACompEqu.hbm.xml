@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sgepit.pmis.finalAccounts.complete.hbm.FACompEqu"
+		table="FAComp_EQU">
+		<id name="uids" type="java.lang.String">
+			<column name="UIDS" length="32" />
+			<generator class="uuid" />
+		</id>
+		<property name="equNo" type="java.lang.String">
+			<column name="EQU_NO" length="32" />
+		</property>
+		<property name="pid" type="java.lang.String">
+			<column name="PID" length="32"  />
+		</property>
+		<property name="equName" type="java.lang.String">
+			<column name="EQU_NAME" length="100"  />
+		</property>
+		<property name="equModel" type="java.lang.String">
+			<column name="EQU_MODEL" length="50"  />
+		</property>
+		<property name="equMaker" type="java.lang.String">
+			<column name="EQU_MAKER" length="100"  />
+		</property>
+		<property name="equPrice" type="java.lang.Double">
+			<column name="EQU_PRICE" length="15" precision="4"  />
+		</property>
+	</class>
+</hibernate-mapping>

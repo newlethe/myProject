@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sgepit.pmis.finalAccounts.prjGeneralInfo.hbm.FAPrjParams"
+		table="fa_prj_params">
+		<id name="uids" type="java.lang.String">
+			<column name="UIDS" length="32" />
+			<generator class="uuid" />
+		</id>
+		<property name="paramNo" type="java.lang.String">
+			<column name="PARAM_NO" length="32" />
+		</property>
+		<property name="pid" type="java.lang.String">
+			<column name="PID" length="32"  />
+		</property>
+		<property name="paramName" type="java.lang.String">
+			<column name="PARAM_NAME" length="30"  />
+		</property>
+		<property name="paramType" type="java.lang.String">
+			<column name="PARAM_TYPE" length="32"  />
+		</property>
+		<property name="paramValue" type="java.lang.String">
+			<column name="PARAM_VALUE" length="100"  />
+		</property>
+		<property name="unit" type="java.lang.String">
+			<column name="UNIT" length="10"  />
+		</property>
+		<property name="dataType" type="java.lang.String">
+			<column name="DATA_TYPE" length="10"  />
+		</property>
+		<property name="dataFormat" type="java.lang.String">
+			<column name="DATA_FORMAT" length="50"  />
+		</property>
+		
+		
+		
+	</class>
+
+</hibernate-mapping>

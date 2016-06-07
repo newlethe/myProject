@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    
+<sqlMap namespace="EdoProject">
+    <!-- resultMaps -->
+    <resultMap id="resultProject" class="java.util.HashMap">
+      <result property="UID" column="UID_" />
+      <result property="Name" column="NAME_"/>
+      <result property="StartDate" column="STARTDATE_" javaType="java.util.Date"/>
+      <result property="FinishDate" column="FINISHDATE_" javaType="java.util.Date"/>
+      <result property="CreationDate" column="CREATIONDATE_"  javaType="java.util.Date"/>
+      <result property="LastSaved" column="LASTSAVED_"  javaType="java.util.Date"/>
+      <result property="CalendarUID" column="CALENDARUID_"/>
+      <result property="WeekStartDay" column="WEEKSTARTDAY_"/>
+      <result property="DefaultStartTime" column="DEFAULTSTARTTIME_"/>
+      <result property="DefaultFinishTime" column="DEFAULTFINISHTIME_"/>
+      <result property="MinutesPerDay" column="MINUTESPERDAY_"/>
+      <result property="MinutesPerWeek" column="MINUTESPERWEEK_"/>
+      <result property="DaysPerMonth" column="DAYSPERMONTH_"/>
+    </resultMap>
+    <resultMap id="resultCalendar" class="java.util.HashMap">
+      <result property="UID" column="UID_" />
+      <result property="Name" column="NAME_"/>
+      <result property="IsBaseCalendar" column="ISBASECALENDAR_"/>
+      <result property="BaseCalendarUID" column="BASECALENDARUID_"/>
+      <result property="ProjectUID" column="PROJECTUID_"/>
+    </resultMap>
+    <resultMap id="resultWeekDay" class="java.util.HashMap">
+      <result property="DayType" column="DAYTYPE_" />
+      <result property="DayWorking" column="DAYWORKING_"/>
+      <result property="WorkingTimeFromTime1" column="WORKINGTIMEFROMTIME1_"/>
+      <result property="WorkingTimeToTime1" column="WORKINGTIMETOTIME1_"/>
+      <result property="WorkingTimeFromTime2" column="WORKINGTIMEFROMTIME2_"/>
+      <result property="WorkingTimeToTime2" column="WORKINGTIMETOTIME2_"/>
+      <result property="WorkingTimeFromTime3" column="WORKINGTIMEFROMTIME3_"/>
+      <result property="WorkingTimeToTime3" column="WORKINGTIMETOTIME3_"/>
+      <result property="WorkingTimeFromTime4" column="WORKINGTIMEFROMTIME4_"/>
+      <result property="WorkingTimeToTime4" column="WORKINGTIMETOTIME4_"/>
+      <result property="WorkingTimeFromTime5" column="WORKINGTIMEFROMTIME5_"/>
+      <result property="WorkingTimeToTime5" column="WORKINGTIMETOTIME5_"/>
+      <result property="WorkingTimeFromTime6" column="WORKINGTIMEFROMTIME6_"/>
+      <result property="WorkingTimeToTime6" column="WORKINGTIMETOTIME6_"/>
+      <result property="WorkingTimeFromTime7" column="WORKINGTIMEFROMTIME7_"/>
+      <result property="WorkingTimeToTime7" column="WORKINGTIMETOTIME7_"/>
+      <result property="WorkingTimeFromTime8" column="WORKINGTIMEFROMTIME8_"/>
+      <result property="WorkingTimeToTime8" column="WORKINGTIMETOTIME8_"/>
+      <result property="WorkingTimeFromTime9" column="WORKINGTIMEFROMTIME9_"/>
+      <result property="WorkingTimeToTime9" column="WORKINGTIMETOTIME9_"/>
+      <result property="TimePeriodFromDate" column="TIMEPERIODFROMDATE_" javaType="java.util.Date"/>
+      <result property="TimePeriodToDate" column="TIMEPERIODTODATE_" javaType="java.util.Date"/>
+      <result property="Name" column="NAME_"/>
+      <result property="CalendarUID" column="CALENDARUID_"/>
+      <result property="ProjectUID" column="PROJECTUID_"/>
+    </resultMap>
+    <resultMap id="resultResource" class="java.util.HashMap">
+      <result property="UID" column="UID_" />
+      <result property="Name" column="NAME_"/>
+      <result property="Type" column="TYPE_"/>
+      <result property="MaxUnits" column="MAXUNITS_"/>
+      <result property="ProjectUID" column="PROJECTUID_"/>
+    </resultMap>
+    <resultMap id="resultAssignment" class="java.util.HashMap">
+      <result property="TaskUID" column="TASKUID_" />
+      <result property="ResourceUID" column="RESOURCEUID_"/>
+      <result property="Units" column="UNITS_"/>
+      <result property="ProjectUID" column="PROJECTUID_"/>
+      <result property="ResourceName" column="RESOURCENAME_"/>
+      <result property="ResourceType" column="RESOURCETYPE_"/>      
+    </resultMap>
+    <resultMap id="resultPredecessorLink" class="java.util.HashMap">
+      <result property="PredecessorUID" column="PREDECESSORUID_" />
+      <result property="TaskUID" column="TASKUID_"/>
+      <result property="Type" column="TYPE_"/>
+      <result property="LinkLag" column="LINKLAG_"/>
+      <result property="LagFormat" column="LAGFORMAT_"/>
+      <result property="ProjectUID" column="PROJECTUID_"/>
+      <result property="PredecessorID" column="PREDECESSORID_"/>
+      <result property="PredecessorName" column="PREDECESSORNAME_"/>      
+    </resultMap>
+    <resultMap id="resultBaseline" class="java.util.HashMap">
+      <result property="Number" column="NUMBER_"/>
+      <result property="Start" column="START_" javaType="java.util.Date" />
+      <result property="Finish" column="FINISH_" javaType="java.util.Date"/>
+      <result property="Duration" column="DURATION_"/>
+      <result property="TaskUID" column="TASKUID_"/>
+      <result property="ProjectUID" column="PROJECTUID_"/>
+    </resultMap>
+    <resultMap id="resultTask" class="java.util.HashMap">
+      <result property="UID" column="UID_" />
+      <result property="ID" column="ID_"/>
+      <result property="Name" column="NAME_"/>
+      <result property="Type" column="TYPE_"/>
+      <result property="OutlineNumber" column="OUTLINENUMBER_"/>
+      <result property="OutlineLevel" column="OUTLINELEVEL_"/>
+      <result property="Priority" column="PRIORITY_"/>
+      <result property="Start" column="START_" javaType="java.util.Date"/>
+      <result property="Finish" column="FINISH_" javaType="java.util.Date"/>
+      <result property="CreateDate" column="CREATEDATE_" javaType="java.util.Date"/>
+      <result property="Duration" column="DURATION_"/>
+      <result property="DurationFormat" column="DURATIONFORMAT_"/>
+      <result property="Work" column="WORK_"/>
+      <result property="Estimated" column="ESTIMATED_"/>
+      <result property="PercentComplete" column="PERCENTCOMPLETE_"/>
+      <result property="Milestone" column="MILESTONE_"/>
+      <result property="Summary" column="SUMMARY_"/>
+      <result property="Critical" column="CRITICAL_"/>
+      <result property="Hyperlink" column="HYPERLINK_"/>
+      <result property="HyperlinkAddress" column="HYPERLINKADDRESS_"/>
+      <result property="ConstraintType" column="CONSTRAINTTYPE_"/>
+      <result property="ConstraintDate" column="CONSTRAINTDATE_" javaType="java.util.Date"/>
+      <result property="Notes" column="NOTES_"/>
+      <result property="ProjectUID" column="PROJECTUID_"/>
+      <result property="ParentTaskUID" column="PARENTTASKUID_"/>
+
+    </resultMap>
+
+    <!--查找所有项目 -->
+    <select id="getProjectByUID" resultMap="resultProject">
+      select * from edo_project where UID_ = #ProjectUID#
+    </select>
+    <select id="getCalendarsByProjectUID" resultMap="resultCalendar">
+      select * from edo_calendar where ProjectUID_ = #ProjectUID#
+    </select>
+    <select id="getWeekDaysByProjectUID" resultMap="resultWeekDay">
+      select * from edo_weekday where ProjectUID_ = #ProjectUID#
+    </select>
+    <select id="getResourcesByProjectUID" resultMap="resultResource">
+      select * from edo_resource where ProjectUID_ = #ProjectUID#
+    </select>
+    <select id="getAssignmentsByProjectUID" resultMap="resultAssignment">
+      select a.*, b.Name_ ResourceName_, b.Type_ ResourceType_
+      from
+      edo_resource b
+      join
+      (select * from edo_assignment
+      where ProjectUID_ = #ProjectUID#) a
+      on b.UID_ = a.ResourceUID_ and b.ProjectUID_ = #ProjectUID#
+    </select>
+    <select id="getTasksByProjectUID" resultMap="resultTask">
+      select * from edo_task where ProjectUID_ = #ProjectUID# order by ID_
+    </select>
+    <select id="getPredecessorLinksByProjectUID" resultMap="resultPredecessorLink">
+      select c.*, d.Name_ PredecessorName_, d.ID_ PredecessorID_
+      from edo_task d
+      right join
+      (select a.*, b.Name_
+      from
+      edo_task b
+      right join
+      (select * from edo_predecessorLink
+      where ProjectUID_ =  #ProjectUID#) a
+      on a.TaskUID_ = b.UID_ and b.ProjectUID_ = #ProjectUID#) c
+      on c.PredecessorUID_ = d.UID_ and d.ProjectUID_ =  #ProjectUID#
+    </select>
+    <select id="getBaselinesByProjectUID" resultMap="resultBaseline">
+      select * from edo_baseline where ProjectUID_ = #ProjectUID# order by Number_
+    </select>
+    <select id="getTaskByUID" resultMap="resultTask">
+      select * from edo_task where ProjectUID_ = #ProjectUID# and UID_ = #TaskUID#
+    </select>
+    <!--获得日历(根据日历UID)-->
+    <select id="getCalendarByUID" resultMap="resultCalendar">
+      select * from edo_calendar where ProjectUID_ = #ProjectUID# and UID_ = #CalendarUID#
+    </select>
+    <!--获取日历配置(根据日历UID)-->
+    <select id="getWeekDaysByCalendarUID" resultMap="resultWeekDay">
+      select * from edo_weekday where ProjectUID_ = #ProjectUID# and CalendarUID_ = #CalendarUID#
+    </select>
+    <!-- 获得所有子任务(不仅限一个层级任务) -->
+    <select id="getTaskChildrenAll" resultMap="resultTask">
+      select * from edo_task where ProjectUID_ = #ProjectUID# and outlinenumber_ like #key#
+    </select>
+
+    <!--删除项目(包括所有相关表) -->
+    <!-- 删除项目(根据项目UID) -->
+    <delete id="deleteProject">
+      delete from edo_project
+      where UID_ = #ProjectUID#
+    </delete>
+    <!-- 删除任务(根据项目UID) -->
+    <delete id="deleteTask">
+      delete from edo_task
+      where ProjectUID_ = #ProjectUID#
+    </delete>
+    <!-- 删除资源(根据项目UID) -->
+    <delete id="deleteResource">
+      delete from edo_resource
+      where ProjectUID_ = #ProjectUID#
+    </delete>
+    <!-- 删除日历(根据项目UID) -->
+    <delete id="deleteCalendar">
+      delete from edo_calendar
+      where ProjectUID_ = #ProjectUID#
+    </delete>
+    <!-- 删除工作日(根据项目UID) -->
+    <delete id="deleteWeekDay">
+      delete from edo_weekday
+      where ProjectUID_ = #ProjectUID#
+    </delete>
+    <!-- 删除比较基准(根据项目UID) -->
+    <delete id="deleteBaseline">
+      delete from edo_baseline
+      where ProjectUID_ = #ProjectUID#
+    </delete>
+    <!-- 删除任务相关性(根据项目UID) -->
+    <delete id="deletePredecessorLink">
+      delete from edo_predecessorLink
+      where ProjectUID_ = #ProjectUID#
+    </delete>
+    <!-- 删除资源分配关系(根据项目UID) -->
+    <delete id="deleteAssignment">
+      delete from edo_assignment
+      where ProjectUID_ = #ProjectUID#
+    </delete>
+    <!-- 删除任务(根据项目UID和任务UID) -->
+    <delete id="deleteTaskByTaskUID">
+      delete from edo_task
+      where ProjectUID_ = #ProjectUID# and UID_ = #TaskUID#
+    </delete>
+    <!-- 删除比较基准(根据项目UID和任务UID) -->
+    <delete id="deleteBaselineByTaskUID">
+      delete from edo_baseline
+      where ProjectUID_ = #ProjectUID# and TaskUID_ = #TaskUID#
+    </delete>
+    <!-- 删除资源分配关系(根据项目UID和任务UID) -->
+    <delete id="deleteAssignmentByTaskUID">
+      delete from edo_assignment
+      where ProjectUID_ = #ProjectUID# and TaskUID_ = #TaskUID#
+    </delete>
+    <!-- 删除任务相关性((根据项目UID和任务UID) -->
+    <delete id="deletePredecessorLinkByTaskUID">
+      delete from edo_predecessorLink
+      where
+      ProjectUID_ = #ProjectUID#
+      and TaskUID_ = #TaskUID#
+    </delete>
+    <!-- 删除任务相关性(根据项目UID和前置任务UID) -->
+    <delete id="deletePredecessorLinkByPredecessorUID">
+      delete from edo_predecessorLink
+      where
+      ProjectUID_ = #ProjectUID#
+      and PredecessorUID_ = #PredecessorUID#
+    </delete>
+
+    <!--新增-->
+    <insert id="insertProject" >
+      INSERT INTO edo_project
+      (
+      UID_,
+      Name_,
+      StartDate_,
+      FinishDate_,
+      CreationDate_,
+      LastSaved_,
+      CalendarUID_,
+      WeekStartDay_,
+      DefaultStartTime_,
+      DefaultFinishTime_,
+      MinutesPerDay_,
+      MinutesPerWeek_,
+      DaysPerMonth_
+      )
+      VALUES (
+      #UID#,
+      #Name#,
+      #StartDate#,
+      #FinishDate#,
+      #CreationDate#,
+      #LastSaved#,
+      #CalendarUID#,
+      #WeekStartDay#,
+      #DefaultStartTime#,
+      #DefaultFinishTime#,
+      #MinutesPerDay#,
+      #MinutesPerWeek#,
+      #DaysPerMonth#
+      )
+    </insert>
+    <insert id="insertTask">
+      INSERT INTO edo_task
+      (
+      UID_,
+      ID_,
+      Name_,
+      Type_,
+      OutlineNumber_,
+      OutlineLevel_,
+      Priority_,
+      Start_,
+      Finish_,
+      CreateDate_,
+      Duration_,
+      DurationFormat_,
+      Work_,
+      Estimated_,
+      PercentComplete_,
+      Milestone_,
+      Summary_,
+      Critical_,
+      Hyperlink_,
+      HyperlinkAddress_,
+      ConstraintType_,
+      ConstraintDate_,
+      Notes_,
+      ProjectUID_,
+      PARENTTASKUID_
+      )
+      VALUES (
+      #UID#,
+      #ID#,
+      #Name#,
+      #Type#,
+      #OutlineNumber#,
+      #OutlineLevel#,
+      #Priority#,
+      #Start#,
+      #Finish#,
+      #CreateDate#,
+      #Duration#,
+      #DurationFormat#,
+      #Work#,
+      #Estimated#,
+      #PercentComplete#,
+      #Milestone#,
+      #Summary#,
+      #Critical#,
+      #Hyperlink#,
+      #HyperlinkAddress#,
+      #ConstraintType#,
+      #ConstraintDate#,
+      #Notes#,
+      #ProjectUID#,
+      #ParentTaskUID#
+      )
+    </insert>
+
+    <insert id="insertResource">
+      INSERT INTO edo_resource
+      (
+      UID_,
+      Name_,
+      Type_,
+      MaxUnits_,
+      ProjectUID_
+      )
+      VALUES (
+      #UID#,
+      #Name#,
+      #Type#,
+      #MaxUnits#,
+      #ProjectUID#
+      )
+    </insert>
+
+    <insert id="insertAssignment">
+      INSERT INTO edo_assignment
+      (
+      TaskUID_,
+      ResourceUID_,
+      Units_,
+      ProjectUID_
+      )
+      VALUES (
+      #TaskUID#,
+      #ResourceUID#,
+      #Units#,
+      #ProjectUID#
+      )
+    </insert>
+
+    <insert id="insertPredecessorLink">
+      INSERT INTO edo_predecessorlink
+      (
+      PredecessorUID_,
+      TaskUID_,
+      Type_,
+      LinkLag_,
+      LagFormat_,
+      ProjectUID_
+      )
+      VALUES (
+      #PredecessorUID#,
+      #TaskUID#,
+      #Type#,
+      #LinkLag#,
+      #LagFormat#,
+      #ProjectUID#
+      )
+    </insert>
+
+    <insert id="insertBaseline">
+      INSERT into edo_baseline
+      (
+      Number_,
+      Start_,
+      Finish_,
+      Duration_,
+      TaskUID_,
+      ProjectUID_
+      )
+      VALUES (
+      #Number_#,
+      #Start#,
+      #Finish#,
+      #Duration#,
+      #TaskUID#,
+      #ProjectUID#
+      )
+    </insert>
+
+    <insert id="insertCalendar">
+      insert into edo_calendar
+      (
+      UID_  ,
+      Name_ ,
+      IsBaseCalendar_,
+      BaseCalendarUID_ ,
+      ProjectUID_
+      )VALUES
+      (
+      #UID#  ,
+      #Name# ,
+      #IsBaseCalendar#,
+      #BaseCalendarUID# ,
+      #ProjectUID#
+      )
+    </insert>
+    <insert id="insertWeekDay">
+      insert into edo_weekday
+      (
+      DayType_  ,
+      DayWorking_ ,
+      ProjectUID_,
+      CalendarUID_ ,
+      Name_,
+      TimePeriodFromDate_,
+      TimePeriodToDate_,
+
+      WorkingTimeFromTime1_,
+      WorkingTimeToTime1_,
+      WorkingTimeFromTime2_,
+      WorkingTimeToTime2_,
+      WorkingTimeFromTime3_,
+      WorkingTimeToTime3_,
+      WorkingTimeFromTime4_,
+      WorkingTimeToTime4_,
+      WorkingTimeFromTime5_,
+      WorkingTimeToTime5_,
+      WorkingTimeFromTime6_,
+      WorkingTimeToTime6_,
+      WorkingTimeFromTime7_,
+      WorkingTimeToTime7_,
+      WorkingTimeFromTime8_,
+      WorkingTimeToTime8_,
+      WorkingTimeFromTime9_,
+      WorkingTimeToTime9_
+      )VALUES
+      (
+      #DayType#  ,
+      #DayWorking# ,
+      #ProjectUID#,
+      #CalendarUID# ,
+      #Name#,
+      #TimePeriodFromDate#,
+      #TimePeriodToDate#,
+
+      #WorkingTimeFromTime1#,
+      #WorkingTimeToTime1#,
+      #WorkingTimeFromTime2#,
+      #WorkingTimeToTime2#,
+      #WorkingTimeFromTime3#,
+      #WorkingTimeToTime3#,
+      #WorkingTimeFromTime4#,
+      #WorkingTimeToTime4#,
+      #WorkingTimeFromTime5#,
+      #WorkingTimeToTime5#,
+      #WorkingTimeFromTime6#,
+      #WorkingTimeToTime6#,
+      #WorkingTimeFromTime7#,
+      #WorkingTimeToTime7#,
+      #WorkingTimeFromTime8#,
+      #WorkingTimeToTime8#,
+      #WorkingTimeFromTime9#,
+      #WorkingTimeToTime9#
+      )
+    </insert>
+  
+    <!--查询-->
+    <select id="queryTaskByName" resultMap="resultTask">
+      select * from edo_task where ProjectUID_ = #ProjectUID# and (Name_ like #key# or ID_ like #key#) order by ID_
+    </select>
+    <select id="queryResourceByName" resultMap="resultResource">
+      select * from edo_resource where ProjectUID_ = #ProjectUID# and Name_ like #key#
+  </select>    
+
+</sqlMap>
